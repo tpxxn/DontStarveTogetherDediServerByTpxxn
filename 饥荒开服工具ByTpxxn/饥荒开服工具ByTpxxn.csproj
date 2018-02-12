@@ -50,6 +50,9 @@
     <Reference Include="Neo.Lua.Desktop, Version=5.3.0.0, Culture=neutral, PublicKeyToken=fdb0cd4fe8a6e3b2, processorArchitecture=MSIL">
       <HintPath>..\packages\NeoLua.1.2.23\lib\net45\Neo.Lua.Desktop.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -72,6 +75,23 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\DedicateServer\BaseSet.cs" />
+    <Compile Include="Class\DedicateServer\Leveldataoverride.cs" />
+    <Compile Include="Class\DedicateServer\Mod.cs" />
+    <Compile Include="Class\DedicateServer\Mods.cs" />
+    <Compile Include="Class\DedicateServer\ModSetting.cs" />
+    <Compile Include="Class\DedicateServer\Player.cs" />
+    <Compile Include="Class\DedicateServer\Server.cs" />
+    <Compile Include="Class\DedicateServer\ShowWorld.cs" />
+    <Compile Include="Class\JsonDeserialize\ItemListJson.cs" />
+    <Compile Include="Class\JsonDeserialize\ServerConfigJson.cs" />
+    <Compile Include="Class\StringProcess.cs" />
+    <Compile Include="Class\Tools\IniHelper.cs" />
+    <Compile Include="Class\Tools\JsonHelper.cs" />
+    <Compile Include="Class\Tools\LuaConfig.cs" />
+    <Compile Include="Class\Tools\PathAll.cs" />
+    <Compile Include="Class\Tools\SendMessage.cs" />
+    <Compile Include="Class\Tools\Tool.cs" />
     <Compile Include="MyUserControl\DediComboBox.cs" />
     <Compile Include="MyUserControl\DediComboBoxWithImage.cs" />
     <Compile Include="MyUserControl\DediImageButton.cs" />
@@ -82,6 +102,9 @@
       <DependentUpon>DediSelectBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="ValueConverter\DediTooltipPlacementConverter.cs" />
+    <Compile Include="View\DedicatedServerPage.xaml.cs">
+      <DependentUpon>DedicatedServerPage.xaml</DependentUpon>
+    </Compile>
     <Page Include="Dictionary\ComboBoxDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -157,6 +180,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\DedicatedServerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainWindowUI.cs" />
@@ -177,11 +204,20 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="Json\ItemList.json" />
+    <Resource Include="Json\ServerConfig.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="ServerTemplate\Cave\leveldataoverride.lua" />
+    <None Include="ServerTemplate\Cave\modoverrides.lua" />
+    <None Include="ServerTemplate\Cave\server.ini" />
+    <None Include="ServerTemplate\cluster.ini" />
+    <None Include="ServerTemplate\Master\leveldataoverride.lua" />
+    <None Include="ServerTemplate\Master\modoverrides.lua" />
+    <None Include="ServerTemplate\Master\server.ini" />
     <Resource Include="Resources\Cursor\Cursor_link.ani" />
     <Resource Include="Resources\Cursor\Cursor_workOrbusy.ani" />
   </ItemGroup>
@@ -414,6 +450,9 @@
     <Resource Include="Resources\btn\btn_Normal_1.png" />
     <Resource Include="Resources\btn\btn_Normal_2.png" />
     <Resource Include="Resources\btn\btn_Normal_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\DefaultBackground.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using 饥荒开服工具ByTpxxn.Class;
+using 饥荒开服工具ByTpxxn.View;
 
 namespace 饥荒开服工具ByTpxxn
 {
@@ -129,12 +130,10 @@ namespace 饥荒开服工具ByTpxxn
             // 设置背景
             if (bg == "")
             {
-                SeBgAlphaText.Foreground = Brushes.Silver;
-                SeBgAlpha.IsEnabled = false;
+                Se_button_Background_Clear_Click(null, null);
             }
             else
             {
-                SeBgAlphaText.Foreground = Brushes.Black;
                 try
                 {
                     var brush = new ImageBrush
@@ -142,10 +141,11 @@ namespace 饥荒开服工具ByTpxxn
                         ImageSource = new BitmapImage(new Uri(bg))
                     };
                     UiBackGroundBorder.Background = brush;
+                    UiTitle.Foreground = new SolidColorBrush(Colors.Black);
                 }
                 catch
                 {
-                    UiBackGroundBorder.Visibility = Visibility.Collapsed;
+                    Se_button_Background_Clear_Click(null, null);
                 }
             }
             // 设置背景拉伸方式
@@ -183,8 +183,8 @@ namespace 饥荒开服工具ByTpxxn
             #endregion
             // 设置托盘区图标
             //SetNotifyIcon();
-            // 右侧面板导航到欢迎界面
-            //RightFrame.Navigate(new WelcomePage());
+            // Frame导航
+            DedicatedServerFrame.Navigate(new DedicatedServerPage());
             // 是否显示开服工具
             //if (Global.TestMode)
             //    SidebarDedicatedServer.Visibility = Visibility.Visible;

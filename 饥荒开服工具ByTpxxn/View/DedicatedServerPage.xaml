@@ -1,0 +1,424 @@
+﻿<Page x:Class="饥荒开服工具ByTpxxn.View.DedicatedServerPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:饥荒开服工具ByTpxxn.View"
+      xmlns:dedicatedServer="clr-namespace:饥荒开服工具ByTpxxn.MyUserControl" 
+      mc:Ignorable="d" 
+      d:DesignHeight="660" d:DesignWidth="888"
+      Title="DedicatedServerPage">
+
+    <Grid x:Name="DedicatedServerGrid">
+        <!--<Grid.Background>
+            <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_background.png"/>
+        </Grid.Background>-->
+        <Grid x:Name="MainBorder" Margin="220,20,50,10" ClipToBounds="false" SnapsToDevicePixels="true" HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="13*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="7*"/>
+                <RowDefinition Height="50*"/>
+                <RowDefinition Height="8*"/>
+            </Grid.RowDefinitions>
+            <Grid.Effect>
+                <DropShadowEffect Color="White" BlurRadius="15" ShadowDepth="0"/>
+            </Grid.Effect>
+            <Grid.Background>
+                <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_mainpanel.png"/>
+            </Grid.Background>
+            <Grid x:Name="MainGrid" ClipToBounds="true" SnapsToDevicePixels="true" KeyboardNavigation.TabNavigation="Local" Grid.Row="1" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Image x:Name="MainBackground" Grid.Row="1" Grid.RowSpan="2" Stretch="Fill" Source="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_mp_content_bg.png"/>
+                <Grid Grid.Row="0" x:Name="TitleMenu">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <RadioButton x:Name="TitleMenuBaseSet" Content="基本设置" Grid.Column="0" Style="{StaticResource DediMainPanelRadioButtonStyle}" Click="TitleMenuBaseSet_Click"/>
+                    <RadioButton x:Name="TitleMenuEditWorld" Content="编辑世界" Grid.Column="1" Style="{StaticResource DediMainPanelRadioButtonStyle}" Click="TitleMenuEditWorld_Click"/>
+                    <RadioButton x:Name="TitleMenuMod" Content="Mods" Grid.Column="2" Style="{StaticResource DediMainPanelRadioButtonStyle}" Click="TitleMenuMod_Click"/>
+                    <RadioButton x:Name="TitleMenuRollback" Content="控制台" Grid.Column="3" Style="{StaticResource DediMainPanelRadioButtonStyle}" Click="TitleMenuRollback_Click"/>
+                </Grid>
+                <Canvas x:Name="MainTopCanvas" Grid.Row="1" Margin="-10,0,10,0">
+                    <Image x:Name="DediMainTopPortraitsBg" Height="70" Width="70" Canvas.Left="15" Canvas.Top="15" Source="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_mp_portraits_bg.png" Stretch="Fill"/>
+                    <Image x:Name="DediMainTopPortraits" Height="70" Width="70" Canvas.Left="15.4" Canvas.Top="15.4" Source="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_mp_portraits_none.png" Stretch="Fill"/>
+                    <TextBlock x:Name="DediMainTopWorldName" TextWrapping="Wrap" Text="XXX 的世界" Canvas.Left="90" Canvas.Top="15" FontSize="36" FontWeight="Bold"/>
+                    <TextBlock x:Name="DediMainTopDays" TextWrapping="Wrap" Text="新的世界" Canvas.Left="90" Canvas.Top="65" FontSize="16" FontWeight="Bold"/>
+                    <Button x:Name="DediMainTopDelete" Tag="删除" Width="75" Height="75" Canvas.Right="10" Canvas.Top="10" Style="{StaticResource DediButtonMainPanelStyle}" Click="DediMainTop_Delete_Click">
+                        <Image Source="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_mp_btn_delete.png"/>
+                    </Button>
+                </Canvas>
+                <Grid x:Name="ButtomGrid" Grid.Row="2" Margin="5,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="15*"/>
+                        <RowDefinition Height="10"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="7*"/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="9*"/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="12*"/>
+                        <ColumnDefinition Width="10"/>
+                    </Grid.ColumnDefinitions>
+                    <ScrollViewer x:Name="DediSetting" Grid.ColumnSpan="5" Grid.Column="1" Grid.Row="1" Template="{StaticResource DediRightPanelScrollViewerControlTemplate}" Margin="30,0" Focusable="False" VerticalAlignment="Stretch" VerticalContentAlignment="Top" d:IsHidden="True" >
+                        <StackPanel>
+                            <Grid x:Name="DediSettingGameVersion" Height="40">
+                                <Grid.Background>
+                                    <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_set_bg.png"/>
+                                </Grid.Background>
+                                <Viewbox Margin="0,2">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="游戏平台:" FontWeight="Bold" FontSize="16"/>
+                                        <dedicatedServer:DediComboBox x:Name="DediSettingGameVersionSelect" Height="35" Width="140" SelectionChanged="DediSettingGameVersionSelect_SelectionChanged" Background="{x:Null}"/>
+                                    </StackPanel>
+                                </Viewbox>
+                            </Grid>
+                            <Grid x:Name="DediSettingGameDir" Height="40">
+                                <Grid.Background>
+                                    <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_set_bg.png"/>
+                                </Grid.Background>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="107.2"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="27.2"/>
+                                    <ColumnDefinition Width="5"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Content="游戏exe地址:" FontWeight="Bold" FontSize="16" VerticalAlignment="Center"/>
+                                <TextBox Grid.Column="1" x:Name="GameDirSelectTextBox" Tag="双击打开目录" Style="{StaticResource DediTextBoxStyle}" Height="30" IsReadOnly="True" Cursor="{StaticResource CursorLink}" PreviewMouseDoubleClick="DediSettingGameDirSelectTextBox_PreviewMouseDoubleClick" VerticalAlignment="Center"/>
+                                <Button Grid.Column="2" x:Name="GameDirSelectButton" Tag="选择文件" Width="30" Height="30" Style="{StaticResource DediLittleButtonMainPanelStyle}" Click="DediSettingGameDirSelect_Click" VerticalAlignment="Center" Margin="0,3,0,0">
+                                    <Image Source="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_mp_btn_dirselect.png"/>
+                                </Button>
+                            </Grid>
+                            <Grid x:Name="DediSettingDediDir" Height="40">
+                                <Grid.Background>
+                                    <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_set_bg.png"/>
+                                </Grid.Background>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="123.2"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="27.2"/>
+                                    <ColumnDefinition Width="5"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Content="服务器exe地址:" FontWeight="Bold" FontSize="16" VerticalAlignment="Center"/>
+                                <TextBox Grid.Column="1" x:Name="DediDirSelectTextBox" Tag="双击打开目录" Style="{StaticResource DediTextBoxStyle}" Height="30" IsReadOnly="True" Cursor="{StaticResource CursorLink}" PreviewMouseDoubleClick="DediSettingDediDirSelectTextBox_PreviewMouseDoubleClick" VerticalAlignment="Center"/>
+                                <Button Grid.Column="2" x:Name="DediDirSelectButton" Tag="选择文件" Width="30" Height="30" Style="{StaticResource DediLittleButtonMainPanelStyle}" Click="DediSettingDediDirSelect_Click" VerticalAlignment="Center" Margin="0,3,0,0">
+                                    <Image Source="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_mp_btn_dirselect.png"/>
+                                </Button>
+                            </Grid>
+                            <Grid x:Name="DediSettingDediCluster" Height="40">
+                                <Grid.Background>
+                                    <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_set_bg.png"/>
+                                </Grid.Background>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="121.6"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="27.2"/>
+                                    <ColumnDefinition Width="5"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Content="ClusterToken:" FontWeight="Bold" FontSize="16" VerticalAlignment="Center"/>
+                                <TextBox Grid.Column="1" x:Name="DediSettingClusterTokenTextBox" Tag="输入ClusterToken" Style="{StaticResource DediTextBoxStyle}" Height="30"  Cursor="{StaticResource CursorText}" VerticalAlignment="Center"  />
+                                <Button Grid.Column="2" x:Name="DediSettingSaveCluster" Tag="保存" Width="30" Height="30" Style="{StaticResource DediLittleButtonMainPanelStyle}" Click="DediSettingSaveCluster_Click" VerticalAlignment="Center" Margin="0,3,0,0">
+                                    <Image Source="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_mp_btn_save.png"/>
+                                </Button>
+                            </Grid>
+                            <TextBlock x:Name="CommonSettingSetOverTextBlock" Text="通用设置设定完毕，现在可以在左侧选择存档开启服务器" HorizontalAlignment="Center" Margin="0,10,0,0" FontSize="14" FontWeight="Bold" Foreground="Green"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                    <Grid x:Name="DediIntention" Grid.ColumnSpan="5" Grid.Column="1" Grid.Row="1" d:IsHidden="True">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="120"/>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.ColumnSpan="6" Content="你的游戏风格是什么？" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" FontWeight="Bold" Background="{x:Null}"/>
+                        <Button x:Name="IntentionSocialButton" Grid.Column="1" Margin="5" Grid.Row="1" Style="{StaticResource DediButtonIntentionSelectStyle}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" Click="DediIntention_Click" MouseEnter="DediIntention_MouseEnter" MouseLeave="DediIntention_MouseLeave">
+                            <Canvas>
+                                <TextBlock TextWrapping="Wrap" Text="交际" Canvas.Left="36" Canvas.Top="5" FontSize="18" FontWeight="Bold" />
+                                <Image Height="75" Width="80" Source="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_intention_social.png" Canvas.Left="13" Canvas.Top="25"/>
+                            </Canvas>
+                        </Button>
+                        <Button x:Name="IntentionCooperativeButton" Grid.Column="2" Margin="5" Grid.Row="1" Style="{StaticResource DediButtonIntentionSelectStyle}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" Click="DediIntention_Click" MouseEnter="DediIntention_MouseEnter" MouseLeave="DediIntention_MouseLeave">
+                            <Canvas>
+                                <TextBlock TextWrapping="Wrap" Text="合作" Canvas.Left="36" Canvas.Top="5" FontSize="18" FontWeight="Bold" />
+                                <Image Height="75" Width="80" Source="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_intention_cooperative.png" Canvas.Left="13" Canvas.Top="25"/>
+                            </Canvas>
+                        </Button>
+                        <Button x:Name="IntentionCompetitiveButton" Grid.Column="3" Margin="5" Grid.Row="1" Style="{StaticResource DediButtonIntentionSelectStyle}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" Click="DediIntention_Click"  MouseEnter="DediIntention_MouseEnter" MouseLeave="DediIntention_MouseLeave">
+                            <Canvas>
+                                <TextBlock TextWrapping="Wrap" Text="竞争" Canvas.Left="36" Canvas.Top="5" FontSize="18" FontWeight="Bold" />
+                                <Image Height="75" Width="80" Source="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_intention_competitive.png" Canvas.Left="13" Canvas.Top="25"/>
+                            </Canvas>
+                        </Button>
+                        <Button x:Name="IntentionMadnessButton" Grid.Column="4" Margin="5" Grid.Row="1" Style="{StaticResource DediButtonIntentionSelectStyle}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" Click="DediIntention_Click" MouseEnter="DediIntention_MouseEnter" MouseLeave="DediIntention_MouseLeave">
+                            <Canvas>
+                                <TextBlock TextWrapping="Wrap" Text="疯狂" Canvas.Left="36" Canvas.Top="5" FontSize="18" FontWeight="Bold" />
+                                <Image Height="75" Width="80" Source="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_intention_madness.png" Canvas.Left="13" Canvas.Top="25"/>
+                            </Canvas>
+                        </Button>
+                        <TextBlock x:Name="DidiIntentionTextBlock" Grid.ColumnSpan="4" FontSize="16" FontWeight="Bold" Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" TextAlignment="Center"/>
+                    </Grid>
+                    <ScrollViewer x:Name="DediBaseSet" Grid.ColumnSpan="5" Grid.Column="1" Grid.Row="1" Template="{StaticResource DediRightPanelScrollViewerControlTemplate}" Margin="30,0" Focusable="False" >
+                        <StackPanel>
+                            <Grid x:Name="DediBaseSetIntention" Height="40">
+                                <Grid.Background>
+                                    <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_set_bg.png"/>
+                                </Grid.Background>
+                                <Viewbox Margin="0,2">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="游戏风格" FontWeight="Bold" FontSize="16"/>
+                                        <Button x:Name="DediBaseSetIntentionButton" Content="{Binding GameStyleText, Mode=TwoWay}" Width="124" Style="{StaticResource DediButtonIntentionStyle}" Focusable="False" FontWeight="Bold" FontSize="16" Height="27" Click="DediBaseSetIntentionButton_Click"/>
+                                    </StackPanel>
+                                </Viewbox>
+                            </Grid>
+                            <Grid x:Name="DediBaseSetName" Height="40">
+                                <Grid.Background>
+                                    <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_set_bg.png"/>
+                                </Grid.Background>
+                                <Viewbox Margin="0,2">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="名称" FontWeight="Bold" FontSize="16"/>
+                                        <TextBox x:Name="DediBaseSetHouseName" Tag="服务器名称" Text="{Binding HouseName, Mode=TwoWay}" Style="{StaticResource DediTextBoxStyle}" Height="30" Width="250" TextChanged="DediBaseSetHouseName_TextChanged"/>
+                                    </StackPanel>
+                                </Viewbox>
+                            </Grid>
+                            <Grid x:Name="DediBaseSetDescription" Height="40">
+                                <Grid.Background>
+                                    <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_set_bg.png"/>
+                                </Grid.Background>
+                                <Viewbox Margin="0,2">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="描述"  FontWeight="Bold" FontSize="16"/>
+                                        <TextBox x:Name="DediBaseSetDescribe" Tag="服务器描述" Text="{Binding Describe, Mode=TwoWay}" Style="{StaticResource DediTextBoxStyle}" Height="30" Width="250"/>
+                                    </StackPanel>
+                                </Viewbox>
+                            </Grid>
+                            <Grid x:Name="DediBaseSetGamemode" Height="40">
+                                <Grid.Background>
+                                    <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_set_bg.png"/>
+                                </Grid.Background>
+                                <Viewbox Margin="0,2">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="游戏模式" FontWeight="Bold" FontSize="16"/>
+                                        <dedicatedServer:DediComboBox x:Name="DediBaseSetGamemodeSelect" Text="{Binding GameModeText, Mode=TwoWay}" Height="35" Width="140"/>
+                                    </StackPanel>
+                                </Viewbox>
+                            </Grid>
+                            <Grid x:Name="DediBaseSetPvp" Height="40">
+                                <Grid.Background>
+                                    <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_set_bg.png"/>
+                                </Grid.Background>
+                                <Viewbox Margin="0,2">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="PvP:" FontWeight="Bold" FontSize="16"/>
+                                        <dedicatedServer:DediComboBox x:Name="DediBaseSetPvpSelect" Text="{Binding IsPvp, Mode=TwoWay}" Height="35" Width="140"/>
+                                    </StackPanel>
+                                </Viewbox>
+                            </Grid>
+                            <Grid x:Name="DediBaseSetMaxPlayer" Height="40">
+                                <Grid.Background>
+                                    <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_set_bg.png"/>
+                                </Grid.Background>
+                                <Viewbox Margin="0,2">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="玩家:" FontWeight="Bold" FontSize="16"/>
+                                        <dedicatedServer:DediComboBox x:Name="DediBaseSetMaxPlayerSelect" Text="{Binding MaxPlayers, Mode=TwoWay}" Height="35" Width="140"/>
+                                    </StackPanel>
+                                </Viewbox>
+                            </Grid>
+                            <Grid x:Name="DediBaseSetPassword" Height="40">
+                                <Grid.Background>
+                                    <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_set_bg.png"/>
+                                </Grid.Background>
+                                <Viewbox Margin="0,2">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="密码" FontWeight="Bold" FontSize="16"/>
+                                        <TextBox x:Name="DediBaseSetSecret" Tag="服务器密码" Text="{Binding Secret, Mode=TwoWay}" Style="{StaticResource DediTextBoxStyle}" Height="30" Width="250"/>
+                                    </StackPanel>
+                                </Viewbox>
+                            </Grid>
+                            <Grid x:Name="DediBaseSetOffline" Height="40">
+                                <Grid.Background>
+                                    <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_set_bg.png"/>
+                                </Grid.Background>
+                                <Viewbox Margin="0,2">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="服务器模式" FontWeight="Bold" FontSize="16"/>
+                                        <dedicatedServer:DediComboBox  x:Name="DediBaseOfflineSelect" Text="{Binding ServerMode, Mode=TwoWay}" Height="35" Width="140"/>
+                                    </StackPanel>
+                                </Viewbox>
+                            </Grid>
+                            <Grid x:Name="DediBaseSetIsPause" Height="40">
+                                <Grid.Background>
+                                    <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_set_bg.png"/>
+                                </Grid.Background>
+                                <Viewbox Margin="0,2">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="无人时暂停" FontWeight="Bold" FontSize="16"/>
+                                        <dedicatedServer:DediComboBox  x:Name="DediBaseIsPause" Text="{Binding IsPause, Mode=TwoWay}" Height="35" Width="140"/>
+                                    </StackPanel>
+                                </Viewbox>
+                            </Grid>
+                        </StackPanel>
+                    </ScrollViewer>
+                    <Grid x:Name="DediWorldSet" Grid.ColumnSpan="5" Grid.Column="1" Grid.Row="1" d:IsHidden="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition x:Name="CaveSettingColumnDefinition" Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid x:Name="DediBaseSetIsCave" Grid.ColumnSpan="2" Grid.Row="0">
+                            <Grid.Background>
+                                <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_set_bg.png"/>
+                            </Grid.Background>
+                            <Viewbox Margin="0,2">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="开启洞穴" FontWeight="Bold" FontSize="16"/>
+                                    <dedicatedServer:DediComboBox x:Name="IsCaveComboBox" Text="{Binding IsCave, Mode=TwoWay}" Height="35" Width="140" SelectionChanged="DediBaseIsCave_SelectionChanged"/>
+                                </StackPanel>
+                            </Viewbox>
+                        </Grid>
+                        <ScrollViewer Template="{StaticResource DediRightPanelScrollViewerControlTemplate}"  Grid.Row="1">
+                            <StackPanel HorizontalAlignment="Center">
+                                <Label Content="地上世界" Margin="0,10,0,10" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Center" HorizontalAlignment="Center"/>
+                                <WrapPanel x:Name="DediOverWorldWorld" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                <Label Content="资源" Margin="0,10,0,10"  FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <WrapPanel x:Name="DediOverWorldResources" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                <Label Content="食物" Margin="0,10,0,10"  FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <WrapPanel x:Name="DediOverWolrdFoods" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                <Label Content="动物" Margin="0,10,0,10"  FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <WrapPanel x:Name="DediOverWorldAnimals" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                <Label Content="怪物" Margin="0,10,0,10"  FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <WrapPanel x:Name="DediOverWorldMonsters" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                            </StackPanel>
+                        </ScrollViewer>
+                        <ScrollViewer Template="{StaticResource DediRightPanelScrollViewerControlTemplate}" Grid.Row="1" Grid.Column="1"  >
+                            <StackPanel HorizontalAlignment="Center">
+                                <Label Content="地下世界" Margin="0,10,0,10" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Center" HorizontalAlignment="Center"/>
+                                <WrapPanel x:Name="DediCavesWorld" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                <Label Content="资源" Margin="0,10,0,10"  FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <WrapPanel x:Name="DediCavesResources" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                <Label Content="食物" Margin="0,10,0,10"  FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <WrapPanel x:Name="DediCavesFoods" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                <Label Content="动物" Margin="0,10,0,10"  FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <WrapPanel x:Name="DediCavesAnimals" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                <Label Content="怪物" Margin="0,10,0,10"  FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
+                                <WrapPanel x:Name="DediCavesMonsters" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Grid>
+                    <Grid x:Name="DediModSet" Grid.ColumnSpan="5" Grid.Column="1" Grid.Row="1" d:IsHidden="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="240"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <ScrollViewer Grid.Column="0" Template="{StaticResource DediRightPanelScrollViewerControlTemplate}">
+                            <StackPanel x:Name="ModListStackPanel"/>
+                        </ScrollViewer>
+                        <ScrollViewer Grid.Column="1" Template="{StaticResource DediRightPanelScrollViewerControlTemplate}">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock x:Name="ModDescriptionStackPanel"/>
+                                <StackPanel x:Name="ModSettingStackPanel" Orientation="Vertical"/>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Grid>
+                    <Grid x:Name="DediConsole" Grid.ColumnSpan="5" Grid.Column="1" Grid.Row="1" d:IsHidden="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="140"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel x:Name="ConsoleClassificationStackPanel" Orientation="Vertical"  Margin="0" Grid.Column="0"/>
+                        <ScrollViewer Grid.Column="1" Template="{StaticResource DediRightPanelScrollViewerControlTemplate}">
+                            <WrapPanel x:Name="ConsoleDetailsWrapPanel" Orientation="Horizontal" Margin="0"/>
+                        </ScrollViewer>
+                    </Grid>
+                    <Grid x:Name="DediModManager" Grid.ColumnSpan="5" Grid.Column="1" Grid.Row="1" d:IsHidden="True">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <WrapPanel Grid.Row="0" >
+                            <Label Content="添加管理员:" ></Label>
+                            <TextBox Style="{StaticResource DediTextBoxStyle}" Width="300" />
+                            <Button Content="添加管理员" Style="{StaticResource DediButtonCreateWorldStyle}" Width="100"></Button>
+                        </WrapPanel>
+                        <WrapPanel Grid.Row="1" >
+                            <Label Content="添加白名单:" ></Label>
+                            <TextBox Style="{StaticResource DediTextBoxStyle}" Width="300" />
+                            <Button Content="添加白名单" Style="{StaticResource DediButtonCreateWorldStyle}" Width="100"></Button>
+                        </WrapPanel>
+                        <WrapPanel Grid.Row="2" >
+                            <Label Content="添加黑名单:" ></Label>
+                            <TextBox Style="{StaticResource DediTextBoxStyle}" Width="300" />
+                            <Button Content="添加黑名单" Style="{StaticResource DediButtonCreateWorldStyle}" Width="100"></Button>
+                        </WrapPanel>
+                    </Grid>
+                    <Image x:Name="DediButtomBorderH1" Source="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_buttomborder_h.png" Stretch="Fill" Grid.ColumnSpan="7" Margin="0,3.5"/>
+                    <Image x:Name="DediButtomBorderH2" Source="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_buttomborder_h.png" Stretch="Fill" Grid.ColumnSpan="7" Margin="0,3.5" Grid.Row="2"/>
+                    <Image x:Name="DediButtomBorderV1" Source="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_buttomborder_v.png" Stretch="Fill" Margin="3,0" Grid.RowSpan="3"/>
+                    <Image x:Name="DediButtomBorderV2" Source="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_buttomborder_v.png" Stretch="Fill" Margin="3,0" Grid.RowSpan="3" Grid.Column="2" Visibility="Collapsed"/>
+                    <Image x:Name="DediButtomBorderV3" Source="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_buttomborder_v.png" Stretch="Fill" Margin="3,0" Grid.RowSpan="3" Grid.Column="4" Visibility="Collapsed"/>
+                    <Image x:Name="DediButtomBorderV4" Source="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_buttomborder_v.png" Stretch="Fill" Margin="3,0" Grid.RowSpan="3" Grid.Column="6"/>
+                </Grid>
+            </Grid>
+            <StackPanel x:Name="BottomStackPanel" Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button x:Name="CommonSettingButton" Content="通用设置" Style="{StaticResource DediButtonCreateWorldStyle}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0" Width="150" Height="50" FontSize="18" FontWeight="Bold" Click="CommonSettingButton_Click" />
+                <Button x:Name="CtrateRunGame" Content="打开游戏" Style="{StaticResource DediButtonCreateWorldStyle}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0" Width="150" Height="50" FontSize="18" FontWeight="Bold" Click="OpenGameButton_Click" />
+                <Button x:Name="CtrateWorldButton" Content="创建世界" Style="{StaticResource DediButtonCreateWorldStyle}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0" Width="150" Height="50" FontSize="18" FontWeight="Bold" Click="CtrateWorldButton_Click" />
+            </StackPanel>
+        </Grid>
+        <!--左侧存档选择-->
+        <ScrollViewer x:Name="SaveSlotScrollViewer" Margin="50,70,0,70" HorizontalAlignment="Left" Width="200" BorderBrush="{x:Null}" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" Template="{StaticResource DediLeftPanelScrollViewerControlTemplate}" Focusable="False">
+            <ScrollViewer.Background>
+                <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_leftpanel.png"/>
+            </ScrollViewer.Background>
+            <StackPanel x:Name="SaveSlotStackPanel" HorizontalAlignment="Left" Width="160" VerticalAlignment="Top">
+                <RadioButton Content="创建世界" Name="SaveSlotRadioButton0" Style="{StaticResource RadioButtonStyle}" Checked="SaveSlotRadioButton_Checked"/>
+                <RadioButton Content="创建世界" Name="SaveSlotRadioButton1" Style="{StaticResource RadioButtonStyle}" Checked="SaveSlotRadioButton_Checked"/>
+                <RadioButton Content="创建世界" Name="SaveSlotRadioButton2" Style="{StaticResource RadioButtonStyle}" Checked="SaveSlotRadioButton_Checked"/>
+                <RadioButton Content="创建世界" Name="SaveSlotRadioButton3" Style="{StaticResource RadioButtonStyle}" Checked="SaveSlotRadioButton_Checked"/>
+                <RadioButton Content="创建世界" Name="SaveSlotRadioButton4" Style="{StaticResource RadioButtonStyle}" Checked="SaveSlotRadioButton_Checked"/>
+                <RadioButton Content="创建世界" Name="SaveSlotRadioButton5" Style="{StaticResource RadioButtonStyle}" Checked="SaveSlotRadioButton_Checked"/>
+                <RadioButton Content="创建世界" Name="SaveSlotRadioButton6" Style="{StaticResource RadioButtonStyle}" Checked="SaveSlotRadioButton_Checked"/>
+                <RadioButton Content="创建世界" Name="SaveSlotRadioButton7" Style="{StaticResource RadioButtonStyle}" Checked="SaveSlotRadioButton_Checked"/>
+                <RadioButton Content="创建世界" Name="SaveSlotRadioButton8" Style="{StaticResource RadioButtonStyle}" Checked="SaveSlotRadioButton_Checked"/>
+                <RadioButton Content="创建世界" Name="SaveSlotRadioButton9" Style="{StaticResource RadioButtonStyle}" Checked="SaveSlotRadioButton_Checked"/>
+                <RadioButton Content="创建世界" Name="SaveSlotRadioButton10" Style="{StaticResource RadioButtonStyle}" Checked="SaveSlotRadioButton_Checked"/>
+                <RadioButton Content="创建世界" Name="SaveSlotRadioButton11" Style="{StaticResource RadioButtonStyle}" Checked="SaveSlotRadioButton_Checked"/>
+                <RadioButton Content="创建世界" Name="SaveSlotRadioButton12" Style="{StaticResource RadioButtonStyle}" Checked="SaveSlotRadioButton_Checked"/>
+                <RadioButton Content="创建世界" Name="SaveSlotRadioButton13" Style="{StaticResource RadioButtonStyle}" Checked="SaveSlotRadioButton_Checked"/>
+                <RadioButton Content="创建世界" Name="SaveSlotRadioButton14" Style="{StaticResource RadioButtonStyle}" Checked="SaveSlotRadioButton_Checked"/>
+                <RadioButton Content="创建世界" Name="SaveSlotRadioButton15" Style="{StaticResource RadioButtonStyle}" Checked="SaveSlotRadioButton_Checked"/>
+                <RadioButton Content="创建世界" Name="SaveSlotRadioButton16" Style="{StaticResource RadioButtonStyle}" Checked="SaveSlotRadioButton_Checked"/>
+                <RadioButton Content="创建世界" Name="SaveSlotRadioButton17" Style="{StaticResource RadioButtonStyle}" Checked="SaveSlotRadioButton_Checked"/>
+                <RadioButton Content="创建世界" Name="SaveSlotRadioButton18" Style="{StaticResource RadioButtonStyle}" Checked="SaveSlotRadioButton_Checked"/>
+                <RadioButton Content="创建世界" Name="SaveSlotRadioButton19" Style="{StaticResource RadioButtonStyle}" Checked="SaveSlotRadioButton_Checked"/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

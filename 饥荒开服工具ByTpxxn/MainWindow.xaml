@@ -33,7 +33,7 @@
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Border x:Name="UiBackGroundBorder" BorderThickness="0" Grid.RowSpan="2" Grid.Column="0"/>
+            <Border x:Name="UiBackGroundBorder" BorderThickness="0" Grid.RowSpan="2"/>
             <Grid x:Name="UiGrid" Grid.Row="0" Grid.Column="0">
                 <TextBlock x:Name="UiTitle" Text="饥荒开服工具" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" />
                 <Button x:Name="UiBtnClose" Width="25" ToolTip="退出" Click="UI_btn_close_Click" Height="25" HorizontalAlignment="Right" Margin="0,0,10,0" Cursor="{StaticResource CursorLink}" Style="{StaticResource UI_btn_close_Style}" Focusable="False" VerticalAlignment="Center" d:IsLocked="True" />
@@ -100,7 +100,7 @@
                     </Border>
                 </Popup>
             </Grid>
-            <Frame x:Name="DedicatedServerFrame" Grid.Row="1" Grid.Column="0" Margin="0,1,0,0" NavigationUIVisibility="Hidden" Visibility="Collapsed"/>
+            <Frame x:Name="DedicatedServerFrame" Grid.Row="1" Grid.Column="0" Margin="0,1,0,0" NavigationUIVisibility="Hidden"/>
         </Grid>
         <Border x:Name="MainBorder" BorderThickness="1" Grid.ColumnSpan="5" Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" BorderBrush="#FF2B2B2B" d:IsLocked="True"/>
         <Border x:Name="ResizeTopLeft" BorderThickness="0" Grid.Row="0" Grid.Column="0" MouseMove="ResizePressed" MouseDown="ResizePressed" Grid.RowSpan="2" Grid.ColumnSpan="2" Background="#00000000" d:IsLocked="True" />

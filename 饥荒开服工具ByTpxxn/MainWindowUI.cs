@@ -307,8 +307,7 @@ namespace 饥荒开服工具ByTpxxn
                     ImageSource = new BitmapImage(new Uri(pictruePath + filename))
                 };
                 UiBackGroundBorder.Background = brush;
-                SeBgAlphaText.Foreground = Brushes.Black;
-                SeBgAlpha.IsEnabled = true;
+                UiTitle.Foreground = new SolidColorBrush(Colors.Black);
                 IniFileIo.IniFileWrite("Configure", "Skin", "Background", pictruePath + filename);
             }
             catch (Exception)
@@ -322,10 +321,12 @@ namespace 饥荒开服工具ByTpxxn
         /// </summary>
         private void Se_button_Background_Clear_Click(object sender, RoutedEventArgs e)
         {
-            UiBackGroundBorder.Visibility = Visibility.Collapsed;
-            UiBackGroundBorder.Background = null;
-            SeBgAlphaText.Foreground = Brushes.Silver;
-            SeBgAlpha.IsEnabled = false;
+            var brush = new ImageBrush
+            {
+                ImageSource = new BitmapImage(new Uri("pack://application:,,,/饥荒开服工具ByTpxxn;component/Resources/DefaultBackground.jpg", UriKind.RelativeOrAbsolute))
+            };
+            UiBackGroundBorder.Background = brush;
+            UiTitle.Foreground = new SolidColorBrush(Colors.White);
             IniFileIo.IniFileWrite("Configure", "Skin", "Background", "");
         }
 
@@ -339,8 +340,7 @@ namespace 饥荒开服工具ByTpxxn
             if (!MwInit) return;
             if (bg == "")
             {
-                SeBgAlphaText.Foreground = Brushes.Silver;
-                SeBgAlpha.IsEnabled = false;
+                Se_button_Background_Clear_Click(null, null);
             }
             else
             {
@@ -353,11 +353,12 @@ namespace 饥荒开服工具ByTpxxn
                         Stretch = (Stretch)SeComboBoxBackgroundStretch.SelectedIndex
                     };
                     UiBackGroundBorder.Background = brush;
+                    UiTitle.Foreground = new SolidColorBrush(Colors.Black);
                     IniFileIo.IniFileWrite("Configure", "Skin", "BackgroundStretch", (SeComboBoxBackgroundStretch.SelectedIndex + 1).ToString());
                 }
                 catch
                 {
-                    UiBackGroundBorder.Visibility = Visibility.Collapsed;
+                    Se_button_Background_Clear_Click(null, null);
                 }
             }
         }

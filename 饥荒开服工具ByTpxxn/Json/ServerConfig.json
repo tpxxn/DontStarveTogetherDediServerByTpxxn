@@ -1,0 +1,1098 @@
+{
+  "Configuration": {
+    "Hanization": {
+      "Details": [
+        {
+          "English": "unprepared",
+          "Chinese": "食物"
+        },
+        {
+          "English": "antliontribute",
+          "Chinese": "蚁狮贡品"
+        },
+        {
+          "English": "banana",
+          "Chinese": "洞穴香蕉"
+        },
+        {
+          "English": "berrybush",
+          "Chinese": "浆果丛"
+        },
+        {
+          "English": "cactus",
+          "Chinese": "仙人掌"
+        },
+        {
+          "English": "carrot",
+          "Chinese": "萝卜"
+        },
+        {
+          "English": "lichen",
+          "Chinese": "苔藓"
+        },
+        {
+          "English": "mushroom",
+          "Chinese": "蘑菇"
+        },
+        {
+          "English": "misc",
+          "Chinese": "杂项"
+        },
+        {
+          "English": "preset",
+          "Chinese": "预设"
+        },
+        {
+          "English": "autumn",
+          "Chinese": "秋季"
+        },
+        {
+          "English": "boons",
+          "Chinese": "失败的幸存者"
+        },
+        {
+          "English": "branching",
+          "Chinese": "分支路"
+        },
+        {
+          "English": "cavelight",
+          "Chinese": "洞穴透光"
+        },
+        {
+          "English": "day",
+          "Chinese": "时间设置"
+        },
+        {
+          "English": "earthquakes",
+          "Chinese": "地震"
+        },
+        {
+          "English": "frograin",
+          "Chinese": "青蛙雨"
+        },
+        {
+          "English": "lightning",
+          "Chinese": "闪电"
+        },
+        {
+          "English": "loop",
+          "Chinese": "环形路"
+        },
+        {
+          "English": "regrowth",
+          "Chinese": "世界再生"
+        },
+        {
+          "English": "season_start",
+          "Chinese": "开始季节"
+        },
+        {
+          "English": "spring",
+          "Chinese": "春季"
+        },
+        {
+          "English": "start_location",
+          "Chinese": "出生区域"
+        },
+        {
+          "English": "summer",
+          "Chinese": "夏季"
+        },
+        {
+          "English": "task_set",
+          "Chinese": "生物群系"
+        },
+        {
+          "English": "touchstone",
+          "Chinese": "复活石"
+        },
+        {
+          "English": "weather",
+          "Chinese": "降雨"
+        },
+        {
+          "English": "wildfires",
+          "Chinese": "自燃"
+        },
+        {
+          "English": "winter",
+          "Chinese": "冬季"
+        },
+        {
+          "English": "world_size",
+          "Chinese": "世界大小"
+        },
+        {
+          "English": "animals",
+          "Chinese": "动物"
+        },
+        {
+          "English": "alternatehunt",
+          "Chinese": "狩猎惊喜"
+        },
+        {
+          "English": "angrybees",
+          "Chinese": "杀人蜂"
+        },
+        {
+          "English": "beefalo",
+          "Chinese": "皮弗娄牛"
+        },
+        {
+          "English": "beefaloheat",
+          "Chinese": "皮弗娄牛发情频率"
+        },
+        {
+          "English": "bees",
+          "Chinese": "蜜蜂"
+        },
+        {
+          "English": "birds",
+          "Chinese": "鸟"
+        },
+        {
+          "English": "bunnymen",
+          "Chinese": "兔人"
+        },
+        {
+          "English": "hallowed_nights",
+          "Chinese": "万圣节之夜"
+        },
+        {
+          "English": "winters_feast",
+          "Chinese": "冬季盛宴"
+        },
+        {
+          "English": "year_of_the_gobbler",
+          "Chinese": "火鸡之年"
+        },
+        {
+          "English": "butterfly",
+          "Chinese": "蝴蝶"
+        },
+        {
+          "English": "buzzard",
+          "Chinese": "秃鹫"
+        },
+        {
+          "English": "catcoon",
+          "Chinese": "浣猫"
+        },
+        {
+          "English": "frogs",
+          "Chinese": "青蛙"
+        },
+        {
+          "English": "foods",
+          "Chinese": "食物"
+        },
+        {
+          "English": "hunt",
+          "Chinese": "脚印"
+        },
+        {
+          "English": "lightninggoat",
+          "Chinese": "电羊"
+        },
+        {
+          "English": "moles",
+          "Chinese": "鼹鼠"
+        },
+        {
+          "English": "monkey",
+          "Chinese": "猴子"
+        },
+        {
+          "English": "penguins",
+          "Chinese": "企鸥"
+        },
+        {
+          "English": "perd",
+          "Chinese": "火鸡"
+        },
+        {
+          "English": "pigs",
+          "Chinese": "猪人"
+        },
+        {
+          "English": "rabbits",
+          "Chinese": "兔子"
+        },
+        {
+          "English": "rocky",
+          "Chinese": "石虾"
+        },
+        {
+          "English": "slurtles",
+          "Chinese": "龟壳蜗牛"
+        },
+        {
+          "English": "slurper",
+          "Chinese": "吞噬者"
+        },
+        {
+          "English": "tallbirds",
+          "Chinese": "高鸟"
+        },
+        {
+          "English": "monsters",
+          "Chinese": "怪物"
+        },
+        {
+          "English": "bats",
+          "Chinese": "蝙蝠"
+        },
+        {
+          "English": "bearger",
+          "Chinese": "熊獾"
+        },
+        {
+          "English": "chess",
+          "Chinese": "发条生物"
+        },
+        {
+          "English": "deciduousmonster",
+          "Chinese": "毒桦树"
+        },
+        {
+          "English": "deerclops",
+          "Chinese": "独眼巨鹿"
+        },
+        {
+          "English": "dragonfly",
+          "Chinese": "龙蝇"
+        },
+        {
+          "English": "fissure",
+          "Chinese": "梦魇裂缝"
+        },
+        {
+          "English": "goosemoose",
+          "Chinese": "鹿角鹅"
+        },
+        {
+          "English": "houndmound",
+          "Chinese": "猎犬窝"
+        },
+        {
+          "English": "hounds",
+          "Chinese": "猎犬突袭"
+        },
+        {
+          "English": "krampus",
+          "Chinese": "坎普斯"
+        },
+        {
+          "English": "liefs",
+          "Chinese": "树人守卫"
+        },
+        {
+          "English": "lurepofflinets",
+          "Chinese": "食人花"
+        },
+        {
+          "English": "merm",
+          "Chinese": "鱼人"
+        },
+        {
+          "English": "spiders",
+          "Chinese": "蜘蛛"
+        },
+        {
+          "English": "rentaclles",
+          "Chinese": "出售"
+        },
+        {
+          "English": "walrus",
+          "Chinese": "海象营地"
+        },
+        {
+          "English": "worms",
+          "Chinese": "洞穴蠕虫"
+        },
+        {
+          "English": "resources",
+          "Chinese": "资源"
+        },
+        {
+          "English": "fern",
+          "Chinese": "洞穴蕨菜"
+        },
+        {
+          "English": "flint",
+          "Chinese": "燧石"
+        },
+        {
+          "English": "flower_cave",
+          "Chinese": "灯笼花"
+        },
+        {
+          "English": "flowers",
+          "Chinese": "花&恶魔花"
+        },
+        {
+          "English": "grass",
+          "Chinese": "草"
+        },
+        {
+          "English": "marshbush",
+          "Chinese": "荆棘丛"
+        },
+        {
+          "English": "meteorshowers",
+          "Chinese": "陨石降落频率"
+        },
+        {
+          "English": "meteorspawner",
+          "Chinese": "陨石生成区域"
+        },
+        {
+          "English": "mushtree",
+          "Chinese": "蘑菇树"
+        },
+        {
+          "English": "reeds",
+          "Chinese": "芦苇"
+        },
+        {
+          "English": "rock",
+          "Chinese": "岩石"
+        },
+        {
+          "English": "rock_ice",
+          "Chinese": "小型冰川"
+        },
+        {
+          "English": "sapling",
+          "Chinese": "小树枝"
+        },
+        {
+          "English": "trees",
+          "Chinese": "树（所有种类）"
+        },
+        {
+          "English": "tumbleweed",
+          "Chinese": "风滚草"
+        },
+        {
+          "English": "wormlights",
+          "Chinese": "发光浆果"
+        },
+        {
+          "English": "default",
+          "Chinese": "默认"
+        },
+        {
+          "English": "noseason",
+          "Chinese": "无"
+        },
+        {
+          "English": "veryshortseason",
+          "Chinese": "非常短"
+        },
+        {
+          "English": "shortseason",
+          "Chinese": "短"
+        },
+        {
+          "English": "longseason",
+          "Chinese": "长"
+        },
+        {
+          "English": "verylongseason",
+          "Chinese": "非常长"
+        },
+        {
+          "English": "random",
+          "Chinese": "随机"
+        },
+        {
+          "English": "never",
+          "Chinese": "无"
+        },
+        {
+          "English": "rare",
+          "Chinese": "较少"
+        },
+        {
+          "English": "often",
+          "Chinese": "较多"
+        },
+        {
+          "English": "always",
+          "Chinese": "大量"
+        },
+        {
+          "English": "veryslow",
+          "Chinese": "极慢"
+        },
+        {
+          "English": "slow",
+          "Chinese": "慢"
+        },
+        {
+          "English": "fast",
+          "Chinese": "快"
+        },
+        {
+          "English": "veryfast",
+          "Chinese": "极快"
+        },
+        {
+          "English": "longday",
+          "Chinese": "长白天"
+        },
+        {
+          "English": "longdusk",
+          "Chinese": "长夜晚"
+        },
+        {
+          "English": "longnight",
+          "Chinese": "长傍晚"
+        },
+        {
+          "English": "noday",
+          "Chinese": "无白天"
+        },
+        {
+          "English": "caves",
+          "Chinese": "洞穴"
+        },
+        {
+          "English": "plus",
+          "Chinese": "增强"
+        },
+        {
+          "English": "darkness",
+          "Chinese": "黑暗的"
+        },
+        {
+          "English": "layout_mode",
+          "Chinese": "载入模式"
+        },
+        {
+          "English": "lureplants",
+          "Chinese": "诱饵草"
+        },
+        {
+          "English": "ponds",
+          "Chinese": "池塘"
+        },
+        {
+          "English": "tentacles",
+          "Chinese": "触手"
+        },
+        {
+          "English": "prefabswaps",
+          "Chinese": "资源转换开始"
+        },
+        {
+          "English": "prefabswaps_start",
+          "Chinese": "开始资源种类"
+        },
+        {
+          "English": "cave_ponds",
+          "Chinese": "池塘"
+        },
+        {
+          "English": "wormhole_prefab",
+          "Chinese": "虫洞"
+        },
+        {
+          "English": "cave_spiders",
+          "Chinese": "蜘蛛"
+        },
+        {
+          "English": "cave_default",
+          "Chinese": "默认"
+        },
+        {
+          "English": "classic",
+          "Chinese": "经典"
+        },
+        {
+          "English": "highly random",
+          "Chinese": "高度随机"
+        },
+        {
+          "English": "most",
+          "Chinese": "大部分"
+        },
+        {
+          "English": "least",
+          "Chinese": "最少"
+        },
+        {
+          "English": "small",
+          "Chinese": "小"
+        },
+        {
+          "English": "medium",
+          "Chinese": "中等"
+        },
+        {
+          "English": "huge",
+          "Chinese": "巨大"
+        },
+        {
+          "English": "none",
+          "Chinese": "无"
+        },
+        {
+          "English": "few",
+          "Chinese": "少"
+        },
+        {
+          "English": "many",
+          "Chinese": "多"
+        },
+        {
+          "English": "maximum",
+          "Chinese": "最多"
+        },
+        {
+          "English": "autumnorspring",
+          "Chinese": "春或秋"
+        },
+        {
+          "English": "winterorsummer",
+          "Chinese": "冬或夏"
+        },
+        {
+          "English": "roads",
+          "Chinese": "卵石路"
+        },
+        {
+          "English": "disease_delay",
+          "Chinese": "疾病"
+        },
+        {
+          "English": "specialevent",
+          "Chinese": "活动"
+        },
+        {
+          "English": "petrification",
+          "Chinese": "森林石化"
+        }
+      ]
+    },
+    "Master": {
+      "Details": [
+        {
+          "Key": "task_set",
+          "Value": "classic,default"
+        },
+        {
+          "Key": "start_location",
+          "Value": "plus,darkness,default"
+        },
+        {
+          "Key": "world_size",
+          "Value": "small,medium,default,huge"
+        },
+        {
+          "Key": "branching",
+          "Value": "never,least,default,most"
+        },
+        {
+          "Key": "loop",
+          "Value": "never,default,always"
+        },
+        {
+          "Key": "specialevent",
+          "Value": "none,default,hallowed_nights,winters_feast,year_of_the_gobbler"
+        },
+        {
+          "Key": "autumn",
+          "Value": "noseason,veryshortseason,shortseason,default,longseason,verylongseason,random"
+        },
+        {
+          "Key": "winter",
+          "Value": "noseason,veryshortseason,shortseason,default,longseason,verylongseason,random"
+        },
+        {
+          "Key": "spring",
+          "Value": "noseason,veryshortseason,shortseason,default,longseason,verylongseason,random"
+        },
+        {
+          "Key": "summer",
+          "Value": "noseason,veryshortseason,shortseason,default,longseason,verylongseason,random"
+        },
+        {
+          "Key": "season_start",
+          "Value": "default,winter,spring,summer,autumnorspring,winterorsummer,random"
+        },
+        {
+          "Key": "day",
+          "Value": "default,longday,longdusk,longnight,noday,nodusk,nonight,onlyday,onlydusk,onlynight"
+        },
+        {
+          "Key": "weather",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "lightning",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "frograin",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "wildfires",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "regrowth",
+          "Value": "veryslow,slow,default,fast,veryfast"
+        },
+        {
+          "Key": "touchstone",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "boons",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "disease_delay",
+          "Value": "none,slow,default,fast,random"
+        },
+        {
+          "Key": "prefabswaps_start",
+          "Value": "classic,default,highly random"
+        },
+        {
+          "Key": "petrification",
+          "Value": "none,few,default,many,max"
+        },
+        {
+          "Key": "flowers",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "grass",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "sapling",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "marshbush",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "tumbleweed",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "reeds",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "trees",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "flint",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "rock",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "rock_ice",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "meteorspawner",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "meteorshowers",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "berrybush",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "carrot",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "mushroom",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "cactus",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "rabbits",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "moles",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "butterfly",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "birds",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "buzzard",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "catcoon",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "perd",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "pigs",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "lightninggoat",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "beefalo",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "beefaloheat",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "hunt",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "alternatehunt",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "penguins",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "ponds",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "bees",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "angrybees",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "tallbirds",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "spiders",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "hounds",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "houndmound",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "merm",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "tentacles",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "chess",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "lureplants",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "walrus",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "liefs",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "deciduousmonster",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "krampus",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "bearger",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "deerclops",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "goosemoose",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "dragonfly",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "antliontribute",
+          "Value": "never,rare,default,often,always"
+        }
+      ]
+    },
+    "Caves": {
+      "Details": [
+        {
+          "Key": "task_set",
+          "Value": "cave_default"
+        },
+        {
+          "Key": "start_location",
+          "Value": "caves"
+        },
+        {
+          "Key": "world_size",
+          "Value": "small,medium,default,huge"
+        },
+        {
+          "Key": "branching",
+          "Value": "never,least,default,most"
+        },
+        {
+          "Key": "loop",
+          "Value": "never,default,always"
+        },
+        {
+          "Key": "weather",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "earthquakes",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "regrowth",
+          "Value": "veryslow,slow,default,fast,veryfast"
+        },
+        {
+          "Key": "touchstone",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "cavelight",
+          "Value": "veryslow,slow,default,fast,veryfast"
+        },
+        {
+          "Key": "boons",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "disease_delay",
+          "Value": "none,slow,default,fast,random"
+        },
+        {
+          "Key": "prefabswaps_start",
+          "Value": "classic,default,highlyrandom"
+        },
+        {
+          "Key": "petrification",
+          "Value": "none,few,default,many,max"
+        },
+        {
+          "Key": "grass",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "sapling",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "marshbush",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "reeds",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "trees",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "flint",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "rock",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "mushtree",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "fern",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "flower_cave",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "wormlights",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "berrybush",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "mushroom",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "banana",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "lichen",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "cave_ponds",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "slurper",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "bunnymen",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "slurtles",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "rocky",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "monkey",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "cave_spiders",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "tentacles",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "chess",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "liefs",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "bats",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "fissure",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "wormattacks",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "worms",
+          "Value": "never,rare,default,often,always"
+        }
+      ]
+    },
+    "Classification": {
+      "Master": {
+        "Details": [
+          {
+            "Key": "world",
+            "Value": "task_set,start_location,world_size,branching,loop,specialevent,autumn,winter,spring,summer,season_start,day,weather,lightning,frograin,wildfires,regrowth,touchstone,boons,disease_delay,prefabswaps_start,petrification"
+          },
+          {
+            "Key": "resources",
+            "Value": "flint,flowers,grass,marshbush,meteorshowers,meteorspawner,reeds,rock,rock_ice,sapling,trees,tumbleweed"
+          },
+          {
+            "Key": "foods",
+            "Value": "berrybush,cactus,carrot,mushroom"
+          },
+          {
+            "Key": "animals",
+            "Value": "alternatehunt,angrybees,beefalo,beefaloheat,bees,birds,butterfly,buzzard,catcoon,hunt,lightninggoat,moles,penguins,perd,pigs,ponds,rabbits,tallbirds"
+          },
+          {
+            "Key": "monsters",
+            "Value": "antliontribute,bearger,chess,deciduousmonster,deerclops,dragonfly,goosemoose,houndmound,hounds,krampus,liefs,lureplants,merm,spiders,tentacles,walrus"
+          }
+        ]
+      },
+      "Cave": {
+        "Details": [
+          {
+            "Key": "world",
+            "Value": "boons,branching,cavelight,disease_delay,earthquakes,loop,petrification,prefabswaps_start,regrowth,start_location,task_set,touchstone,weather,world_size"
+          },
+          {
+            "Key": "resources",
+            "Value": "fern,flint,flower_cave,grass,marshbush,mushtree,reeds,rock,sapling,trees,wormlights"
+          },
+          {
+            "Key": "foods",
+            "Value": "banana,berrybush,lichen,mushroom"
+          },
+          {
+            "Key": "animals",
+            "Value": "bunnymen,cave_ponds,monkey,rocky,slurper,slurtles"
+          },
+          {
+            "Key": "monsters",
+            "Value": "cave_spiders,tentacles,chess,liefs,bats,fissure,wormattacks,worms"
+          }
+        ]
+      }
+    }
+  }
+}

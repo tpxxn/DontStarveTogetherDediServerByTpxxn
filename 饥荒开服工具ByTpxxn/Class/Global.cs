@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -15,5 +16,24 @@ namespace 饥荒开服工具ByTpxxn.Class
         /// </summary>
         public static FontFamily FontFamily { get; set; }
         public static FontWeight FontWeight { get; set; }
+
+        /// <summary>
+        /// 工程名 [饥荒开服工具ByTpxxn]
+        /// </summary>
+        public static string ProjectName = Assembly.GetExecutingAssembly().GetName().Name;
+
+        /// <summary>
+        /// 控件可视性设置
+        /// </summary>
+        /// <param name="visibility">visibility</param>
+        /// <param name="obj">控件Name</param>
+        public static void UiElementVisibility(Visibility visibility, params UIElement[] obj)
+        {
+            foreach (UIElement uiElement in obj)
+            {
+                uiElement.Visibility = visibility;
+            }
+        }
+
     }
 }
