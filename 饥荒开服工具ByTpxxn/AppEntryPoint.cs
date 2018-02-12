@@ -24,8 +24,8 @@ namespace 饥荒开服工具ByTpxxn
             public AppRun()
             {
                 // TODO
-                Application.Current.DispatcherUnhandledException += Current_DispatcherUnhandledException;
-                AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+                //Application.Current.DispatcherUnhandledException += Current_DispatcherUnhandledException;
+                //AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
                 Startup += App_Startup;
             }
 
@@ -73,17 +73,16 @@ namespace 饥荒开服工具ByTpxxn
             private static void App_Startup(object sender, StartupEventArgs e)
             {
                 #region 设置全局字体
-
-                var mainWindowFont = IniFileIo.IniFileRead("Configure", "Font", "FontFamily");
+                var mainWindowFont = IniFileIo.IniFileReadString("Configure", "Font", "FontFamily");
                 Global.FontFamily = !string.IsNullOrEmpty(mainWindowFont) ? new FontFamily(mainWindowFont) : new FontFamily("微软雅黑");
                 #endregion
 
                 #region 淡紫色透明光标
-                var mainWindowLavenderCursor = IniFileIo.IniFileRead("Configure", "Others", "LavenderCursor");
+                var mainWindowLavenderCursor = IniFileIo.IniFileReadString("Configure", "Others", "LavenderCursor");
                 if (string.IsNullOrEmpty(mainWindowLavenderCursor))
                 {
                     mainWindowLavenderCursor = "True";
-                    IniFileIo.IniFileWrite("Configure","Others","LavenderCursor","True");
+                    IniFileIo.IniFileWrite("Configure", "Others", "LavenderCursor", "True");
                 }
                 ResourceDictionary CursorDictionary;
                 if (mainWindowLavenderCursor == "True")
@@ -117,6 +116,18 @@ namespace 饥荒开服工具ByTpxxn
                 #region 读取资源字典
                 var resourceDictionaries = new Collection<ResourceDictionary>
                 {
+                    new ResourceDictionary
+                    {
+                        Source = new Uri(
+                            "pack://application:,,,/饥荒开服工具ByTpxxn;component/Dictionary/ComboBoxDictionary.xaml",
+                            UriKind.Absolute)
+                    },
+                    new ResourceDictionary
+                    {
+                        Source = new Uri(
+                            "pack://application:,,,/饥荒开服工具ByTpxxn;component/Dictionary/WindowDictionary.xaml",
+                            UriKind.Absolute)
+                    },
                     new ResourceDictionary
                     {
                         Source = new Uri(
@@ -183,7 +194,7 @@ namespace 饥荒开服工具ByTpxxn
                     Current.Resources.MergedDictionaries.Add(resourceDictionary);
                 }
                 #endregion
-                
+
                 var mainWindowShow = new MainWindow();
                 mainWindowShow.InitializeComponent();
                 mainWindowShow.Show();
@@ -197,7 +208,6 @@ namespace 饥荒开服工具ByTpxxn
         public static Semaphore SingleInstanceWatcher { get; private set; }
 
         private static bool _createdNew;
-        private static bool _testMode;
 
         public static class EntryPoint
         {

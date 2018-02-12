@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:饥荒百科全书CSharp.Dictionary.DedicatedServer"
-                    xmlns:dedicatedServer="clr-namespace:饥荒百科全书CSharp.MyUserControl.DedicatedServer">
+                    xmlns:local="clr-namespace:饥荒开服工具ByTpxxn"
+                    xmlns:dedicatedServer="clr-namespace:饥荒开服工具ByTpxxn.MyUserControl">
     <!-- DediComboBox -->
     <Style TargetType="{x:Type dedicatedServer:DediComboBoxWithImage}">
         <!--<Setter Property="FontWeight" Value="Bold"/>

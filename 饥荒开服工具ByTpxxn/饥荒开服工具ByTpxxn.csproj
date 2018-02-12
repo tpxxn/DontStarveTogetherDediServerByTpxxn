@@ -50,8 +50,14 @@
     <Reference Include="Neo.Lua.Desktop, Version=5.3.0.0, Culture=neutral, PublicKeyToken=fdb0cd4fe8a6e3b2, processorArchitecture=MSIL">
       <HintPath>..\packages\NeoLua.1.2.23\lib\net45\Neo.Lua.Desktop.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -66,6 +72,20 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MyUserControl\DediComboBox.cs" />
+    <Compile Include="MyUserControl\DediComboBoxWithImage.cs" />
+    <Compile Include="MyUserControl\DediImageButton.cs" />
+    <Compile Include="MyUserControl\DediModBox.xaml.cs">
+      <DependentUpon>DediModBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyUserControl\DediSelectBox.xaml.cs">
+      <DependentUpon>DediSelectBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ValueConverter\DediTooltipPlacementConverter.cs" />
+    <Page Include="Dictionary\ComboBoxDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Dictionary\Cursor\CursorDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -114,6 +134,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Dictionary\WindowDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -125,6 +149,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MyUserControl\DediModBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyUserControl\DediSelectBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainWindowUI.cs" />
@@ -150,6 +182,8 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="Resources\Cursor\Cursor_link.ani" />
+    <Resource Include="Resources\Cursor\Cursor_workOrbusy.ani" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -165,9 +199,221 @@
     <Resource Include="Resources\Pic\QRCode_zfb5.png" />
     <Resource Include="Resources\Pic\Wiki-wordmark.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Setting_Skin.png" />
+    <Resource Include="Resources\Setting_Skin_Clear.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\DSEC.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Setting_Top_F.png" />
+    <Resource Include="Resources\Setting_Top_T.png" />
+    <Resource Include="Resources\Setting_Update.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\DedicatedServer\D_baseset_intention.png" />
+    <Resource Include="Resources\DedicatedServer\D_baseset_intention_tobeclick.png" />
+    <Resource Include="Resources\DedicatedServer\D_baseset_radiobutton.png" />
+    <Resource Include="Resources\DedicatedServer\D_baseset_radiobutton_selected.png" />
+    <Resource Include="Resources\DedicatedServer\D_baseset_textbox.png" />
+    <Resource Include="Resources\DedicatedServer\D_baseset_textbox_edit.png" />
+    <Resource Include="Resources\DedicatedServer\D_baseset_textbox_mouseover.png" />
+    <Resource Include="Resources\DedicatedServer\D_buttomborder_h.png" />
+    <Resource Include="Resources\DedicatedServer\D_buttomborder_v.png" />
+    <Resource Include="Resources\DedicatedServer\D_ComboBoxBackground.png" />
+    <Resource Include="Resources\DedicatedServer\D_ComboBoxBackGroundhui.png" />
+    <Resource Include="Resources\DedicatedServer\D_intention_bg.png" />
+    <Resource Include="Resources\DedicatedServer\D_intention_bg_tobeclick.png" />
+    <Resource Include="Resources\DedicatedServer\D_intention_competitive.png" />
+    <Resource Include="Resources\DedicatedServer\D_intention_cooperative.png" />
+    <Resource Include="Resources\DedicatedServer\D_intention_madness.png" />
+    <Resource Include="Resources\DedicatedServer\D_intention_social.png" />
+    <Resource Include="Resources\DedicatedServer\D_jiantou2Left_Enter.png" />
+    <Resource Include="Resources\DedicatedServer\D_jiantou2Left_Leave.png" />
+    <Resource Include="Resources\DedicatedServer\D_jiantou2Right_Enter.png" />
+    <Resource Include="Resources\DedicatedServer\D_jiantou2Right_Leave.png" />
+    <Resource Include="Resources\DedicatedServer\D_leftpanel.png" />
+    <Resource Include="Resources\DedicatedServer\D_lp_bg.png" />
+    <Resource Include="Resources\DedicatedServer\D_lp_decrease.png" />
+    <Resource Include="Resources\DedicatedServer\D_lp_increase.png" />
+    <Resource Include="Resources\DedicatedServer\D_lp_selected.png" />
+    <Resource Include="Resources\DedicatedServer\D_lp_thumb.png" />
+    <Resource Include="Resources\DedicatedServer\D_lp_tobeselected.png" />
+    <Resource Include="Resources\DedicatedServer\D_mainpanel.png" />
+    <Resource Include="Resources\DedicatedServer\D_mp_btn_1.png" />
+    <Resource Include="Resources\DedicatedServer\D_mp_btn_2.png" />
+    <Resource Include="Resources\DedicatedServer\D_mp_btn_3.png" />
+    <Resource Include="Resources\DedicatedServer\D_mp_btn_delete.png" />
+    <Resource Include="Resources\DedicatedServer\D_mp_btn_dirselect.png" />
+    <Resource Include="Resources\DedicatedServer\D_mp_btn_light.png" />
+    <Resource Include="Resources\DedicatedServer\D_mp_btn_save.png" />
+    <Resource Include="Resources\DedicatedServer\D_mp_btn_tip.png" />
+    <Resource Include="Resources\DedicatedServer\D_mp_content_bg.png" />
+    <Resource Include="Resources\DedicatedServer\D_mp_createworld.png" />
+    <Resource Include="Resources\DedicatedServer\D_mp_createworld_tobeclick.png" />
+    <Resource Include="Resources\DedicatedServer\D_mp_header_bg.png" />
+    <Resource Include="Resources\DedicatedServer\D_mp_header_bg_selected.png" />
+    <Resource Include="Resources\DedicatedServer\D_mp_header_bg_tobeselected.png" />
+    <Resource Include="Resources\DedicatedServer\D_mp_mod_bg.png" />
+    <Resource Include="Resources\DedicatedServer\D_mp_mod_bg_unchecked.png" />
+    <Resource Include="Resources\DedicatedServer\D_mp_mod_border.png" />
+    <Resource Include="Resources\DedicatedServer\D_mp_mod_checked.png" />
+    <Resource Include="Resources\DedicatedServer\D_mp_mod_checked_tobeclick.png" />
+    <Resource Include="Resources\DedicatedServer\D_mp_mod_config.png" />
+    <Resource Include="Resources\DedicatedServer\D_mp_mod_unchecked.png" />
+    <Resource Include="Resources\DedicatedServer\D_mp_mod_unchecked_tobeclick.png" />
+    <Resource Include="Resources\DedicatedServer\D_mp_portraits_bg.png" />
+    <Resource Include="Resources\DedicatedServer\D_mp_portraits_maxwell.png" />
+    <Resource Include="Resources\DedicatedServer\D_mp_portraits_mod.png" />
+    <Resource Include="Resources\DedicatedServer\D_mp_portraits_none.png" />
+    <Resource Include="Resources\DedicatedServer\D_mp_portraits_webber.png" />
+    <Resource Include="Resources\DedicatedServer\D_mp_portraits_wendy.png" />
+    <Resource Include="Resources\DedicatedServer\D_mp_portraits_wes.png" />
+    <Resource Include="Resources\DedicatedServer\D_mp_portraits_wickerbottom.png" />
+    <Resource Include="Resources\DedicatedServer\D_mp_portraits_wigfrid.png" />
+    <Resource Include="Resources\DedicatedServer\D_mp_portraits_willow.png" />
+    <Resource Include="Resources\DedicatedServer\D_mp_portraits_wilson.png" />
+    <Resource Include="Resources\DedicatedServer\D_mp_portraits_wolfgang.png" />
+    <Resource Include="Resources\DedicatedServer\D_mp_portraits_woodie.png" />
+    <Resource Include="Resources\DedicatedServer\D_mp_portraits_wx78.png" />
+    <Resource Include="Resources\DedicatedServer\D_set_bg.png" />
+    <Resource Include="Resources\DedicatedServer\D_set_border.png" />
+    <Resource Include="Resources\DedicatedServer\D_set_leftarrow.png" />
+    <Resource Include="Resources\DedicatedServer\D_set_leftarrow_click.png" />
+    <Resource Include="Resources\DedicatedServer\D_set_leftarrow_tobeclick.png" />
+    <Resource Include="Resources\DedicatedServer\D_set_rightarrow.png" />
+    <Resource Include="Resources\DedicatedServer\D_set_rightarrow_click.png" />
+    <Resource Include="Resources\DedicatedServer\D_set_rightarrow_tobeclick.png" />
+    <Resource Include="Resources\DedicatedServer\设置1_Enter.png" />
+    <Resource Include="Resources\DedicatedServer\设置1_Leave.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\DedicatedServer\World\alternatehunt.png" />
+    <Resource Include="Resources\DedicatedServer\World\angrybees.png" />
+    <Resource Include="Resources\DedicatedServer\World\antliontribute.png" />
+    <Resource Include="Resources\DedicatedServer\World\autumn.png" />
+    <Resource Include="Resources\DedicatedServer\World\banana.png" />
+    <Resource Include="Resources\DedicatedServer\World\bats.png" />
+    <Resource Include="Resources\DedicatedServer\World\bearger.png" />
+    <Resource Include="Resources\DedicatedServer\World\beefalo.png" />
+    <Resource Include="Resources\DedicatedServer\World\beefaloheat.png" />
+    <Resource Include="Resources\DedicatedServer\World\bees.png" />
+    <Resource Include="Resources\DedicatedServer\World\berrybush.png" />
+    <Resource Include="Resources\DedicatedServer\World\birds.png" />
+    <Resource Include="Resources\DedicatedServer\World\boons.png" />
+    <Resource Include="Resources\DedicatedServer\World\branching.png" />
+    <Resource Include="Resources\DedicatedServer\World\bunnymen.png" />
+    <Resource Include="Resources\DedicatedServer\World\butterfly.png" />
+    <Resource Include="Resources\DedicatedServer\World\buzzard.png" />
+    <Resource Include="Resources\DedicatedServer\World\cactus.png" />
+    <Resource Include="Resources\DedicatedServer\World\carrot.png" />
+    <Resource Include="Resources\DedicatedServer\World\catcoon.png" />
+    <Resource Include="Resources\DedicatedServer\World\cavelight.png" />
+    <Resource Include="Resources\DedicatedServer\World\cave_ponds.png" />
+    <Resource Include="Resources\DedicatedServer\World\cave_spiders.png" />
+    <Resource Include="Resources\DedicatedServer\World\chess.png" />
+    <Resource Include="Resources\DedicatedServer\World\day.png" />
+    <Resource Include="Resources\DedicatedServer\World\deciduousmonster.png" />
+    <Resource Include="Resources\DedicatedServer\World\deerclops.png" />
+    <Resource Include="Resources\DedicatedServer\World\disease_delay.png" />
+    <Resource Include="Resources\DedicatedServer\World\dragonfly.png" />
+    <Resource Include="Resources\DedicatedServer\World\earthquakes.png" />
+    <Resource Include="Resources\DedicatedServer\World\fern.png" />
+    <Resource Include="Resources\DedicatedServer\World\fissure.png" />
+    <Resource Include="Resources\DedicatedServer\World\flint.png" />
+    <Resource Include="Resources\DedicatedServer\World\flowers.png" />
+    <Resource Include="Resources\DedicatedServer\World\flower_cave.png" />
+    <Resource Include="Resources\DedicatedServer\World\frograin.png" />
+    <Resource Include="Resources\DedicatedServer\World\goosemoose.png" />
+    <Resource Include="Resources\DedicatedServer\World\grass.png" />
+    <Resource Include="Resources\DedicatedServer\World\houndmound.png" />
+    <Resource Include="Resources\DedicatedServer\World\hounds.png" />
+    <Resource Include="Resources\DedicatedServer\World\hunt.png" />
+    <Resource Include="Resources\DedicatedServer\World\krampus.png" />
+    <Resource Include="Resources\DedicatedServer\World\lichen.png" />
+    <Resource Include="Resources\DedicatedServer\World\liefs.png" />
+    <Resource Include="Resources\DedicatedServer\World\lightning.png" />
+    <Resource Include="Resources\DedicatedServer\World\lightninggoat.png" />
+    <Resource Include="Resources\DedicatedServer\World\loop.png" />
+    <Resource Include="Resources\DedicatedServer\World\lureplants.png" />
+    <Resource Include="Resources\DedicatedServer\World\marshbush.png" />
+    <Resource Include="Resources\DedicatedServer\World\merm.png" />
+    <Resource Include="Resources\DedicatedServer\World\meteorshowers.png" />
+    <Resource Include="Resources\DedicatedServer\World\meteorspawner.png" />
+    <Resource Include="Resources\DedicatedServer\World\moles.png" />
+    <Resource Include="Resources\DedicatedServer\World\monkey.png" />
+    <Resource Include="Resources\DedicatedServer\World\mushroom.png" />
+    <Resource Include="Resources\DedicatedServer\World\mushtree.png" />
+    <Resource Include="Resources\DedicatedServer\World\penguins.png" />
+    <Resource Include="Resources\DedicatedServer\World\perd.png" />
+    <Resource Include="Resources\DedicatedServer\World\petrification.png" />
+    <Resource Include="Resources\DedicatedServer\World\pigs.png" />
+    <Resource Include="Resources\DedicatedServer\World\ponds.png" />
+    <Resource Include="Resources\DedicatedServer\World\prefabswaps_start.png" />
+    <Resource Include="Resources\DedicatedServer\World\rabbits.png" />
+    <Resource Include="Resources\DedicatedServer\World\reeds.png" />
+    <Resource Include="Resources\DedicatedServer\World\regrowth.png" />
+    <Resource Include="Resources\DedicatedServer\World\rock.png" />
+    <Resource Include="Resources\DedicatedServer\World\rocky.png" />
+    <Resource Include="Resources\DedicatedServer\World\rock_ice.png" />
+    <Resource Include="Resources\DedicatedServer\World\sapling.png" />
+    <Resource Include="Resources\DedicatedServer\World\season_start.png" />
+    <Resource Include="Resources\DedicatedServer\World\slurper.png" />
+    <Resource Include="Resources\DedicatedServer\World\slurtles.png" />
+    <Resource Include="Resources\DedicatedServer\World\specialevent.png" />
+    <Resource Include="Resources\DedicatedServer\World\spiders.png" />
+    <Resource Include="Resources\DedicatedServer\World\spring.png" />
+    <Resource Include="Resources\DedicatedServer\World\start_location.png" />
+    <Resource Include="Resources\DedicatedServer\World\summer.png" />
+    <Resource Include="Resources\DedicatedServer\World\tallbirds.png" />
+    <Resource Include="Resources\DedicatedServer\World\task_set.png" />
+    <Resource Include="Resources\DedicatedServer\World\tentacles.png" />
+    <Resource Include="Resources\DedicatedServer\World\touchstone.png" />
+    <Resource Include="Resources\DedicatedServer\World\trees.png" />
+    <Resource Include="Resources\DedicatedServer\World\tumbleweed.png" />
+    <Resource Include="Resources\DedicatedServer\World\walrus.png" />
+    <Resource Include="Resources\DedicatedServer\World\weather.png" />
+    <Resource Include="Resources\DedicatedServer\World\wildfires.png" />
+    <Resource Include="Resources\DedicatedServer\World\winter.png" />
+    <Resource Include="Resources\DedicatedServer\World\world_size.png" />
+    <Resource Include="Resources\DedicatedServer\World\wormattacks.png" />
+    <Resource Include="Resources\DedicatedServer\World\wormlights.png" />
+    <Resource Include="Resources\DedicatedServer\World\worms.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Cursor\Cursor_alternate.cur" />
+    <Resource Include="Resources\Cursor\Cursor_cross.cur" />
+    <Resource Include="Resources\Cursor\Cursor_dgn1.cur" />
+    <Resource Include="Resources\Cursor\Cursor_dgn2.cur" />
+    <Resource Include="Resources\Cursor\Cursor_hand.cur" />
+    <Resource Include="Resources\Cursor\Cursor_help.cur" />
+    <Resource Include="Resources\Cursor\Cursor_horz.cur" />
+    <Resource Include="Resources\Cursor\Cursor_move.cur" />
+    <Resource Include="Resources\Cursor\Cursor_pointer.cur" />
+    <Resource Include="Resources\Cursor\Cursor_text.cur" />
+    <Resource Include="Resources\Cursor\Cursor_unavailiable.cur" />
+    <Resource Include="Resources\Cursor\Cursor_vert.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\btn\btn_bg_1.png" />
+    <Resource Include="Resources\btn\btn_bg_2.png" />
+    <Resource Include="Resources\btn\btn_bg_3.png" />
+    <Resource Include="Resources\btn\btn_close_1.png" />
+    <Resource Include="Resources\btn\btn_close_2.png" />
+    <Resource Include="Resources\btn\btn_close_3.png" />
+    <Resource Include="Resources\btn\btn_dlc_1.png" />
+    <Resource Include="Resources\btn\btn_dlc_2.png" />
+    <Resource Include="Resources\btn\btn_dlc_3.png" />
+    <Resource Include="Resources\btn\btn_Maximized_1.png" />
+    <Resource Include="Resources\btn\btn_Maximized_2.png" />
+    <Resource Include="Resources\btn\btn_Maximized_3.png" />
+    <Resource Include="Resources\btn\btn_Minimized_1.png" />
+    <Resource Include="Resources\btn\btn_Minimized_2.png" />
+    <Resource Include="Resources\btn\btn_Minimized_3.png" />
+    <Resource Include="Resources\btn\btn_Normal_1.png" />
+    <Resource Include="Resources\btn\btn_Normal_2.png" />
+    <Resource Include="Resources\btn\btn_Normal_3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

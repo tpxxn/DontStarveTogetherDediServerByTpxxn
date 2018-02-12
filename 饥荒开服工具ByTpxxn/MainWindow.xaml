@@ -6,13 +6,110 @@
         xmlns:local="clr-namespace:饥荒开服工具ByTpxxn"
         mc:Ignorable="d"
         Title="饥荒开服工具 by tpxxn" Icon="Resources/DSEC.ico" 
-        Height="540" Width="960"
+        x:Name="mainWindow" Height="540" Width="960" MinHeight="540" MinWidth="960"
         PreviewKeyDown="Window_PreviewKeyDown" PreviewKeyUp="Window_PreviewKeyUp"
         MouseLeftButtonDown="MainWindow_MouseLeftButtonDown" MouseLeftButtonUp="MainWindow_MouseLeftButtonUp"
         WindowStartupLocation="CenterScreen" SizeChanged="MainWindow_SizeChanged" Loaded="MainWindow_Loaded" 
         Cursor="{StaticResource CursorPointer}" WindowStyle="None" 
         AllowsTransparency="True" MouseDoubleClick="MainWindow_MouseDoubleClick" Background="White">
+
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1"/>
+            <RowDefinition Height="3"/>
+            <RowDefinition/>
+            <RowDefinition Height="3"/>
+            <RowDefinition Height="1"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1"/>
+            <ColumnDefinition Width="3"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="3"/>
+            <ColumnDefinition Width="1"/>
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="MainGrid" Grid.Column="1" Background="White" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Border x:Name="UiBackGroundBorder" BorderThickness="0" Grid.RowSpan="2" Grid.Column="0"/>
+            <Grid x:Name="UiGrid" Grid.Row="0" Grid.Column="0">
+                <TextBlock x:Name="UiTitle" Text="饥荒开服工具" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" />
+                <Button x:Name="UiBtnClose" Width="25" ToolTip="退出" Click="UI_btn_close_Click" Height="25" HorizontalAlignment="Right" Margin="0,0,10,0" Cursor="{StaticResource CursorLink}" Style="{StaticResource UI_btn_close_Style}" Focusable="False" VerticalAlignment="Center" d:IsLocked="True" />
+                <Button x:Name="UiBtnMaximized" Width="25" ToolTip="最大化" Click="UI_btn_maximized_Click" Height="25" HorizontalAlignment="Right" Margin="0,0,35,0" Cursor="{StaticResource CursorLink}" Style="{StaticResource UI_btn_maximized_Style}" Focusable="False" VerticalAlignment="Center" d:IsLocked="True" />
+                <Button x:Name="UiBtnNormal" Width="25" ToolTip="还原" Click="UI_btn_normal_Click" Height="25" HorizontalAlignment="Right" Margin="0,0,35,0" Visibility="Collapsed" Cursor="{StaticResource CursorLink}" Style="{StaticResource UI_btn_normal_Style}" Focusable="False" VerticalAlignment="Center" d:IsLocked="True" />
+                <Button x:Name="UiBtnMinimized" Width="25" ToolTip="最小化" Click="UI_btn_minimized_Click" Height="25" HorizontalAlignment="Right" Margin="0,0,60,0" Cursor="{StaticResource CursorLink}" Style="{StaticResource UI_btn_minimized_Style}" Focusable="False" VerticalAlignment="Center" d:IsLocked="True" />
+                <Button x:Name="UiBtnBg" Content="背景设置" HorizontalAlignment="Right" Click="UI_btn_bg_Click" Width="25" Margin="0,0,85,0" Height="25" Cursor="{StaticResource CursorLink}" Style="{StaticResource UI_btn_bg_Style}" Focusable="False" VerticalAlignment="Center" d:IsLocked="True" />
+                <Popup x:Name="UiPopBg" PopupAnimation="Fade" Width="200" PlacementTarget="{Binding ElementName=UiBtnBg}" Placement="Top" AllowsTransparency="True" StaysOpen="False" IsOpen="False" VerticalOffset="10" Margin="0,0,748,-150">
+                    <Border BorderThickness="1" BorderBrush="#FFB2ECED" Background="White" Cursor="{StaticResource CursorPointer}">
+                        <StackPanel Margin="10">
+                            <Button x:Name="SeButtonBackground" Click="Se_button_Background_Click" Background="{x:Null}" BorderBrush="{x:Null}" Height="40" Cursor="{StaticResource CursorLink}">
+                                <Canvas Height="40" Width="170" Margin="-2,-2,0,0" >
+                                    <Image Height="40" Width="40" Source="/Resources/Setting_Skin.png" Margin="0,0,0,0"/>
+                                    <TextBlock TextWrapping="Wrap" Text="选择背景" Canvas.Left="40" Padding="0,12,0,0" Height="40" Width="130" TextAlignment="Center"/>
+                                </Canvas>
+                            </Button>
+                            <Button x:Name="SeButtonBackgroundClear" Click="Se_button_Background_Clear_Click" Background="{x:Null}" BorderBrush="{x:Null}" Height="40" Cursor="{StaticResource CursorLink}">
+                                <Canvas Height="40" Width="170" Margin="-2,-2,0,0" >
+                                    <Image Height="40" Width="40" Source="Resources/Setting_Skin_Clear.png" Margin="0,0,0,0"/>
+                                    <TextBlock TextWrapping="Wrap" Text="清除背景" Canvas.Left="40" Padding="0,12,0,0" Height="40" Width="130" TextAlignment="Center"/>
+                                </Canvas>
+                            </Button>
+                            <TextBlock x:Name="SeTextBackgroundStretch" TextWrapping="Wrap" Text="图片填充：" Margin="0,10,0,0" Width="60" HorizontalAlignment="Left"/>
+                            <ComboBox x:Name="SeComboBoxBackgroundStretch" HorizontalAlignment="Right" Width="109" Margin="0,-19,0,0" Focusable="False" SelectionChanged="Se_ComboBox_Background_Stretch_SelectionChanged" SelectedIndex="1" Style="{StaticResource ComboBoxStyle}" IsReadOnly="True">
+                                <ComboBoxItem Focusable="False">
+                                    <TextBlock Text="无" VerticalAlignment="Center" Margin="0,0,0,0"/>
+                                </ComboBoxItem>
+                                <ComboBoxItem IsSelected="True" Focusable="False">
+                                    <TextBlock Text="拉伸" VerticalAlignment="Center" Margin="0,0,0,0" />
+                                </ComboBoxItem>
+                                <ComboBoxItem Focusable="False">
+                                    <TextBlock Text="平铺" VerticalAlignment="Center" Margin="0,0,0,0" />
+                                </ComboBoxItem>
+                                <ComboBoxItem Focusable="False">
+                                    <TextBlock Text="平铺(充满窗口)" VerticalAlignment="Center" Margin="0,0,0,0" />
+                                </ComboBoxItem>
+                            </ComboBox>
+                            <TextBlock x:Name="SeTextFont" TextWrapping="Wrap" Text="字体：" Margin="0,10,0,0" HorizontalAlignment="Left"/>
+                            <ComboBox x:Name="SeComboBoxFont" HorizontalAlignment="Right" Width="133" Margin="0,-19,0,0" Focusable="False" SelectionChanged="Se_ComboBox_Font_SelectionChanged" SelectedIndex="1" Style="{StaticResource ComboBoxStyle}" IsReadOnly="True"/>
+                            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                                <CheckBox x:Name="SeCheckBoxFontWeight" Content="字体加粗" Cursor="{StaticResource CursorLink}" Click="Se_CheckBox_FontWeight_Click" HorizontalAlignment="Left"/>
+                                <CheckBox x:Name="SeCheckBoxLavenderCursor" Margin="10,0,0,0" Content="淡紫色光标" Cursor="{StaticResource CursorLink}" Click="SeCheckBoxLavenderCursor_Click"  HorizontalAlignment="Left" IsChecked="True"/>
+                            </StackPanel>
+                            <TextBlock x:Name="SeBgAlphaText" TextWrapping="Wrap" Text="背景不透明度：100%" Margin="0,10,0,0"/>
+                            <Slider x:Name="SeBgAlpha" ValueChanged="Se_BG_Alpha_ValueChanged" Maximum="100" SmallChange="1" LargeChange="10" Value="100" Cursor="{StaticResource CursorLink}" Margin="0,0,1,0" />
+                            <TextBlock x:Name="SePanelAlphaText" TextWrapping="Wrap" Text="面板不透明度：100%" Margin="0,10,0,0"/>
+                            <Slider x:Name="SePanelAlpha" ValueChanged="Se_Panel_Alpha_ValueChanged" Maximum="100" SmallChange="1" LargeChange="10" Cursor="{StaticResource CursorLink}" Margin="0,0,1,0" />
+                            <TextBlock x:Name="SeWindowAlphaText" TextWrapping="Wrap" Text="窗口不透明度：100%" Margin="0,10,0,0"/>
+                            <Slider x:Name="SeWindowAlpha" ValueChanged="Se_Window_Alpha_ValueChanged" Maximum="100" SmallChange="1" LargeChange="10" Value="100" Minimum="10" Cursor="{StaticResource CursorLink}" Margin="0,0,1,0"/>
+                        </StackPanel>
+                    </Border>
+                </Popup>
+                <Button x:Name="UiBtnSetting" Content="设置" HorizontalAlignment="Right" Click="UI_btn_setting_Click" Width="25" Margin="0,0,110,0" Height="25" Cursor="{StaticResource CursorLink}" Style="{StaticResource UI_btn_setting_Style}" Focusable="False" VerticalAlignment="Center" d:IsLocked="True" />
+                <Popup x:Name="UiPopSetting" PopupAnimation="Fade" Width="150" PlacementTarget="{Binding ElementName=UiBtnSetting}" Placement="Top" AllowsTransparency="True" StaysOpen="False" IsOpen="False" Margin="0,0,748,-150" VerticalOffset="10">
+                    <Border BorderThickness="1" BorderBrush="#FFB2ECED" Background="White" Cursor="{StaticResource CursorPointer}">
+                        <StackPanel Margin="10">
+                            <Button x:Name="SeButtonTopmost" Background="{x:Null}" BorderBrush="{x:Null}" Height="40" Cursor="{StaticResource CursorLink}" Click="Se_button_Topmost_Click">
+                                <Canvas Height="40" Width="120" Margin="-2,-2,0,0" >
+                                    <Image x:Name="SeImageTopmost" Height="40" Width="40" Source="Resources/Setting_Top_F.png" Margin="0,0,0,0"/>
+                                    <TextBlock x:Name="SeTextblockTopmost" TextWrapping="Wrap" Text="永不置顶" Canvas.Left="40" Padding="0,12,0,0" Height="40" Width="80" TextAlignment="Center"/>
+                                </Canvas>
+                            </Button>
+                        </StackPanel>
+                    </Border>
+                </Popup>
+            </Grid>
+            <Frame x:Name="DedicatedServerFrame" Grid.Row="1" Grid.Column="0" Margin="0,1,0,0" NavigationUIVisibility="Hidden" Visibility="Collapsed"/>
+        </Grid>
+        <Border x:Name="MainBorder" BorderThickness="1" Grid.ColumnSpan="5" Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" BorderBrush="#FF2B2B2B" d:IsLocked="True"/>
+        <Border x:Name="ResizeTopLeft" BorderThickness="0" Grid.Row="0" Grid.Column="0" MouseMove="ResizePressed" MouseDown="ResizePressed" Grid.RowSpan="2" Grid.ColumnSpan="2" Background="#00000000" d:IsLocked="True" />
+        <Border x:Name="ResizeTop" BorderThickness="0" Grid.Row="0" Grid.Column="2" MouseMove="ResizePressed" MouseDown="ResizePressed" Grid.RowSpan="2" Background="#00000000" d:IsLocked="True" />
+        <Border x:Name="ResizeTopRight" BorderThickness="0" Grid.Row="0" Grid.Column="3" MouseMove="ResizePressed" MouseDown="ResizePressed" Grid.RowSpan="2" Grid.ColumnSpan="2" Background="#00000000" d:IsLocked="True" />
+        <Border x:Name="ResizeLeft" BorderThickness="0" Grid.Row="2" MouseMove="ResizePressed" MouseDown="ResizePressed" Grid.ColumnSpan="2" Grid.Column="0" Background="#00000000" d:IsLocked="True" />
+        <Border x:Name="ResizeRight" BorderThickness="0" Grid.Row="2" Grid.Column="3" MouseMove="ResizePressed" MouseDown="ResizePressed" Grid.ColumnSpan="2" Background="#00000000" d:IsLocked="True" />
+        <Border x:Name="ResizeBottomLeft" BorderThickness="0" Grid.Row="3" MouseMove="ResizePressed" MouseDown="ResizePressed" Grid.RowSpan="2" Grid.ColumnSpan="2" Grid.Column="0" Background="#00000000" d:IsLocked="True" />
+        <Border x:Name="ResizeBottom" BorderThickness="0" Grid.Row="3" Grid.Column="2" MouseMove="ResizePressed" MouseDown="ResizePressed" Grid.RowSpan="2" Background="#00000000" d:IsLocked="True" />
+        <Border x:Name="ResizeBottomRight" BorderThickness="0" Grid.Row="3" Grid.Column="3" MouseMove="ResizePressed" MouseDown="ResizePressed" Grid.RowSpan="2" Grid.ColumnSpan="2" Background="#00000000" d:IsLocked="True" />
     </Grid>
 </Window>

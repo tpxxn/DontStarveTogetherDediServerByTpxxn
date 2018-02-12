@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:饥荒百科全书CSharp">
+                    xmlns:local="clr-namespace:饥荒开服工具ByTpxxn">
     <Style x:Key="FocusVisual">
         <Setter Property="Control.Template">
             <Setter.Value>
@@ -50,7 +50,7 @@
                             <ColumnDefinition Width="35.2"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Image x:Name="toBeSelected" HorizontalAlignment="Right" Height="13" VerticalAlignment="Center" Width="13" Source="/饥荒百科全书CSharp;component/Resources/DedicatedServer/D_lp_tobeselected.png" Margin="0,0,2,0"/>
+                        <Image x:Name="toBeSelected" HorizontalAlignment="Right" Height="13" VerticalAlignment="Center" Width="13" Source="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_lp_tobeselected.png" Margin="0,0,2,0"/>
                         <ContentPresenter x:Name="contentPresenter" Grid.Column="1" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center"/>
                     </Grid>
                     <ControlTemplate.Triggers>
