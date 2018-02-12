@@ -255,8 +255,6 @@
     <Resource Include="Resources\DedicatedServer\D_baseset_textbox.png" />
     <Resource Include="Resources\DedicatedServer\D_baseset_textbox_edit.png" />
     <Resource Include="Resources\DedicatedServer\D_baseset_textbox_mouseover.png" />
-    <Resource Include="Resources\DedicatedServer\D_buttomborder_h.png" />
-    <Resource Include="Resources\DedicatedServer\D_buttomborder_v.png" />
     <Resource Include="Resources\DedicatedServer\D_ComboBoxBackground.png" />
     <Resource Include="Resources\DedicatedServer\D_ComboBoxBackGroundhui.png" />
     <Resource Include="Resources\DedicatedServer\D_intention_bg.png" />
@@ -453,6 +451,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\DefaultBackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\DedicatedServer\D_mp_createworld_disable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\DedicatedServer\D_mp_createworld_pressed.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

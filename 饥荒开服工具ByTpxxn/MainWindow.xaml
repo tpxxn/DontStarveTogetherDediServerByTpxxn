@@ -100,7 +100,7 @@
                     </Border>
                 </Popup>
             </Grid>
-            <Frame x:Name="DedicatedServerFrame" Grid.Row="1" Grid.Column="0" Margin="0,1,0,0" NavigationUIVisibility="Hidden"/>
+            <Frame x:Name="DedicatedServerFrame" Grid.Row="1" Grid.Column="0" Margin="0,1,0,0" NavigationUIVisibility="Hidden" Background="#55EDD9D9"/>
         </Grid>
         <Border x:Name="MainBorder" BorderThickness="1" Grid.ColumnSpan="5" Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" BorderBrush="#FF2B2B2B" d:IsLocked="True"/>
         <Border x:Name="ResizeTopLeft" BorderThickness="0" Grid.Row="0" Grid.Column="0" MouseMove="ResizePressed" MouseDown="ResizePressed" Grid.RowSpan="2" Grid.ColumnSpan="2" Background="#00000000" d:IsLocked="True" />

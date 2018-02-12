@@ -62,7 +62,7 @@ namespace 饥荒开服工具ByTpxxn.View
             // 当前路径
             PathCommon.CurrentDirPath = Environment.CurrentDirectory;
             //初始化左侧选择存档RadioButton的Tag
-            for (var i = 0; i < 20; i++)
+            for (var i = 0; i < 10; i++)
             {
                 // ReSharper disable once PossibleNullReferenceException
                 ((RadioButton)SaveSlotStackPanel.FindName($"SaveSlotRadioButton{i}")).Tag = i;
@@ -230,7 +230,6 @@ namespace 饥荒开服工具ByTpxxn.View
             {
                 vControl.Visibility = Visibility.Collapsed;
             }
-            Global.UiElementVisibility(Visibility.Visible, DediButtomBorderH1, DediButtomBorderH2, DediButtomBorderV1, DediButtomBorderV4);
         }
 
         // 显示指定面板
@@ -428,7 +427,7 @@ namespace 饥荒开服工具ByTpxxn.View
             var directoryInfos = new DirectoryInfo(PathCommon.SaveRootDirPath).GetDirectories();
             var serverPathList = (from directoryInfo in directoryInfos where directoryInfo.Name.StartsWith("Server_" + PathCommon.GamePlatform + "_") select directoryInfo.FullName).ToList();
             // 清空左边
-            for (var i = 0; i < 20; i++)
+            for (var i = 0; i < 10; i++)
             {
                 // ReSharper disable once PossibleNullReferenceException
                 ((RadioButton)SaveSlotStackPanel.FindName($"SaveSlotRadioButton{i}")).Content = "创建世界";

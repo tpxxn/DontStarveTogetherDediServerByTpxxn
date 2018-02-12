@@ -66,6 +66,18 @@
                                     </TransformGroup>
                                 </Setter.Value>
                             </Setter>
+                            <Setter Property="Background" TargetName="border">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="/Resources/DedicatedServer/D_mp_createworld_pressed.png"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" TargetName="border">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="/Resources/DedicatedServer/D_mp_createworld_disable.png"/>
+                                </Setter.Value>
+                            </Setter>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
