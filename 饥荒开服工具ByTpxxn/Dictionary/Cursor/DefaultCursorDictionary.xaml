@@ -1,0 +1,32 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:饥荒百科全书CSharp">
+    <!--普通-->
+    <TextBlock x:Key="CursorPointer" Cursor="Arrow"/>
+    <!--点击-->
+    <TextBlock x:Key="CursorLink" Cursor="Hand"/>
+    <!--普通_?-->
+    <TextBlock x:Key="CursorHelp" Cursor="Help"/>
+    <!--忙-->
+    <TextBlock x:Key="CursorWorkOrbusy" Cursor="Wait"/>
+    <!--精确定位-->
+    <TextBlock x:Key="CursorCross" Cursor="Cross"/>
+    <!--文本-->
+    <TextBlock x:Key="CursorText" Cursor="IBeam"/>
+    <!--手-->
+    <TextBlock x:Key="CursorHand" Cursor="Hand"/>
+    <!--不可用-->
+    <TextBlock x:Key="CursorUnavailiable" Cursor="Cross"/>
+    <!--拖动_上下-->
+    <TextBlock x:Key="CursorVert" Cursor="SizeNS"/>
+    <!--拖动_左右-->
+    <TextBlock x:Key="CursorHorz" Cursor="SizeWE"/>
+    <!--拖动_左上_右下-->
+    <TextBlock x:Key="CursorDgn1" Cursor="SizeNWSE"/>
+    <!--拖动_右上_左下-->
+    <TextBlock x:Key="CursorDgn2" Cursor="SizeNESW"/>
+    <!--移动-->
+    <TextBlock x:Key="CursorMove" Cursor="SizeAll"/>
+    <!--alternate(交替?)-->
+    <TextBlock x:Key="CursorAlternate" Cursor="Hand"/>
+</ResourceDictionary>
