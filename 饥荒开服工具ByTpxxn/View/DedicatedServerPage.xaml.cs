@@ -94,7 +94,7 @@ namespace 饥荒开服工具ByTpxxn.View
             #endregion
             #region 设置PathCommon类数据
             // 服务器版本[Steam/WeGame]
-            DediSettingGameVersionSelect.ItemsSource = new[] { "Steam", "WeGame" };
+            DediSettingGameVersionSelect.TextList = new List<string> { "Steam", "WeGame" };
             // 检查通用设置
             CheckCommonSetting();
             #endregion
@@ -133,6 +133,41 @@ namespace 饥荒开服工具ByTpxxn.View
         //{
         //    DediButtomPanelVisibility("Blacklist");
         //}
+
+        private void DeleteWorldButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            // 0. 关闭服务器
+            var processes = Process.GetProcesses();
+            foreach (var item in processes)
+            {
+                if (item.ProcessName == "dontstarve_dedicated_server_nullrenderer")
+                {
+                    item.Kill();
+                }
+            }
+            // 1. radioBox 写 创建世界
+            // ReSharper disable once PossibleNullReferenceException
+            ((RadioButton)SaveSlotStackPanel.FindName($"SaveSlotRadioButton{SaveSlot}")).Content = "创建世界";
+            // 2. 删除当前存档
+            if (Directory.Exists(_pathAll.ServerDirPath))
+            {
+                Directory.Delete(_pathAll.ServerDirPath, true);
+            }
+            // 2.1 取消选择,谁都不选
+            // ReSharper disable once PossibleNullReferenceException
+            ((RadioButton)SaveSlotStackPanel.FindName($"SaveSlotRadioButton{SaveSlot}")).IsChecked = false;
+            // 2.2 
+            // DediMainBorder.IsEnabled = false;
+            JinYong(true);
+            //// 3. 复制一份新的过来                 
+            //ServerTools.Tool.CopyDirectory(pathAll.ServerMoBanPath, pathAll.DoNotStarveTogether_DirPath);
+            //if (!Directory.Exists(pathAll.DoNotStarveTogether_DirPath + "\\Server_" + PathCommon.GamePlatform + "_" + SaveSlot))
+            //{
+            //    Directory.Move(pathAll.DoNotStarveTogether_DirPath + "\\Server", pathAll.DoNotStarveTogether_DirPath + "\\Server_" + PathCommon.GamePlatform + "_" + SaveSlot);
+            //}
+            //// 4. 读取新的存档
+            //SetBaseSet();
+        }
 
         /// <summary>
         /// 通用设置
@@ -271,10 +306,10 @@ namespace 饥荒开服工具ByTpxxn.View
         /// <summary>
         /// 游戏平台改变,初始化一切
         /// </summary>
-        private void DediSettingGameVersionSelect_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void DediSettingGameVersionSelect_SelectionChanged()
         {
             // 赋值
-            PathCommon.GamePlatform = e.AddedItems[0].ToString();
+            PathCommon.GamePlatform = DediSettingGameVersionSelect.TextList[DediSettingGameVersionSelect.TextIndex];
             if (PathCommon.GamePlatform == "WeGame")
             {
                 CtrateRunGame.Visibility = Visibility.Collapsed;
@@ -285,11 +320,8 @@ namespace 饥荒开服工具ByTpxxn.View
                 CtrateRunGame.Visibility = Visibility.Visible;
                 CtrateWorldButton.Content = "创建世界";
             }
-            if (e.RemovedItems.Count != 0)
-            {
-                // 初始化
-                InitServer();
-            }
+            // 初始化
+            InitServer();
         }
 
         /// <summary>
@@ -348,7 +380,15 @@ namespace 饥荒开服工具ByTpxxn.View
         {
             //-1.游戏平台
             PathCommon.GamePlatform = PathCommon.ReadGamePlatform();
-            DediSettingGameVersionSelect.Text = PathCommon.GamePlatform;
+            switch (PathCommon.GamePlatform)
+            {
+                case "Steam":
+                    DediSettingGameVersionSelect.TextIndex = 0;
+                    break;
+                case "WeGame":
+                    DediSettingGameVersionSelect.TextIndex = 1;
+                    break;
+            }
             // 0.路径信息
             if (_firstLoad == false)
             {
@@ -676,7 +716,7 @@ namespace 饥荒开服工具ByTpxxn.View
         /// </summary>
         private void DediBaseSetHouseName_TextChanged(object sender, TextChangedEventArgs e)
         {
-            DediMainTopWorldName.Text = DediBaseSetHouseName.Text;
+            //DediMainTopWorldName.Text = DediBaseSetHouseName.Text; TODO
             if (((RadioButton)SaveSlotStackPanel.FindName("SaveSlotRadioButton" + SaveSlot))?.IsChecked == true)
             {
                 // ReSharper disable once PossibleNullReferenceException
@@ -691,44 +731,6 @@ namespace 饥荒开服工具ByTpxxn.View
         {
             DediButtomPanelVisibilityInitialize();
             DediIntention.Visibility = Visibility.Visible;
-        }
-
-        /// <summary>
-        /// 删除当前存档按钮
-        /// </summary>
-        private void DediMainTop_Delete_Click(object sender, RoutedEventArgs e)
-        {
-            // 0. 关闭服务器
-            var processes = Process.GetProcesses();
-            foreach (var item in processes)
-            {
-                if (item.ProcessName == "dontstarve_dedicated_server_nullrenderer")
-                {
-                    item.Kill();
-                }
-            }
-            // 1. radioBox 写 创建世界
-            // ReSharper disable once PossibleNullReferenceException
-            ((RadioButton)SaveSlotStackPanel.FindName($"SaveSlotRadioButton{SaveSlot}")).Content = "创建世界";
-            // 2. 删除当前存档
-            if (Directory.Exists(_pathAll.ServerDirPath))
-            {
-                Directory.Delete(_pathAll.ServerDirPath, true);
-            }
-           // 2.1 取消选择,谁都不选
-           // ReSharper disable once PossibleNullReferenceException
-           ((RadioButton)SaveSlotStackPanel.FindName($"SaveSlotRadioButton{SaveSlot}")).IsChecked = false;
-            // 2.2 
-            // DediMainBorder.IsEnabled = false;
-            JinYong(true);
-            //// 3. 复制一份新的过来                 
-            //ServerTools.Tool.CopyDirectory(pathAll.ServerMoBanPath, pathAll.DoNotStarveTogether_DirPath);
-            //if (!Directory.Exists(pathAll.DoNotStarveTogether_DirPath + "\\Server_" + PathCommon.GamePlatform + "_" + SaveSlot))
-            //{
-            //    Directory.Move(pathAll.DoNotStarveTogether_DirPath + "\\Server", pathAll.DoNotStarveTogether_DirPath + "\\Server_" + PathCommon.GamePlatform + "_" + SaveSlot);
-            //}
-            //// 4. 读取新的存档
-            //SetBaseSet();
         }
 
         /// <summary>
@@ -1607,10 +1609,11 @@ namespace 饥荒开服工具ByTpxxn.View
             // 控制台
             TitleMenuRollback.IsEnabled = !isDisable;
             // 删除存档按钮
-            DediMainTopDelete.IsEnabled = !isDisable;
+            DeleteWorldButton.IsEnabled = !isDisable;
             // 创建世界按钮
             CtrateWorldButton.IsEnabled = !isDisable;
         }
         #endregion
+
     }
 }

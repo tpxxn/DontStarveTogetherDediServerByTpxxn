@@ -19,114 +19,115 @@ namespace 饥荒开服工具ByTpxxn.MyUserControl
     /// </summary>
     public partial class DediSelectBox : UserControl
     {
+        #region 属性：ControlWidth
+        public double ControlWidth
+        {
+            get => (double)GetValue(ControlWidthProperty);
+            set => SetValue(ControlWidthProperty, value);
+        }
+
+        public static readonly DependencyProperty ControlWidthProperty =
+            DependencyProperty.Register("ControlWidth", typeof(double), typeof(DediSelectBox), new PropertyMetadata((double)160, OnControlWidthChange));
+
+        private static void OnControlWidthChange(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (e.NewValue == null) return;
+            var dediSelectBox = (DediSelectBox)d;
+            if ((double)e.NewValue <= 51.2)
+            {
+                dediSelectBox.Border.Width = 160;
+                dediSelectBox.Grid.Width = 150;
+            }
+            else
+            {
+                dediSelectBox.Border.Width = (double)e.NewValue;
+                dediSelectBox.Grid.Width = (double)e.NewValue - 10;
+            }
+        }
+        #endregion
+
+        #region 属性：TextIndex
+        public int TextIndex
+        {
+            get => (int)GetValue(TextIndexProperty);
+            set => SetValue(TextIndexProperty, value);
+        }
+
+        public static readonly DependencyProperty TextIndexProperty =
+            DependencyProperty.Register("TextIndex", typeof(int), typeof(DediSelectBox), new PropertyMetadata(0, OnTextIndexChange));
+
+        private static void OnTextIndexChange(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (e.NewValue == null) return;
+            var dediSelectBox = (DediSelectBox)d;
+            dediSelectBox.TextBlock.Text = dediSelectBox.TextList[(int)e.NewValue];
+        }
+        #endregion
+
+        #region 属性：TextList
+        public List<string> TextList
+        {
+            get => (List<string>)GetValue(TextListProperty);
+            set => SetValue(TextListProperty, value);
+        }
+
+        public static readonly DependencyProperty TextListProperty =
+            DependencyProperty.Register("TextList", typeof(List<string>), typeof(DediSelectBox), new PropertyMetadata(null, OnTextListChange));
+
+        private static void OnTextListChange(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (e.NewValue == null) return;
+            var dediSelectBox = (DediSelectBox)d;
+            dediSelectBox.TextBlock.Visibility = Visibility.Visible;
+            dediSelectBox.TextBlock.Text = ((List<string>)e.NewValue)[dediSelectBox.TextIndex];
+        }
+        #endregion
+
+        #region 左右切换按钮
+        private void SwitchLeftButton_Click(object sender, RoutedEventArgs e)
+        {
+            SwitchRightButton.IsEnabled = true;
+            if (TextIndex != 0)
+            {
+                TextIndex -= 1;
+                if (TextIndex == 0)
+                {
+                    SwitchLeftButton.IsEnabled = false;
+                }
+            }
+            TextBlock.Text = TextList[TextIndex];
+            SelectionChanged?.Invoke();
+        }
+
+        private void SwitchRightButton_Click(object sender, RoutedEventArgs e)
+        {
+            SwitchLeftButton.IsEnabled = true;
+            if (TextIndex != TextList.Count - 1)
+            {
+                TextIndex += 1;
+                if (TextIndex == TextList.Count - 1)
+                {
+                    SwitchRightButton.IsEnabled = false;
+                }
+            }
+            TextBlock.Text = TextList[TextIndex];
+            SelectionChanged?.Invoke();
+        }
+
+        /// <summary>
+        /// SelectChanged事件委托
+        /// </summary>
+        public delegate void SelectionChangedEventHandler();
+
+        /// <summary>
+        /// SelectChanged事件
+        /// </summary>
+        public event SelectionChangedEventHandler SelectionChanged;
+
+        #endregion
         public DediSelectBox()
         {
             InitializeComponent();
         }
-
-        #region "依赖属性"
-        public static readonly DependencyProperty DataListProperty = DependencyProperty.Register("DataList", typeof(List<string>), typeof(DediSelectBox), new PropertyMetadata(new List<string>(), new PropertyChangedCallback(OnDataListChanged)));
-
-        private static void OnDataListChanged(object sender, DependencyPropertyChangedEventArgs args)
-        {
-            int selectItemIndex = ((int)((DediSelectBox)sender).SelectItemIndex);
-            if (selectItemIndex == ((List<string>)args.NewValue).Count - 1)
-            {
-                ((DediSelectBox)sender).UCButtonLeft.Visibility = Visibility.Visible;
-                ((DediSelectBox)sender).UCButtonRight.Visibility = Visibility.Collapsed;
-            }
-            else if (selectItemIndex == 0)
-            {
-                ((DediSelectBox)sender).UCButtonLeft.Visibility = Visibility.Collapsed;
-                ((DediSelectBox)sender).UCButtonRight.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                ((DediSelectBox)sender).UCButtonLeft.Visibility = Visibility.Visible;
-                ((DediSelectBox)sender).UCButtonRight.Visibility = Visibility.Visible;
-            }
-            ((DediSelectBox)sender).UCValue.Content = ((List<string>)args.NewValue)[selectItemIndex];
-        }
-
-        public List<string> DataList
-        {
-            get
-            {
-                return GetValue(DataListProperty) as List<string>;
-            }
-            set
-            {
-                SetValue(DataListProperty, value);
-            }
-        }
-
-        public static readonly DependencyProperty SelectItemIndexProperty = DependencyProperty.Register("SelectItemIndex", typeof(int), typeof(DediSelectBox), new PropertyMetadata(new int(), new PropertyChangedCallback(OnSelectItemIndexChanged)));
-
-        private static void OnSelectItemIndexChanged(object sender, DependencyPropertyChangedEventArgs args)
-        {
-            if ((int)args.NewValue == (((DediSelectBox)sender).DataList.Count - 1))
-            {
-                ((DediSelectBox)sender).UCButtonLeft.Visibility = Visibility.Visible;
-                ((DediSelectBox)sender).UCButtonRight.Visibility = Visibility.Collapsed;
-            }
-            else if ((int)args.NewValue == 0)
-            {
-                ((DediSelectBox)sender).UCButtonLeft.Visibility = Visibility.Collapsed;
-                ((DediSelectBox)sender).UCButtonRight.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                ((DediSelectBox)sender).UCButtonLeft.Visibility = Visibility.Visible;
-                ((DediSelectBox)sender).UCButtonRight.Visibility = Visibility.Visible;
-            }
-            if (((DediSelectBox)sender).DataList.Count != 0)
-            {
-                ((DediSelectBox)sender).UCValue.Content = (((DediSelectBox)sender).DataList)[(int)args.NewValue];
-            }
-        }
-
-        public int? SelectItemIndex
-        {
-            get
-            {
-                return GetValue(SelectItemIndexProperty) as int?;
-            }
-            set
-            {
-                SetValue(SelectItemIndexProperty, value);
-            }
-        }
-        #endregion
-
-        #region "成员方法"
-        /// <summary>
-        /// 设置SelectBox的数据列表和已选项序号
-        /// </summary>
-        /// <param name="dataList">数据列表(string[]类型)</param>
-        /// <param name="selectItemIndex">已选择序号</param>
-        public void Init(string[] dataList, int? selectItemIndex = 0)
-        {
-            if (dataList.Length != 0)
-            {
-                DataList = new List<string>(dataList);
-            }
-            if (selectItemIndex != null && selectItemIndex >= 0)
-            {
-                SelectItemIndex = selectItemIndex;
-            }
-        }
-        #endregion
-
-        #region "控件事件"
-        private void UCButtonLeft_Click(object sender, RoutedEventArgs e)
-        {
-            SelectItemIndex -= 1;
-        }
-
-        private void UCButtonRight_Click(object sender, RoutedEventArgs e)
-        {
-            SelectItemIndex += 1;
-        }
-        #endregion
     }
 }

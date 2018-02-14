@@ -45,6 +45,9 @@
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Width" Value="140"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Margin" Value="-10,0,0,0"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RadioButton}">
@@ -56,7 +59,7 @@
                             <Setter Property="Foreground" Value="Black"/>
                             <Setter Property="Background" TargetName="templateRoot">
                                 <Setter.Value>
-                                    <ImageBrush ImageSource="/Resources/DedicatedServer/D_mp_header_bg_selected.png"/>
+                                    <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/TitleMenuRadioButton/TitleMenuRadioButton_Selected.png"/>
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
@@ -84,7 +87,7 @@
                             <Setter Property="Foreground" Value="#FFC5AA74"/>
                             <Setter Property="Background" TargetName="templateRoot">
                                 <Setter.Value>
-                                    <ImageBrush ImageSource="/Resources/DedicatedServer/D_mp_header_bg_tobeselected.png"/>
+                                    <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/TitleMenuRadioButton/TitleMenuRadioButton_Selected.png"/>
                                 </Setter.Value>
                             </Setter>
                         </MultiTrigger>
@@ -96,7 +99,7 @@
                             <Setter Property="Foreground" Value="#FFC5AA74"/>
                             <Setter Property="Background" TargetName="templateRoot">
                                 <Setter.Value>
-                                    <ImageBrush ImageSource="/Resources/DedicatedServer/D_mp_header_bg.png"/>
+                                    <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/TitleMenuRadioButton/TitleMenuRadioButton_Normal.png"/>
                                 </Setter.Value>
                             </Setter>
                         </MultiTrigger>

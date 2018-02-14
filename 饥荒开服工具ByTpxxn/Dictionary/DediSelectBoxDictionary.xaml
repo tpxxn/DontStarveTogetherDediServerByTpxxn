@@ -34,28 +34,28 @@
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border x:Name="border" SnapsToDevicePixels="true">
                         <Border.Background>
-                            <ImageBrush ImageSource="/Resources/DedicatedServer/D_set_leftarrow.png"/>
+                            <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/SelectBox/SelectBoxLeftButton_Default.png"/>
                         </Border.Background>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsDefaulted" Value="true">
                             <Setter Property="Background" TargetName="border">
                                 <Setter.Value>
-                                    <ImageBrush ImageSource="/Resources/DedicatedServer/D_set_leftarrow.png"/>
+                                    <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/SelectBox/SelectBoxLeftButton_Default.png"/>
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter Property="Background" TargetName="border">
                                 <Setter.Value>
-                                    <ImageBrush ImageSource="/Resources/DedicatedServer/D_set_leftarrow_tobeclick.png"/>
+                                    <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/SelectBox/SelectBoxLeftButton_MouseOver.png"/>
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="true">
                             <Setter Property="Background" TargetName="border">
                                 <Setter.Value>
-                                    <ImageBrush ImageSource="/Resources/DedicatedServer/D_set_leftarrow_click.png"/>
+                                    <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/SelectBox/SelectBoxLeftButton_Pressed.png"/>
                                 </Setter.Value>
                             </Setter>
                             <Setter Property="RenderTransform" TargetName="border">
@@ -66,6 +66,13 @@
                                         <RotateTransform/>
                                         <TranslateTransform Y="2"/>
                                     </TransformGroup>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" TargetName="border">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/SelectBox/SelectBoxLeftButton_Disable.png"/>
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
@@ -89,28 +96,28 @@
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border x:Name="border" SnapsToDevicePixels="true">
                         <Border.Background>
-                            <ImageBrush ImageSource="/Resources/DedicatedServer/D_set_Rightarrow.png"/>
+                            <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/SelectBox/SelectBoxRightButton_Default.png"/>
                         </Border.Background>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsDefaulted" Value="true">
                             <Setter Property="Background" TargetName="border">
                                 <Setter.Value>
-                                    <ImageBrush ImageSource="/Resources/DedicatedServer/D_set_Rightarrow.png"/>
+                                    <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/SelectBox/SelectBoxRightButton_Default.png"/>
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter Property="Background" TargetName="border">
                                 <Setter.Value>
-                                    <ImageBrush ImageSource="/Resources/DedicatedServer/D_set_Rightarrow_tobeclick.png"/>
+                                    <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/SelectBox/SelectBoxRightButton_MouseOver.png"/>
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="true">
                             <Setter Property="Background" TargetName="border">
                                 <Setter.Value>
-                                    <ImageBrush ImageSource="/Resources/DedicatedServer/D_set_Rightarrow_click.png"/>
+                                    <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/SelectBox/SelectBoxRightButton_Pressed.png"/>
                                 </Setter.Value>
                             </Setter>
                             <Setter Property="RenderTransform" TargetName="border">
@@ -124,6 +131,13 @@
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" TargetName="border">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/SelectBox/SelectBoxLRightButton_Disable.png"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -134,7 +148,7 @@
             <Trigger Property="IsMouseOver" Value="true">
                 <Setter Property="Background">
                     <Setter.Value>
-                        <ImageBrush ImageSource="/Resources/DedicatedServer/D_set_border.png"/>
+                        <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_set_border.png"/>
                     </Setter.Value>
                 </Setter>
             </Trigger>

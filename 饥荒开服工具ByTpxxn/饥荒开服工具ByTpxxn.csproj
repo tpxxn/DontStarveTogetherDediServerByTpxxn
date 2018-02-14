@@ -458,5 +458,19 @@
   <ItemGroup>
     <Resource Include="Resources\DedicatedServer\D_mp_createworld_pressed.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\DedicatedServer\SelectBox\SelectBoxLeftButton_Default.png" />
+    <Resource Include="Resources\DedicatedServer\SelectBox\SelectBoxLeftButton_Disable.png" />
+    <Resource Include="Resources\DedicatedServer\SelectBox\SelectBoxLeftButton_MouseOver.png" />
+    <Resource Include="Resources\DedicatedServer\SelectBox\SelectBoxLeftButton_Pressed.png" />
+    <Resource Include="Resources\DedicatedServer\SelectBox\SelectBoxLRightButton_Disable.png" />
+    <Resource Include="Resources\DedicatedServer\SelectBox\SelectBoxRightButton_Default.png" />
+    <Resource Include="Resources\DedicatedServer\SelectBox\SelectBoxRightButton_MouseOver.png" />
+    <Resource Include="Resources\DedicatedServer\SelectBox\SelectBoxRightButton_Pressed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\DedicatedServer\TitleMenuRadioButton\TitleMenuRadioButton_Normal.png" />
+    <Resource Include="Resources\DedicatedServer\TitleMenuRadioButton\TitleMenuRadioButton_Selected.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
