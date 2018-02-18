@@ -496,5 +496,8 @@
     <Resource Include="Resources\DedicatedServer\Portraits\Portraits_woodie.png" />
     <Resource Include="Resources\DedicatedServer\Portraits\Portraits_wx78.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\DedicatedServer\TitleMenuRadioButton\TitleMenuRadioButton_Border.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
