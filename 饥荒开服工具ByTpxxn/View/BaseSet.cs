@@ -19,7 +19,7 @@ namespace 饥荒开服工具ByTpxxn.View
 
         private void DediIntention_Click(object sender, RoutedEventArgs e)
         {
-            DediButtomPanelVisibilityInitialize();
+            PanelVisibility("Null");
             DediBaseSet.Visibility = Visibility.Visible;
             switch (((Button)sender).Name)
             {
@@ -82,7 +82,7 @@ namespace 饥荒开服工具ByTpxxn.View
         /// </summary>
         private void DediBaseSetIntentionButton_Click(object sender, RoutedEventArgs e)
         {
-            DediButtomPanelVisibilityInitialize();
+            PanelVisibility("Null");
             DediIntention.Visibility = Visibility.Visible;
         }
 
@@ -107,7 +107,7 @@ namespace 饥荒开服工具ByTpxxn.View
         /// </summary>
         private void SetBaseSet()
         {
-            var clusterIniFilePath = _pathAll.ServerDirPath + @"\cluster.ini";
+            var clusterIniFilePath = _pathFile.ServerDirPath + @"\cluster.ini";
             if (!File.Exists(clusterIniFilePath))
             {
                 //MessageBox.Show("cluster.ini不存在");
@@ -115,17 +115,16 @@ namespace 饥荒开服工具ByTpxxn.View
             }
             _baseSet = new BaseSet(clusterIniFilePath);
 
-            DediBaseSetGamemodeSelect.DataContext = _baseSet;
-            DediBaseSetPvpSelect.DataContext = _baseSet;
-            DediBaseSetMaxPlayerSelect.DataContext = _baseSet;
-            DediBaseOfflineSelect.DataContext = _baseSet;
+            BaseSetGameModeSelectBox.DataContext = _baseSet;
+            BaseSetPvpSelectBox.DataContext = _baseSet;
+            BaseSetMaxPlayerSelectBox.DataContext = _baseSet;
+            BaseSetOfflineSelectBox.DataContext = _baseSet;
             DediBaseSetHouseName.DataContext = _baseSet;
             DediBaseSetDescribe.DataContext = _baseSet;
             DediBaseSetSecret.DataContext = _baseSet;
-            DediBaseOfflineSelect.DataContext = _baseSet;
-            DediBaseIsPause.DataContext = _baseSet;
+            BaseSetIsPauseSelectBox.DataContext = _baseSet;
             DediBaseSetIntentionButton.DataContext = _baseSet;
-            IsCaveComboBox.DataContext = _baseSet;
+            EditWorldIsCaveSelectBox.DataContext = _baseSet;
             Debug.WriteLine("基本设置-完");
         }
 

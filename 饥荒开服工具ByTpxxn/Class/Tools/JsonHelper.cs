@@ -14,7 +14,7 @@ namespace 饥荒开服工具ByTpxxn.Class.Tools
 {
     internal class JsonHelper
     {
-        #region 汉化
+        #region 读取汉化
         /// <summary>
         /// 读取汉化
         /// </summary>

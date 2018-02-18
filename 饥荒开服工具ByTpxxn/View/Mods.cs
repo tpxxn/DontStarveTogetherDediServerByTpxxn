@@ -37,7 +37,7 @@ namespace 饥荒开服工具ByTpxxn.View
                     }
                 }
                 // 重新读取
-                _mods.ReadModsOverrides(PathCommon.ServerModsDirPath, _pathAll.ServerDirPath + @"\Master\modoverrides.lua");
+                _mods.ReadModsOverrides(PathCommon.ServerModsDirPath, _pathFile.ServerDirPath + @"\Master\modoverrides.lua");
             }
             // 显示 
             ModListStackPanel.Children.Clear();

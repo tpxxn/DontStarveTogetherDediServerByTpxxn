@@ -19,6 +19,10 @@ namespace 饥荒开服工具ByTpxxn.MyUserControl
     /// </summary>
     public partial class DediSelectBox : UserControl
     {
+        #region 属性：Text
+        public string Text { get; set; }
+        #endregion
+
         #region 属性：ControlWidth
         public double ControlWidth
         {
@@ -61,6 +65,12 @@ namespace 饥荒开服工具ByTpxxn.MyUserControl
             if (e.NewValue == null) return;
             var dediSelectBox = (DediSelectBox)d;
             dediSelectBox.TextBlock.Text = dediSelectBox.TextList[(int)e.NewValue];
+            dediSelectBox.Text = dediSelectBox.TextList[(int)e.NewValue];
+            if ((int)e.NewValue == dediSelectBox.TextList.Count - 1)
+            {
+                dediSelectBox.SwitchLeftButton.IsEnabled = true;
+                dediSelectBox.SwitchRightButton.IsEnabled = false;
+            }
         }
         #endregion
 

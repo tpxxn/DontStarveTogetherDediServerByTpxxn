@@ -109,7 +109,7 @@ namespace 饥荒开服工具ByTpxxn
                 {"Width", ActualWidth.ToString(CultureInfo.InvariantCulture)},
                 {"Height", ActualHeight.ToString(CultureInfo.InvariantCulture)}
             };
-            IniFileIo.IniFileWrite("Configure", "Window", dictionary);
+            IniFileIo.IniFileWrite("DedicatedServerConfigure", "Window", dictionary);
         }
 
         /// <summary>
@@ -146,7 +146,7 @@ namespace 饥荒开服工具ByTpxxn
                     {"Width", ActualWidth.ToString(CultureInfo.InvariantCulture)},
                     {"Height", ActualHeight.ToString(CultureInfo.InvariantCulture)}
                 };
-            IniFileIo.IniFileWrite("Configure", "Window", dictionary);
+            IniFileIo.IniFileWrite("DedicatedServerConfigure", "Window", dictionary);
         }
 
         /// <summary>
@@ -201,14 +201,14 @@ namespace 饥荒开服工具ByTpxxn
                 Topmost = true;
                 SeImageTopmost.Source = new BitmapImage(new Uri("pack://application:,,,/饥荒开服工具ByTpxxn;component/Resources/Setting_Top_T.png", UriKind.Absolute));
                 SeTextblockTopmost.Text = "永远置顶";
-                IniFileIo.IniFileWrite("Configure", "Others", "Topmost", "1");
+                IniFileIo.IniFileWrite("DedicatedServerConfigure", "Others", "Topmost", "1");
             }
             else
             {
                 Topmost = false;
                 SeImageTopmost.Source = new BitmapImage(new Uri("pack://application:,,,/饥荒开服工具ByTpxxn;component/Resources/Setting_Top_F.png", UriKind.Absolute));
                 SeTextblockTopmost.Text = "永不置顶";
-                IniFileIo.IniFileWrite("Configure", "Others", "Topmost", "0");
+                IniFileIo.IniFileWrite("DedicatedServerConfigure", "Others", "Topmost", "0");
             }
         }
         #endregion
@@ -243,7 +243,7 @@ namespace 饥荒开服工具ByTpxxn
             mainWindow.FontFamily = new FontFamily(textList[SeComboBoxFont.SelectedIndex]);
             ((TextBlock)((VisualBrush)FindResource("HelpBrush")).Visual).FontFamily = mainWindow.FontFamily;
             Global.FontFamily = mainWindow.FontFamily;
-            IniFileIo.IniFileWrite("Configure", "Font", "FontFamily", textList[SeComboBoxFont.SelectedIndex]);
+            IniFileIo.IniFileWrite("DedicatedServerConfigure", "Font", "FontFamily", textList[SeComboBoxFont.SelectedIndex]);
         }
 
         /// <summary>
@@ -255,7 +255,7 @@ namespace 饥荒开服工具ByTpxxn
             mainWindow.FontWeight = SeCheckBoxFontWeight.IsChecked == true ? FontWeights.Bold : FontWeights.Normal;
             ((TextBlock)((VisualBrush)FindResource("HelpBrush")).Visual).FontWeight = mainWindow.FontWeight;
             Global.FontWeight = mainWindow.FontWeight;
-            IniFileIo.IniFileWrite("Configure", "Font", "FontWeight", SeCheckBoxFontWeight.IsChecked.ToString());
+            IniFileIo.IniFileWrite("DedicatedServerConfigure", "Font", "FontWeight", SeCheckBoxFontWeight.IsChecked.ToString());
         }
 
         /// <summary>
@@ -268,7 +268,7 @@ namespace 饥荒开服工具ByTpxxn
             //copySplashWindow.InitializeComponent();
             //copySplashWindow.ContentTextBlock.FontSize = 20;
             //copySplashWindow.Show();
-            IniFileIo.IniFileWrite("Configure", "Others", "LavenderCursor", SeCheckBoxLavenderCursor.IsChecked.ToString());
+            IniFileIo.IniFileWrite("DedicatedServerConfigure", "Others", "LavenderCursor", SeCheckBoxLavenderCursor.IsChecked.ToString());
         }
 
         /// <summary>
@@ -308,7 +308,7 @@ namespace 饥荒开服工具ByTpxxn
                 };
                 UiBackGroundBorder.Background = brush;
                 UiTitle.Foreground = new SolidColorBrush(Colors.Black);
-                IniFileIo.IniFileWrite("Configure", "Skin", "Background", pictruePath + filename);
+                IniFileIo.IniFileWrite("DedicatedServerConfigure", "Skin", "Background", pictruePath + filename);
             }
             catch (Exception)
             {
@@ -327,7 +327,7 @@ namespace 饥荒开服工具ByTpxxn
             };
             UiBackGroundBorder.Background = brush;
             UiTitle.Foreground = new SolidColorBrush(Colors.White);
-            IniFileIo.IniFileWrite("Configure", "Skin", "Background", "");
+            IniFileIo.IniFileWrite("DedicatedServerConfigure", "Skin", "Background", "");
         }
 
         /// <summary>
@@ -336,7 +336,7 @@ namespace 饥荒开服工具ByTpxxn
         private void Se_ComboBox_Background_Stretch_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             
-            var bg = IniFileIo.IniFileReadString("Configure", "Skin", "Background");
+            var bg = IniFileIo.IniFileReadString("DedicatedServerConfigure", "Skin", "Background");
             if (!MwInit) return;
             if (bg == "")
             {
@@ -354,7 +354,7 @@ namespace 饥荒开服工具ByTpxxn
                     };
                     UiBackGroundBorder.Background = brush;
                     UiTitle.Foreground = new SolidColorBrush(Colors.Black);
-                    IniFileIo.IniFileWrite("Configure", "Skin", "BackgroundStretch", (SeComboBoxBackgroundStretch.SelectedIndex + 1).ToString());
+                    IniFileIo.IniFileWrite("DedicatedServerConfigure", "Skin", "BackgroundStretch", (SeComboBoxBackgroundStretch.SelectedIndex + 1).ToString());
                 }
                 catch
                 {
@@ -370,7 +370,7 @@ namespace 饥荒开服工具ByTpxxn
         {
             UiBackGroundBorder.Opacity = SeBgAlpha.Value / 100;
             SeBgAlphaText.Text = "背景不透明度：" + (int)SeBgAlpha.Value + "%";
-            IniFileIo.IniFileWrite("Configure", "Skin", "BackgroundAlpha", (SeBgAlpha.Value + 1).ToString(CultureInfo.InvariantCulture));
+            IniFileIo.IniFileWrite("DedicatedServerConfigure", "Skin", "BackgroundAlpha", (SeBgAlpha.Value + 1).ToString(CultureInfo.InvariantCulture));
         }
 
         /// <summary>
@@ -391,7 +391,7 @@ namespace 饥荒开服工具ByTpxxn
         {
             Opacity = SeWindowAlpha.Value / 100;
             SeWindowAlphaText.Text = "窗口不透明度：" + (int)SeWindowAlpha.Value + "%";
-            IniFileIo.IniFileWrite("Configure", "Skin", "WindowAlpha", (SeWindowAlpha.Value + 1).ToString(CultureInfo.InvariantCulture));
+            IniFileIo.IniFileWrite("DedicatedServerConfigure", "Skin", "WindowAlpha", (SeWindowAlpha.Value + 1).ToString(CultureInfo.InvariantCulture));
         }
         #endregion
 

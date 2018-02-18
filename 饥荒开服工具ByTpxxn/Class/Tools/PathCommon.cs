@@ -8,72 +8,7 @@ namespace 饥荒开服工具ByTpxxn.Class.Tools
 {
     internal static class PathCommon
     {
-        #region 读写当前游戏平台、客户端、服务器路径、ClusterToken
-        /// <summary>
-        /// 读取当前游戏版本[WeGame,Steam] 
-        /// </summary>
-        public static string ReadGamePlatform()
-        {
-            var platform = IniFileIo.IniFileReadString("Configure", "DedicatedServer", "Platform");
-            return string.IsNullOrEmpty(platform) ? "Steam" : platform;
-        }
-
-        /// <summary>
-        /// 保存当前游戏平台[WeGame,Steam]
-        /// </summary>
-        public static void WriteGamePlatform(string platform)
-        {
-            IniFileIo.IniFileWrite("Configure", "DedicatedServer", "Platform", platform);
-        }
-
-        /// <summary>
-        /// 读取客户端路径
-        /// </summary>
-        public static string ReadClientPath(string platform)
-        {
-            return IniFileIo.IniFileReadString("Configure", "DedicatedServer", platform + "_client_path");
-        }
-
-        /// <summary>
-        /// 设置客户端路径
-        /// </summary>
-        public static void WriteClientPath(string clientPath, string platform)
-        {
-            IniFileIo.IniFileWrite("Configure", "DedicatedServer", platform + "_client_path", clientPath);
-        }
-
-        /// <summary>
-        /// 读取服务端路径
-        /// </summary>
-        public static string ReadServerPath(string platform)
-        {
-            return IniFileIo.IniFileReadString("Configure", "DedicatedServer", platform + "_Server_path");
-        }
-
-        /// <summary>
-        /// 设置服务端路径
-        /// </summary>
-        public static void WriteServerPath(string serverPath, string platform)
-        {
-            IniFileIo.IniFileWrite("Configure", "DedicatedServer", platform + "_Server_path", serverPath);
-        }
-
-        /// <summary>
-        /// 读取ClusterToken
-        /// </summary>
-        public static string ReadClusterTokenPath(string platform)
-        {
-            return IniFileIo.IniFileReadString("Configure", "DedicatedServer", platform + "_ClusterToken");
-        }
-
-        /// <summary>
-        /// 设置ClusterToken
-        /// </summary>
-        public static void WriteClusterTokenPath(string clusterToken, string platform)
-        {
-            IniFileIo.IniFileWrite("Configure", "DedicatedServer", platform + "_ClusterToken", clusterToken);
-        }
-        #endregion
+        #region 字段、属性
 
         /// <summary>
         /// 我的文档路径
@@ -187,5 +122,75 @@ namespace 饥荒开服工具ByTpxxn.Class.Tools
                 WriteClusterTokenPath(_clusterToken, ReadGamePlatform());
             }
         }
+
+        #endregion
+
+        #region 读写当前游戏平台、客户端、服务器路径、ClusterToken
+        /// <summary>
+        /// 读取当前游戏版本[WeGame,Steam] 
+        /// </summary>
+        public static string ReadGamePlatform()
+        {
+            var platform = IniFileIo.IniFileReadString("DedicatedServerConfigure", "DedicatedServer", "Platform");
+            return string.IsNullOrEmpty(platform) ? "Steam" : platform;
+        }
+
+        /// <summary>
+        /// 保存当前游戏平台[WeGame,Steam]
+        /// </summary>
+        public static void WriteGamePlatform(string platform)
+        {
+            IniFileIo.IniFileWrite("DedicatedServerConfigure", "DedicatedServer", "Platform", platform);
+        }
+
+        /// <summary>
+        /// 读取客户端路径
+        /// </summary>
+        public static string ReadClientPath(string platform)
+        {
+            return IniFileIo.IniFileReadString("DedicatedServerConfigure", "DedicatedServer", platform + "_client_path");
+        }
+
+        /// <summary>
+        /// 设置客户端路径
+        /// </summary>
+        public static void WriteClientPath(string clientPath, string platform)
+        {
+            IniFileIo.IniFileWrite("DedicatedServerConfigure", "DedicatedServer", platform + "_client_path", clientPath);
+        }
+
+        /// <summary>
+        /// 读取服务端路径
+        /// </summary>
+        public static string ReadServerPath(string platform)
+        {
+            return IniFileIo.IniFileReadString("DedicatedServerConfigure", "DedicatedServer", platform + "_Server_path");
+        }
+
+        /// <summary>
+        /// 设置服务端路径
+        /// </summary>
+        public static void WriteServerPath(string serverPath, string platform)
+        {
+            IniFileIo.IniFileWrite("DedicatedServerConfigure", "DedicatedServer", platform + "_Server_path", serverPath);
+        }
+
+        /// <summary>
+        /// 读取ClusterToken
+        /// </summary>
+        public static string ReadClusterTokenPath(string platform)
+        {
+            return IniFileIo.IniFileReadString("DedicatedServerConfigure", "DedicatedServer", platform + "_ClusterToken");
+        }
+
+        /// <summary>
+        /// 设置ClusterToken
+        /// </summary>
+        public static void WriteClusterTokenPath(string clusterToken, string platform)
+        {
+            IniFileIo.IniFileWrite("DedicatedServerConfigure", "DedicatedServer", platform + "_ClusterToken", clusterToken);
+        }
+        #endregion
+
     }
 }

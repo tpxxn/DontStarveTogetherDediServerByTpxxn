@@ -1,4 +1,4 @@
-ï»¿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -7,43 +7,43 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
-using é¥¥è’å¼€æœå·¥å…·ByTpxxn.Class.DedicateServer;
-using é¥¥è’å¼€æœå·¥å…·ByTpxxn.Class.Tools;
-using é¥¥è’å¼€æœå·¥å…·ByTpxxn.MyUserControl;
+using ¼¢»Ä¿ª·ş¹¤¾ßByTpxxn.Class.DedicateServer;
+using ¼¢»Ä¿ª·ş¹¤¾ßByTpxxn.Class.Tools;
+using ¼¢»Ä¿ª·ş¹¤¾ßByTpxxn.MyUserControl;
 
-namespace é¥¥è’å¼€æœå·¥å…·ByTpxxn.View
+namespace ¼¢»Ä¿ª·ş¹¤¾ßByTpxxn.View
 {
     public partial class DedicatedServerPage : Page
     {
         /// <summary>
-        /// æ˜¯å¦å¼€å¯æ´ç©´çš„
+        /// ÊÇ·ñ¿ªÆô¶´Ñ¨µÄ
         /// </summary>
         private void DediBaseIsCave_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var selected = e.AddedItems[0].ToString();
-            CaveSettingColumnDefinition.Width = selected == "å¦" ? new GridLength(0) : new GridLength(1, GridUnitType.Star);
+            CaveSettingColumnDefinition.Width = selected == "·ñ" ? new GridLength(0) : new GridLength(1, GridUnitType.Star);
         }
 
         /// <summary>
-        /// è®¾ç½®"åœ°ä¸Šä¸–ç•Œ"
+        /// ÉèÖÃ"µØÉÏÊÀ½ç"
         /// </summary>
         private void SetOverWorldSet()
         {
-            // åœ°ä¸Š 
-            _overWorld = new Leveldataoverride(_pathAll, false);
+            // µØÉÏ 
+            _overWorld = new Leveldataoverride(_pathFile, false);
             DediOverWorldWorld.Children.Clear();
             DediOverWolrdFoods.Children.Clear();
             DediOverWorldAnimals.Children.Clear();
             DediOverWorldMonsters.Children.Clear();
             DediOverWorldResources.Children.Clear();
-            // åœ°ä¸Š åˆ†ç±»
+            // µØÉÏ ·ÖÀà
             var worldClassification = JsonHelper.ReadWorldClassification(false);
             var foods = new Dictionary<string, ShowWorld>();
             var animals = new Dictionary<string, ShowWorld>();
             var monsters = new Dictionary<string, ShowWorld>();
             var resources = new Dictionary<string, ShowWorld>();
             var world = new Dictionary<string, ShowWorld>();
-            #region åœ°ä¸Šåˆ†ç±»æ–¹æ³•
+            #region µØÉÏ·ÖÀà·½·¨
             foreach (var item in _overWorld.FinalWorldDictionary)
             {
                 if (worldClassification.ContainsKey(item.Key))
@@ -73,7 +73,7 @@ namespace é¥¥è’å¼€æœå·¥å…·ByTpxxn.View
                 }
             }
             #endregion
-            #region "æ˜¾ç¤º" åœ°ä¸Š
+            #region "ÏÔÊ¾" µØÉÏ
             foreach (var item in world)
             {
                 if (item.Value.ToolTip == "roads" || item.Value.ToolTip == "layout_mode" || item.Value.ToolTip == "wormhole_prefab")
@@ -162,7 +162,7 @@ namespace é¥¥è’å¼€æœå·¥å…·ByTpxxn.View
         }
 
         /// <summary>
-        /// è®¾ç½®"åœ°ä¸Šä¸–ç•Œ"(æµ‹è¯• ç”¨)
+        /// ÉèÖÃ"µØÉÏÊÀ½ç"(²âÊÔ ÓÃ)
         /// </summary>
         private void DiOverWorld_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -177,37 +177,37 @@ namespace é¥¥è’å¼€æœå·¥å…·ByTpxxn.View
             // {
             //     Debug.WriteLine(item);
             // }
-            // æ­¤æ—¶è¯´æ˜ä¿®æ”¹
+            // ´ËÊ±ËµÃ÷ĞŞ¸Ä
             if (e.RemovedItems.Count != 0 && e.AddedItems[0].ToString() == Hanization(_overWorld.FinalWorldDictionary[dedi.Tag.ToString()].WorldConfigList[dedi.SelectedIndex]))
             {
                 _overWorld.FinalWorldDictionary[dedi.Tag.ToString()].WorldConfig = _overWorld.FinalWorldDictionary[dedi.Tag.ToString()].WorldConfigList[dedi.SelectedIndex];
-                Debug.WriteLine(dedi.Tag + "é€‰é¡¹å˜ä¸º:" + _overWorld.FinalWorldDictionary[dedi.Tag.ToString()].WorldConfig);
-                // ä¿å­˜,è¿™æ ·ä¿å­˜æœ‰ç‚¹å¡,æ¢ä¸ºæ¯æ¬¡ç‚¹å‡»radioButtonæˆ–åˆ›å»ºä¸–ç•Œæ—¶
+                Debug.WriteLine(dedi.Tag + "Ñ¡Ïî±äÎª:" + _overWorld.FinalWorldDictionary[dedi.Tag.ToString()].WorldConfig);
+                // ±£´æ,ÕâÑù±£´æÓĞµã¿¨,»»ÎªÃ¿´Îµã»÷radioButton»ò´´½¨ÊÀ½çÊ±
                 //OverWorld.SaveWorld();
-                //Debug.WriteLine("ä¿å­˜åœ°ä¸Šä¸–ç•Œ");
+                //Debug.WriteLine("±£´æµØÉÏÊÀ½ç");
             }
         }
 
         /// <summary>
-        /// è®¾ç½®"åœ°ä¸‹ä¸–ç•Œ"
+        /// ÉèÖÃ"µØÏÂÊÀ½ç"
         /// </summary>
         private void SetCavesSet()
         {
-            // åœ°ä¸‹
-            _caves = new Leveldataoverride(_pathAll, true);
+            // µØÏÂ
+            _caves = new Leveldataoverride(_pathFile, true);
             DediCavesWorld.Children.Clear();
             DediCavesFoods.Children.Clear();
             DediCavesAnimals.Children.Clear();
             DediCavesMonsters.Children.Clear();
             DediCavesResources.Children.Clear();
-            // åœ°ä¸‹ åˆ†ç±»
+            // µØÏÂ ·ÖÀà
             var worldClassification = JsonHelper.ReadWorldClassification(true);
             var foods = new Dictionary<string, ShowWorld>();
             var animals = new Dictionary<string, ShowWorld>();
             var monsters = new Dictionary<string, ShowWorld>();
             var resources = new Dictionary<string, ShowWorld>();
             var world = new Dictionary<string, ShowWorld>();
-            #region  åœ°ä¸‹åˆ†ç±»æ–¹æ³•
+            #region  µØÏÂ·ÖÀà·½·¨
             foreach (var item in _caves.FinalWorldDictionary)
             {
                 if (worldClassification.ContainsKey(item.Key))
@@ -237,7 +237,7 @@ namespace é¥¥è’å¼€æœå·¥å…·ByTpxxn.View
                 }
             }
             #endregion
-            #region "æ˜¾ç¤º" åœ°ä¸‹
+            #region "ÏÔÊ¾" µØÏÂ
             // animals
             foreach (var item in world)
             {
@@ -326,19 +326,19 @@ namespace é¥¥è’å¼€æœå·¥å…·ByTpxxn.View
         }
 
         /// <summary>
-        /// è®¾ç½®"åœ°ä¸‹ä¸–ç•Œ"(æµ‹è¯• ç”¨)
+        /// ÉèÖÃ"µØÏÂÊÀ½ç"(²âÊÔ ÓÃ)
         /// </summary>
         private void DiCaves_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var dedi = (DediComboBoxWithImage)sender;
-            // æ­¤æ—¶è¯´æ˜ä¿®æ”¹
+            // ´ËÊ±ËµÃ÷ĞŞ¸Ä
             if (e.RemovedItems.Count != 0 && e.AddedItems[0].ToString() == Hanization(_caves.FinalWorldDictionary[dedi.Tag.ToString()].WorldConfigList[dedi.SelectedIndex]))
             {
                 _caves.FinalWorldDictionary[dedi.Tag.ToString()].WorldConfig = _caves.FinalWorldDictionary[dedi.Tag.ToString()].WorldConfigList[dedi.SelectedIndex];
-                Debug.WriteLine(dedi.Tag + "é€‰é¡¹å˜ä¸º:" + _caves.FinalWorldDictionary[dedi.Tag.ToString()].WorldConfig);
-                // ä¿å­˜,è¿™æ ·ä¿å­˜æœ‰ç‚¹å¡,æ¢ä¸ºæ¯æ¬¡ç‚¹å‡»radioButtonæˆ–åˆ›å»ºä¸–ç•Œæ—¶
+                Debug.WriteLine(dedi.Tag + "Ñ¡Ïî±äÎª:" + _caves.FinalWorldDictionary[dedi.Tag.ToString()].WorldConfig);
+                // ±£´æ,ÕâÑù±£´æÓĞµã¿¨,»»ÎªÃ¿´Îµã»÷radioButton»ò´´½¨ÊÀ½çÊ±
                 //Caves.SaveWorld();
-                //Debug.WriteLine("ä¿å­˜åœ°ä¸Šä¸–ç•Œ");
+                //Debug.WriteLine("±£´æµØÉÏÊÀ½ç");
             }
         }
     }

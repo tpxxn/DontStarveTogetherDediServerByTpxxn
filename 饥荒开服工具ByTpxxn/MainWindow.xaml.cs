@@ -53,22 +53,22 @@ namespace 饥荒开服工具ByTpxxn
             Application.Current.MainWindow = this;
             #region "读取注册表(必须在初始化之前读取)"
             // 背景图片
-            var bg = IniFileIo.IniFileReadString("Configure", "Skin", "Background");
-            var bgStretch = IniFileIo.IniFileReadDouble("Configure", "Skin", "BackgroundStretch");
+            var bg = IniFileIo.IniFileReadString("DedicatedServerConfigure", "Skin", "Background");
+            var bgStretch = IniFileIo.IniFileReadDouble("DedicatedServerConfigure", "Skin", "BackgroundStretch");
             // 透明度
-            var bgAlpha = IniFileIo.IniFileReadDouble("Configure", "Skin", "BackgroundAlpha");
+            var bgAlpha = IniFileIo.IniFileReadDouble("DedicatedServerConfigure", "Skin", "BackgroundAlpha");
             //var bgPanelAlpha = RegeditRw.RegRead("BGPanelAlpha");
-            var windowAlpha = IniFileIo.IniFileReadDouble("Configure", "Skin", "WindowAlpha");
+            var windowAlpha = IniFileIo.IniFileReadDouble("DedicatedServerConfigure", "Skin", "WindowAlpha");
             // 窗口大小
-            var mainWindowHeight = IniFileIo.IniFileReadDouble("Configure", "Window", "Height");
-            var mainWindowWidth = IniFileIo.IniFileReadDouble("Configure", "Window", "Width");
+            var mainWindowHeight = IniFileIo.IniFileReadDouble("DedicatedServerConfigure", "Window", "Height");
+            var mainWindowWidth = IniFileIo.IniFileReadDouble("DedicatedServerConfigure", "Window", "Width");
             // 字体
-            var mainWindowFont = IniFileIo.IniFileReadString("Configure", "Font", "FontFamily");
-            var mainWindowFontWeight = IniFileIo.IniFileReadString("Configure", "Font", "FontWeight");
+            var mainWindowFont = IniFileIo.IniFileReadString("DedicatedServerConfigure", "Font", "FontFamily");
+            var mainWindowFontWeight = IniFileIo.IniFileReadString("DedicatedServerConfigure", "Font", "FontWeight");
             // 淡紫色透明光标
-            var mainWindowLavenderCursor = IniFileIo.IniFileReadString("Configure", "Others", "LavenderCursor");
+            var mainWindowLavenderCursor = IniFileIo.IniFileReadString("DedicatedServerConfigure", "Others", "LavenderCursor");
             // 设置菜单
-            var winTopmost = IniFileIo.IniFileReadDouble("Configure", "Others", "Topmost");
+            var winTopmost = IniFileIo.IniFileReadDouble("DedicatedServerConfigure", "Others", "Topmost");
             // 设置
             //Settings.HideToNotifyIcon = RegeditRw.RegReadString("HideToNotifyIcon") == "True";
             //Settings.HideToNotifyIconPrompt = RegeditRw.RegReadString("HideToNotifyIconPrompt") == "True";
@@ -85,7 +85,7 @@ namespace 饥荒开服工具ByTpxxn
             // 设置字体
             if (string.IsNullOrEmpty(mainWindowFont))
             {
-                IniFileIo.IniFileWrite("Configure", "Font", "FontFamily", "微软雅黑");
+                IniFileIo.IniFileWrite("DedicatedServerConfigure", "Font", "FontFamily", "微软雅黑");
                 mainWindowFont = "微软雅黑";
             }
             mainWindow.FontFamily = new FontFamily(mainWindowFont);
@@ -93,7 +93,7 @@ namespace 饥荒开服工具ByTpxxn
             // 设置字体加粗
             if (string.IsNullOrEmpty(mainWindowFontWeight))
             {
-                IniFileIo.IniFileWrite("Configure", "Font", "FontWeight", "False");
+                IniFileIo.IniFileWrite("DedicatedServerConfigure", "Font", "FontWeight", "False");
             }
             mainWindow.FontWeight = mainWindowFontWeight == "True" ? FontWeights.Bold : FontWeights.Normal;
             ((TextBlock)((VisualBrush)FindResource("HelpBrush")).Visual).FontWeight = mainWindow.FontWeight;
@@ -207,10 +207,10 @@ namespace 饥荒开服工具ByTpxxn
                 };
                 SeComboBoxFont.Items.Add(textBlock);
             }
-            var mainWindowFont = IniFileIo.IniFileReadString("Configure", "Font", "FontFamily");
+            var mainWindowFont = IniFileIo.IniFileReadString("DedicatedServerConfigure", "Font", "FontFamily");
             var stringList = (from TextBlock textBlock in SeComboBoxFont.Items select textBlock.Text).ToList();
             SeComboBoxFont.SelectedIndex = stringList.IndexOf(mainWindowFont);
-            var mainWindowFontWeight = IniFileIo.IniFileReadString("Configure", "Font", "FontWeight");
+            var mainWindowFontWeight = IniFileIo.IniFileReadString("DedicatedServerConfigure", "Font", "FontWeight");
             SeCheckBoxFontWeight.IsChecked = mainWindowFontWeight == "True";
             LoadFont = true;
             #endregion

@@ -1,7 +1,9 @@
 ﻿namespace 饥荒开服工具ByTpxxn.Class.Tools
 {
-    internal class PathAll
+    internal class PathFile
     {
+        #region 字段、属性
+
         /// <summary>
         /// Server路径
         /// </summary>
@@ -42,43 +44,30 @@
         /// 地下世界-mod-设置
         /// </summary>
         public string ModConfigCaveFilePath { get; set; }
+        
+        #endregion
 
         /// <summary>
-        /// 存档槽
+        /// 构造函数
         /// </summary>
-        private int _saveSlot;
-
-        public int SaveSlot
+        /// <param name="saveSlot">存档槽</param>
+        public PathFile(int saveSlot)
         {
-            get => _saveSlot;
-            set
-            {
-                _saveSlot = value;
-                ServerDirPath = PathCommon.SaveRootDirPath + @"\DedicatedServer_" + value;
-            }
+            SetAllPath(PathCommon.GamePlatform, saveSlot);
         }
 
         /// <summary>
         /// 设置所有路径
         /// </summary>
         /// <param name="gamePlatform">游戏平台</param>
-        /// <param name="saveSlot">第几个存档槽,从0开始</param>
+        /// <param name="saveSlot">存档槽</param>
         public void SetAllPath(string gamePlatform, int saveSlot = 0)
         {
             if (!string.IsNullOrEmpty(PathCommon.SaveRootDirPath))
             {
-                ServerDirPath = PathCommon.SaveRootDirPath + @"\DedicatedServer_" + SaveSlot;
+                ServerDirPath = PathCommon.SaveRootDirPath + @"\DedicatedServer_" + saveSlot;
             }
         }
 
-        /// <summary>
-        /// 构造函数
-        /// </summary>
-        /// <param name="saveSlot">存档槽</param>
-        public PathAll(int saveSlot)
-        {
-            SaveSlot = saveSlot;
-            SetAllPath(PathCommon.GamePlatform, SaveSlot);
-        }
     }
 }

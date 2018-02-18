@@ -89,7 +89,7 @@
     <Compile Include="Class\Tools\IniHelper.cs" />
     <Compile Include="Class\Tools\JsonHelper.cs" />
     <Compile Include="Class\Tools\LuaConfig.cs" />
-    <Compile Include="Class\Tools\PathAll.cs" />
+    <Compile Include="Class\Tools\PathFile.cs" />
     <Compile Include="Class\Tools\PathCommon.cs" />
     <Compile Include="Class\Tools\SendMessage.cs" />
     <Compile Include="Class\Tools\FileHelper.cs" />
@@ -104,12 +104,13 @@
     </Compile>
     <Compile Include="ValueConverter\DediTooltipPlacementConverter.cs" />
     <Compile Include="View\BaseSet.cs" />
+    <Compile Include="View\CommonSetting.cs" />
     <Compile Include="View\Console.cs" />
     <Compile Include="View\DedicatedServerPage.xaml.cs">
       <DependentUpon>DedicatedServerPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Mods.cs" />
-    <Compile Include="View\World.cs" />
+    <Compile Include="View\EditWorld.cs" />
     <Page Include="Dictionary\ComboBoxDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

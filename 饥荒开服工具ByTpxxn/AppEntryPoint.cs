@@ -73,16 +73,16 @@ namespace 饥荒开服工具ByTpxxn
             private static void App_Startup(object sender, StartupEventArgs e)
             {
                 #region 设置全局字体
-                var mainWindowFont = IniFileIo.IniFileReadString("Configure", "Font", "FontFamily");
+                var mainWindowFont = IniFileIo.IniFileReadString("DedicatedServerConfigure", "Font", "FontFamily");
                 Global.FontFamily = !string.IsNullOrEmpty(mainWindowFont) ? new FontFamily(mainWindowFont) : new FontFamily("微软雅黑");
                 #endregion
 
                 #region 淡紫色透明光标
-                var mainWindowLavenderCursor = IniFileIo.IniFileReadString("Configure", "Others", "LavenderCursor");
+                var mainWindowLavenderCursor = IniFileIo.IniFileReadString("DedicatedServerConfigure", "Others", "LavenderCursor");
                 if (string.IsNullOrEmpty(mainWindowLavenderCursor))
                 {
                     mainWindowLavenderCursor = "True";
-                    IniFileIo.IniFileWrite("Configure", "Others", "LavenderCursor", "True");
+                    IniFileIo.IniFileWrite("DedicatedServerConfigure", "Others", "LavenderCursor", "True");
                 }
                 ResourceDictionary CursorDictionary;
                 if (mainWindowLavenderCursor == "True")

@@ -16,7 +16,7 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
     /// 基本设置类
     /// 添加字段和属性后，记得在构造函数附一个初始值
     /// </summary>
-    class BaseSet : INotifyPropertyChanged
+    internal class BaseSet : INotifyPropertyChanged
     {
         #region 字段和属性
 
