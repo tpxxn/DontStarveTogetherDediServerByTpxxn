@@ -239,7 +239,7 @@
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border x:Name="border" SnapsToDevicePixels="true">
                         <Border.Background>
-                            <ImageBrush ImageSource="/Resources/DedicatedServer/D_intention_bg.png"/>
+                            <ImageBrush ImageSource="/Resources/DedicatedServer/Intention/D_intention_bg.png"/>
                         </Border.Background>
                         <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                     </Border>
@@ -247,14 +247,14 @@
                         <Trigger Property="IsDefaulted" Value="true">
                             <Setter Property="Background" TargetName="border">
                                 <Setter.Value>
-                                    <ImageBrush ImageSource="/Resources/DedicatedServer/D_intention_bg.png"/>
+                                    <ImageBrush ImageSource="/Resources/DedicatedServer/Intention/D_intention_bg.png"/>
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter Property="Background" TargetName="border">
                                 <Setter.Value>
-                                    <ImageBrush ImageSource="/Resources/DedicatedServer/D_intention_bg_tobeclick.png"/>
+                                    <ImageBrush ImageSource="/Resources/DedicatedServer/Intention/D_intention_bg_tobeclick.png"/>
                                 </Setter.Value>
                             </Setter>
                         </Trigger>

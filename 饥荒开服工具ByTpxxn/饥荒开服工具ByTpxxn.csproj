@@ -263,12 +263,12 @@
     <Resource Include="Resources\DedicatedServer\D_baseset_textbox_mouseover.png" />
     <Resource Include="Resources\DedicatedServer\D_ComboBoxBackground.png" />
     <Resource Include="Resources\DedicatedServer\D_ComboBoxBackGroundhui.png" />
-    <Resource Include="Resources\DedicatedServer\D_intention_bg.png" />
-    <Resource Include="Resources\DedicatedServer\D_intention_bg_tobeclick.png" />
-    <Resource Include="Resources\DedicatedServer\D_intention_competitive.png" />
-    <Resource Include="Resources\DedicatedServer\D_intention_cooperative.png" />
-    <Resource Include="Resources\DedicatedServer\D_intention_madness.png" />
-    <Resource Include="Resources\DedicatedServer\D_intention_social.png" />
+    <Resource Include="Resources\DedicatedServer\Intention\D_intention_bg.png" />
+    <Resource Include="Resources\DedicatedServer\Intention\D_intention_bg_tobeclick.png" />
+    <Resource Include="Resources\DedicatedServer\Intention\D_intention_competitive.png" />
+    <Resource Include="Resources\DedicatedServer\Intention\D_intention_cooperative.png" />
+    <Resource Include="Resources\DedicatedServer\Intention\D_intention_madness.png" />
+    <Resource Include="Resources\DedicatedServer\Intention\D_intention_social.png" />
     <Resource Include="Resources\DedicatedServer\D_jiantou2Left_Enter.png" />
     <Resource Include="Resources\DedicatedServer\D_jiantou2Left_Leave.png" />
     <Resource Include="Resources\DedicatedServer\D_jiantou2Right_Enter.png" />
@@ -301,20 +301,6 @@
     <Resource Include="Resources\DedicatedServer\D_mp_mod_config.png" />
     <Resource Include="Resources\DedicatedServer\D_mp_mod_unchecked.png" />
     <Resource Include="Resources\DedicatedServer\D_mp_mod_unchecked_tobeclick.png" />
-    <Resource Include="Resources\DedicatedServer\D_mp_portraits_bg.png" />
-    <Resource Include="Resources\DedicatedServer\D_mp_portraits_maxwell.png" />
-    <Resource Include="Resources\DedicatedServer\D_mp_portraits_mod.png" />
-    <Resource Include="Resources\DedicatedServer\D_mp_portraits_none.png" />
-    <Resource Include="Resources\DedicatedServer\D_mp_portraits_webber.png" />
-    <Resource Include="Resources\DedicatedServer\D_mp_portraits_wendy.png" />
-    <Resource Include="Resources\DedicatedServer\D_mp_portraits_wes.png" />
-    <Resource Include="Resources\DedicatedServer\D_mp_portraits_wickerbottom.png" />
-    <Resource Include="Resources\DedicatedServer\D_mp_portraits_wigfrid.png" />
-    <Resource Include="Resources\DedicatedServer\D_mp_portraits_willow.png" />
-    <Resource Include="Resources\DedicatedServer\D_mp_portraits_wilson.png" />
-    <Resource Include="Resources\DedicatedServer\D_mp_portraits_wolfgang.png" />
-    <Resource Include="Resources\DedicatedServer\D_mp_portraits_woodie.png" />
-    <Resource Include="Resources\DedicatedServer\D_mp_portraits_wx78.png" />
     <Resource Include="Resources\DedicatedServer\D_set_bg.png" />
     <Resource Include="Resources\DedicatedServer\D_set_border.png" />
     <Resource Include="Resources\DedicatedServer\D_set_leftarrow.png" />
@@ -493,6 +479,22 @@
     <Resource Include="Resources\DedicatedServer\Background\MainPanelBottom3.png" />
     <Resource Include="Resources\DedicatedServer\Background\MainPanelBottom4.png" />
     <Resource Include="Resources\DedicatedServer\Background\MainPanelBottom5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\DedicatedServer\Portraits\Portraits_bg.png" />
+    <Resource Include="Resources\DedicatedServer\Portraits\Portraits_maxwell.png" />
+    <Resource Include="Resources\DedicatedServer\Portraits\Portraits_mod.png" />
+    <Resource Include="Resources\DedicatedServer\Portraits\Portraits_none.png" />
+    <Resource Include="Resources\DedicatedServer\Portraits\Portraits_webber.png" />
+    <Resource Include="Resources\DedicatedServer\Portraits\Portraits_wendy.png" />
+    <Resource Include="Resources\DedicatedServer\Portraits\Portraits_wes.png" />
+    <Resource Include="Resources\DedicatedServer\Portraits\Portraits_wickerbottom.png" />
+    <Resource Include="Resources\DedicatedServer\Portraits\Portraits_wigfrid.png" />
+    <Resource Include="Resources\DedicatedServer\Portraits\Portraits_willow.png" />
+    <Resource Include="Resources\DedicatedServer\Portraits\Portraits_wilson.png" />
+    <Resource Include="Resources\DedicatedServer\Portraits\Portraits_wolfgang.png" />
+    <Resource Include="Resources\DedicatedServer\Portraits\Portraits_woodie.png" />
+    <Resource Include="Resources\DedicatedServer\Portraits\Portraits_wx78.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

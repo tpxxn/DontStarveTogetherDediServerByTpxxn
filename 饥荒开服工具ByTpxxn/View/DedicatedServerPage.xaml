@@ -127,25 +127,25 @@
                     <Button x:Name="IntentionSocialButton" Grid.Column="1" Margin="5" Grid.Row="1" Style="{StaticResource DediButtonIntentionSelectStyle}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" Click="DediIntention_Click" MouseEnter="DediIntention_MouseEnter" MouseLeave="DediIntention_MouseLeave">
                         <Canvas>
                             <TextBlock TextWrapping="Wrap" Text="交际" Canvas.Left="36" Canvas.Top="5" FontSize="18" FontWeight="Bold" />
-                            <Image Height="75" Width="80" Source="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_intention_social.png" Canvas.Left="13" Canvas.Top="25"/>
+                            <Image Height="75" Width="80" Source="/Resources/DedicatedServer/Intention/D_intention_social.png" Canvas.Left="13" Canvas.Top="25"/>
                         </Canvas>
                     </Button>
                     <Button x:Name="IntentionCooperativeButton" Grid.Column="2" Margin="5" Grid.Row="1" Style="{StaticResource DediButtonIntentionSelectStyle}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" Click="DediIntention_Click" MouseEnter="DediIntention_MouseEnter" MouseLeave="DediIntention_MouseLeave">
                         <Canvas>
                             <TextBlock TextWrapping="Wrap" Text="合作" Canvas.Left="36" Canvas.Top="5" FontSize="18" FontWeight="Bold" />
-                            <Image Height="75" Width="80" Source="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_intention_cooperative.png" Canvas.Left="13" Canvas.Top="25"/>
+                            <Image Height="75" Width="80" Source="/Resources/DedicatedServer/Intention/D_intention_cooperative.png" Canvas.Left="13" Canvas.Top="25"/>
                         </Canvas>
                     </Button>
                     <Button x:Name="IntentionCompetitiveButton" Grid.Column="3" Margin="5" Grid.Row="1" Style="{StaticResource DediButtonIntentionSelectStyle}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" Click="DediIntention_Click"  MouseEnter="DediIntention_MouseEnter" MouseLeave="DediIntention_MouseLeave">
                         <Canvas>
                             <TextBlock TextWrapping="Wrap" Text="竞争" Canvas.Left="36" Canvas.Top="5" FontSize="18" FontWeight="Bold" />
-                            <Image Height="75" Width="80" Source="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_intention_competitive.png" Canvas.Left="13" Canvas.Top="25"/>
+                            <Image Height="75" Width="80" Source="/Resources/DedicatedServer/Intention/D_intention_competitive.png" Canvas.Left="13" Canvas.Top="25"/>
                         </Canvas>
                     </Button>
                     <Button x:Name="IntentionMadnessButton" Grid.Column="4" Margin="5" Grid.Row="1" Style="{StaticResource DediButtonIntentionSelectStyle}" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" Click="DediIntention_Click" MouseEnter="DediIntention_MouseEnter" MouseLeave="DediIntention_MouseLeave">
                         <Canvas>
                             <TextBlock TextWrapping="Wrap" Text="疯狂" Canvas.Left="36" Canvas.Top="5" FontSize="18" FontWeight="Bold" />
-                            <Image Height="75" Width="80" Source="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_intention_madness.png" Canvas.Left="13" Canvas.Top="25"/>
+                            <Image Height="75" Width="80" Source="/Resources/DedicatedServer/Intention/D_intention_madness.png" Canvas.Left="13" Canvas.Top="25"/>
                         </Canvas>
                     </Button>
                     <TextBlock x:Name="DidiIntentionTextBlock" Grid.ColumnSpan="4" FontSize="16" FontWeight="Bold" Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" TextAlignment="Center" Foreground="#FFF5F3DE"/>
