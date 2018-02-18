@@ -90,8 +90,9 @@
     <Compile Include="Class\Tools\JsonHelper.cs" />
     <Compile Include="Class\Tools\LuaConfig.cs" />
     <Compile Include="Class\Tools\PathAll.cs" />
+    <Compile Include="Class\Tools\PathCommon.cs" />
     <Compile Include="Class\Tools\SendMessage.cs" />
-    <Compile Include="Class\Tools\Tool.cs" />
+    <Compile Include="Class\Tools\FileHelper.cs" />
     <Compile Include="MyUserControl\DediComboBox.cs" />
     <Compile Include="MyUserControl\DediComboBoxWithImage.cs" />
     <Compile Include="MyUserControl\DediImageButton.cs" />
@@ -102,9 +103,13 @@
       <DependentUpon>DediSelectBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="ValueConverter\DediTooltipPlacementConverter.cs" />
+    <Compile Include="View\BaseSet.cs" />
+    <Compile Include="View\Console.cs" />
     <Compile Include="View\DedicatedServerPage.xaml.cs">
       <DependentUpon>DedicatedServerPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Mods.cs" />
+    <Compile Include="View\World.cs" />
     <Page Include="Dictionary\ComboBoxDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -211,13 +216,13 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="ServerTemplate\Cave\leveldataoverride.lua" />
-    <None Include="ServerTemplate\Cave\modoverrides.lua" />
-    <None Include="ServerTemplate\Cave\server.ini" />
-    <None Include="ServerTemplate\cluster.ini" />
-    <None Include="ServerTemplate\Master\leveldataoverride.lua" />
-    <None Include="ServerTemplate\Master\modoverrides.lua" />
-    <None Include="ServerTemplate\Master\server.ini" />
+    <EmbeddedResource Include="ServerTemplate\Caves\leveldataoverride.lua" />
+    <EmbeddedResource Include="ServerTemplate\Caves\modoverrides.lua" />
+    <EmbeddedResource Include="ServerTemplate\Caves\server.ini" />
+    <EmbeddedResource Include="ServerTemplate\cluster.ini" />
+    <EmbeddedResource Include="ServerTemplate\Master\leveldataoverride.lua" />
+    <EmbeddedResource Include="ServerTemplate\Master\modoverrides.lua" />
+    <EmbeddedResource Include="ServerTemplate\Master\server.ini" />
     <Resource Include="Resources\Cursor\Cursor_link.ani" />
     <Resource Include="Resources\Cursor\Cursor_workOrbusy.ani" />
   </ItemGroup>
@@ -267,14 +272,12 @@
     <Resource Include="Resources\DedicatedServer\D_jiantou2Left_Leave.png" />
     <Resource Include="Resources\DedicatedServer\D_jiantou2Right_Enter.png" />
     <Resource Include="Resources\DedicatedServer\D_jiantou2Right_Leave.png" />
-    <Resource Include="Resources\DedicatedServer\D_leftpanel.png" />
     <Resource Include="Resources\DedicatedServer\D_lp_bg.png" />
     <Resource Include="Resources\DedicatedServer\D_lp_decrease.png" />
     <Resource Include="Resources\DedicatedServer\D_lp_increase.png" />
     <Resource Include="Resources\DedicatedServer\D_lp_selected.png" />
     <Resource Include="Resources\DedicatedServer\D_lp_thumb.png" />
     <Resource Include="Resources\DedicatedServer\D_lp_tobeselected.png" />
-    <Resource Include="Resources\DedicatedServer\D_mainpanel.png" />
     <Resource Include="Resources\DedicatedServer\D_mp_btn_1.png" />
     <Resource Include="Resources\DedicatedServer\D_mp_btn_2.png" />
     <Resource Include="Resources\DedicatedServer\D_mp_btn_3.png" />
@@ -471,6 +474,24 @@
   <ItemGroup>
     <Resource Include="Resources\DedicatedServer\TitleMenuRadioButton\TitleMenuRadioButton_Normal.png" />
     <Resource Include="Resources\DedicatedServer\TitleMenuRadioButton\TitleMenuRadioButton_Selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\DedicatedServer\Background\LeftPanelBottom.png" />
+    <Resource Include="Resources\DedicatedServer\Background\LeftPanelCenter.png" />
+    <Resource Include="Resources\DedicatedServer\Background\LeftPanelTop.png" />
+    <Resource Include="Resources\DedicatedServer\Background\MainPanelCenter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\DedicatedServer\Background\MainPanelTopCenter.png" />
+    <Resource Include="Resources\DedicatedServer\Background\MainPanelTopLeft.png" />
+    <Resource Include="Resources\DedicatedServer\Background\MainPanelTopRight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\DedicatedServer\Background\MainPanelBottom1.png" />
+    <Resource Include="Resources\DedicatedServer\Background\MainPanelBottom2.png" />
+    <Resource Include="Resources\DedicatedServer\Background\MainPanelBottom3.png" />
+    <Resource Include="Resources\DedicatedServer\Background\MainPanelBottom4.png" />
+    <Resource Include="Resources\DedicatedServer\Background\MainPanelBottom5.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

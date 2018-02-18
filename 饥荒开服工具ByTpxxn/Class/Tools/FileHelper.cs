@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace 饥荒开服工具ByTpxxn.Class.Tools
 {
-    internal class Tool
+    internal class FileHelper
     {
-        #region 读取资源文件
         /// <summary>
         /// 读取资源文件
         /// </summary>
@@ -23,48 +22,47 @@ namespace 饥荒开服工具ByTpxxn.Class.Tools
             var streamReader = new StreamReader(stream, Encoding.UTF8);
             return streamReader.ReadToEnd();
         }
-        #endregion
 
         /// <summary>
         /// 拷贝文件夹,会覆盖!!
         /// </summary>
-        /// <param name="strFromPath"></param>
-        /// <param name="strToPath"></param>
-        public static void CopyDirectory(string strFromPath, string strToPath)
+        /// <param name="fromPath"></param>
+        /// <param name="toPath"></param>
+        public static void CopyDirectory(string fromPath, string toPath)
         {
             //如果源文件夹不存在，则创建
-            if (!Directory.Exists(strFromPath))
+            if (!Directory.Exists(fromPath))
             {
-                Directory.CreateDirectory(strFromPath);
+                Directory.CreateDirectory(fromPath);
             }
             //取得要拷贝的文件夹名
-            var strFolderName = strFromPath.Substring(strFromPath.LastIndexOf("\\") +
-              1, strFromPath.Length - strFromPath.LastIndexOf("\\") - 1);
+            var strFolderName = fromPath.Substring(fromPath.LastIndexOf("\\", StringComparison.Ordinal) +
+              1, fromPath.Length - fromPath.LastIndexOf("\\", StringComparison.Ordinal) - 1);
             //如果目标文件夹中没有源文件夹则在目标文件夹中创建源文件夹
-            if (!Directory.Exists(strToPath + "\\" + strFolderName))
+            if (!Directory.Exists(toPath + "\\" + strFolderName))
             {
-                Directory.CreateDirectory(strToPath + "\\" + strFolderName);
+                Directory.CreateDirectory(toPath + "\\" + strFolderName);
             }
             //创建数组保存源文件夹下的文件名
-            var strFiles = Directory.GetFiles(strFromPath);
+            var strFiles = Directory.GetFiles(fromPath);
             //循环拷贝文件
             foreach (var filename in strFiles)
             {
                 //取得拷贝的文件名，只取文件名，地址截掉。
-                var strFileName = filename.Substring(filename.LastIndexOf("\\") + 1, filename.Length - filename.LastIndexOf("\\") - 1);
+                var strFileName = filename.Substring(filename.LastIndexOf("\\", StringComparison.Ordinal) + 1, filename.Length - filename.LastIndexOf("\\", StringComparison.Ordinal) - 1);
                 //开始拷贝文件,true表示覆盖同名文件
-                File.Copy(filename, strToPath + "\\" + strFolderName + "\\" + strFileName, true);
+                File.Copy(filename, toPath + "\\" + strFolderName + "\\" + strFileName, true);
             }
             //创建DirectoryInfo实例
-            var dirInfo = new DirectoryInfo(strFromPath);
+            var dirInfo = new DirectoryInfo(fromPath);
             //取得源文件夹下的所有子文件夹名称
             var ziPath = dirInfo.GetDirectories();
             foreach (DirectoryInfo ziDirectoryInfo in ziPath)
             {
                 //获取所有子文件夹名
-                string strZiPath = strFromPath + "\\" + ziDirectoryInfo;
+                string strZiPath = fromPath + "\\" + ziDirectoryInfo;
                 //把得到的子文件夹当成新的源文件夹，从头开始新一轮的拷贝
-                CopyDirectory(strZiPath, strToPath + "\\" + strFolderName);
+                CopyDirectory(strZiPath, toPath + "\\" + strFolderName);
             }
         }
 

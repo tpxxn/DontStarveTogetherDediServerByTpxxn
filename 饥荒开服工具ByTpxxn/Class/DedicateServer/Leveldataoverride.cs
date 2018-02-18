@@ -148,14 +148,14 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
             var stringBuilder = new StringBuilder();
             // 地上世界
             // 读取模板中地上世界配置的前半部分和后半部分dishangStrQ，dishangStrH，用于拼接字符串，保存用
-            var dishangWorld = Tool.ReadResources("ServerTemplate.Master.leveldataoverride.lua");
+            var dishangWorld = FileHelper.ReadResources("ServerTemplate.Master.leveldataoverride.lua");
             dishangWorld = dishangWorld.Replace("\r\n", "\n").Replace("\n", "\r\n");
             var regex = new Regex(@".*overrides\s*=\s*{|random_set_pieces.*", RegexOptions.Singleline);
             var mcdishang = regex.Matches(dishangWorld);
             var dishangStrQ = mcdishang[0].Value + "\r\n";
             var dishangStrH = "\r\n},\r\n" + mcdishang[1].Value + "\r\n";
             // 地下
-            var caveWorld = Tool.ReadResources("ServerTemplate.Caves.leveldataoverride.lua");
+            var caveWorld = FileHelper.ReadResources("ServerTemplate.Caves.leveldataoverride.lua");
             caveWorld = caveWorld.Replace("\r\n", "\n").Replace("\n", "\r\n");
             var regex1 = new Regex(@".*overrides\s*=\s*{|required_prefabs.*", RegexOptions.Singleline);
             var mcdixia = regex1.Matches(caveWorld);

@@ -13,8 +13,7 @@ using 饥荒开服工具ByTpxxn.Class.Tools;
 namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
 {
     /// <summary>
-    /// 2016.12.1  2016.12.8 写 基本设置类
-    /// 
+    /// 基本设置类
     /// 添加字段和属性后，记得在构造函数附一个初始值
     /// </summary>
     class BaseSet : INotifyPropertyChanged

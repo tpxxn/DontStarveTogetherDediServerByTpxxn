@@ -11,6 +11,18 @@ namespace 饥荒开服工具ByTpxxn.Class
 {
     public static class Global
     {
+
+        /// <summary>
+        /// 枚举类型 Message
+        /// </summary>
+        public enum Message
+        {
+            保存,
+            复活,
+            回档,
+            重置世界
+        }
+
         /// <summary>
         /// MainPage需要保存在Global里额几个控件对象
         /// </summary>
