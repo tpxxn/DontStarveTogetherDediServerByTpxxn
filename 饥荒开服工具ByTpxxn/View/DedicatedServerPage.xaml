@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:饥荒开服工具ByTpxxn.View"
       xmlns:dedicatedServer="clr-namespace:饥荒开服工具ByTpxxn.MyUserControl"
       xmlns:valueConverter="clr-namespace:饥荒开服工具ByTpxxn.ValueConverter"
+      xmlns:dedicateServer="clr-namespace:饥荒开服工具ByTpxxn.Class.DedicateServer"
       mc:Ignorable="d" 
       d:DesignHeight="660" d:DesignWidth="960"
       Title="DedicatedServerPage">
@@ -165,7 +166,7 @@
                     </Button>
                     <TextBlock x:Name="DidiIntentionTextBlock" Grid.ColumnSpan="4" FontSize="16" FontWeight="Bold" Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" TextAlignment="Center" Foreground="#FFF5F3DE"/>
                 </Grid>
-                <ScrollViewer x:Name="DediBaseSet" Template="{StaticResource DediRightPanelScrollViewerControlTemplate}" Margin="10,20" Focusable="False" d:IsHidden="True" >
+                <ScrollViewer x:Name="DediBaseSet" Template="{StaticResource DediRightPanelScrollViewerControlTemplate}" Margin="10,20" Focusable="False" >
                     <StackPanel>
                         <Grid x:Name="DediBaseSetIntention" Height="40">
                             <Grid.Background>
@@ -268,7 +269,7 @@
                         </Grid>
                     </StackPanel>
                 </ScrollViewer>
-                <Grid x:Name="DediWorldSet">
+                <Grid x:Name="DediWorldSet" d:IsHidden="True">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition x:Name="CaveSettingColumnDefinition" Width="*"/>
@@ -283,36 +284,36 @@
                         </Grid.Background>
                         <Viewbox Margin="0,2">
                             <StackPanel Orientation="Horizontal">
-                                <Label Content="开启洞穴" FontWeight="Bold" FontSize="16"/>
+                                <Label Content="开启洞穴" FontWeight="Bold" FontSize="16" Foreground="#FFC5AA73"/>
                                 <dedicatedServer:DediSelectBox x:Name="EditWorldIsCaveSelectBox" TextIndex="{Binding IsCave, Mode=TwoWay}" Height="35" Width="140" Foreground="#FFC5AA73" SelectionChanged="EditWorldIsCaveSelectBox_SelectionChanged"/>
                             </StackPanel>
                         </Viewbox>
                     </Grid>
-                    <ScrollViewer Template="{StaticResource DediRightPanelScrollViewerControlTemplate}"  Grid.Row="1">
+                    <ScrollViewer Grid.Row="1" Grid.Column="0" Template="{StaticResource DediRightPanelScrollViewerControlTemplate}">
                         <StackPanel HorizontalAlignment="Center">
-                            <Label Content="地上世界" Margin="0,10,0,10" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Center" HorizontalAlignment="Center"/>
+                            <Label Content="世界 World" Margin="0,10,0,10" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Foreground="#FFCBCCC1"/>
                             <WrapPanel x:Name="DediOverWorldWorld" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                            <Label Content="资源" Margin="0,10,0,10"  FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
+                            <Label Content="资源 Resources" Margin="0,10,0,10"  FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FFCBCCC1"/>
                             <WrapPanel x:Name="DediOverWorldResources" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                            <Label Content="食物" Margin="0,10,0,10"  FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
+                            <Label Content="食物 Food" Margin="0,10,0,10"  FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FFCBCCC1"/>
                             <WrapPanel x:Name="DediOverWolrdFoods" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                            <Label Content="动物" Margin="0,10,0,10"  FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
+                            <Label Content="动物 Animals" Margin="0,10,0,10"  FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FFCBCCC1"/>
                             <WrapPanel x:Name="DediOverWorldAnimals" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                            <Label Content="怪物" Margin="0,10,0,10"  FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
+                            <Label Content="怪物 Monsters" Margin="0,10,0,10"  FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FFCBCCC1"/>
                             <WrapPanel x:Name="DediOverWorldMonsters" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                         </StackPanel>
                     </ScrollViewer>
                     <ScrollViewer Template="{StaticResource DediRightPanelScrollViewerControlTemplate}" Grid.Row="1" Grid.Column="1"  >
                         <StackPanel HorizontalAlignment="Center">
-                            <Label Content="地下世界" Margin="0,10,0,10" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Center" HorizontalAlignment="Center"/>
+                            <Label Content="世界 World" Margin="0,10,0,10" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Foreground="#FFCBCCC1"/>
                             <WrapPanel x:Name="DediCavesWorld" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                            <Label Content="资源" Margin="0,10,0,10"  FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
+                            <Label Content="资源 Resources" Margin="0,10,0,10"  FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FFCBCCC1"/>
                             <WrapPanel x:Name="DediCavesResources" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                            <Label Content="食物" Margin="0,10,0,10"  FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
+                            <Label Content="食物 Food" Margin="0,10,0,10"  FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FFCBCCC1"/>
                             <WrapPanel x:Name="DediCavesFoods" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                            <Label Content="动物" Margin="0,10,0,10"  FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
+                            <Label Content="动物 Animals" Margin="0,10,0,10"  FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FFCBCCC1"/>
                             <WrapPanel x:Name="DediCavesAnimals" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                            <Label Content="怪物" Margin="0,10,0,10"  FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" HorizontalContentAlignment="Center"/>
+                            <Label Content="怪物 Monsters" Margin="0,10,0,10"  FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FFCBCCC1"/>
                             <WrapPanel x:Name="DediCavesMonsters" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                         </StackPanel>
                     </ScrollViewer>
@@ -404,7 +405,7 @@
                 <ScrollViewer.Background>
                     <ImageBrush x:Name="SaveSlotLeftPanelCenterBackground" ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/Background/LeftPanelCenter.png"/>
                 </ScrollViewer.Background>
-                <StackPanel x:Name="SaveSlotStackPanel" HorizontalAlignment="Left" Width="160" VerticalAlignment="Top">
+                <StackPanel x:Name="SaveSlotStackPanel" HorizontalAlignment="Left" Width="150" VerticalAlignment="Top">
                     <RadioButton Content="新世界" Name="SaveSlotRadioButton0" Style="{StaticResource RadioButtonStyle}" Checked="SaveSlotRadioButton_Checked"/>
                     <RadioButton Content="新世界" Name="SaveSlotRadioButton1" Style="{StaticResource RadioButtonStyle}" Checked="SaveSlotRadioButton_Checked"/>
                     <RadioButton Content="新世界" Name="SaveSlotRadioButton2" Style="{StaticResource RadioButtonStyle}" Checked="SaveSlotRadioButton_Checked"/>

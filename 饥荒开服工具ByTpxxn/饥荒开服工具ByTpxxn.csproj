@@ -481,23 +481,11 @@
     <Resource Include="Resources\DedicatedServer\Background\MainPanelBottom5.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\DedicatedServer\Portraits\Portraits_bg.png" />
-    <Resource Include="Resources\DedicatedServer\Portraits\Portraits_maxwell.png" />
-    <Resource Include="Resources\DedicatedServer\Portraits\Portraits_mod.png" />
-    <Resource Include="Resources\DedicatedServer\Portraits\Portraits_none.png" />
-    <Resource Include="Resources\DedicatedServer\Portraits\Portraits_webber.png" />
-    <Resource Include="Resources\DedicatedServer\Portraits\Portraits_wendy.png" />
-    <Resource Include="Resources\DedicatedServer\Portraits\Portraits_wes.png" />
-    <Resource Include="Resources\DedicatedServer\Portraits\Portraits_wickerbottom.png" />
-    <Resource Include="Resources\DedicatedServer\Portraits\Portraits_wigfrid.png" />
-    <Resource Include="Resources\DedicatedServer\Portraits\Portraits_willow.png" />
-    <Resource Include="Resources\DedicatedServer\Portraits\Portraits_wilson.png" />
-    <Resource Include="Resources\DedicatedServer\Portraits\Portraits_wolfgang.png" />
-    <Resource Include="Resources\DedicatedServer\Portraits\Portraits_woodie.png" />
-    <Resource Include="Resources\DedicatedServer\Portraits\Portraits_wx78.png" />
+    <Resource Include="Resources\DedicatedServer\TitleMenuRadioButton\TitleMenuRadioButton_Border.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\DedicatedServer\TitleMenuRadioButton\TitleMenuRadioButton_Border.png" />
+    <Resource Include="Resources\DedicatedServer\LeftPanelRadioButton\LeftPanelRadioButton_Border.png" />
+    <Resource Include="Resources\DedicatedServer\LeftPanelRadioButton\LeftPanelRadioButton_Selected.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -45,41 +45,35 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RadioButton}">
-                    <Grid x:Name="templateRoot" SnapsToDevicePixels="True" Height="40" Background="{x:Null}">
+                    <Grid x:Name="templateRoot" SnapsToDevicePixels="True" Width="150" Height="35" Background="#01FFFFFF">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="35.2"/>
+                            <ColumnDefinition Width="20"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Image x:Name="toBeSelected" HorizontalAlignment="Right" Height="13" VerticalAlignment="Center" Width="13" Source="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_lp_tobeselected.png" Margin="0,0,2,0"/>
+                        <Image Grid.Column="0" x:Name="toBeSelected" HorizontalAlignment="Right" Height="15" VerticalAlignment="Center" Width="15" Source="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/LeftPanelRadioButton/LeftPanelRadioButton_Selected.png" Margin="5,0,2,0" Visibility="Collapsed"/>
+                        <Image Grid.Column="0" Grid.ColumnSpan="2" x:Name="Border" HorizontalAlignment="Right" VerticalAlignment="Center" Source="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/LeftPanelRadioButton/LeftPanelRadioButton_Border.png" Margin="5,0,2,0" Visibility="Collapsed"/>
                         <ContentPresenter x:Name="contentPresenter" Grid.Column="1" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center"/>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="HasContent" Value="true">
-                            <Setter Property="FocusVisualStyle" Value="{StaticResource OptionMarkFocusVisual}"/>
-                            <Setter Property="Padding" Value="4,-1,0,0"/>
-                        </Trigger>
-                        <Trigger Property="IsMouseOver" Value="true">
+                        <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Visibility" TargetName="toBeSelected" Value="Visible"/>
+                            <Setter Property="Foreground" Value="#FFFAFBFA"/>
+                            
                         </Trigger>
-                        <Trigger Property="IsMouseOver" Value="false">
+                        <Trigger Property="IsMouseOver" Value="False">
                             <Setter Property="Visibility" TargetName="toBeSelected" Value="Collapsed"/>
                         </Trigger>
-                        <Trigger Property="IsChecked" Value="true">
-                            <Setter Property="Foreground" Value="Black"/>
-                            <Setter Property="Background" TargetName="templateRoot">
-                                <Setter.Value>
-                                    <ImageBrush ImageSource="/Resources/DedicatedServer/D_lp_selected.png"/>
-                                </Setter.Value>
-                            </Setter>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Foreground" Value="#FFF8BF5B"/>
+                            <Setter Property="Visibility" TargetName="Border" Value="Visible"/>
                         </Trigger>
                         <Trigger Property="IsChecked" Value="{x:Null}">
-                            <Setter Property="Foreground" Value="#FFC5AA74"/>
-                            <Setter Property="Background" TargetName="templateRoot" Value="Transparent"/>
+                            <Setter Property="Foreground" Value="#FFD5D09C"/>
+                            <Setter Property="Visibility" TargetName="Border" Value="Collapsed"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-
 </ResourceDictionary>

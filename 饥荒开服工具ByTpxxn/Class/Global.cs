@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace 饥荒开服工具ByTpxxn.Class
@@ -30,6 +31,28 @@ namespace 饥荒开服工具ByTpxxn.Class
         /// </summary>
         public static FontFamily FontFamily { get; set; }
         public static FontWeight FontWeight { get; set; }
+        public static Frame DedicatedServerFrame { get; set; }
+
+        /// <summary>
+        /// 遍历视觉树
+        /// </summary>
+        /// <typeparam name="T">泛型T</typeparam>
+        /// <param name="results">结果List</param>
+        /// <param name="startNode">开始节点</param>
+        public static void FindChildren<T>(List<T> results, DependencyObject startNode) where T : DependencyObject
+        {
+            var count = VisualTreeHelper.GetChildrenCount(startNode);
+            for (var i = 0; i < count; i++)
+            {
+                var current = VisualTreeHelper.GetChild(startNode, i);
+                if (current.GetType() == typeof(T) || current.GetType().GetTypeInfo().IsSubclassOf(typeof(T)) || current.GetType().IsInstanceOfType(typeof(T)))
+                {
+                    var asType = (T)current;
+                    results.Add(asType);
+                }
+                FindChildren(results, current);
+            }
+        }
 
         /// <summary>
         /// 工程名 [饥荒开服工具ByTpxxn]

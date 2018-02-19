@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
+using 饥荒开服工具ByTpxxn.Class;
 using 饥荒开服工具ByTpxxn.Class.DedicateServer;
 
 namespace 饥荒开服工具ByTpxxn.View
@@ -88,12 +91,37 @@ namespace 饥荒开服工具ByTpxxn.View
         /// </summary>
         private void DediBaseSetClusterName_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //DediMainTopWorldName.Text = DediBaseSetClusterName.Text; TODO 左侧SaveSlot按钮ClusterName
-            if (((RadioButton)SaveSlotStackPanel.FindName("SaveSlotRadioButton" + SaveSlot))?.IsChecked == true)
+            if (MeasureTextWidth(((RadioButton)SaveSlotStackPanel.Children[SaveSlot]), DediBaseSetClusterName.Text) <= 120)
+                ((RadioButton)SaveSlotStackPanel.Children[SaveSlot]).Content = DediBaseSetClusterName.Text;
+            else
             {
-                // ReSharper disable once PossibleNullReferenceException
-                ((RadioButton)SaveSlotStackPanel.FindName($"SaveSlotRadioButton{SaveSlot}")).Content = DediBaseSetClusterName.Text;
+                for (var i = DediBaseSetClusterName.Text.Length; i >= 0; i--)
+                {
+                    if (MeasureTextWidth(((RadioButton)SaveSlotStackPanel.Children[SaveSlot]), DediBaseSetClusterName.Text.Substring(0, i - 1)) <= 109.17)
+                    {
+                        ((RadioButton)SaveSlotStackPanel.Children[SaveSlot]).Content = DediBaseSetClusterName.Text.Substring(0, i - 1) + "...";
+                        break;
+                    }
+                }
             }
+        }
+
+        /// <summary>
+        /// 获取文字长度
+        /// </summary>
+        /// <param name="radioButton"></param>
+        /// <returns>文字长度</returns>
+        private static double MeasureTextWidth(RadioButton radioButton,string str)
+        {
+            var formattedText = new FormattedText(
+                str,
+                System.Globalization.CultureInfo.InvariantCulture,
+                FlowDirection.LeftToRight,
+                new Typeface(radioButton.FontFamily, radioButton.FontStyle, radioButton.FontWeight, radioButton.FontStretch),
+                15,
+                Brushes.Black
+            );
+            return formattedText.WidthIncludingTrailingWhitespace;
         }
 
         /// <summary>
@@ -128,6 +156,10 @@ namespace 饥荒开服工具ByTpxxn.View
             BaseSetIsPauseSelectBox.DataContext = _baseSet;
             // 洞穴
             EditWorldIsCaveSelectBox.DataContext = _baseSet;
+            if (_baseSet.IsCave == 0)
+            {
+                CaveSettingColumnDefinition.Width = new GridLength(0);
+            }
             Debug.WriteLine("基本设置-完");
         }
 

@@ -45,11 +45,18 @@ namespace 饥荒开服工具ByTpxxn.View
         public DedicatedServerPage()
         {
             InitializeComponent();
+            Global.DedicatedServerFrame.NavigationService.LoadCompleted += LoadCompleted;
+        }
+
+        /// <summary>
+        /// 加载事件
+        /// </summary>
+        public void LoadCompleted(object sender, NavigationEventArgs e)
+        {
             // 初始化左侧选择存档RadioButton的Tag
-            for (var i = 0; i < 10; i++)
+            for (var i = 0; i < SaveSlotStackPanel.Children.Count; i++)
             {
-                // ReSharper disable once PossibleNullReferenceException
-                ((RadioButton)SaveSlotStackPanel.FindName($"SaveSlotRadioButton{i}")).Tag = i;
+                ((RadioButton)SaveSlotStackPanel.Children[i]).Tag = i;
             }
             // 初始化服务器面板
             PanelInitalize();
@@ -149,14 +156,14 @@ namespace 饥荒开服工具ByTpxxn.View
                 _mods.SaveListmodsToFile(_dediFilePath.ModConfigCaveFilePath, Global.Utf8WithoutBom);
             }
             // 复制文件
-            if (((RadioButton)sender).Content.ToString() == "新世界")
+            if (((RadioButton)SaveSlotStackPanel.Children[SaveSlot]).Content.ToString() == "新世界")
             {
                 // 复制一份过去                  
                 FileHelper.CopyServerTemplateFile();
                 // 改名字
                 FileHelper.RenameServerTemplateFile(SaveSlot);
                 // 修改按钮Content为房间名
-                ((RadioButton)sender).Content = GetClusterName(SaveSlot);
+                ((RadioButton)SaveSlotStackPanel.Children[SaveSlot]).Content = GetClusterName(SaveSlot);
             }
             // 初始化服务器
             InitServer(true);
@@ -262,26 +269,19 @@ namespace 饥荒开服工具ByTpxxn.View
             }
             // 1. radioBox 写 创建世界
             // ReSharper disable once PossibleNullReferenceException
-            ((RadioButton)SaveSlotStackPanel.FindName($"SaveSlotRadioButton{SaveSlot}")).Content = "新世界";
+            ((RadioButton)SaveSlotStackPanel.Children[SaveSlot]).Content = "新世界";
             // 2. 删除当前存档
             if (Directory.Exists(_dediFilePath.ServerDirPath))
             {
                 Directory.Delete(_dediFilePath.ServerDirPath, true);
             }
             // 2.1 取消选择,谁都不选
-            // ReSharper disable once PossibleNullReferenceException
-            ((RadioButton)SaveSlotStackPanel.FindName($"SaveSlotRadioButton{SaveSlot}")).IsChecked = false;
+            var radioButtonList = new List<RadioButton>();
+            Global.FindChildren(radioButtonList, SaveSlotLeftPanelCenterScrollViewer);
+            radioButtonList[SaveSlot].IsChecked = false;
             // 2.2 
-            // DediMainBorder.IsEnabled = false;
+            PanelVisibility("CommonSetting");
             Forbidden(true);
-            //// 3. 复制一份新的过来                 
-            //ServerTools.FileHelper.CopyFolder(pathAll.ServerMoBanPath, pathAll.DoNotStarveTogether_DirPath);
-            //if (!Directory.Exists(pathAll.DoNotStarveTogether_DirPath + "\\Server_" + CommonPath.GamePlatform + "_" + SaveSlot))
-            //{
-            //    Directory.Move(pathAll.DoNotStarveTogether_DirPath + "\\Server", pathAll.DoNotStarveTogether_DirPath + "\\Server_" + CommonPath.GamePlatform + "_" + SaveSlot);
-            //}
-            //// 4. 读取新的存档
-            //SetBaseSet();
         }
 
         /// <summary>
@@ -359,23 +359,6 @@ namespace 饥荒开服工具ByTpxxn.View
         #region 其他方法
 
         /// <summary>
-        /// 获取存档名[ClusterName]
-        /// </summary>
-        /// <param name="saveSlot">存档槽</param>
-        /// <returns>房间名</returns>
-        private static string GetClusterName(int saveSlot)
-        {
-            var clusterIniPath = CommonPath.SaveRootDirPath + @"\DedicatedServer_" + saveSlot + @"\cluster.ini";
-            if (!File.Exists(clusterIniPath))
-            {
-                return "新世界";
-            }
-            var iniTool = new IniHelper(clusterIniPath, Global.Utf8WithoutBom);
-            var houseName = iniTool.ReadValue("NETWORK", "cluster_name");
-            return houseName;
-        }
-
-        /// <summary>
         /// 初始化服务器
         /// </summary>
         /// <param name="whenCreateWorld">是否为创建新世界时调用</param>
@@ -385,7 +368,7 @@ namespace 饥荒开服工具ByTpxxn.View
             CommonPath.SetGamePlatform();
             // 设置游戏平台SelectBox选择
             GamePlatformSelectBox.TextIndex = CommonPath.GetGamePlatform();
-            // 检查存档Server是否存在 
+            // 设置SaveSlot面板按钮
             SetSaveSlotRadioButton();
             // 汉化
             _Hanization = JsonHelper.ReadHanization();
@@ -425,22 +408,49 @@ namespace 饥荒开服工具ByTpxxn.View
             for (var i = 0; i < 10; i++)
             {
                 // ReSharper disable once PossibleNullReferenceException
-                ((RadioButton)SaveSlotStackPanel.FindName($"SaveSlotRadioButton{i}")).Content = "新世界";
+                ((RadioButton)SaveSlotStackPanel.Children[i]).Content = "新世界";
             }
-            // TODO 设定SaveSlot面板
             if (serverPathList.Count != 0)
             {
                 foreach (var serverPath in serverPathList)
                 {
-                    // 取出序号 
-                    var num = serverPath.Substring(serverPath.LastIndexOf('_') + 1);
+                    // 取出序号
+                    var num = int.Parse(serverPath.Substring(serverPath.LastIndexOf('_') + 1));
                     // 取出存档名称
-                    // ReSharper disable once PossibleNullReferenceException
-                    ((RadioButton)SaveSlotStackPanel.FindName("SaveSlotRadioButton" + num)).Content = GetClusterName(int.Parse(num));
+                    if (MeasureTextWidth((RadioButton)SaveSlotStackPanel.Children[num], GetClusterName(num)) <= 120)
+                        ((RadioButton)SaveSlotStackPanel.Children[num]).Content = GetClusterName(num);
+                    else
+                    {
+                        for (var i = GetClusterName(num).Length; i >= 0; i--)
+                        {
+                            if (MeasureTextWidth((RadioButton)SaveSlotStackPanel.Children[num], GetClusterName(num).Substring(0, i - 1)) <= 109.17)
+                            {
+                                ((RadioButton)SaveSlotStackPanel.Children[num]).Content = GetClusterName(num).Substring(0, i - 1) + "...";
+                                break;
+                            }
+                        }
+                    }
                 }
             }
             // 禁用
             Forbidden(true);
+        }
+
+        /// <summary>
+        /// 获取存档名[ClusterName]
+        /// </summary>
+        /// <param name="saveSlot">存档槽</param>
+        /// <returns>房间名</returns>
+        private static string GetClusterName(int saveSlot)
+        {
+            var clusterIniPath = CommonPath.SaveRootDirPath + @"\DedicatedServer_" + saveSlot + @"\cluster.ini";
+            if (!File.Exists(clusterIniPath))
+            {
+                return "新世界";
+            }
+            var iniTool = new IniHelper(clusterIniPath, Global.Utf8WithoutBom);
+            var houseName = iniTool.ReadValue("NETWORK", "cluster_name");
+            return houseName;
         }
 
         #region 汉化

@@ -184,6 +184,7 @@ namespace 饥荒开服工具ByTpxxn
             // 设置托盘区图标
             //SetNotifyIcon();
             // Frame导航
+            Global.DedicatedServerFrame = DedicatedServerFrame;
             DedicatedServerFrame.Navigate(new DedicatedServerPage());
             // 是否显示开服工具
             //if (Global.TestMode)
