@@ -25,7 +25,7 @@ namespace 饥荒开服工具ByTpxxn.View
             // 读取通用设置
             SetPath();
             // 判断通用设置是否设置完毕
-            if (string.IsNullOrEmpty(PathCommon.ClientFilePath) || string.IsNullOrEmpty(PathCommon.ServerFilePath) || string.IsNullOrEmpty(PathCommon.ClusterToken))
+            if (string.IsNullOrEmpty(CommonPath.ClientFilePath) || string.IsNullOrEmpty(CommonPath.ServerFilePath) || string.IsNullOrEmpty(CommonPath.ClusterToken))
             {
                 if (onCommonSettingPanel == false)
                 {
@@ -50,29 +50,29 @@ namespace 饥荒开服工具ByTpxxn.View
         private void SetPath()
         {
             // 读取游戏平台
-            PathCommon.GamePlatform = PathCommon.ReadGamePlatform();
+            CommonPath.SetGamePlatform();
             #region 读取客户端路径、服务器路径和ClusterToken
             // 客户端路径
             GameDirSelectTextBox.Text = "";
-            PathCommon.ClientFilePath = PathCommon.ReadClientPath(PathCommon.GamePlatform);
-            if (!string.IsNullOrEmpty(PathCommon.ClientFilePath) && File.Exists(PathCommon.ClientFilePath))
-                GameDirSelectTextBox.Text = PathCommon.ClientFilePath;
+            CommonPath.ClientFilePath = CommonPath.ReadClientPath(CommonPath.GamePlatform);
+            if (!string.IsNullOrEmpty(CommonPath.ClientFilePath) && File.Exists(CommonPath.ClientFilePath))
+                GameDirSelectTextBox.Text = CommonPath.ClientFilePath;
             else
-                PathCommon.ClientFilePath = "";
+                CommonPath.ClientFilePath = "";
             // 服务器路径
             DediDirSelectTextBox.Text = "";
-            PathCommon.ServerFilePath = PathCommon.ReadServerPath(PathCommon.GamePlatform);
-            if (!string.IsNullOrEmpty(PathCommon.ServerFilePath) && File.Exists(PathCommon.ServerFilePath))
-                DediDirSelectTextBox.Text = PathCommon.ServerFilePath;
+            CommonPath.ServerFilePath = CommonPath.ReadServerPath(CommonPath.GamePlatform);
+            if (!string.IsNullOrEmpty(CommonPath.ServerFilePath) && File.Exists(CommonPath.ServerFilePath))
+                DediDirSelectTextBox.Text = CommonPath.ServerFilePath;
             else
-                PathCommon.ServerFilePath = "";
+                CommonPath.ServerFilePath = "";
             // ClusterToken
             DediSettingClusterTokenTextBox.Text = "";
-            PathCommon.ClusterToken = PathCommon.ReadClusterTokenPath(PathCommon.GamePlatform);
-            if (!string.IsNullOrEmpty(PathCommon.ClusterToken))
-                DediSettingClusterTokenTextBox.Text = PathCommon.ClusterToken;
+            CommonPath.ClusterToken = CommonPath.ReadClusterTokenPath(CommonPath.GamePlatform);
+            if (!string.IsNullOrEmpty(CommonPath.ClusterToken))
+                DediSettingClusterTokenTextBox.Text = CommonPath.ClusterToken;
             else
-                PathCommon.ClusterToken = "";
+                CommonPath.ClusterToken = "";
             #endregion
         }
 
@@ -84,8 +84,8 @@ namespace 饥荒开服工具ByTpxxn.View
         private void GamePlatformSelectBox_SelectionChanged()
         {
             // 游戏平台
-            PathCommon.GamePlatform = GamePlatformSelectBox.TextList[GamePlatformSelectBox.TextIndex];
-            if (PathCommon.GamePlatform == "WeGame")
+            CommonPath.GamePlatform = GamePlatformSelectBox.TextList[GamePlatformSelectBox.TextIndex];
+            if (CommonPath.GamePlatform == "WeGame")
             {
                 CtrateRunGame.Visibility = Visibility.Collapsed;
                 CtrateWorldButton.Content = "保存世界";
@@ -106,9 +106,9 @@ namespace 饥荒开服工具ByTpxxn.View
         /// </summary>
         private void OpenGameDir(object sender, MouseButtonEventArgs e)
         {
-            if (!string.IsNullOrEmpty(PathCommon.ClientFilePath) && File.Exists(PathCommon.ClientFilePath))
+            if (!string.IsNullOrEmpty(CommonPath.ClientFilePath) && File.Exists(CommonPath.ClientFilePath))
             {
-                Process.Start(Path.GetDirectoryName(PathCommon.ClientFilePath) ?? throw new InvalidOperationException());
+                Process.Start(Path.GetDirectoryName(CommonPath.ClientFilePath) ?? throw new InvalidOperationException());
             }
         }
 
@@ -120,11 +120,11 @@ namespace 饥荒开服工具ByTpxxn.View
             var openFileDialog = new Microsoft.Win32.OpenFileDialog
             {
                 Title = "选择游戏exe文件",
-                FileName = PathCommon.GamePlatform == "WeGame"
+                FileName = CommonPath.GamePlatform == "WeGame"
                     ? "dontstarve_rail"
                     : "dontstarve_steam", //默认文件名
                 DefaultExt = ".exe",// 默认文件扩展名
-                Filter = PathCommon.GamePlatform == "WeGame"
+                Filter = CommonPath.GamePlatform == "WeGame"
                     ? "饥荒游戏exe文件(*.exe)|dontstarve_rail.exe"
                     : "饥荒游戏exe文件(*.exe)|dontstarve_steam.exe",
                 FilterIndex = 1,
@@ -138,9 +138,9 @@ namespace 饥荒开服工具ByTpxxn.View
                     MessageBox.Show("文件选择错误,请选择正确文件");
                     return;
                 }
-                PathCommon.ClientFilePath = fileName;
+                CommonPath.ClientFilePath = fileName;
                 GameDirSelectTextBox.Text = fileName;
-                PathCommon.WriteClientPath(fileName, PathCommon.GamePlatform);
+                CommonPath.WriteClientPath(fileName, CommonPath.GamePlatform);
                 // 检查通用设置
                 CheckCommonSetting(true);
             }
@@ -151,9 +151,9 @@ namespace 饥荒开服工具ByTpxxn.View
         /// </summary>
         private void OpenDediDir(object sender, MouseButtonEventArgs e)
         {
-            if (!string.IsNullOrEmpty(PathCommon.ServerFilePath) && File.Exists(PathCommon.ServerFilePath))
+            if (!string.IsNullOrEmpty(CommonPath.ServerFilePath) && File.Exists(CommonPath.ServerFilePath))
             {
-                Process.Start(Path.GetDirectoryName(PathCommon.ServerFilePath) ?? throw new InvalidOperationException());
+                Process.Start(Path.GetDirectoryName(CommonPath.ServerFilePath) ?? throw new InvalidOperationException());
             }
         }
 
@@ -185,9 +185,9 @@ namespace 饥荒开服工具ByTpxxn.View
                     if (MessageBox.Show("似乎选择了客户端目录的程序，请确认！如果确定没有问题仍然保存点击“是”(判断出错的情况一般只出现在WeGame版)！", "似乎选错了呢...", MessageBoxButton.YesNo) != MessageBoxResult.Yes)
                         return;
                 }
-                PathCommon.ServerFilePath = fileName;
+                CommonPath.ServerFilePath = fileName;
                 DediDirSelectTextBox.Text = fileName;
-                PathCommon.WriteServerPath(fileName, PathCommon.GamePlatform);
+                CommonPath.WriteServerPath(fileName, CommonPath.GamePlatform);
                 // 检查通用设置
                 CheckCommonSetting(true);
             }
@@ -223,9 +223,8 @@ namespace 饥荒开服工具ByTpxxn.View
                             MessageBoxButton.YesNo) == MessageBoxResult.No)
                         return;
                 }
-                // 确定有效↓
-                PathCommon.ClusterToken = clusterToken;
-                PathCommon.WriteClusterTokenPath(clusterToken, PathCommon.ReadGamePlatform());
+                // 确定有效，保存ClusterToken↓
+                CommonPath.ClusterToken = clusterToken;
                 MessageBox.Show("保存完毕！");
                 // 检查通用设置
                 CheckCommonSetting(true);

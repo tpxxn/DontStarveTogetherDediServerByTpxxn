@@ -11,9 +11,13 @@ namespace 饥荒开服工具ByTpxxn.Class.Tools
     /// </summary>
     public class IniHelper
     {
+        #region 字段
+
         public readonly Dictionary<string, Dictionary<string, string>> Dictionary;
         public readonly string[] Filecontext;
         public readonly string Path;
+
+        #endregion
 
         /// <summary>
         /// IniHelper
@@ -95,12 +99,11 @@ namespace 饥荒开服工具ByTpxxn.Class.Tools
         /// <param name="section"></param>
         /// <param name="key"></param>
         /// <param name="value"></param>
+        /// <param name="encoding"></param>
         public void Write(string section, string key, string value, Encoding encoding)
         {
-
             Dictionary[section][key] = value;
             File.WriteAllLines(Path, GetListStr(), encoding);
-
         }
 
         public List<string> GetListStr()
@@ -109,7 +112,9 @@ namespace 饥荒开服工具ByTpxxn.Class.Tools
             foreach (var kvp in Dictionary)
             {
                 listStr.Add("[" + kvp.Key + "]");
-                listStr.AddRange(kvp.Value.Select(kvp1 => kvp1.Key + "=" + kvp1.Value));
+                listStr.AddRange(kvp.Value.Select(kvp1 => kvp1.Key + " = " + kvp1.Value));
+                listStr.Add("");
+                listStr.Add("");
             }
             return listStr;
         }

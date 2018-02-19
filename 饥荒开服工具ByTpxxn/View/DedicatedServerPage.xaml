@@ -10,11 +10,11 @@
       d:DesignHeight="660" d:DesignWidth="960"
       Title="DedicatedServerPage">
     <Grid x:Name="MainGrid">
-        <Grid x:Name="SettingMainPanel" Margin="230,10,10,10" ClipToBounds="false" SnapsToDevicePixels="true" HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto">
+        <Grid x:Name="SettingMainPanel" Margin="230,0,10,10" ClipToBounds="false" SnapsToDevicePixels="true" HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="75"/>
             </Grid.RowDefinitions>
             <Grid.Effect>
                 <DropShadowEffect Color="White" BlurRadius="15" ShadowDepth="0"/>
@@ -41,7 +41,7 @@
                 <Grid.Background>
                     <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/Background/MainPanelCenter.png"/>
                 </Grid.Background>
-                <ScrollViewer x:Name="DediCommonSetting" Template="{StaticResource DediRightPanelScrollViewerControlTemplate}" Focusable="False" VerticalAlignment="Stretch" VerticalContentAlignment="Top" Margin="10,20" >
+                <ScrollViewer x:Name="DediCommonSetting" Template="{StaticResource DediRightPanelScrollViewerControlTemplate}" Focusable="False" VerticalAlignment="Stretch" VerticalContentAlignment="Top" Margin="10,20" d:IsHidden="True" >
                     <StackPanel>
                         <Grid x:Name="DediSettingGameVersion" Height="40">
                             <Grid.ColumnDefinitions>
@@ -159,7 +159,7 @@
                             <Viewbox Margin="0,2">
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="游戏风格" FontWeight="Bold" FontSize="16" Foreground="#FFC5AA73"/>
-                                    <Button x:Name="DediBaseSetIntentionButton" Content="{Binding GameStyleText, Mode=TwoWay}" Width="124" Style="{StaticResource DediButtonCreateWorldStyle}" Focusable="False" FontWeight="Bold" Height="27" Click="DediBaseSetIntentionButton_Click" FontSize="10"/>
+                                    <Button x:Name="DediBaseSetIntentionButton" Content="{Binding GameStyle, Mode=TwoWay}" Width="124" Style="{StaticResource DediButtonCreateWorldStyle}" Focusable="False" FontWeight="Bold" Height="27" Click="DediBaseSetIntentionButton_Click" FontSize="10"/>
                                 </StackPanel>
                             </Viewbox>
                         </Grid>
@@ -170,7 +170,7 @@
                             <Viewbox Margin="0,2">
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="名称" FontWeight="Bold" FontSize="16" Foreground="#FFC5AA73"/>
-                                    <TextBox x:Name="DediBaseSetHouseName" Tag="服务器名称" Text="{Binding HouseName, Mode=TwoWay}" Style="{StaticResource DediTextBoxStyle}" Height="30" Width="250" TextChanged="DediBaseSetHouseName_TextChanged"/>
+                                    <TextBox x:Name="DediBaseSetClusterName" Tag="服务器名称" Text="{Binding ClusterName, Mode=TwoWay}" Style="{StaticResource DediTextBoxStyle}" Height="30" Width="250" TextChanged="DediBaseSetClusterName_TextChanged"/>
                                 </StackPanel>
                             </Viewbox>
                         </Grid>
@@ -192,7 +192,7 @@
                             <Viewbox Margin="0,2">
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="游戏模式" FontWeight="Bold" FontSize="16" Foreground="#FFC5AA73"/>
-                                    <dedicatedServer:DediSelectBox x:Name="BaseSetGameModeSelectBox" Height="35" Width="140" Foreground="#FFC5AA73"/>
+                                    <dedicatedServer:DediSelectBox x:Name="BaseSetGameModeSelectBox" TextIndex="{Binding GameMode, Mode=TwoWay}" Height="35" Width="140" Foreground="#FFC5AA73"/>
                                 </StackPanel>
                             </Viewbox>
                         </Grid>
@@ -203,7 +203,7 @@
                             <Viewbox Margin="0,2">
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="PvP:" FontWeight="Bold" FontSize="16" Foreground="#FFC5AA73"/>
-                                    <dedicatedServer:DediSelectBox x:Name="BaseSetPvpSelectBox" Height="35" Width="140" Foreground="#FFC5AA73"/>
+                                    <dedicatedServer:DediSelectBox x:Name="BaseSetPvpSelectBox" TextIndex="{Binding IsPvp, Mode=TwoWay}" Height="35" Width="140" Foreground="#FFC5AA73"/>
                                 </StackPanel>
                             </Viewbox>
                         </Grid>
@@ -214,7 +214,7 @@
                             <Viewbox Margin="0,2">
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="玩家:" FontWeight="Bold" FontSize="16" Foreground="#FFC5AA73"/>
-                                    <dedicatedServer:DediSelectBox x:Name="BaseSetMaxPlayerSelectBox" Height="35" Width="140" Foreground="#FFC5AA73"/>
+                                    <dedicatedServer:DediSelectBox x:Name="BaseSetMaxPlayerSelectBox" TextIndex="{Binding MaxPlayers, Mode=TwoWay}" Height="35" Width="140" Foreground="#FFC5AA73"/>
                                 </StackPanel>
                             </Viewbox>
                         </Grid>
@@ -225,7 +225,7 @@
                             <Viewbox Margin="0,2">
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="密码" FontWeight="Bold" FontSize="16" Foreground="#FFC5AA73"/>
-                                    <TextBox x:Name="DediBaseSetSecret" Tag="服务器密码" Text="{Binding Secret, Mode=TwoWay}" Style="{StaticResource DediTextBoxStyle}" Height="30" Width="250"/>
+                                    <TextBox x:Name="DediBaseSetSecret" Tag="服务器密码" Text="{Binding Password, Mode=TwoWay}" Style="{StaticResource DediTextBoxStyle}" Height="30" Width="250"/>
                                 </StackPanel>
                             </Viewbox>
                         </Grid>
@@ -236,7 +236,7 @@
                             <Viewbox Margin="0,2">
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="服务器模式" FontWeight="Bold" FontSize="16" Foreground="#FFC5AA73"/>
-                                    <dedicatedServer:DediSelectBox x:Name="BaseSetOfflineSelectBox" Height="35" Width="140" Foreground="#FFC5AA73"/>
+                                    <dedicatedServer:DediSelectBox x:Name="BaseSetOfflineSelectBox" TextIndex="{Binding ServerMode, Mode=TwoWay}" Height="35" Width="140" Foreground="#FFC5AA73"/>
                                 </StackPanel>
                             </Viewbox>
                         </Grid>
@@ -247,13 +247,13 @@
                             <Viewbox Margin="0,2">
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="无人时暂停" FontWeight="Bold" FontSize="16" Foreground="#FFC5AA73"/>
-                                    <dedicatedServer:DediSelectBox x:Name="BaseSetIsPauseSelectBox" Height="35" Width="140" Foreground="#FFC5AA73"/>
+                                    <dedicatedServer:DediSelectBox x:Name="BaseSetIsPauseSelectBox" TextIndex="{Binding IsPause, Mode=TwoWay}" Height="35" Width="140" Foreground="#FFC5AA73"/>
                                 </StackPanel>
                             </Viewbox>
                         </Grid>
                     </StackPanel>
                 </ScrollViewer>
-                <Grid x:Name="DediWorldSet" d:IsHidden="True">
+                <Grid x:Name="DediWorldSet">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition x:Name="CaveSettingColumnDefinition" Width="*"/>
@@ -269,7 +269,7 @@
                         <Viewbox Margin="0,2">
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="开启洞穴" FontWeight="Bold" FontSize="16"/>
-                                <dedicatedServer:DediSelectBox x:Name="EditWorldIsCaveSelectBox" Height="35" Width="140" Foreground="#FFC5AA73"/>
+                                <dedicatedServer:DediSelectBox x:Name="EditWorldIsCaveSelectBox" TextIndex="{Binding IsCave, Mode=TwoWay}" Height="35" Width="140" Foreground="#FFC5AA73" SelectionChanged="EditWorldIsCaveSelectBox_SelectionChanged"/>
                             </StackPanel>
                         </Viewbox>
                     </Grid>
@@ -359,12 +359,12 @@
                     <ColumnDefinition x:Name="BottomColumnDefinition3" Width="*"/>
                     <ColumnDefinition Width="30"/>
                 </Grid.ColumnDefinitions>
-                <Image x:Name="BottomGridBackground1" Grid.Column="0" Source="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/Background/MainPanelBottom1.png" VerticalAlignment="Top" Stretch="None" HorizontalAlignment="Right" />
-                <Image x:Name="BottomGridBackground2" Grid.Column="1" Source="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/Background/MainPanelBottom2.png" VerticalAlignment="Top" Stretch="Fill" Height="10"/>
-                <Image x:Name="BottomGridBackground3" Grid.Column="2" Source="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/Background/MainPanelBottom3.png" VerticalAlignment="Top" />
-                <Image x:Name="BottomGridBackground4" Grid.Column="3" Source="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/Background/MainPanelBottom4.png" VerticalAlignment="Top" Stretch="Fill" Height="10"/>
-                <Image x:Name="BottomGridBackground5" Grid.Column="4" Source="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/Background/MainPanelBottom5.png" VerticalAlignment="Top" Stretch="None" HorizontalAlignment="Left" />
-                <StackPanel Grid.Column="0" Grid.ColumnSpan="5" x:Name="BottomStackPanel" Orientation="Horizontal" HorizontalAlignment="Right" Visibility="Visible">
+                <Image x:Name="BottomGridBackground1" Grid.Column="0" Source="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/Background/MainPanelBottom1.png" VerticalAlignment="Top" Margin="0,-1,0,0" Stretch="None" HorizontalAlignment="Right"/>
+                <Image x:Name="BottomGridBackground2" Grid.Column="1" Source="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/Background/MainPanelBottom2.png" VerticalAlignment="Top" Margin="0,-1,0,0" Stretch="Fill" Height="10"/>
+                <Image x:Name="BottomGridBackground3" Grid.Column="2" Source="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/Background/MainPanelBottom3.png" VerticalAlignment="Top" Margin="0,-1,0,0" />
+                <Image x:Name="BottomGridBackground4" Grid.Column="3" Source="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/Background/MainPanelBottom4.png" VerticalAlignment="Top" Margin="0,-1,0,0" Stretch="Fill" Height="10"/>
+                <Image x:Name="BottomGridBackground5" Grid.Column="4" Source="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/Background/MainPanelBottom5.png" VerticalAlignment="Top" Margin="0,-1,0,0" Stretch="None" HorizontalAlignment="Left" />
+                <StackPanel Grid.Column="0" Grid.ColumnSpan="5" x:Name="BottomStackPanel" Orientation="Horizontal" HorizontalAlignment="Right" Visibility="Visible" Margin="0,25,0,0">
                     <Button x:Name="CommonSettingButton" Content="通用设置" Style="{StaticResource DediButtonCreateWorldStyle}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,10,0" Width="150" Height="50" FontSize="18" FontWeight="Bold" Click="CommonSettingButton_Click" />
                     <Button x:Name="CtrateRunGame" Content="打开游戏" Style="{StaticResource DediButtonCreateWorldStyle}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,10,0" Width="150" Height="50" FontSize="18" FontWeight="Bold" Click="OpenGameButton_Click" />
                     <Button x:Name="DeleteWorldButton" Style="{StaticResource DediButtonCreateWorldStyle}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,10,0" Width="150" Height="50" FontSize="18" FontWeight="Bold" Click="DeleteWorldButton_OnClick" >

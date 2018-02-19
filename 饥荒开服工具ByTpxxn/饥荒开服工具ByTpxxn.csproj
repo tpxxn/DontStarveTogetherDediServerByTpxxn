@@ -89,8 +89,8 @@
     <Compile Include="Class\Tools\IniHelper.cs" />
     <Compile Include="Class\Tools\JsonHelper.cs" />
     <Compile Include="Class\Tools\LuaConfig.cs" />
-    <Compile Include="Class\Tools\PathFile.cs" />
-    <Compile Include="Class\Tools\PathCommon.cs" />
+    <Compile Include="Class\Tools\DediFilePath.cs" />
+    <Compile Include="Class\Tools\CommonPath.cs" />
     <Compile Include="Class\Tools\SendMessage.cs" />
     <Compile Include="Class\Tools\FileHelper.cs" />
     <Compile Include="MyUserControl\DediComboBox.cs" />

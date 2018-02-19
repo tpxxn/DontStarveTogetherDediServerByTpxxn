@@ -16,7 +16,7 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
     {
         #region 字段和属性
         private readonly UTF8Encoding _utf8 = new UTF8Encoding(false);
-        private readonly PathFile _pathall;
+        private readonly DediFilePath _pathall;
         private readonly bool _isCave;
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
         /// </summary>
         /// <param name="pathall">所有路径</param>
         /// <param name="isCave">是否为洞穴</param>
-        public Leveldataoverride(PathFile pathall, bool isCave)
+        public Leveldataoverride(DediFilePath pathall, bool isCave)
         {
             _pathall = pathall;
             _isCave = isCave;

@@ -30,13 +30,12 @@ namespace 饥荒开服工具ByTpxxn.View
     {
         #region 字段、属性
         private Dictionary<string, string> _Hanization;  // 汉化
-        private PathFile _pathFile;                      // 文件路径
+        private DediFilePath _dediFilePath;              // 文件路径
         private BaseSet _baseSet;                        // 基本设置
         private Leveldataoverride _overWorld;            // 地上世界
         private Leveldataoverride _caves;                // 地下世界
         private Mods _mods;                              // mods
         private int SaveSlot { get; set; }               // 存档槽
-        private readonly UTF8Encoding _utf8WithoutBom = new UTF8Encoding(false); // 编码
         #endregion
 
         #region 构造事件及初始化
@@ -71,7 +70,7 @@ namespace 饥荒开服工具ByTpxxn.View
             #endregion
             #region ComboBox初始化
             BaseSetGameModeSelectBox.TextList = new List<string> { "生存", "荒野", "无尽" };
-            BaseSetPvpSelectBox.TextList = new List<string> { "否", "是" };
+            BaseSetPvpSelectBox.TextList = new List<string> { "关闭", "开启" };
             var maxPlayer = new List<string>();
             for (var i = 1; i <= 64; i++)
             {
@@ -79,8 +78,8 @@ namespace 饥荒开服工具ByTpxxn.View
             }
             BaseSetMaxPlayerSelectBox.TextList = maxPlayer;
             BaseSetOfflineSelectBox.TextList = new List<string> { "在线", "离线" };
-            BaseSetIsPauseSelectBox.TextList = new List<string> { "否", "是" }; ;
-            EditWorldIsCaveSelectBox.TextList = new List<string> { "否", "是" }; ;
+            BaseSetIsPauseSelectBox.TextList = new List<string> { "关闭", "开启" }; ;
+            EditWorldIsCaveSelectBox.TextList = new List<string> { "关闭", "开启" }; ;
             #endregion
             // 初始化
             InitServer();
@@ -138,77 +137,40 @@ namespace 饥荒开服工具ByTpxxn.View
         private void SaveSlotRadioButton_Checked(object sender, RoutedEventArgs e)
         {
             // 存档
-            SaveSlot = int.Parse(((RadioButton)sender).Name.Remove(0, 19));
-            // -1.保存之前的
-            if (_overWorld != null && _caves != null && _mods != null && Directory.Exists(_pathFile.ServerDirPath))
+            SaveSlot = (int)((RadioButton)sender).Tag;
+            // [若地面、洞穴、mod对象存在且服务器文件夹存在]保存之前的
+            if (_overWorld != null && _caves != null && _mods != null && Directory.Exists(_dediFilePath.ServerDirPath))
             {
                 // 地面和洞穴世界保存
                 _overWorld.SaveWorld();
                 _caves.SaveWorld();
                 // 地面和洞穴MOD保存
-                _mods.SaveListmodsToFile(_pathFile.ServerDirPath + @"\Master\modoverrides.lua", _utf8WithoutBom);
-                _mods.SaveListmodsToFile(_pathFile.ServerDirPath + @"\Caves\modoverrides.lua", _utf8WithoutBom);
+                _mods.SaveListmodsToFile(_dediFilePath.ModConfigOverworldFilePath, Global.Utf8WithoutBom);
+                _mods.SaveListmodsToFile(_dediFilePath.ModConfigCaveFilePath, Global.Utf8WithoutBom);
             }
-            // 1.复制文件
+            // 复制文件
             if (((RadioButton)sender).Content.ToString() == "新世界")
             {
                 // 复制一份过去                  
-                CopyServerFile();
+                FileHelper.CopyServerTemplateFile();
                 // 改名字
-                if (!Directory.Exists(PathCommon.SaveRootDirPath + @"\DedicatedServer_" + SaveSlot))
-                {
-                    Directory.Move(PathCommon.SaveRootDirPath + @"\Server", PathCommon.SaveRootDirPath + @"\DedicatedServer_" + SaveSlot);
-                    // 删除临时文件
-                    if (Directory.Exists(PathCommon.SaveRootDirPath + @"\Server"))
-                    {
-                        Directory.Delete(PathCommon.SaveRootDirPath + @"\Server", true);
-                    }
-                }
-                ((RadioButton)sender).Content = GetHouseName(SaveSlot);
+                FileHelper.RenameServerTemplateFile(SaveSlot);
+                // 修改按钮Content为房间名
+                ((RadioButton)sender).Content = GetClusterName(SaveSlot);
             }
-            // 2.初始化服务器
+            // 初始化服务器
             InitServer(true);
-            // 3 禁用
+            // 禁用
             Forbidden(false);
-            // 4.读取并设定基本设置
+            // 读取并设定基本设置
             SetBaseSet();
-            // 5. "地面世界设置"
+            // "地面世界设置"
             SetOverWorldSet();
-            // 5. "洞穴世界设置"
+            // "洞穴世界设置"
             SetCavesSet();
-            // 6.打开基本设置页面
+            // 打开基本设置页面
             TitleMenuBaseSet.IsChecked = true;
             TitleMenuBaseSet_Click(null, null);
-        }
-
-        /// <summary>
-        /// 复制ServerTemplate到指定位置
-        /// </summary>
-        private void CopyServerFile()
-        {
-            // 判断是否存在
-            if (Directory.Exists(PathCommon.SaveRootDirPath + @"\Server"))
-            {
-                Directory.Delete(PathCommon.SaveRootDirPath + @"\Server", true);
-            }
-            // 建立文件夹
-            Directory.CreateDirectory(PathCommon.SaveRootDirPath + @"\Server");
-            Directory.CreateDirectory(PathCommon.SaveRootDirPath + @"\Server\Caves");
-            Directory.CreateDirectory(PathCommon.SaveRootDirPath + @"\Server\Master");
-            // 填文件
-            File.WriteAllText(PathCommon.SaveRootDirPath + @"\Server\cluster.ini", FileHelper.ReadResources("ServerTemplate.cluster.ini"), _utf8WithoutBom);
-            File.WriteAllText(PathCommon.SaveRootDirPath + @"\Server\Caves\leveldataoverride.lua", FileHelper.ReadResources("ServerTemplate.Caves.leveldataoverride.lua"), _utf8WithoutBom);
-            File.WriteAllText(PathCommon.SaveRootDirPath + @"\Server\Caves\modoverrides.lua", FileHelper.ReadResources("ServerTemplate.Caves.modoverrides.lua"), _utf8WithoutBom);
-            File.WriteAllText(PathCommon.SaveRootDirPath + @"\Server\Caves\server.ini", FileHelper.ReadResources("ServerTemplate.Caves.server.ini"), _utf8WithoutBom);
-            File.WriteAllText(PathCommon.SaveRootDirPath + @"\Server\Master\leveldataoverride.lua", FileHelper.ReadResources("ServerTemplate.Master.leveldataoverride.lua"), _utf8WithoutBom);
-            File.WriteAllText(PathCommon.SaveRootDirPath + @"\Server\Master\modoverrides.lua", FileHelper.ReadResources("ServerTemplate.Master.modoverrides.lua"), _utf8WithoutBom);
-            File.WriteAllText(PathCommon.SaveRootDirPath + @"\Server\Master\server.ini", FileHelper.ReadResources("ServerTemplate.Master.server.ini"), _utf8WithoutBom);
-            // ClusterToken
-            File.WriteAllText(PathCommon.SaveRootDirPath + @"\Server\cluster_token.txt",
-                !string.IsNullOrEmpty(PathCommon.ClusterToken)
-                ? PathCommon.ClusterToken
-                : "",
-                _utf8WithoutBom);
         }
 
         #endregion
@@ -254,11 +216,19 @@ namespace 饥荒开服工具ByTpxxn.View
         }
 
         /// <summary>
+        /// 打开游戏
+        /// </summary>
+        private void OpenGameButton_Click(object sender, RoutedEventArgs e)
+        {
+            RunClient();
+        }
+
+        /// <summary>
         /// 打开客户端
         /// </summary>
         private static void RunClient()
         {
-            if (string.IsNullOrEmpty(PathCommon.ClientModsDirPath))
+            if (string.IsNullOrEmpty(CommonPath.ClientModsDirPath))
             {
                 MessageBox.Show("客户端路径没有设置");
                 return;
@@ -269,8 +239,8 @@ namespace 饥荒开服工具ByTpxxn.View
                 {
                     Arguments = "",
                     // 目录,这个必须设置
-                    WorkingDirectory = Path.GetDirectoryName(PathCommon.ClientFilePath) ?? throw new InvalidOperationException(),
-                    FileName = PathCommon.ClientFilePath
+                    WorkingDirectory = Path.GetDirectoryName(CommonPath.ClientFilePath) ?? throw new InvalidOperationException(),
+                    FileName = CommonPath.ClientFilePath
                 }
             };
             process.Start();
@@ -294,9 +264,9 @@ namespace 饥荒开服工具ByTpxxn.View
             // ReSharper disable once PossibleNullReferenceException
             ((RadioButton)SaveSlotStackPanel.FindName($"SaveSlotRadioButton{SaveSlot}")).Content = "新世界";
             // 2. 删除当前存档
-            if (Directory.Exists(_pathFile.ServerDirPath))
+            if (Directory.Exists(_dediFilePath.ServerDirPath))
             {
-                Directory.Delete(_pathFile.ServerDirPath, true);
+                Directory.Delete(_dediFilePath.ServerDirPath, true);
             }
             // 2.1 取消选择,谁都不选
             // ReSharper disable once PossibleNullReferenceException
@@ -305,13 +275,21 @@ namespace 饥荒开服工具ByTpxxn.View
             // DediMainBorder.IsEnabled = false;
             Forbidden(true);
             //// 3. 复制一份新的过来                 
-            //ServerTools.FileHelper.CopyDirectory(pathAll.ServerMoBanPath, pathAll.DoNotStarveTogether_DirPath);
-            //if (!Directory.Exists(pathAll.DoNotStarveTogether_DirPath + "\\Server_" + PathCommon.GamePlatform + "_" + SaveSlot))
+            //ServerTools.FileHelper.CopyFolder(pathAll.ServerMoBanPath, pathAll.DoNotStarveTogether_DirPath);
+            //if (!Directory.Exists(pathAll.DoNotStarveTogether_DirPath + "\\Server_" + CommonPath.GamePlatform + "_" + SaveSlot))
             //{
-            //    Directory.Move(pathAll.DoNotStarveTogether_DirPath + "\\Server", pathAll.DoNotStarveTogether_DirPath + "\\Server_" + PathCommon.GamePlatform + "_" + SaveSlot);
+            //    Directory.Move(pathAll.DoNotStarveTogether_DirPath + "\\Server", pathAll.DoNotStarveTogether_DirPath + "\\Server_" + CommonPath.GamePlatform + "_" + SaveSlot);
             //}
             //// 4. 读取新的存档
             //SetBaseSet();
+        }
+
+        /// <summary>
+        /// 创建世界按钮
+        /// </summary>
+        private void CtrateWorldButton_Click(object sender, RoutedEventArgs e)
+        {
+            RunServer();
         }
 
         /// <summary>
@@ -319,7 +297,7 @@ namespace 饥荒开服工具ByTpxxn.View
         /// </summary>
         private void RunServer()
         {
-            if (string.IsNullOrEmpty(PathCommon.ServerFilePath))
+            if (string.IsNullOrEmpty(CommonPath.ServerFilePath))
             {
                 MessageBox.Show("服务器路径不对,请重新设置服务器路径");
                 return;
@@ -330,13 +308,13 @@ namespace 饥荒开服工具ByTpxxn.View
                 // TODO 没有等待？
                 _overWorld.SaveWorld();
                 _caves.SaveWorld();
-                _mods.SaveListmodsToFile(_pathFile.ServerDirPath + @"\Master\modoverrides.lua", _utf8WithoutBom);
-                _mods.SaveListmodsToFile(_pathFile.ServerDirPath + @"\Caves\modoverrides.lua", _utf8WithoutBom);
+                _mods.SaveListmodsToFile(_dediFilePath.ModConfigOverworldFilePath, Global.Utf8WithoutBom);
+                _mods.SaveListmodsToFile(_dediFilePath.ModConfigCaveFilePath, Global.Utf8WithoutBom);
             }
             // 服务器启动
-            if (PathCommon.GamePlatform == "WeGame")
+            if (CommonPath.GamePlatform == "WeGame")
             {
-                MessageBox.Show("保存完毕! 请通过WeGame启动,存档文件名为" + PathCommon.GamePlatform + "_" + SaveSlot);
+                MessageBox.Show("保存完毕! 请通过WeGame启动,存档文件名为" + CommonPath.GamePlatform + "_" + SaveSlot);
             }
             else
             {
@@ -347,9 +325,9 @@ namespace 饥荒开服工具ByTpxxn.View
                     {
                         UseShellExecute = false,
                         // 目录,这个必须设置
-                        WorkingDirectory = Path.GetDirectoryName(PathCommon.ServerFilePath) ?? throw new InvalidOperationException(), 
+                        WorkingDirectory = Path.GetDirectoryName(CommonPath.ServerFilePath) ?? throw new InvalidOperationException(), 
                         // 服务器名字
-                        FileName = PathCommon.ServerFilePath,
+                        FileName = CommonPath.ServerFilePath,
                         Arguments = "-console -cluster DedicatedServer_" + SaveSlot +" -shard Master"
                     }
                 };
@@ -363,9 +341,9 @@ namespace 饥荒开服工具ByTpxxn.View
                         {
                             UseShellExecute = false,
                             // 目录,这个必须设置
-                            WorkingDirectory = Path.GetDirectoryName(PathCommon.ServerFilePath) ?? throw new InvalidOperationException(), 
+                            WorkingDirectory = Path.GetDirectoryName(CommonPath.ServerFilePath) ?? throw new InvalidOperationException(), 
                             // 服务器名字
-                            FileName = PathCommon.ServerFilePath,
+                            FileName = CommonPath.ServerFilePath,
                             Arguments = "-console -cluster DedicatedServer_" + SaveSlot +" -shard Caves"
                         }
                     };
@@ -381,18 +359,18 @@ namespace 饥荒开服工具ByTpxxn.View
         #region 其他方法
 
         /// <summary>
-        /// 获取房间名
+        /// 获取存档名[ClusterName]
         /// </summary>
         /// <param name="saveSlot">存档槽</param>
         /// <returns>房间名</returns>
-        private string GetHouseName(int saveSlot)
+        private static string GetClusterName(int saveSlot)
         {
-            var clusterIniPath = PathCommon.SaveRootDirPath + @"\DedicatedServer_" + saveSlot + @"\cluster.ini";
+            var clusterIniPath = CommonPath.SaveRootDirPath + @"\DedicatedServer_" + saveSlot + @"\cluster.ini";
             if (!File.Exists(clusterIniPath))
             {
                 return "新世界";
             }
-            var iniTool = new IniHelper(clusterIniPath, _utf8WithoutBom);
+            var iniTool = new IniHelper(clusterIniPath, Global.Utf8WithoutBom);
             var houseName = iniTool.ReadValue("NETWORK", "cluster_name");
             return houseName;
         }
@@ -400,82 +378,65 @@ namespace 饥荒开服工具ByTpxxn.View
         /// <summary>
         /// 初始化服务器
         /// </summary>
-        public void InitServer(bool createWorld = false)
+        /// <param name="whenCreateWorld">是否为创建新世界时调用</param>
+        public void InitServer(bool whenCreateWorld = false)
         {
-            // 1.游戏平台
-            PathCommon.GamePlatform = PathCommon.ReadGamePlatform();
-            switch (PathCommon.GamePlatform)
-            {
-                case "Steam":
-                    GamePlatformSelectBox.TextIndex = 0;
-                    break;
-                case "WeGame":
-                    GamePlatformSelectBox.TextIndex = 1;
-                    break;
-            }
-            // 2.检查存档Server是否存在 
-            CheckServer();
-            // 3.汉化
+            // 设置游戏平台
+            CommonPath.SetGamePlatform();
+            // 设置游戏平台SelectBox选择
+            GamePlatformSelectBox.TextIndex = CommonPath.GetGamePlatform();
+            // 检查存档Server是否存在 
+            SetSaveSlotRadioButton();
+            // 汉化
             _Hanization = JsonHelper.ReadHanization();
-            // 4.控制台
+            // 控制台
             CreateConsoleClassificationButton();
             #region 仅创建世界时
-            // 5.[创建世界]设定文件路径
-            if (createWorld)
+            // [创建世界]设定文件路径
+            if (whenCreateWorld)
             {
-                _pathFile = new PathFile(SaveSlot);
+                _dediFilePath = new DediFilePath(SaveSlot);
             }
-            // 6.[创建世界]读取服务器mods文件夹下所有信息.mod多的话,读取时间也多
+            // [创建世界]读取服务器mods文件夹下所有信息.mod多的话,读取时间也多
             //   此时的mod没有被current覆盖
             _mods = null;
-            if (!string.IsNullOrEmpty(PathCommon.ServerModsDirPath) && createWorld)
+            if (!string.IsNullOrEmpty(CommonPath.ServerModsDirPath) && whenCreateWorld)
             {
-                _mods = new Mods(PathCommon.ServerModsDirPath);
+                _mods = new Mods(CommonPath.ServerModsDirPath);
                 SetModSet();
             }
             #endregion
         }
 
         /// <summary>
-        /// "检查"服务器目录
+        /// 设置SaveSlot面板按钮
         /// </summary>
-        private void CheckServer()
+        private void SetSaveSlotRadioButton()
         {
-            // 判断是否存在存档根目录文件夹
-            if (!Directory.Exists(PathCommon.SaveRootDirPath))
+            // 判断是否存在存档根目录文件夹[不存在则创建]
+            if (!Directory.Exists(CommonPath.SaveRootDirPath))
             {
-                Directory.CreateDirectory(PathCommon.SaveRootDirPath);
+                Directory.CreateDirectory(CommonPath.SaveRootDirPath);
             }
-            // 获取服务器路径列表
-            var directoryInfos = new DirectoryInfo(PathCommon.SaveRootDirPath).GetDirectories();
+            // 获取服务器路径列表[serverPathList]
+            var directoryInfos = new DirectoryInfo(CommonPath.SaveRootDirPath).GetDirectories();
             var serverPathList = (from directoryInfo in directoryInfos where directoryInfo.Name.StartsWith("DedicatedServer_") select directoryInfo.FullName).ToList();
-            // 清空左边
+            // 清空SaveSlot面板
             for (var i = 0; i < 10; i++)
             {
                 // ReSharper disable once PossibleNullReferenceException
                 ((RadioButton)SaveSlotStackPanel.FindName($"SaveSlotRadioButton{i}")).Content = "新世界";
             }
-            // 等于0
+            // TODO 设定SaveSlot面板
             if (serverPathList.Count != 0)
             {
-                //    // 复制一份过去                  
-                //    //FileHelper.CopyDirectory(pathAll.ServerMoBanPath, pathAll.DoNotStarveTogether_DirPath);
-                //    CopyServerModel(PathCommon.SaveRootDirPath);
-                //    // 改名字
-                //    if (!Directory.Exists(PathCommon.SaveRootDirPath + @"\Server_" + PathCommon.GamePlatform + "_0"))
-                //    {
-                //        Directory.Move(PathCommon.SaveRootDirPath + @"\Server", PathCommon.SaveRootDirPath + @"\Server_" + PathCommon.GamePlatform + "_0");
-                //    }
-                //}
-                //else
-                //{
                 foreach (var serverPath in serverPathList)
                 {
                     // 取出序号 
                     var num = serverPath.Substring(serverPath.LastIndexOf('_') + 1);
                     // 取出存档名称
                     // ReSharper disable once PossibleNullReferenceException
-                    ((RadioButton)SaveSlotStackPanel.FindName("SaveSlotRadioButton" + num)).Content = GetHouseName(int.Parse(num));
+                    ((RadioButton)SaveSlotStackPanel.FindName("SaveSlotRadioButton" + num)).Content = GetClusterName(int.Parse(num));
                 }
             }
             // 禁用

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -12,6 +13,7 @@ namespace 饥荒开服工具ByTpxxn.Class
     public static class Global
     {
 
+        public static readonly UTF8Encoding Utf8WithoutBom = new UTF8Encoding(false); // 编码
         /// <summary>
         /// 枚举类型 Message
         /// </summary>
@@ -41,11 +43,21 @@ namespace 饥荒开服工具ByTpxxn.Class
         /// <param name="obj">控件Name</param>
         public static void UiElementVisibility(Visibility visibility, params UIElement[] obj)
         {
-            foreach (UIElement uiElement in obj)
+            foreach (var uiElement in obj)
             {
                 uiElement.Visibility = visibility;
             }
         }
 
+        /// <summary>
+        /// 从工程文件获取流
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static Stream GetStreamFromProjectFile(string path)
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+            return assembly.GetManifestResourceStream(ProjectName + "." + path);
+        }
     }
 }

@@ -18,31 +18,58 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
     /// </summary>
     internal class BaseSet : INotifyPropertyChanged
     {
-        #region 字段和属性
+        #region 字段、属性
 
-        private readonly UTF8Encoding _utf8WithoutBom = new UTF8Encoding(false);
-
-        private bool _isFileToProperty;
-        private readonly string _clusterIniFilePath;
+        #region 字段
 
         /// <summary>
-        /// 房间名称
+        /// FileToProperty标志
         /// </summary>
-        private string _houseName;
+        private bool _isFileToProperty;
 
-        public string HouseName
+        /// <summary>
+        /// cluster.ini路径
+        /// </summary>
+        private readonly string _clusterIniFilePath;
+
+        #endregion
+
+        #region 属性
+        
+        /// <summary>
+        /// 基本设置-[当前显示的]游戏风格
+        /// </summary>
+        private string _gameStyle;
+
+        public string GameStyle
         {
-            get => _houseName;
+            get => _gameStyle;
             set
             {
-                _houseName = value;
-                if (!_isFileToProperty) { SavePropertyToFile("HouseName"); }
-                //NotifyPropertyChange("HouseName");
+                _gameStyle = value;
+                NotifyPropertyChange("GameStyle");
+                if (!_isFileToProperty) { SavePropertyToFile("GameStyle"); }
             }
         }
 
         /// <summary>
-        /// 描述
+        /// 基本设置-名称
+        /// </summary>
+        private string _clusterName;
+
+        public string ClusterName
+        {
+            get => _clusterName;
+            set
+            {
+                _clusterName = value;
+                if (!_isFileToProperty) { SavePropertyToFile("ClusterName"); }
+                NotifyPropertyChange("ClusterName");
+            }
+        }
+
+        /// <summary>
+        /// 基本设置-描述
         /// </summary>
         private string _describe;
 
@@ -52,29 +79,81 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
             set
             {
                 _describe = value;
-                //NotifyPropertyChange("Describe");
+                NotifyPropertyChange("Describe");
                 if (!_isFileToProperty) { SavePropertyToFile("Describe"); }
+            }
+        }
+        
+        /// <summary>
+        /// [当前显示的]游戏模式
+        /// </summary>
+        private int _gameMode;
+
+        public int GameMode
+        {
+            get => _gameMode;
+            set
+            {
+                _gameMode = value;
+                NotifyPropertyChange("GameMode");
+                if (!_isFileToProperty) { SavePropertyToFile("GameMode"); }
             }
         }
 
         /// <summary>
-        /// 游戏风格
+        /// 基本设置-PVP[是|否]
         /// </summary>
-        private List<string> _gameStyle;
+        private int _isPvp;
 
-        public List<string> GameStyle
+        public int IsPvp
         {
-            get => _gameStyle;
+            get => _isPvp;
             set
             {
-                _gameStyle = value;
-                //NotifyPropertyChange("GameStyle");
+                _isPvp = value;
+                NotifyPropertyChange("IsPVP");
+                if (!_isFileToProperty) { SavePropertyToFile("IsPVP"); }
             }
         }
 
-        private string _serverMode;
+        /// <summary>
+        /// 基本设置-玩家
+        /// </summary>
+        private int _maxPlayers;
 
-        public string ServerMode
+        public int MaxPlayers
+        {
+            get => _maxPlayers;
+            set
+            {
+                _maxPlayers = value;
+                NotifyPropertyChange("LimitNumOfPeople");
+                if (!_isFileToProperty) { SavePropertyToFile("MaxPlayers"); }
+            }
+        }
+
+        /// <summary>
+        /// 基本设置-密码
+        /// </summary>
+        private string _password;
+
+        public string Password
+        {
+            get => _password;
+            set
+            {
+                _password = value;
+                NotifyPropertyChange("Password");
+                if (!_isFileToProperty) { SavePropertyToFile("Password"); }
+            }
+        }
+
+        /// <summary>
+        /// 基本设置-服务器模式[在线|离线]
+        /// </summary>
+        private int _serverMode;
+
+        public int ServerMode
         {
             get => _serverMode;
             set
@@ -85,128 +164,33 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
         }
 
         /// <summary>
-        /// 【当前显示的】游戏风格
+        /// 基本设置-无人时暂停
         /// </summary>
-        private string _gameStyleText;
+        private int _isPause;
 
-        public string GameStyleText
-        {
-            get => _gameStyleText;
-            set
-            {
-                _gameStyleText = value;
-                //NotifyPropertyChange("GameStyleText");
-                if (!_isFileToProperty) { SavePropertyToFile("GameStyleText"); }
-            }
-        }
-
-        /// <summary>
-        /// 是否开启PVP
-        /// </summary>
-        private string _isPvp;
-
-        public string IsPvp
-        {
-            get => _isPvp;
-            set
-            {
-                _isPvp = value;
-                //NotifyPropertyChange("IsPVP");
-                if (!_isFileToProperty) { SavePropertyToFile("IsPVP"); }
-            }
-        }
-
-        /// <summary>
-        /// 人数限制
-        /// </summary>
-        private int _maxPlayers;
-
-        public int MaxPlayers
-        {
-            get => _maxPlayers;
-            set
-            {
-                _maxPlayers = value;
-                //NotifyPropertyChange("LimitNumOfPeople");
-                if (!_isFileToProperty) { SavePropertyToFile("MaxPlayers"); }
-            }
-        }
-
-        /// <summary>
-        /// 密码
-        /// </summary>
-        private string _secret;
-
-        public string Secret
-        {
-            get => _secret;
-            set
-            {
-                _secret = value;
-                //NotifyPropertyChange("Secret");
-                if (!_isFileToProperty) { SavePropertyToFile("Secret"); }
-            }
-        }
-
-        /// <summary>
-        /// 【当前显示的】游戏模式
-        /// </summary>
-        private string _gameModeText;
-
-        public string GameModeText
-        {
-            get => _gameModeText;
-            set
-            {
-                _gameModeText = value;
-                //NotifyPropertyChange("GameModeText");
-                if (!_isFileToProperty) { SavePropertyToFile("GameModeText"); }
-            }
-        }
-
-        /// <summary>
-        /// 游戏模式
-        /// </summary>
-        private List<string> _gameMode;
-
-        public List<string> GameMode
-        {
-            get => _gameMode;
-            set
-            {
-                _gameMode = value;
-                //NotifyPropertyChange("GameMode");
-            }
-        }
-
-        /// <summary>
-        /// 是否无人时暂停
-        /// </summary>
-        private string _isPause;
-
-        public string IsPause
+        public int IsPause
         {
             get => _isPause;
             set
             {
                 _isPause = value;
-                //NotifyPropertyChange("IsPause");
+                NotifyPropertyChange("IsPause");
                 if (!_isFileToProperty) { SavePropertyToFile("IsPause"); }
             }
         }
 
         /// <summary>
-        /// 是否开启洞穴
+        /// 编辑世界-是否开启洞穴
         /// </summary>
-        private string _isCave;
+        private int _isCave;
 
-        public string IsCave
+        public int IsCave
         {
             get => _isCave;
             set
             {
                 _isCave = value;
-                //NotifyPropertyChange("IsCave");
+                NotifyPropertyChange("IsCave");
                 if (!_isFileToProperty) { SavePropertyToFile("IsCave"); }
             }
         }
@@ -214,53 +198,35 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
         /// <summary>
         /// 是否开启控制台
         /// </summary>
-        private string _isConsole;
+        private int _isConsole;
 
-        public string IsConsole
+        public int IsConsole
         {
             get => _isConsole;
             set
             {
                 _isConsole = value;
-                //NotifyPropertyChange("IsConsole");
+                NotifyPropertyChange("IsConsole");
                 if (!_isFileToProperty) { SavePropertyToFile("IsConsole"); }
             }
         }
 
         #endregion
 
+        #endregion
+
         #region 构造函数 
 
         /// <summary>
-        /// clusterIni的地址，目前地址只能通过构造函数传入，以后有需要再改
+        /// BaseSet构造函数
         /// </summary>
-        /// <param name="clusterIniFilePath"></param>
+        /// <param name="clusterIniFilePath">cluster.ini路径</param>
         public BaseSet(string clusterIniFilePath)
         {
-
-            // 游戏风格【字段赋值】
-            _gameStyle = new List<string> { "合作", "交际", "竞争", "疯狂" };
-            _gameStyleText = "合作";
-            //NotifyPropertyChange("GameStyle");
-
-            // 游戏模式【字段赋值】
-            _gameMode = new List<string> { "生存", "无尽", "荒野" };
-            _gameModeText = "无尽";
-            //NotifyPropertyChange("GameMode");
-
-            // 其他先全部赋值，防止为空
-            //houseName = "qq群：351765204";
-            //describe = "qq群：351765204";
-            //maxPlayers = 6;
-            //secret = "333333";
-            ////isCave = "否";
-            //isConsole = "是";
-            //isPause = "是";
-            //isPVP = "否";
-
             if (File.Exists(clusterIniFilePath))
             {
-                this._clusterIniFilePath = clusterIniFilePath;
+                // 设定cluster.ini文件路径
+                _clusterIniFilePath = clusterIniFilePath;
                 // 从文件读，给字段赋值
                 FileToProperty(clusterIniFilePath);
             }
@@ -268,149 +234,150 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
             {
                 Debug.WriteLine("cluster.ini文件不存在");
             }
-
         }
+
         #endregion
 
         #region 方法
+
         /// <summary>
-        /// 从文件读，给字段赋值
+        /// 读取
         /// </summary>
         private void FileToProperty(string clusterIniPath)
         {
             // 改变记号（这个记号可能以后保存的时候会有用）
             _isFileToProperty = true;
 
-            // 标记！：这里没有判断文件是否存在，在外面判断了，以后再看用不用修改
+            // 这里没有判断文件是否存在，在外面判断了，以后再看用不用修改
 
-            //读取基本设置
-            var iniTool = new IniHelper(clusterIniPath, _utf8WithoutBom);
+            // 读取基本设置
+            var clusterIniFile = new IniHelper(clusterIniPath, Global.Utf8WithoutBom);
 
-            //读取游戏风格
-            var yxFengge = iniTool.ReadValue("NETWORK", "cluster_intention");
-            if (yxFengge == "cooperative") { GameStyleText = "合作"; };
-            if (yxFengge == "social") { GameStyleText = "交际"; };
-            if (yxFengge == "competitive") { GameStyleText = "竞争"; };
-            if (yxFengge == "madness") { GameStyleText = "疯狂"; };
+            // 读取游戏风格
+            var gameStyle = clusterIniFile.ReadValue("NETWORK", "cluster_intention");
+            if (gameStyle == "cooperative") { GameStyle = "合作"; }
+            if (gameStyle == "social") { GameStyle = "交际"; }
+            if (gameStyle == "competitive") { GameStyle = "竞争"; }
+            if (gameStyle == "madness") { GameStyle = "疯狂"; }
 
-            //读取房间名称
-            var fjName = iniTool.ReadValue("NETWORK", "cluster_name");
-            HouseName = fjName;
+            // 读取房间名称
+            ClusterName = clusterIniFile.ReadValue("NETWORK", "cluster_name");
 
-            //读取描述
-            var fjMiaoshu = iniTool.ReadValue("NETWORK", "cluster_description");
-            Describe = fjMiaoshu;
+            // 读取描述
+            Describe = clusterIniFile.ReadValue("NETWORK", "cluster_description");
 
-            //读取游戏模式
-            var yxMoshi = iniTool.ReadValue("GAMEPLAY", "game_mode");
-            if (yxMoshi == "endless") { GameModeText = "无尽"; };
-            if (yxMoshi == "survival") { GameModeText = "生存"; };
-            if (yxMoshi == "wilderness") { GameModeText = "荒野"; };
+            // 读取游戏模式
+            var gameMode = clusterIniFile.ReadValue("GAMEPLAY", "game_mode");
+            if (gameMode == "endless") { GameMode = 0; }
+            if (gameMode == "survival") { GameMode = 1; }
+            if (gameMode == "wilderness") { GameMode = 2; }
 
-            //读取PVP[标记：这里没有变成小写]
-            var yxPvp = iniTool.ReadValue("GAMEPLAY", "pvp");
-            if (yxPvp == "true") { IsPvp = "是"; };
-            if (yxPvp == "false") { IsPvp = "否"; };
+            // 读取PVP[标记：这里没有变成小写]
+            var pvp = clusterIniFile.ReadValue("GAMEPLAY", "pvp");
+            if (pvp == "false") { IsPvp = 0; }
+            if (pvp == "true") { IsPvp = 1; }
 
-            //读取人数限制
-            var yxRenshu = iniTool.ReadValue("GAMEPLAY", "max_players");
-            MaxPlayers = int.Parse(yxRenshu);
+            // 读取人数限制
+            MaxPlayers = int.Parse(clusterIniFile.ReadValue("GAMEPLAY", "max_players")) - 1;
 
-            //读取密码
-            var yxMima = iniTool.ReadValue("NETWORK", "cluster_password");
-            Secret = yxMima;
+            // 读取密码
+            Password = clusterIniFile.ReadValue("NETWORK", "cluster_password");
 
             // 读取服务器模式 offline_cluster=true
-            var yxServerMode = iniTool.ReadValue("NETWORK", "offline_cluster");
-            if (yxServerMode == "true") { ServerMode = "离线"; };
-            if (yxServerMode == "false") { ServerMode = "在线"; };
+            var offlineCluster = clusterIniFile.ReadValue("NETWORK", "offline_cluster");
+            if (offlineCluster == "true") { ServerMode = 0; }
+            if (offlineCluster == "false") { ServerMode = 1; }
 
-            //读取无人时暂停[标记：这里没有变成小写]
-            var yxZhanting = iniTool.ReadValue("GAMEPLAY", "pause_when_empty");
-            if (yxZhanting == "true") { IsPause = "是"; };
-            if (yxZhanting == "false") { IsPause = "否"; };
+            // 读取无人时暂停[标记：这里没有变成小写]
+            var pauseWhenEmpty = clusterIniFile.ReadValue("GAMEPLAY", "pause_when_empty");
+            if (pauseWhenEmpty == "false") { IsPause = 0; }
+            if (pauseWhenEmpty == "true") { IsPause = 1; }
 
             // 读取是否开启洞穴[标记：这里没有变成小写]
-            var yxCave = iniTool.ReadValue("SHARD", "shard_enabled");
-            if (yxCave == "true") { IsCave = "是"; };
-            if (yxCave == "false") { IsCave = "否"; };
+            var cave = clusterIniFile.ReadValue("SHARD", "shard_enabled");
+            if (cave == "false") { IsCave = 0; }
+            if (cave == "true") { IsCave = 1; }
 
-            //读取是否启用控制台[标记：这里没有变成小写]
-            var yxKongzhitai = iniTool.ReadValue("MISC", "console_enabled");
-            if (yxKongzhitai == "true") { IsConsole = "是"; };
-            if (yxKongzhitai == "false") { IsConsole = "否"; };
+            // 读取是否启用控制台[标记：这里没有变成小写]
+            var console = clusterIniFile.ReadValue("MISC", "console_enabled");
+            if (console == "false") { IsConsole = 0; }
+            if (console == "true") { IsConsole = 1; }
 
             _isFileToProperty = false;
         }
 
-        #endregion
-
-        #region 保存
+        /// <summary>
+        /// 保存
+        /// </summary>
+        /// <param name="propertyName"></param>
         public void SavePropertyToFile(string propertyName)
         {
             // 保存
             if (_isFileToProperty == false)
             {
-                var ini1 = new IniHelper(_clusterIniFilePath, _utf8WithoutBom);
-
+                var clusterIniFile = new IniHelper(_clusterIniFilePath, Global.Utf8WithoutBom);
                 switch (propertyName)
                 {
-                    case "GameStyleText":
-                        if (GameStyleText == "合作") { ini1.Write("NETWORK", "cluster_intention", "cooperative", _utf8WithoutBom); };
-                        if (GameStyleText == "交际") { ini1.Write("NETWORK", "cluster_intention", "social", _utf8WithoutBom); };
-                        if (GameStyleText == "竞争") { ini1.Write("NETWORK", "cluster_intention", "competitive", _utf8WithoutBom); };
-                        if (GameStyleText == "疯狂") { ini1.Write("NETWORK", "cluster_intention", "madness", _utf8WithoutBom); };
+                    case "GameStyle":
+                        if (GameStyle == "合作") { clusterIniFile.Write("NETWORK", "cluster_intention", "cooperative", Global.Utf8WithoutBom); }
+                        if (GameStyle == "交际") { clusterIniFile.Write("NETWORK", "cluster_intention", "social", Global.Utf8WithoutBom); }
+                        if (GameStyle == "竞争") { clusterIniFile.Write("NETWORK", "cluster_intention", "competitive", Global.Utf8WithoutBom); }
+                        if (GameStyle == "疯狂") { clusterIniFile.Write("NETWORK", "cluster_intention", "madness", Global.Utf8WithoutBom); }
                         break;
-                    case "HouseName":
-                        ini1.Write("NETWORK", "cluster_name", HouseName, _utf8WithoutBom);
+                    case "ClusterName":
+                        clusterIniFile.Write("NETWORK", "cluster_name", ClusterName, Global.Utf8WithoutBom);
                         break;
                     case "Describe":
-                        ini1.Write("NETWORK", "cluster_description", Describe, _utf8WithoutBom);
-                        break;
-                    case "GameModeText":
-                        if (GameModeText == "无尽") { ini1.Write("GAMEPLAY", "game_mode", "endless", _utf8WithoutBom); };
-                        if (GameModeText == "生存") { ini1.Write("GAMEPLAY", "game_mode", "survival", _utf8WithoutBom); };
-                        if (GameModeText == "荒野") { ini1.Write("GAMEPLAY", "game_mode", "wilderness", _utf8WithoutBom); };
+                        clusterIniFile.Write("NETWORK", "cluster_description", Describe, Global.Utf8WithoutBom);
+                        break; 
+                    case "GameMode":
+                        if (GameMode == 0) { clusterIniFile.Write("GAMEPLAY", "game_mode", "endless", Global.Utf8WithoutBom); }
+                        if (GameMode == 1) { clusterIniFile.Write("GAMEPLAY", "game_mode", "survival", Global.Utf8WithoutBom); }
+                        if (GameMode == 2) { clusterIniFile.Write("GAMEPLAY", "game_mode", "wilderness", Global.Utf8WithoutBom); }
                         break;
                     case "IsPVP":
-                        ini1.Write("GAMEPLAY", "pvp", IsPvp == "是" ? "true" : "false", _utf8WithoutBom);
+                        clusterIniFile.Write("GAMEPLAY", "pvp", IsPvp == 0 ? "false" : "true", Global.Utf8WithoutBom);
                         break;
                     case "MaxPlayers":
-                        ini1.Write("GAMEPLAY", "max_players", MaxPlayers.ToString(), _utf8WithoutBom);
+                        clusterIniFile.Write("GAMEPLAY", "max_players", (MaxPlayers + 1).ToString(), Global.Utf8WithoutBom);
                         break;
-                    case "Secret":
-                        ini1.Write("NETWORK", "cluster_password", Secret, _utf8WithoutBom);
+                    case "Password":
+                        clusterIniFile.Write("NETWORK", "cluster_password", Password, Global.Utf8WithoutBom);
                         break;
                     case "ServerMode":
-                        if (ServerMode == "离线") { ini1.Write("NETWORK", "offline_cluster", "true", _utf8WithoutBom); };
-                        if (ServerMode == "在线") { ini1.Write("NETWORK", "offline_cluster", "false", _utf8WithoutBom); };
+                        if (ServerMode == 0) { clusterIniFile.Write("NETWORK", "offline_cluster", "false", Global.Utf8WithoutBom); }
+                        if (ServerMode == 1) { clusterIniFile.Write("NETWORK", "offline_cluster", "true", Global.Utf8WithoutBom); }
                         break;
                     case "IsPause":
-                        ini1.Write("GAMEPLAY", "pause_when_empty", IsPause == "是" ? "true" : "false", _utf8WithoutBom);
+                        clusterIniFile.Write("GAMEPLAY", "pause_when_empty", IsPause == 0 ? "false" : "true", Global.Utf8WithoutBom);
                         break;
                     case "IsCave":
-                        ini1.Write("SHARD", "shard_enabled", IsCave == "是" ? "true" : "false", _utf8WithoutBom);
+                        clusterIniFile.Write("SHARD", "shard_enabled", IsCave == 0 ? "false" : "true", Global.Utf8WithoutBom);
                         break;
                     case "IsConsole":
-                        ini1.Write("MISC", "console_enabled", IsConsole == "是" ? "true" : "false", _utf8WithoutBom);
+                        clusterIniFile.Write("MISC", "console_enabled", IsConsole == 0 ? "false" : "true", Global.Utf8WithoutBom);
                         break;
                 }
             }
         }
         #endregion
 
-        #region  标记：【接口】,还是第一次用接口
+        #region 委托
 
+        /// <summary>
+        /// 属性变更委托
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
-        //PropertyChangedEventArgs类型，这个类用于传递更改值的属性的名称，实现向客户端已经更改的属性发送更改通知。属性的名称为字符串类型。 
+
+        /// <summary>
+        /// 通知属性变更
+        /// </summary>
+        /// <param name="propertyName">属性名</param>
         private void NotifyPropertyChange(string propertyName)
         {
-            if (PropertyChanged != null)
-            {
-                //根据PropertyChanged事件的委托类，实现PropertyChanged事件： 
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
         #endregion
     }
 }

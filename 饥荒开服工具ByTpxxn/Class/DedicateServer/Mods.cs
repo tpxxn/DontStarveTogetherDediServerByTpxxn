@@ -14,7 +14,6 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
     {
 
         #region 字段和属性
-        private UTF8Encoding _utf8WithoutBom = new UTF8Encoding(false);
 
         /// <summary>
         /// Mod目录路径

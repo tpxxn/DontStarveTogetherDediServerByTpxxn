@@ -17,56 +17,47 @@ namespace 饥荒开服工具ByTpxxn.Class.Tools
         public static string ReadResources(string path)
         {
             var utf8Encoding = new UTF8Encoding(false);
-            var assembly = System.Reflection.Assembly.GetExecutingAssembly();
-            var stream = assembly.GetManifestResourceStream(Global.ProjectName + "." + path);
-            var streamReader = new StreamReader(stream, Encoding.UTF8);
+            var streamReader = new StreamReader(Global.GetStreamFromProjectFile(path), utf8Encoding);
             return streamReader.ReadToEnd();
         }
 
         /// <summary>
-        /// 拷贝文件夹,会覆盖!!
+        /// [点击左侧RadioButton时]复制ServerTemplate到指定位置
         /// </summary>
-        /// <param name="fromPath"></param>
-        /// <param name="toPath"></param>
-        public static void CopyDirectory(string fromPath, string toPath)
+        public static void CopyServerTemplateFile()
         {
-            //如果源文件夹不存在，则创建
-            if (!Directory.Exists(fromPath))
+            // 判断是否存在
+            if (Directory.Exists(CommonPath.SaveRootDirPath + @"\Server"))
             {
-                Directory.CreateDirectory(fromPath);
+                Directory.Delete(CommonPath.SaveRootDirPath + @"\Server", true);
             }
-            //取得要拷贝的文件夹名
-            var strFolderName = fromPath.Substring(fromPath.LastIndexOf("\\", StringComparison.Ordinal) +
-              1, fromPath.Length - fromPath.LastIndexOf("\\", StringComparison.Ordinal) - 1);
-            //如果目标文件夹中没有源文件夹则在目标文件夹中创建源文件夹
-            if (!Directory.Exists(toPath + "\\" + strFolderName))
-            {
-                Directory.CreateDirectory(toPath + "\\" + strFolderName);
-            }
-            //创建数组保存源文件夹下的文件名
-            var strFiles = Directory.GetFiles(fromPath);
-            //循环拷贝文件
-            foreach (var filename in strFiles)
-            {
-                //取得拷贝的文件名，只取文件名，地址截掉。
-                var strFileName = filename.Substring(filename.LastIndexOf("\\", StringComparison.Ordinal) + 1, filename.Length - filename.LastIndexOf("\\", StringComparison.Ordinal) - 1);
-                //开始拷贝文件,true表示覆盖同名文件
-                File.Copy(filename, toPath + "\\" + strFolderName + "\\" + strFileName, true);
-            }
-            //创建DirectoryInfo实例
-            var dirInfo = new DirectoryInfo(fromPath);
-            //取得源文件夹下的所有子文件夹名称
-            var ziPath = dirInfo.GetDirectories();
-            foreach (DirectoryInfo ziDirectoryInfo in ziPath)
-            {
-                //获取所有子文件夹名
-                string strZiPath = fromPath + "\\" + ziDirectoryInfo;
-                //把得到的子文件夹当成新的源文件夹，从头开始新一轮的拷贝
-                CopyDirectory(strZiPath, toPath + "\\" + strFolderName);
-            }
+            // 建立文件夹
+            Directory.CreateDirectory(CommonPath.SaveRootDirPath + @"\Server");
+            Directory.CreateDirectory(CommonPath.SaveRootDirPath + @"\Server\Caves");
+            Directory.CreateDirectory(CommonPath.SaveRootDirPath + @"\Server\Master");
+            // 填文件[公共文件]
+            File.WriteAllText(CommonPath.SaveRootDirPath + @"\Server\cluster.ini", ReadResources("ServerTemplate.cluster.ini"), Global.Utf8WithoutBom);
+            File.WriteAllText(CommonPath.SaveRootDirPath + @"\Server\Caves\leveldataoverride.lua", ReadResources("ServerTemplate.Caves.leveldataoverride.lua"), Global.Utf8WithoutBom);
+            File.WriteAllText(CommonPath.SaveRootDirPath + @"\Server\Caves\modoverrides.lua", ReadResources("ServerTemplate.Caves.modoverrides.lua"), Global.Utf8WithoutBom);
+            File.WriteAllText(CommonPath.SaveRootDirPath + @"\Server\Caves\server.ini", ReadResources("ServerTemplate.Caves.server.ini"), Global.Utf8WithoutBom);
+            File.WriteAllText(CommonPath.SaveRootDirPath + @"\Server\Master\leveldataoverride.lua", ReadResources("ServerTemplate.Master.leveldataoverride.lua"), Global.Utf8WithoutBom);
+            File.WriteAllText(CommonPath.SaveRootDirPath + @"\Server\Master\modoverrides.lua", ReadResources("ServerTemplate.Master.modoverrides.lua"), Global.Utf8WithoutBom);
+            File.WriteAllText(CommonPath.SaveRootDirPath + @"\Server\Master\server.ini", ReadResources("ServerTemplate.Master.server.ini"), Global.Utf8WithoutBom);
+            // 填文件[ClusterToken]
+            File.WriteAllText(CommonPath.SaveRootDirPath + @"\Server\cluster_token.txt",!string.IsNullOrEmpty(CommonPath.ClusterToken)? CommonPath.ClusterToken: "",Global.Utf8WithoutBom);
         }
 
+        public static void RenameServerTemplateFile(int saveSlot)
+        {
+            if (!Directory.Exists(CommonPath.SaveRootDirPath + @"\DedicatedServer_" + saveSlot))
+            {
+                Directory.Move(CommonPath.SaveRootDirPath + @"\Server", CommonPath.SaveRootDirPath + @"\DedicatedServer_" + saveSlot);
+                // 删除临时文件
+                if (Directory.Exists(CommonPath.SaveRootDirPath + @"\Server"))
+                {
+                    Directory.Delete(CommonPath.SaveRootDirPath + @"\Server", true);
+                }
+            }
+        }
     }
-
-
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace 饥荒开服工具ByTpxxn.Class.Tools
 {
-    internal static class PathCommon
+    internal static class CommonPath
     {
         #region 字段、属性
 
@@ -127,7 +127,7 @@ namespace 饥荒开服工具ByTpxxn.Class.Tools
 
         #region 读写当前游戏平台、客户端、服务器路径、ClusterToken
         /// <summary>
-        /// 读取当前游戏版本[WeGame,Steam] 
+        /// 读取当前游戏平台[WeGame,Steam] 
         /// </summary>
         public static string ReadGamePlatform()
         {
@@ -141,6 +141,30 @@ namespace 饥荒开服工具ByTpxxn.Class.Tools
         public static void WriteGamePlatform(string platform)
         {
             IniFileIo.IniFileWrite("DedicatedServerConfigure", "DedicatedServer", "Platform", platform);
+        }
+
+        /// <summary>
+        /// 设置当前游戏平台[WeGame,Steam]
+        /// </summary>
+        public static void SetGamePlatform()
+        {
+            GamePlatform = ReadGamePlatform();
+        }
+
+        /// <summary>
+        /// 获取当前游戏平台[WeGame,Steam]
+        /// </summary>
+        public static int GetGamePlatform()
+        {
+            switch (GamePlatform)
+            {
+                case "Steam":
+                    return 0;
+                case "WeGame":
+                    return 1;
+                default:
+                    return 0;
+            }
         }
 
         /// <summary>

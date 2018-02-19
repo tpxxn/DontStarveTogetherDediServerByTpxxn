@@ -21,7 +21,7 @@ namespace 饥荒开服工具ByTpxxn.View
         /// </summary>
         private void SetModSet()
         {   // 设置
-            if (!string.IsNullOrEmpty(PathCommon.ServerModsDirPath))
+            if (!string.IsNullOrEmpty(CommonPath.ServerModsDirPath))
             {
                 // 清空,Enabled变成默认值
                 foreach (var item in _mods.ListMod)
@@ -37,7 +37,7 @@ namespace 饥荒开服工具ByTpxxn.View
                     }
                 }
                 // 重新读取
-                _mods.ReadModsOverrides(PathCommon.ServerModsDirPath, _pathFile.ServerDirPath + @"\Master\modoverrides.lua");
+                _mods.ReadModsOverrides(CommonPath.ServerModsDirPath, _dediFilePath.ModConfigOverworldFilePath);
             }
             // 显示 
             ModListStackPanel.Children.Clear();

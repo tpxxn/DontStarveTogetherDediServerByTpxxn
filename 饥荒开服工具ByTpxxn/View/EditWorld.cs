@@ -16,12 +16,11 @@ namespace 饥荒开服工具ByTpxxn.View
     public partial class DedicatedServerPage : Page
     {
         /// <summary>
-        /// 是否开启洞穴的
+        /// 是否开启洞穴
         /// </summary>
-        private void DediBaseIsCave_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void EditWorldIsCaveSelectBox_SelectionChanged()
         {
-            var selected = e.AddedItems[0].ToString();
-            CaveSettingColumnDefinition.Width = selected == "否" ? new GridLength(0) : new GridLength(1, GridUnitType.Star);
+            CaveSettingColumnDefinition.Width = EditWorldIsCaveSelectBox.Text == "开启" ? new GridLength(1, GridUnitType.Star) : new GridLength(0);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace 饥荒开服工具ByTpxxn.View
         private void SetOverWorldSet()
         {
             // 地上 
-            _overWorld = new Leveldataoverride(_pathFile, false);
+            _overWorld = new Leveldataoverride(_dediFilePath, false);
             DediOverWorldWorld.Children.Clear();
             DediOverWolrdFoods.Children.Clear();
             DediOverWorldAnimals.Children.Clear();
@@ -194,7 +193,7 @@ namespace 饥荒开服工具ByTpxxn.View
         private void SetCavesSet()
         {
             // 地下
-            _caves = new Leveldataoverride(_pathFile, true);
+            _caves = new Leveldataoverride(_dediFilePath, true);
             DediCavesWorld.Children.Clear();
             DediCavesFoods.Children.Clear();
             DediCavesAnimals.Children.Clear();

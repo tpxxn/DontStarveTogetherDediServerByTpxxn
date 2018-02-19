@@ -15,8 +15,20 @@ namespace 饥荒开服工具ByTpxxn.View
     public partial class DedicatedServerPage : Page
     {
 
-        #region "游戏风格"
+        #region 游戏风格[Intention]
 
+        /// <summary>
+        /// 进入选择游戏风格界面
+        /// </summary>
+        private void DediBaseSetIntentionButton_Click(object sender, RoutedEventArgs e)
+        {
+            PanelVisibility("Null");
+            DediIntention.Visibility = Visibility.Visible;
+        }
+
+        /// <summary>
+        /// 选择游戏风格
+        /// </summary>
         private void DediIntention_Click(object sender, RoutedEventArgs e)
         {
             PanelVisibility("Null");
@@ -37,7 +49,10 @@ namespace 饥荒开服工具ByTpxxn.View
                     break;
             }
         }
-
+        
+        /// <summary>
+        /// 显示游戏风格描述
+        /// </summary>
         private void DediIntention_MouseEnter(object sender, MouseEventArgs e)
         {
             switch (((Button)sender).Name)
@@ -57,49 +72,28 @@ namespace 饥荒开服工具ByTpxxn.View
             }
         }
 
+        /// <summary>
+        /// 隐藏游戏风格描述
+        /// </summary>
         private void DediIntention_MouseLeave(object sender, MouseEventArgs e)
         {
             DidiIntentionTextBlock.Text = "";
         }
         #endregion
 
-        #region "基本设置面板"
+        #region 基本设置面板[基本设置]
+
         /// <summary>
-        /// 修改房间名时顶部显示房间名和左侧显示房间名同步修改
+        /// 修改ClusterName时左侧SaveSlot按钮同步显示ClusterName
         /// </summary>
-        private void DediBaseSetHouseName_TextChanged(object sender, TextChangedEventArgs e)
+        private void DediBaseSetClusterName_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //DediMainTopWorldName.Text = DediBaseSetHouseName.Text; TODO
+            //DediMainTopWorldName.Text = DediBaseSetClusterName.Text; TODO 左侧SaveSlot按钮ClusterName
             if (((RadioButton)SaveSlotStackPanel.FindName("SaveSlotRadioButton" + SaveSlot))?.IsChecked == true)
             {
                 // ReSharper disable once PossibleNullReferenceException
-                ((RadioButton)SaveSlotStackPanel.FindName($"SaveSlotRadioButton{SaveSlot}")).Content = DediBaseSetHouseName.Text;
+                ((RadioButton)SaveSlotStackPanel.FindName($"SaveSlotRadioButton{SaveSlot}")).Content = DediBaseSetClusterName.Text;
             }
-        }
-
-        /// <summary>
-        /// 选择游戏风格
-        /// </summary>
-        private void DediBaseSetIntentionButton_Click(object sender, RoutedEventArgs e)
-        {
-            PanelVisibility("Null");
-            DediIntention.Visibility = Visibility.Visible;
-        }
-
-        /// <summary>
-        /// 打开游戏
-        /// </summary>
-        private void OpenGameButton_Click(object sender, RoutedEventArgs e)
-        {
-            RunClient();
-        }
-
-        /// <summary>
-        /// 创建世界按钮
-        /// </summary>
-        private void CtrateWorldButton_Click(object sender, RoutedEventArgs e)
-        {
-            RunServer();
         }
 
         /// <summary>
@@ -107,23 +101,32 @@ namespace 饥荒开服工具ByTpxxn.View
         /// </summary>
         private void SetBaseSet()
         {
-            var clusterIniFilePath = _pathFile.ServerDirPath + @"\cluster.ini";
+            var clusterIniFilePath = _dediFilePath.ClusterFilePath;
             if (!File.Exists(clusterIniFilePath))
             {
-                //MessageBox.Show("cluster.ini不存在");
+                Debug.WriteLine("cluster.ini不存在");
                 return;
             }
             _baseSet = new BaseSet(clusterIniFilePath);
-
-            BaseSetGameModeSelectBox.DataContext = _baseSet;
-            BaseSetPvpSelectBox.DataContext = _baseSet;
-            BaseSetMaxPlayerSelectBox.DataContext = _baseSet;
-            BaseSetOfflineSelectBox.DataContext = _baseSet;
-            DediBaseSetHouseName.DataContext = _baseSet;
-            DediBaseSetDescribe.DataContext = _baseSet;
-            DediBaseSetSecret.DataContext = _baseSet;
-            BaseSetIsPauseSelectBox.DataContext = _baseSet;
+            // 游戏风格
             DediBaseSetIntentionButton.DataContext = _baseSet;
+            // 名称
+            DediBaseSetClusterName.DataContext = _baseSet;
+            // 描述
+            DediBaseSetDescribe.DataContext = _baseSet;
+            // 游戏模式
+            BaseSetGameModeSelectBox.DataContext = _baseSet;
+            // PVP
+            BaseSetPvpSelectBox.DataContext = _baseSet;
+            // 玩家
+            BaseSetMaxPlayerSelectBox.DataContext = _baseSet;
+            // 密码
+            DediBaseSetSecret.DataContext = _baseSet;
+            // 服务器模式
+            BaseSetOfflineSelectBox.DataContext = _baseSet;
+            // 无人时暂停
+            BaseSetIsPauseSelectBox.DataContext = _baseSet;
+            // 洞穴
             EditWorldIsCaveSelectBox.DataContext = _baseSet;
             Debug.WriteLine("基本设置-完");
         }
