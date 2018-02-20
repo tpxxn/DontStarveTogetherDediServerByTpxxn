@@ -26,8 +26,7 @@ namespace 饥荒开服工具ByTpxxn.Class
             // 判断文件是否存在
             if (!File.Exists(iniFileName))
             {
-                // 若文件不存在抛出异常
-                File.Create(iniFileName);
+                File.Create(iniFileName).Close();
             }
             // 解析ini文件
             var iniData = fileIniDataParser.ReadFile(iniFileName);
