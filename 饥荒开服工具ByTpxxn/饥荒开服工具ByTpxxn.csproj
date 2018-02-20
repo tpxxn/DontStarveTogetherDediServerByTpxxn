@@ -95,6 +95,9 @@
     <Compile Include="Class\Tools\FileHelper.cs" />
     <Compile Include="MyUserControl\DediComboBox.cs" />
     <Compile Include="MyUserControl\DediComboBoxWithImage.cs" />
+    <Compile Include="MyUserControl\DediEditWorldSelectBox.xaml.cs">
+      <DependentUpon>DediEditWorldSelectBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MyUserControl\DediImageButton.cs" />
     <Compile Include="MyUserControl\DediModBox.xaml.cs">
       <DependentUpon>DediModBox.xaml</DependentUpon>
@@ -178,6 +181,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MyUserControl\DediEditWorldSelectBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MyUserControl\DediModBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
