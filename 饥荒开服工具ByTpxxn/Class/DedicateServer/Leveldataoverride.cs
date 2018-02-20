@@ -15,8 +15,12 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
     internal class Leveldataoverride
     {
         #region 字段和属性
-        private readonly UTF8Encoding _utf8 = new UTF8Encoding(false);
+
         private readonly DediFilePath _pathall;
+
+        /// <summary>
+        /// 是否为洞穴
+        /// </summary>
         private readonly bool _isCave;
 
         /// <summary>
@@ -27,7 +31,8 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
         /// <summary>
         /// 最终的world
         /// </summary>
-        public Dictionary<string, ShowWorld> FinalWorldDictionary { get; set; } = new Dictionary<string, ShowWorld>();
+        public Dictionary<string, EditWorldItem> FinalWorldDictionary { get; set; } = new Dictionary<string, EditWorldItem>();
+
         #endregion
 
         /// <summary>
@@ -44,14 +49,17 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
             var result = Init();
         }
 
-        // 初始化
+        /// <summary>
+        /// 初始化
+        /// </summary>
+        /// <returns>返回初始化成功文本</returns>
         private string Init()
         {
             if (string.IsNullOrEmpty(_pathall.CaveConfigFilePath))
             {
                 return "世界配置文件路径不对";
             }
-            // 给【世界选项文件】初始化
+            // 给[世界选项文件]初始化
             ReadSelectConfigWorld();
             // 将上面读取到的两个融到一起，到world中
             SetWorld();
@@ -65,15 +73,15 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
         {
             // 先清空,再赋值
             _selectConfigWorld.Clear();
-            //读取文件,填入到字典
+            // 读取文件,填入到字典
             var listStr = JsonHelper.ReadWorldSelect(_isCave);
             foreach (var str in listStr)
             {
                 // 分类和分类中的所有选项
-                var keyAndValueStrings = str.Split('=');
+                var keyValuePair = str.Split('=');
                 // 所有选项
-                var valueList = keyAndValueStrings[1].Split(',').ToList();
-                _selectConfigWorld.Add(keyAndValueStrings[0], valueList);
+                var valueList = keyValuePair[1].Split(',').ToList();
+                _selectConfigWorld.Add(keyValuePair[0], valueList);
             }
         }
 
@@ -91,13 +99,13 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
                 // 如果包含，选项中有，则添加选项中的
                 if (configWorld.ContainsKey(item.Key))
                 {
-                    FinalWorldDictionary[item.Key] = new ShowWorld(picturePath, item.Value, configWorld[item.Key], item.Key);
+                    FinalWorldDictionary[item.Key] = new EditWorldItem(picturePath, item.Value, configWorld[item.Key], item.Key);
                 }
                 //如果不包含，说明ServerConfig中没有写，没有配置，就用当前的值临时替代
                 //else
                 //{
                 //    var valueList = new List<string> { configWorld[item.Key] };
-                //    FinalWorldDictionary[item.Key] = new ShowWorld(picturePath, valueList, configWorld[item.Key], item.Key);
+                //    FinalWorldDictionary[item.Key] = new EditWorldItem(picturePath, valueList, configWorld[item.Key], item.Key);
                 //}
             }
         }
@@ -143,7 +151,7 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
 
             }
             var fileStream = new FileStream(savePath, FileMode.Create);
-            var streamWriter = new StreamWriter(fileStream, _utf8);
+            var streamWriter = new StreamWriter(fileStream, Global.Utf8WithoutBom);
             // 开始写入
             var stringBuilder = new StringBuilder();
             // 地上世界

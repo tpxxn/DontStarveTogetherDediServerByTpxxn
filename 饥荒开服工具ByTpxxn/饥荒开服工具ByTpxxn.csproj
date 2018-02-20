@@ -82,7 +82,7 @@
     <Compile Include="Class\DedicateServer\ModSetting.cs" />
     <Compile Include="Class\DedicateServer\Player.cs" />
     <Compile Include="Class\DedicateServer\Server.cs" />
-    <Compile Include="Class\DedicateServer\ShowWorld.cs" />
+    <Compile Include="Class\DedicateServer\EditWorldItem.cs" />
     <Compile Include="Class\JsonDeserialize\ItemListJson.cs" />
     <Compile Include="Class\JsonDeserialize\ServerConfigJson.cs" />
     <Compile Include="Class\StringProcess.cs" />

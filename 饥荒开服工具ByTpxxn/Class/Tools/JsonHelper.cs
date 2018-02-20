@@ -41,15 +41,13 @@ namespace 饥荒开服工具ByTpxxn.Class.Tools
             var serverConfig = JsonConvert.DeserializeObject<ServerConfigRootObject>(StringProcess.GetJsonStringDedicatedServer("ServerConfig.json"));
             var listStr = new List<string>();
             listStr.AddRange(!isCave
-                ? serverConfig.Configuration.Master.Details.Select(detail =>
-                    detail.Key.Trim() + "=" + detail.Value.Trim())
-                : serverConfig.Configuration.Caves.Details.Select(detail =>
-                    detail.Key.Trim() + "=" + detail.Value.Trim()));
+                ? serverConfig.Configuration.Master.Details.Select(detail => detail.Key.Trim() + "=" + detail.Value.Trim())
+                : serverConfig.Configuration.Caves.Details.Select(detail => detail.Key.Trim() + "=" + detail.Value.Trim()));
             return listStr;
         }
 
         /// <summary>
-        /// 读取世界分类,Fenlei="foods","animals","world","monsters","resources"
+        /// 读取世界分类["foods","animals","world","monsters","resources"]
         /// </summary>
         public static Dictionary<string, string> ReadWorldClassification(bool isCave)
         {

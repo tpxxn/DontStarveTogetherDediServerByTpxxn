@@ -29,13 +29,19 @@ namespace 饥荒开服工具ByTpxxn.View
     public partial class DedicatedServerPage : Page
     {
         #region 字段、属性
-        private Dictionary<string, string> _Hanization;  // 汉化
+
         private DediFilePath _dediFilePath;              // 文件路径
+
         private BaseSet _baseSet;                        // 基本设置
+
+        private Dictionary<string, string> _Hanization;  // 汉化
         private Leveldataoverride _overWorld;            // 地上世界
         private Leveldataoverride _caves;                // 地下世界
+
         private Mods _mods;                              // mods
+
         private int SaveSlot { get; set; }               // 存档槽
+
         #endregion
 
         #region 构造事件及初始化
@@ -470,7 +476,7 @@ namespace 饥荒开服工具ByTpxxn.View
         /// </summary>
         /// <param name="str">字符串str</param>
         /// <returns>汉化文本[List]</returns>
-        private IEnumerable<string> Hanization(IEnumerable<string> str)
+        private List<string> Hanization(List<string> str)
         {
             return str.Select(item => _Hanization.ContainsKey(item) ? _Hanization[item] : item).ToList();
         }

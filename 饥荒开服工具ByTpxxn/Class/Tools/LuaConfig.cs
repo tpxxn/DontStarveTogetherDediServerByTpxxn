@@ -20,7 +20,7 @@ namespace 饥荒开服工具ByTpxxn.Class.Tools
         /// <param name="path"></param>
         /// <param name="encoding"></param>
         /// <param name="isReturn"></param>
-        /// <returns></returns>
+        /// <returns>LuaTable</returns>
         public static LuaTable ReadLua(string path, Encoding encoding, bool isReturn)
         {
             //lua读取

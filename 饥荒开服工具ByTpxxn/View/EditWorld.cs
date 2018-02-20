@@ -23,6 +23,16 @@ namespace 饥荒开服工具ByTpxxn.View
             CaveSettingColumnDefinition.Width = EditWorldIsCaveSelectBox.Text == "开启" ? new GridLength(1, GridUnitType.Star) : new GridLength(0);
         }
 
+        private static int ReturnIndex(string str,List<string> stringList)
+        {
+            for(var i = 0;i<stringList.Count;i++)
+            {
+                if (str == stringList[i])
+                    return i;
+            }
+            return 0;
+        }
+
         /// <summary>
         /// 设置"地上世界"
         /// </summary>
@@ -30,6 +40,7 @@ namespace 饥荒开服工具ByTpxxn.View
         {
             // 地上 
             _overWorld = new Leveldataoverride(_dediFilePath, false);
+            // 清空界面
             DediOverWorldWorld.Children.Clear();
             DediOverWolrdFoods.Children.Clear();
             DediOverWorldAnimals.Children.Clear();
@@ -37,11 +48,11 @@ namespace 饥荒开服工具ByTpxxn.View
             DediOverWorldResources.Children.Clear();
             // 地上 分类
             var worldClassification = JsonHelper.ReadWorldClassification(false);
-            var foods = new Dictionary<string, ShowWorld>();
-            var animals = new Dictionary<string, ShowWorld>();
-            var monsters = new Dictionary<string, ShowWorld>();
-            var resources = new Dictionary<string, ShowWorld>();
-            var world = new Dictionary<string, ShowWorld>();
+            var foods = new Dictionary<string, EditWorldItem>();
+            var animals = new Dictionary<string, EditWorldItem>();
+            var monsters = new Dictionary<string, EditWorldItem>();
+            var resources = new Dictionary<string, EditWorldItem>();
+            var world = new Dictionary<string, EditWorldItem>();
             #region 地上分类方法
             foreach (var item in _overWorld.FinalWorldDictionary)
             {
@@ -79,6 +90,16 @@ namespace 饥荒开服工具ByTpxxn.View
                 {
                     continue;
                 }
+                var dediEditWorldSelectBox = new DediEditWorldSelectBox
+                {
+                    ImageSource = new BitmapImage(new Uri("/" + item.Value.PicturePath, UriKind.Relative)),
+                    TextList = Hanization(item.Value.WorldConfigList),
+                    TextIndex = ReturnIndex(Hanization(item.Value.WorldConfig), Hanization(item.Value.WorldConfigList)),
+                    ImageToolTip = Hanization(item.Value.ToolTip),
+                    Tag = item.Key,
+                    Width = 200,
+                    Height = 60
+                };
                 var comboBoxWithImage = new DediComboBoxWithImage()
                 {
                     ImageSource = new BitmapImage(new Uri("/" + item.Value.PicturePath, UriKind.Relative)),
@@ -91,6 +112,7 @@ namespace 饥荒开服工具ByTpxxn.View
 
                 };
                 comboBoxWithImage.SelectionChanged += DiOverWorld_SelectionChanged;
+                DediOverWorldWorld.Children.Add(dediEditWorldSelectBox);
                 DediOverWorldWorld.Children.Add(comboBoxWithImage);
             }
             foreach (var item in foods)
@@ -194,6 +216,7 @@ namespace 饥荒开服工具ByTpxxn.View
         {
             // 地下
             _caves = new Leveldataoverride(_dediFilePath, true);
+            // 清空界面
             DediCavesWorld.Children.Clear();
             DediCavesFoods.Children.Clear();
             DediCavesAnimals.Children.Clear();
@@ -201,11 +224,11 @@ namespace 饥荒开服工具ByTpxxn.View
             DediCavesResources.Children.Clear();
             // 地下 分类
             var worldClassification = JsonHelper.ReadWorldClassification(true);
-            var foods = new Dictionary<string, ShowWorld>();
-            var animals = new Dictionary<string, ShowWorld>();
-            var monsters = new Dictionary<string, ShowWorld>();
-            var resources = new Dictionary<string, ShowWorld>();
-            var world = new Dictionary<string, ShowWorld>();
+            var foods = new Dictionary<string, EditWorldItem>();
+            var animals = new Dictionary<string, EditWorldItem>();
+            var monsters = new Dictionary<string, EditWorldItem>();
+            var resources = new Dictionary<string, EditWorldItem>();
+            var world = new Dictionary<string, EditWorldItem>();
             #region  地下分类方法
             foreach (var item in _caves.FinalWorldDictionary)
             {

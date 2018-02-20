@@ -19,6 +19,46 @@ namespace 饥荒开服工具ByTpxxn.MyUserControl
     /// </summary>
     public partial class DediEditWorldSelectBox : UserControl
     {
+
+        #region 属性：ImageSource
+
+        public ImageSource ImageSource
+        {
+            set => SetValue(ImageSourceProperty, value);
+            get => (ImageSource)GetValue(ImageSourceProperty);
+        }
+
+        public static readonly DependencyProperty ImageSourceProperty =
+            DependencyProperty.Register("ImageSource", typeof(ImageSource), typeof(DediEditWorldSelectBox), new PropertyMetadata(null, OnImageSourceChanged));
+
+        private static void OnImageSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (e.NewValue == null) return;
+            var dediSelectBox = (DediEditWorldSelectBox)d;
+            dediSelectBox.Picture.Source = (ImageSource)e.NewValue;
+        }
+
+        #endregion
+
+        #region 属性：ImageToolTip
+        public string ImageToolTip
+        {
+            set => SetValue(ImageToolTipProperty, value);
+            get => (string)GetValue(ImageToolTipProperty);
+        }
+
+        public static readonly DependencyProperty ImageToolTipProperty =
+            DependencyProperty.Register("ImageToolTip", typeof(string), typeof(DediEditWorldSelectBox), new PropertyMetadata(string.Empty, OnImageToolTipChanged));
+
+        private static void OnImageToolTipChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (e.NewValue == null) return;
+            var dediSelectBox = (DediEditWorldSelectBox)d;
+            dediSelectBox.Picture.ToolTip = (string)e.NewValue;
+            dediSelectBox.TitleText = (string)e.NewValue;
+        }
+        #endregion
+
         #region 属性：Text
         public string Text { get; set; }
         #endregion

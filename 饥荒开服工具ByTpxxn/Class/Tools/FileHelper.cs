@@ -16,8 +16,7 @@ namespace 饥荒开服工具ByTpxxn.Class.Tools
         /// <returns></returns>
         public static string ReadResources(string path)
         {
-            var utf8Encoding = new UTF8Encoding(false);
-            var streamReader = new StreamReader(Global.GetStreamFromProjectFile(path), utf8Encoding);
+            var streamReader = new StreamReader(Global.GetStreamFromProjectFile(path), Global.Utf8WithoutBom);
             return streamReader.ReadToEnd();
         }
 
