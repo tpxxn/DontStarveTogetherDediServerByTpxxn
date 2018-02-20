@@ -319,43 +319,43 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
                 switch (propertyName)
                 {
                     case "GameStyle":
-                        if (GameStyle == "合作") { clusterIniFile.Write("NETWORK", "cluster_intention", "cooperative", Global.Utf8WithoutBom); }
-                        if (GameStyle == "交际") { clusterIniFile.Write("NETWORK", "cluster_intention", "social", Global.Utf8WithoutBom); }
-                        if (GameStyle == "竞争") { clusterIniFile.Write("NETWORK", "cluster_intention", "competitive", Global.Utf8WithoutBom); }
-                        if (GameStyle == "疯狂") { clusterIniFile.Write("NETWORK", "cluster_intention", "madness", Global.Utf8WithoutBom); }
+                        if (GameStyle == "合作") { clusterIniFile.WriteValue("NETWORK", "cluster_intention", "cooperative", Global.Utf8WithoutBom); }
+                        if (GameStyle == "交际") { clusterIniFile.WriteValue("NETWORK", "cluster_intention", "social", Global.Utf8WithoutBom); }
+                        if (GameStyle == "竞争") { clusterIniFile.WriteValue("NETWORK", "cluster_intention", "competitive", Global.Utf8WithoutBom); }
+                        if (GameStyle == "疯狂") { clusterIniFile.WriteValue("NETWORK", "cluster_intention", "madness", Global.Utf8WithoutBom); }
                         break;
                     case "ClusterName":
-                        clusterIniFile.Write("NETWORK", "cluster_name", ClusterName, Global.Utf8WithoutBom);
+                        clusterIniFile.WriteValue("NETWORK", "cluster_name", ClusterName, Global.Utf8WithoutBom);
                         break;
                     case "Describe":
-                        clusterIniFile.Write("NETWORK", "cluster_description", Describe, Global.Utf8WithoutBom);
+                        clusterIniFile.WriteValue("NETWORK", "cluster_description", Describe, Global.Utf8WithoutBom);
                         break; 
                     case "GameMode":
-                        if (GameMode == 0) { clusterIniFile.Write("GAMEPLAY", "game_mode", "endless", Global.Utf8WithoutBom); }
-                        if (GameMode == 1) { clusterIniFile.Write("GAMEPLAY", "game_mode", "survival", Global.Utf8WithoutBom); }
-                        if (GameMode == 2) { clusterIniFile.Write("GAMEPLAY", "game_mode", "wilderness", Global.Utf8WithoutBom); }
+                        if (GameMode == 0) { clusterIniFile.WriteValue("GAMEPLAY", "game_mode", "endless", Global.Utf8WithoutBom); }
+                        if (GameMode == 1) { clusterIniFile.WriteValue("GAMEPLAY", "game_mode", "survival", Global.Utf8WithoutBom); }
+                        if (GameMode == 2) { clusterIniFile.WriteValue("GAMEPLAY", "game_mode", "wilderness", Global.Utf8WithoutBom); }
                         break;
                     case "IsPVP":
-                        clusterIniFile.Write("GAMEPLAY", "pvp", IsPvp == 0 ? "false" : "true", Global.Utf8WithoutBom);
+                        clusterIniFile.WriteValue("GAMEPLAY", "pvp", IsPvp == 0 ? "false" : "true", Global.Utf8WithoutBom);
                         break;
                     case "MaxPlayers":
-                        clusterIniFile.Write("GAMEPLAY", "max_players", (MaxPlayers + 1).ToString(), Global.Utf8WithoutBom);
+                        clusterIniFile.WriteValue("GAMEPLAY", "max_players", (MaxPlayers + 1).ToString(), Global.Utf8WithoutBom);
                         break;
                     case "Password":
-                        clusterIniFile.Write("NETWORK", "cluster_password", Password, Global.Utf8WithoutBom);
+                        clusterIniFile.WriteValue("NETWORK", "cluster_password", Password, Global.Utf8WithoutBom);
                         break;
                     case "ServerMode":
-                        if (ServerMode == 0) { clusterIniFile.Write("NETWORK", "offline_cluster", "false", Global.Utf8WithoutBom); }
-                        if (ServerMode == 1) { clusterIniFile.Write("NETWORK", "offline_cluster", "true", Global.Utf8WithoutBom); }
+                        if (ServerMode == 0) { clusterIniFile.WriteValue("NETWORK", "offline_cluster", "false", Global.Utf8WithoutBom); }
+                        if (ServerMode == 1) { clusterIniFile.WriteValue("NETWORK", "offline_cluster", "true", Global.Utf8WithoutBom); }
                         break;
                     case "IsPause":
-                        clusterIniFile.Write("GAMEPLAY", "pause_when_empty", IsPause == 0 ? "false" : "true", Global.Utf8WithoutBom);
+                        clusterIniFile.WriteValue("GAMEPLAY", "pause_when_empty", IsPause == 0 ? "false" : "true", Global.Utf8WithoutBom);
                         break;
                     case "IsCave":
-                        clusterIniFile.Write("SHARD", "shard_enabled", IsCave == 0 ? "false" : "true", Global.Utf8WithoutBom);
+                        clusterIniFile.WriteValue("SHARD", "shard_enabled", IsCave == 0 ? "false" : "true", Global.Utf8WithoutBom);
                         break;
                     case "IsConsole":
-                        clusterIniFile.Write("MISC", "console_enabled", IsConsole == 0 ? "false" : "true", Global.Utf8WithoutBom);
+                        clusterIniFile.WriteValue("MISC", "console_enabled", IsConsole == 0 ? "false" : "true", Global.Utf8WithoutBom);
                         break;
                 }
             }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -13,9 +14,20 @@ namespace 饥荒开服工具ByTpxxn.Class.Tools
     {
         #region 字段
 
-        public readonly Dictionary<string, Dictionary<string, string>> Dictionary;
-        public readonly string[] Filecontext;
-        public readonly string Path;
+        /// <summary>
+        /// ini对象[格式：字典]
+        /// </summary>
+        public readonly Dictionary<string, Dictionary<string, string>> iniObjectDictionary;
+
+        /// <summary>
+        /// ini文件文本内容
+        /// </summary>
+        public readonly string[] IniFileContext;
+
+        /// <summary>
+        /// ini文件路径
+        /// </summary>
+        public readonly string IniFilePath;
 
         #endregion
 
@@ -23,46 +35,37 @@ namespace 饥荒开服工具ByTpxxn.Class.Tools
         /// IniHelper
         /// </summary>
         /// <param name="path">ini文件路径</param>
-        /// <param name="encoding"></param>
+        /// <param name="encoding">编码格式</param>
         public IniHelper(string path, Encoding encoding)
         {
-            this.Path = path;
+            IniFilePath = path;
             if (File.Exists(path))
             {
-                Filecontext = File.ReadAllLines(path, encoding);
+                IniFileContext = File.ReadAllLines(path, encoding);
             }
-            Dictionary = new Dictionary<string, Dictionary<string, string>>();
-
-            var f = new Dictionary<string, string>();
-            var title = string.Empty;
-            for (var i = 0; i < Filecontext.Length; i++)
+            iniObjectDictionary = new Dictionary<string, Dictionary<string, string>>();
+            var section = string.Empty;
+            foreach (var oneLine in IniFileContext)
             {
-                var line = Filecontext[i].Trim();
-                //如果以[] 开头结尾,其实用正则更好
+                // 获取单行文本[去除空格]
+                var line = oneLine.Trim();
+                // [节]如果以[] 开头结尾,其实用正则更好
                 if (line.StartsWith("[") && line.EndsWith("]"))
                 {
-                    // 添加到d
-                    if (title != string.Empty)
-                    {
-                        Dictionary.Add(title, f);
-                        f = new Dictionary<string, string>();
-                        title = string.Empty;
-                    }
                     // 截取[] 中间
-                    title = line.Substring(1, line.Length - 2);
+                    section = line.Substring(1, line.Length - 2);
+                    // 添加到d
+                    if (section != string.Empty)
+                    {
+                        if (!iniObjectDictionary.ContainsKey(section))
+                            iniObjectDictionary.Add(section, new Dictionary<string, string>());
+                    }
                 }
-                //如果包含=号
-                if (Filecontext[i].Trim().Contains("="))
+                // [参数]
+                if (line.Contains("="))
                 {
-                    var s = line.Split('=');
-                    f.Add(s[0].Trim(), s[1].Trim());
-                }
-                //如果读到最后一行,添加进去
-                if (i == Filecontext.Length - 1)
-                {
-                    Dictionary.Add(title, f);
-                    f = new Dictionary<string, string>();
-                    title = string.Empty;
+                    var parametersArray = line.Split('=');
+                    iniObjectDictionary[section].Add(parametersArray[0].Trim(), parametersArray[1].Trim());
                 }
             }
         }
@@ -70,53 +73,42 @@ namespace 饥荒开服工具ByTpxxn.Class.Tools
         /// <summary>
         /// 读取
         /// </summary>
-        /// <param name="section"></param>
-        /// <param name="key"></param>
-        /// <returns>value值</returns>
+        /// <param name="section">节</param>
+        /// <param name="key">参数[键]</param>
+        /// <returns>参数[值]</returns>
         public string ReadValue(string section, string key)
         {
-            if (Dictionary != null)
-            {
-                return Dictionary[section][key];
-            }
-            return "";
-        }
-
-        /// <summary>
-        /// 写入到list
-        /// </summary>
-        /// <param name="section"></param>
-        /// <param name="key"></param>
-        /// <param name="value"></param>
-        public void WriteToList(string section, string key, string value)
-        {
-            Dictionary[section][key] = value;
+            return iniObjectDictionary != null ? iniObjectDictionary[section][key] : "";
         }
 
         /// <summary>
         /// 写入到文件
         /// </summary>
-        /// <param name="section"></param>
-        /// <param name="key"></param>
-        /// <param name="value"></param>
-        /// <param name="encoding"></param>
-        public void Write(string section, string key, string value, Encoding encoding)
+        /// <param name="section">节</param>
+        /// <param name="key">参数[键]</param>
+        /// <param name="value">参数[值]</param>
+        /// <param name="encoding">编码格式</param>
+        public void WriteValue(string section, string key, string value, Encoding encoding)
         {
-            Dictionary[section][key] = value;
-            File.WriteAllLines(Path, GetListStr(), encoding);
+            iniObjectDictionary[section][key] = value;
+            File.WriteAllLines(IniFilePath, GetListStr(), encoding);
         }
 
-        public List<string> GetListStr()
+        /// <summary>
+        /// 从Dictionary序列化为ini文本
+        /// </summary>
+        /// <returns></returns>
+        private List<string> GetListStr()
         {
-            var listStr = new List<string>();
-            foreach (var kvp in Dictionary)
+            var iniStringList = new List<string>();
+            foreach (var sectionKeyValuePair in iniObjectDictionary)
             {
-                listStr.Add("[" + kvp.Key + "]");
-                listStr.AddRange(kvp.Value.Select(kvp1 => kvp1.Key + " = " + kvp1.Value));
-                listStr.Add("");
-                listStr.Add("");
+                iniStringList.Add("[" + sectionKeyValuePair.Key + "]");
+                iniStringList.AddRange(sectionKeyValuePair.Value.Select(parameterKeyValuePair => parameterKeyValuePair.Key + " = " + parameterKeyValuePair.Value));
+                iniStringList.Add("");
+                iniStringList.Add("");
             }
-            return listStr;
+            return iniStringList;
         }
     }
 }
