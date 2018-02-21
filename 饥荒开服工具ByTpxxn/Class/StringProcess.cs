@@ -33,9 +33,9 @@ namespace 饥荒开服工具ByTpxxn.Class
         /// <summary>
         /// 返回Json文本
         /// </summary>
-        /// <param name="fileName">文件名</param>
+        /// <param name="fileName">文件名[相对于Json文件夹]</param>
         /// <returns>string类型文本</returns>
-        public static string GetJsonStringDedicatedServer(string fileName)
+        public static string GetJsonString(string fileName)
         {
             var src2 = Application.GetResourceStream(new Uri("/饥荒开服工具ByTpxxn;component/Json/" + fileName, UriKind.Relative))?.Stream;
             var str = new StreamReader(src2 ?? throw new InvalidOperationException(), Encoding.UTF8).ReadToEnd();

@@ -20,7 +20,7 @@ namespace 饥荒开服工具ByTpxxn.Class.Tools
         /// </summary>
         public static Dictionary<string, string> ReadHanization()
         {
-            var serverConfig = JsonConvert.DeserializeObject<ServerConfigRootObject>(StringProcess.GetJsonStringDedicatedServer("ServerConfig.json"));
+            var serverConfig = JsonConvert.DeserializeObject<ServerConfigRootObject>(StringProcess.GetJsonString("ServerConfig.json"));
             var dictionary = new Dictionary<string, string>();
             foreach (var detail in serverConfig.Configuration.Hanization.Details)
             {
@@ -38,7 +38,7 @@ namespace 饥荒开服工具ByTpxxn.Class.Tools
         /// <returns>x=xx,xx,xx</returns>
         public static List<string> ReadWorldSelect(bool isCave)
         {
-            var serverConfig = JsonConvert.DeserializeObject<ServerConfigRootObject>(StringProcess.GetJsonStringDedicatedServer("ServerConfig.json"));
+            var serverConfig = JsonConvert.DeserializeObject<ServerConfigRootObject>(StringProcess.GetJsonString("ServerConfig.json"));
             var listStr = new List<string>();
             listStr.AddRange(!isCave
                 ? serverConfig.Configuration.Master.Details.Select(detail => detail.Key.Trim() + "=" + detail.Value.Trim())
@@ -51,7 +51,7 @@ namespace 饥荒开服工具ByTpxxn.Class.Tools
         /// </summary>
         public static Dictionary<string, string> ReadWorldClassification(bool isCave)
         {
-            var serverConfig = JsonConvert.DeserializeObject<ServerConfigRootObject>(StringProcess.GetJsonStringDedicatedServer("ServerConfig.json"));
+            var serverConfig = JsonConvert.DeserializeObject<ServerConfigRootObject>(StringProcess.GetJsonString("ServerConfig.json"));
             var dictionary = new Dictionary<string, string>();
             if (!isCave)
             {

@@ -83,7 +83,10 @@
     <Compile Include="Class\DedicateServer\Player.cs" />
     <Compile Include="Class\DedicateServer\Server.cs" />
     <Compile Include="Class\DedicateServer\EditWorldItem.cs" />
+    <Compile Include="Class\JsonDeserialize\EditWorld\EditWorldJson.cs" />
+    <Compile Include="Class\JsonDeserialize\Hanization\HanizationJson.cs" />
     <Compile Include="Class\JsonDeserialize\ItemListJson.cs" />
+    <Compile Include="Class\JsonDeserialize\Preset\PresetJson.cs" />
     <Compile Include="Class\JsonDeserialize\ServerConfigJson.cs" />
     <Compile Include="Class\StringProcess.cs" />
     <Compile Include="Class\Tools\IniHelper.cs" />
@@ -219,6 +222,10 @@
     </EmbeddedResource>
     <Resource Include="Json\ItemList.json" />
     <Resource Include="Json\ServerConfig.json" />
+    <Resource Include="Json\EditWorld\Hanization.json" />
+    <Resource Include="Json\EditWorld\EditWorld.json" />
+    <Resource Include="Json\EditWorld\Preset\CavesPresetDefault.json" />
+    <Resource Include="Json\EditWorld\Preset\MasterPresetDefault.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

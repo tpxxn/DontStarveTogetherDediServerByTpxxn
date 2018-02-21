@@ -1,0 +1,187 @@
+{
+  "Preset": {
+    "PresetType": "Caves",
+    "world": [
+      {
+        "Key": "task_set",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "start_location",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "world_size",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "branching",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "loop",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "weather",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "earthquakes",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "regrowth",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "touchstone",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "cavelight",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "boons",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "disease_delay",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "prefabswaps_start",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "petrification",
+        "DefaultValue": "default"
+      }
+    ],
+    "resources": [
+      {
+        "Key": "grass",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "sapling",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "marshbush",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "reeds",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "trees",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "flint",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "rock",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "mushtree",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "fern",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "flower_cave",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "wormlights",
+        "DefaultValue": "default"
+      }
+    ],
+    "foods": [
+      {
+        "Key": "berrybush",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "mushroom",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "banana",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "lichen",
+        "DefaultValue": "default"
+      }
+    ],
+    "animals": [
+      {
+        "Key": "cave_ponds",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "slurper",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "bunnymen",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "slurtles",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "rocky",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "monkey",
+        "DefaultValue": "default"
+      }
+    ],
+    "monsters": [
+      {
+        "Key": "cave_spiders",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "tentacles",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "chess",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "liefs",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "bats",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "fissure",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "wormattacks",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "worms",
+        "DefaultValue": "default"
+      }
+    ]
+  }
+}

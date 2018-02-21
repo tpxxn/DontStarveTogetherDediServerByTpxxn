@@ -8,11 +8,11 @@ namespace 饥荒开服工具ByTpxxn.Class.JsonDeserialize
         public string Chinese { get; set; }
     }
 
-    public class Hanization
+    public class Hanizations
     {
         public List<Detail> Details { get; set; }
 
-        public Hanization()
+        public Hanizations()
         {
             Details = new List<Detail>();
         }
@@ -78,14 +78,14 @@ namespace 饥荒开服工具ByTpxxn.Class.JsonDeserialize
 
     public class Configuration
     {
-        public Hanization Hanization { get; set; }
+        public Hanizations Hanization { get; set; }
         public Master Master { get; set; }
         public Caves Caves { get; set; }
         public Classification Classification { get; set; }
 
         public Configuration()
         {
-            Hanization = new Hanization();
+            Hanization = new Hanizations();
             Master = new Master();
             Caves = new Caves();
             Classification = new Classification();

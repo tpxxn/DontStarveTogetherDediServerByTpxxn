@@ -21,7 +21,7 @@ namespace 饥荒开服工具ByTpxxn.MyUserControl
     public partial class DediEditWorldSelectBox : UserControl
     {
 
-        #region 属性：ImageSource
+        #region 属性：ImageSource[图片源]
 
         public ImageSource ImageSource
         {
@@ -41,7 +41,7 @@ namespace 饥荒开服工具ByTpxxn.MyUserControl
 
         #endregion
 
-        #region 属性：ImageToolTip
+        #region 属性：ImageToolTip[图片ToolTip]
         public string ImageToolTip
         {
             set => SetValue(ImageToolTipProperty, value);
@@ -56,7 +56,6 @@ namespace 饥荒开服工具ByTpxxn.MyUserControl
         {
             if (e.NewValue == null) return;
             var dediSelectBox = (DediEditWorldSelectBox)d;
-            //dediSelectBox.Picture.ToolTip = (string)e.NewValue;
             dediSelectBox.Picture.ToolTip = new ToolTip
             {
                 BorderBrush = null,
@@ -78,11 +77,11 @@ namespace 饥荒开服工具ByTpxxn.MyUserControl
         }
         #endregion
 
-        #region 属性：Text
+        #region 属性：Text[文本]
         public string Text { get; set; }
         #endregion
 
-        #region 属性：ControlWidth
+        #region 属性：ControlWidth[控件宽度]
         public double ControlWidth
         {
             get => (double)GetValue(ControlWidthProperty);
@@ -109,7 +108,7 @@ namespace 饥荒开服工具ByTpxxn.MyUserControl
         }
         #endregion
 
-        #region 属性：TextIndex
+        #region 属性：TextIndex[文本索引]
         public int TextIndex
         {
             get => (int)GetValue(TextIndexProperty);
@@ -133,7 +132,7 @@ namespace 饥荒开服工具ByTpxxn.MyUserControl
         }
         #endregion
 
-        #region 属性：TextList
+        #region 属性：TextList[文本列表]
         public List<string> TextList
         {
             get => (List<string>)GetValue(TextListProperty);
@@ -152,7 +151,7 @@ namespace 饥荒开服工具ByTpxxn.MyUserControl
         }
         #endregion
 
-        #region 属性：TitleText
+        #region 属性：TitleText[标题文本]
         public string TitleText
         {
             get => (string)GetValue(TitleTextProperty);

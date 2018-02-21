@@ -1,0 +1,488 @@
+{
+  "EditWorld": {
+    "Master": {
+      "world": [
+        {
+          "Key": "task_set",
+          "Value": "classic,default"
+        },
+        {
+          "Key": "start_location",
+          "Value": "plus,darkness,default"
+        },
+        {
+          "Key": "world_size",
+          "Value": "small,medium,default,huge"
+        },
+        {
+          "Key": "branching",
+          "Value": "never,least,default,most"
+        },
+        {
+          "Key": "loop",
+          "Value": "never,default,always"
+        },
+        {
+          "Key": "specialevent",
+          "Value": "none,default,hallowed_nights,winters_feast,year_of_the_gobbler"
+        },
+        {
+          "Key": "autumn",
+          "Value": "noseason,veryshortseason,shortseason,default,longseason,verylongseason,random"
+        },
+        {
+          "Key": "winter",
+          "Value": "noseason,veryshortseason,shortseason,default,longseason,verylongseason,random"
+        },
+        {
+          "Key": "spring",
+          "Value": "noseason,veryshortseason,shortseason,default,longseason,verylongseason,random"
+        },
+        {
+          "Key": "summer",
+          "Value": "noseason,veryshortseason,shortseason,default,longseason,verylongseason,random"
+        },
+        {
+          "Key": "season_start",
+          "Value": "default,winter,spring,summer,autumnorspring,winterorsummer,random"
+        },
+        {
+          "Key": "day",
+          "Value": "default,longday,longdusk,longnight,noday,nodusk,nonight,onlyday,onlydusk,onlynight"
+        },
+        {
+          "Key": "weather",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "lightning",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "frograin",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "wildfires",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "regrowth",
+          "Value": "veryslow,slow,default,fast,veryfast"
+        },
+        {
+          "Key": "touchstone",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "boons",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "disease_delay",
+          "Value": "none,slow,default,fast,random"
+        },
+        {
+          "Key": "prefabswaps_start",
+          "Value": "classic,default,highly random"
+        },
+        {
+          "Key": "petrification",
+          "Value": "none,few,default,many,max"
+        }
+      ],
+      "resources": [
+        {
+          "Key": "flowers",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "grass",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "sapling",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "marshbush",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "tumbleweed",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "reeds",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "trees",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "flint",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "rock",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "rock_ice",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "meteorspawner",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "meteorshowers",
+          "Value": "never,rare,default,often,always"
+        }
+      ],
+      "foods": [
+        {
+          "Key": "berrybush",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "carrot",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "mushroom",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "cactus",
+          "Value": "never,rare,default,often,always"
+        }
+      ],
+      "animals": [
+        {
+          "Key": "rabbits",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "moles",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "butterfly",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "birds",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "buzzard",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "catcoon",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "perd",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "pigs",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "lightninggoat",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "beefalo",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "beefaloheat",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "hunt",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "alternatehunt",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "penguins",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "ponds",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "bees",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "angrybees",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "tallbirds",
+          "Value": "never,rare,default,often,always"
+        }
+      ],
+      "monsters": [
+        {
+          "Key": "spiders",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "hounds",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "houndmound",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "merm",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "tentacles",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "chess",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "lureplants",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "walrus",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "liefs",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "deciduousmonster",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "krampus",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "bearger",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "deerclops",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "goosemoose",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "dragonfly",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "antliontribute",
+          "Value": "never,rare,default,often,always"
+        }
+      ]
+    },
+    "Caves": {
+      "world": [
+        {
+          "Key": "task_set",
+          "Value": "cave_default"
+        },
+        {
+          "Key": "start_location",
+          "Value": "caves"
+        },
+        {
+          "Key": "world_size",
+          "Value": "small,medium,default,huge"
+        },
+        {
+          "Key": "branching",
+          "Value": "never,least,default,most"
+        },
+        {
+          "Key": "loop",
+          "Value": "never,default,always"
+        },
+        {
+          "Key": "weather",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "earthquakes",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "regrowth",
+          "Value": "veryslow,slow,default,fast,veryfast"
+        },
+        {
+          "Key": "touchstone",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "cavelight",
+          "Value": "veryslow,slow,default,fast,veryfast"
+        },
+        {
+          "Key": "boons",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "disease_delay",
+          "Value": "none,slow,default,fast,random"
+        },
+        {
+          "Key": "prefabswaps_start",
+          "Value": "classic,default,highly random"
+        },
+        {
+          "Key": "petrification",
+          "Value": "none,few,default,many,max"
+        }
+      ],
+      "resources": [
+        {
+          "Key": "grass",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "sapling",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "marshbush",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "reeds",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "trees",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "flint",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "rock",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "mushtree",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "fern",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "flower_cave",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "wormlights",
+          "Value": "never,rare,default,often,always"
+        }
+      ],
+      "foods": [
+        {
+          "Key": "berrybush",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "mushroom",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "banana",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "lichen",
+          "Value": "never,rare,default,often,always"
+        }
+      ],
+      "animals": [
+        {
+          "Key": "cave_ponds",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "slurper",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "bunnymen",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "slurtles",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "rocky",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "monkey",
+          "Value": "never,rare,default,often,always"
+        }
+      ],
+      "monsters": [
+        {
+          "Key": "cave_spiders",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "tentacles",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "chess",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "liefs",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "bats",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "fissure",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "wormattacks",
+          "Value": "never,rare,default,often,always"
+        },
+        {
+          "Key": "worms",
+          "Value": "never,rare,default,often,always"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,303 @@
+{
+  "Preset": {
+    "PresetType": "Master",
+    "world": [
+      {
+        "Key": "task_set",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "start_location",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "world_size",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "branching",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "loop",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "specialevent",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "autumn",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "winter",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "spring",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "summer",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "season_start",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "day",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "weather",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "lightning",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "frograin",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "wildfires",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "regrowth",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "touchstone",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "boons",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "disease_delay",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "prefabswaps_start",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "petrification",
+        "DefaultValue": "default"
+      }
+    ],
+    "resources": [
+      {
+        "Key": "flowers",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "grass",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "sapling",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "marshbush",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "tumbleweed",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "reeds",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "trees",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "flint",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "rock",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "rock_ice",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "meteorspawner",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "meteorshowers",
+        "DefaultValue": "default"
+      }
+    ],
+    "foods": [
+      {
+        "Key": "berrybush",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "carrot",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "mushroom",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "cactus",
+        "DefaultValue": "default"
+      }
+    ],
+    "animals": [
+      {
+        "Key": "rabbits",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "moles",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "butterfly",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "birds",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "buzzard",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "catcoon",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "perd",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "pigs",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "lightninggoat",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "beefalo",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "beefaloheat",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "hunt",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "alternatehunt",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "penguins",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "ponds",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "bees",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "angrybees",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "tallbirds",
+        "DefaultValue": "default"
+      }
+    ],
+    "monsters": [
+      {
+        "Key": "spiders",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "hounds",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "houndmound",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "merm",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "tentacles",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "chess",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "lureplants",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "walrus",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "liefs",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "deciduousmonster",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "krampus",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "bearger",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "deerclops",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "goosemoose",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "dragonfly",
+        "DefaultValue": "default"
+      },
+      {
+        "Key": "antliontribute",
+        "DefaultValue": "default"
+      }
+    ]
+  }
+}

@@ -122,7 +122,7 @@ namespace 饥荒开服工具ByTpxxn.View
         {
             ConsoleDetailsWrapPanel.Children.Clear();
             // 读取分类信息
-            var itemList = JsonConvert.DeserializeObject<ItemListRootObject>(StringProcess.GetJsonStringDedicatedServer("ItemList.json"));
+            var itemList = JsonConvert.DeserializeObject<ItemListRootObject>(StringProcess.GetJsonString("ItemList.json"));
             // 把当前选择的值放到这里了
             ConsoleClassificationStackPanel.Tag = ((RadioButton)sender).Content;
             // 显示具体分类信息
