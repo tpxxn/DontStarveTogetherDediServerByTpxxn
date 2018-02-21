@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using 饥荒开服工具ByTpxxn.Class.DedicateServer;
 using 饥荒开服工具ByTpxxn.Class.Tools;
@@ -37,7 +40,7 @@ namespace 饥荒开服工具ByTpxxn.View
                     }
                 }
                 // 重新读取
-                _mods.ReadModsOverrides(CommonPath.ServerModsDirPath, _dediFilePath.ModConfigOverworldFilePath);
+                _mods.ReadModsOverrides(_dediFilePath.ModConfigOverworldFilePath);
             }
             // 显示 
             ModListStackPanel.Children.Clear();
@@ -47,11 +50,6 @@ namespace 饥荒开服工具ByTpxxn.View
             {
                 for (var i = 0; i < _mods.ModList.Count; i++)
                 {
-                    // 屏蔽 客户端MOD
-                    if (_mods.ModList[i].ModType == ModType.客户端)
-                    {
-                        continue;
-                    }
                     var dediModBox = new DediModBox
                     {
                         Width = 200,
@@ -77,6 +75,29 @@ namespace 饥荒开服工具ByTpxxn.View
             }
         }
 
+        [DllImport("gdi32.dll", SetLastError = true)]
+        private static extern bool DeleteObject(IntPtr hObject);
+        /// <summary>  
+        /// 从bitmap转换成ImageSource  
+        /// </summary>  
+        /// <param name="icon"></param>  
+        /// <returns></returns>  
+        public static ImageSource ChangeBitmapToImageSource(Bitmap bitmap)
+        {
+            //Bitmap bitmap = icon.ToBitmap();  
+            IntPtr hBitmap = bitmap.GetHbitmap();
+            ImageSource wpfBitmap = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
+                hBitmap,
+                IntPtr.Zero,
+                Int32Rect.Empty,
+                BitmapSizeOptions.FromEmptyOptions());
+            if (!DeleteObject(hBitmap))
+            {
+                throw new System.ComponentModel.Win32Exception();
+            }
+            return wpfBitmap;
+        }
+
         /// <summary>
         /// 设置 "Mod" "MouseLeftButtonDown"
         /// </summary>
@@ -84,28 +105,19 @@ namespace 饥荒开服工具ByTpxxn.View
         {
             // 左边显示
             var n = (int)((DediModBox)sender).UCCheckBox.Tag;
-            var author = "作者:\r\n" + _mods.ModList[n].Author + "\r\n\r\n";
-            var description = "描述:\r\n" + _mods.ModList[n].Description + "\r\n\r\n";
-            var strName = "Mod名字:\r\n" + _mods.ModList[n].Name + "\r\n\r\n";
-            var version = "版本:\r\n" + _mods.ModList[n].Version + "\r\n\r\n";
-            var fileName = "文件夹:\r\n" + _mods.ModList[n].DirName + "\r\n\r\n";
-            ModDescriptionStackPanel.FontSize = 12;
-            ModDescriptionStackPanel.TextWrapping = TextWrapping.WrapWithOverflow;
-            ModDescriptionStackPanel.Text = strName + author + description + version + fileName;
+            ModInfoImage.Source = _mods.ModList[n].Picture != null ? ChangeBitmapToImageSource(_mods.ModList[n].Picture) : null;
+            ModInfoNameTextBlock.Text = _mods.ModList[n].Name;
+            ModInfoAuthorTextBlock.Text = "作者：" + _mods.ModList[n].Author;
+            ModInfoVersionTextBlock.Text = "版本：" + _mods.ModList[n].Version;
+            ModInfoFolderTextBlock.Text = "文件夹：" + _mods.ModList[n].ModDirName;
+            ModInfoTypeTextBlock.Text = _mods.ModList[n].ModType == ModType.Server ? "服务端" : "所有人";
+
+            ModDescriptionStackPanel.Text =_mods.ModList[n].Description;
             if (_mods.ModList[n].ConfigurationOptions.Count == 0)
             {
                 // 没有细节配置项
                 Debug.WriteLine(n);
                 ModSettingStackPanel.Children.Clear();
-                var labelModXiJie = new Label
-                {
-                    Height = 300,
-                    Width = 300,
-                    Content = "QQ群: 580332268 \r\n mod类型:\r\n 所有人: 所有人都必须有.\r\n 服务器:只要服务器有就行",
-                    FontWeight = FontWeights.Bold,
-                    FontSize = 20
-                };
-                ModSettingStackPanel.Children.Add(labelModXiJie);
             }
             else
             {
@@ -174,7 +186,7 @@ namespace 饥荒开服工具ByTpxxn.View
         /// </summary>
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
-            _mods.ModList[(int)(((CheckBox)sender).Tag)].Enabled = false;
+            _mods.ModList[(int)((CheckBox)sender).Tag].Enabled = false;
             //Debug.WriteLine(((CheckBox)sender).Tag.ToString());
         }
 

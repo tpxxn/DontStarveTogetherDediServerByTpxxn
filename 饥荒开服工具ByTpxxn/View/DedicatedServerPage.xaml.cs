@@ -391,7 +391,7 @@ namespace 饥荒开服工具ByTpxxn.View
             _mods = null;
             if (!string.IsNullOrEmpty(CommonPath.ServerModsDirPath) && whenCreateWorld)
             {
-                _mods = new Mods(CommonPath.ServerModsDirPath);
+                _mods = new Mods();
                 SetModSet();
             }
             #endregion

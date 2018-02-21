@@ -26,21 +26,7 @@ namespace 饥荒开服工具ByTpxxn.MyUserControl
         {
             InitializeComponent();
         }
-
-        //private void UCCheckBox_Click(object sender, RoutedEventArgs e)
-        //{
-        //    if(UCCheckBox.IsChecked == false)
-        //    {
-        //        UCEnableLabel.Foreground = Brushes.Black;
-        //        UCEnableLabel.Content = "停用";
-        //    }
-        //    else
-        //    {
-        //        UCEnableLabel.Foreground = Brushes.Green;
-        //        UCEnableLabel.Content = "启用";
-        //    }
-        //}
-
+        
         private void Border_GotFocus(object sender, RoutedEventArgs e)
         {
             // 有bug,在vs里测试没有问题的,但是放到外面,当勾选某个mod时,会出问题.我不会弄..

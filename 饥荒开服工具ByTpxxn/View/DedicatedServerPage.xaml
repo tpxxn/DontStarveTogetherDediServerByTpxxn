@@ -24,7 +24,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-    
+
     <Grid x:Name="MainGrid">
         <Grid x:Name="SettingMainPanel" Margin="230,0,10,10" ClipToBounds="false" SnapsToDevicePixels="true" HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto">
             <Grid.RowDefinitions>
@@ -328,9 +328,28 @@
                     <ScrollViewer Grid.Column="0" Template="{StaticResource DediRightPanelScrollViewerControlTemplate}">
                         <StackPanel x:Name="ModListStackPanel"/>
                     </ScrollViewer>
-                    <ScrollViewer Grid.Column="1" Template="{StaticResource DediRightPanelScrollViewerControlTemplate}">
+                    <ScrollViewer Grid.Column="1" Template="{StaticResource DediRightPanelScrollViewerControlTemplate}" Margin="10,10,0,0">
                         <StackPanel Orientation="Vertical">
-                            <TextBlock x:Name="ModDescriptionStackPanel"/>
+                            <Grid x:Name="ModInfoGrid">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="128"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Image x:Name="ModInfoImage" Grid.Column="0" Grid.RowSpan="5" Width="128" Height="128"/>
+                                <TextBlock Grid.Column="1" Grid.Row="0" x:Name="ModInfoNameTextBlock" Foreground="#FFEFEBD7" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="18" FontWeight="Bold" Margin="10,0,0,0"/>
+                                <TextBlock Grid.Column="1" Grid.Row="1" x:Name="ModInfoAuthorTextBlock" Foreground="#FFC3A972" HorizontalAlignment="Left" FontWeight="Bold" Margin="10,0,0,0"/>
+                                <TextBlock Grid.Column="1" Grid.Row="2" x:Name="ModInfoVersionTextBlock" Foreground="#FFC3A972" HorizontalAlignment="Left" FontWeight="Bold" Margin="10,0,0,0"/>
+                                <TextBlock Grid.Column="1" Grid.Row="3" x:Name="ModInfoFolderTextBlock" Foreground="#FFC3A972" HorizontalAlignment="Left" FontWeight="Bold" Margin="10,0,0,0"/>
+                                <TextBlock Grid.Column="1" Grid.Row="4" x:Name="ModInfoTypeTextBlock" Foreground="#FFCAC9BF" HorizontalAlignment="Left" FontWeight="Bold" Margin="10,0,0,0"/>
+                            </Grid>
+                            <TextBlock x:Name="ModDescriptionStackPanel" Margin="10" FontSize="16" FontWeight="Bold" TextWrapping="WrapWithOverflow" Foreground="#FFFAFAFA"/>
                             <StackPanel x:Name="ModSettingStackPanel" Orientation="Vertical"/>
                         </StackPanel>
                     </ScrollViewer>

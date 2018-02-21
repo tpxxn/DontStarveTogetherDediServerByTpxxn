@@ -1,5 +1,6 @@
 ﻿using Neo.IronLua;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -15,11 +16,6 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
 
         #region 字段和属性
 
-        /// <summary>
-        /// Mod目录路径
-        /// </summary>
-        public string ModsDirPath { get; set; }
-
         public string ModoverrideFilePath { get; set; }
 
         /// <summary>
@@ -33,38 +29,44 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
         /// <summary>
         /// 读取所有的mod，放到listMod中
         /// </summary>
-        /// <param name="modsDirPath">mods路径</param>
-        public Mods(string modsDirPath)
+        public Mods()
         {
-            ModsDirPath = modsDirPath;
             ModList = new List<Mod>();
             // 遍历modsPath中每一个文件modinfo.lua文件
-            var directoryInfo = new DirectoryInfo(modsDirPath);
+            var directoryInfos = new DirectoryInfo(CommonPath.ServerModsDirPath).GetDirectories();
             // TODO：这里要保证mods文件夹下全部都是mod的文件夹，不能有其他的文件夹，不然后面可能会出错
-            var directoryInfos = directoryInfo.GetDirectories();
             foreach (var directoryInfoInDirectoryInfos in directoryInfos)
             {
-                // modinfo的路径
-                var modinfoPath = directoryInfoInDirectoryInfos.FullName + "\\modinfo.lua";
-                // 这个mod的配置lt1，可以为空，后面有判断
-                //LuaTable lt1 = lt[strdir[i].Name] == null ? null : (LuaTable)lt[strdir[i].Name];
-                // 创建mod
-                var mod = new Mod(modinfoPath);
-                // 添加
-                ModList.Add(mod);
+                try
+                {
+                    // modinfo的路径
+                    var modinfoPath = directoryInfoInDirectoryInfos.FullName + @"\modinfo.lua";
+                    // 这个mod的配置lt1，可以为空，后面有判断
+                    //LuaTable lt1 = lt[strdir[i].Name] == null ? null : (LuaTable)lt[strdir[i].Name];
+                    // 创建mod
+                    var mod = new Mod(modinfoPath);
+                    // [如果不是客户端mod]添加
+                    if (mod.ModType != ModType.Client)
+                        ModList.Add(mod);
+                }
+                catch (IOException e)
+                {
+                    Debug.WriteLine(e.ToString());
+                }
             }
         }
 
-        public void ReadModsOverrides(string modsDirPath, string modoverridesFilePath)
+        public void ReadModsOverrides(string modoverridesFilePath)
         {
             ModoverrideFilePath = modoverridesFilePath;
             var serverluaTable = LuaConfig.ReadLua(modoverridesFilePath, Encoding.UTF8, true);
             // 遍历modsPath中每一个文件modinfo.lua文件
-            var directoryInfo = new DirectoryInfo(modsDirPath);
+            var directoryInfos = new DirectoryInfo(CommonPath.ServerModsDirPath).GetDirectories();
             // TODO：这里要保证mods文件夹下全部都是mod的文件夹，不能有其他的文件夹，不然后面可能会出错
-            var directoryInfos = directoryInfo.GetDirectories();
             for (var i = 0; i < directoryInfos.Length; i++)
             {
+                if (i >= ModList.Count)
+                    break;
                 // 这个mod的配置luaTable，可以为空，后面有判断
                 var luaTable = serverluaTable[directoryInfos[i].Name] == null ? null : (LuaTable)serverluaTable[directoryInfos[i].Name];
                 // 读取modoverrides，赋值到current值中，用current覆盖default
@@ -89,7 +91,7 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
             foreach (var mod in ModList)
             {
                 // mod的文件夹名字
-                var dirName = mod.DirName;
+                var dirName = mod.ModDirName;
                 // mod是否开启
                 var enabled = mod.Enabled;
                 // 如果mod没有开启，则不拼接不写入文件。
