@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -48,13 +49,31 @@ namespace 饥荒开服工具ByTpxxn.MyUserControl
         }
 
         public static readonly DependencyProperty ImageToolTipProperty =
-            DependencyProperty.Register("ImageToolTip", typeof(string), typeof(DediEditWorldSelectBox), new PropertyMetadata(string.Empty, OnImageToolTipChanged));
+            //DependencyProperty.Register("ImageToolTip", typeof(string), typeof(DediEditWorldSelectBox));
+        DependencyProperty.Register("ImageToolTip", typeof(string), typeof(DediEditWorldSelectBox), new PropertyMetadata(string.Empty, OnImageToolTipChanged));
 
         private static void OnImageToolTipChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if (e.NewValue == null) return;
             var dediSelectBox = (DediEditWorldSelectBox)d;
-            dediSelectBox.Picture.ToolTip = (string)e.NewValue;
+            //dediSelectBox.Picture.ToolTip = (string)e.NewValue;
+            dediSelectBox.Picture.ToolTip = new ToolTip
+            {
+                BorderBrush = null,
+                Foreground = null,
+                Placement = PlacementMode.Top,
+                Background = new ImageBrush
+                {
+                    ImageSource = new BitmapImage(new Uri("pack://application:,,,/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_mp_btn_tip.png", UriKind.RelativeOrAbsolute))
+                },
+                Content = new TextBlock
+                {
+                    Text = (string)e.NewValue,
+                    Foreground = Brushes.White,
+                    FontSize = 15,
+                    Margin = new Thickness(10, 2, 10, 2)
+                }
+            };
             dediSelectBox.TitleText = (string)e.NewValue;
         }
         #endregion
