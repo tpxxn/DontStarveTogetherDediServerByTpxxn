@@ -25,11 +25,11 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
         /// <summary>
         /// Mod列表
         /// </summary>
-        internal List<Mod> ListMod { get; set; }
+        internal List<Mod> ModList { get; set; }
         #endregion
 
 
-        #region 【初始化】的那个
+        #region 构造函数
         /// <summary>
         /// 读取所有的mod，放到listMod中
         /// </summary>
@@ -37,7 +37,7 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
         public Mods(string modsDirPath)
         {
             ModsDirPath = modsDirPath;
-            ListMod = new List<Mod>();
+            ModList = new List<Mod>();
             // 遍历modsPath中每一个文件modinfo.lua文件
             var directoryInfo = new DirectoryInfo(modsDirPath);
             // TODO：这里要保证mods文件夹下全部都是mod的文件夹，不能有其他的文件夹，不然后面可能会出错
@@ -51,7 +51,7 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
                 // 创建mod
                 var mod = new Mod(modinfoPath);
                 // 添加
-                ListMod.Add(mod);
+                ModList.Add(mod);
             }
         }
 
@@ -68,7 +68,7 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
                 // 这个mod的配置luaTable，可以为空，后面有判断
                 var luaTable = serverluaTable[directoryInfos[i].Name] == null ? null : (LuaTable)serverluaTable[directoryInfos[i].Name];
                 // 读取modoverrides，赋值到current值中，用current覆盖default
-                ListMod[i].ReadModoverrides(luaTable);
+                ModList[i].ReadModoverrides(luaTable);
             }
         }
 
@@ -86,7 +86,7 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
             // 开始拼接字符串
             var stringBuilder = new StringBuilder();
             // 循环获取
-            foreach (var mod in ListMod)
+            foreach (var mod in ModList)
             {
                 // mod的文件夹名字
                 var dirName = mod.DirName;

@@ -269,7 +269,7 @@
                         </Grid>
                     </StackPanel>
                 </ScrollViewer>
-                <Grid x:Name="DediWorldSet">
+                <Grid x:Name="DediWorldSet" d:IsHidden="True">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="10"/>
                         <ColumnDefinition Width="*"/>
@@ -320,7 +320,7 @@
                         </StackPanel>
                     </ScrollViewer>
                 </Grid>
-                <Grid x:Name="DediModSet" d:IsHidden="True">
+                <Grid x:Name="DediModSet">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="240"/>
                         <ColumnDefinition Width="*"/>

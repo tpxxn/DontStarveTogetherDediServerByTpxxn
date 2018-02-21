@@ -158,6 +158,11 @@ namespace 饥荒开服工具ByTpxxn.MyUserControl
             var dediSelectBox = (DediEditWorldSelectBox)d;
             dediSelectBox.ContentTextBlock.Visibility = Visibility.Visible;
             dediSelectBox.ContentTextBlock.Text = ((List<string>)e.NewValue)[dediSelectBox.TextIndex];
+            if (((List<string>) e.NewValue).Count == 1)
+            {
+                dediSelectBox.SwitchLeftButton.IsEnabled = false;
+                dediSelectBox.SwitchRightButton.IsEnabled = false;
+            }
         }
         #endregion
 

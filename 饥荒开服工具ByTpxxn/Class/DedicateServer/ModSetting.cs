@@ -47,7 +47,7 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
         /// <summary>
         /// 设置的默认值
         /// </summary>
-        public string Default1 { get; set; }
+        public string Default { get; set; }
 
         /// <summary>
         /// 设置的当前值（先读默认值，之后用读取的当前值覆盖）

@@ -207,7 +207,7 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
                     Label = modLabel,
                     Hover = modHover,
                     Current = modCurrent,
-                    Default1 = modDefault,
+                    Default = modDefault,
                     Options = optionsList
                 };
                 // 添加到总的configuration_options

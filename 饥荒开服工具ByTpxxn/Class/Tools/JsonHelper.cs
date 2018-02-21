@@ -49,23 +49,23 @@ namespace 饥荒开服工具ByTpxxn.Class.Tools
             }
             foreach (var item in caves.World)
             {
-                hanizationObject.Hanization.Master.World.Add(new DedicateServer.World { Key = item.Key, KeyHanization = item.KeyHanization, ValueHanization = item.ValueHanization.Split(',').ToList() });
+                hanizationObject.Hanization.Caves.World.Add(new DedicateServer.World { Key = item.Key, KeyHanization = item.KeyHanization, ValueHanization = item.ValueHanization.Split(',').ToList() });
             }
             foreach (var item in caves.Resources)
             {
-                hanizationObject.Hanization.Master.Resources.Add(new DedicateServer.Resources { Key = item.Key, KeyHanization = item.KeyHanization, ValueHanization = item.ValueHanization.Split(',').ToList() });
+                hanizationObject.Hanization.Caves.Resources.Add(new DedicateServer.Resources { Key = item.Key, KeyHanization = item.KeyHanization, ValueHanization = item.ValueHanization.Split(',').ToList() });
             }
             foreach (var item in caves.Foods)
             {
-                hanizationObject.Hanization.Master.Foods.Add(new DedicateServer.Foods { Key = item.Key, KeyHanization = item.KeyHanization, ValueHanization = item.ValueHanization.Split(',').ToList() });
+                hanizationObject.Hanization.Caves.Foods.Add(new DedicateServer.Foods { Key = item.Key, KeyHanization = item.KeyHanization, ValueHanization = item.ValueHanization.Split(',').ToList() });
             }
             foreach (var item in caves.Animals)
             {
-                hanizationObject.Hanization.Master.Animals.Add(new DedicateServer.Animals { Key = item.Key, KeyHanization = item.KeyHanization, ValueHanization = item.ValueHanization.Split(',').ToList() });
+                hanizationObject.Hanization.Caves.Animals.Add(new DedicateServer.Animals { Key = item.Key, KeyHanization = item.KeyHanization, ValueHanization = item.ValueHanization.Split(',').ToList() });
             }
             foreach (var item in caves.Monsters)
             {
-                hanizationObject.Hanization.Master.Monsters.Add(new DedicateServer.Monsters { Key = item.Key, KeyHanization = item.KeyHanization, ValueHanization = item.ValueHanization.Split(',').ToList() });
+                hanizationObject.Hanization.Caves.Monsters.Add(new DedicateServer.Monsters { Key = item.Key, KeyHanization = item.KeyHanization, ValueHanization = item.ValueHanization.Split(',').ToList() });
             }
             return hanizationObject;
         }

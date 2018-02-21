@@ -24,16 +24,16 @@ namespace 饥荒开服工具ByTpxxn.View
             if (!string.IsNullOrEmpty(CommonPath.ServerModsDirPath))
             {
                 // 清空,Enabled变成默认值
-                foreach (var item in _mods.ListMod)
+                foreach (var item in _mods.ModList)
                 {
                     item.Enabled = false;
                 }
-                // 细节也要变成默认值,之后再重新读取1
-                foreach (var item in _mods.ListMod)
+                // 细节也要变成默认值,之后再重新读取
+                foreach (var mod in _mods.ModList)
                 {
-                    foreach (var item1 in item.ConfigurationOptions)
+                    foreach (var configurationOption in mod.ConfigurationOptions)
                     {
-                        item1.Value.Current = item1.Value.Default1;
+                        configurationOption.Value.Current = configurationOption.Value.Default;
                     }
                 }
                 // 重新读取
@@ -45,10 +45,10 @@ namespace 饥荒开服工具ByTpxxn.View
             ModDescriptionStackPanel.Text = "";
             if (_mods != null)
             {
-                for (var i = 0; i < _mods.ListMod.Count; i++)
+                for (var i = 0; i < _mods.ModList.Count; i++)
                 {
                     // 屏蔽 客户端MOD
-                    if (_mods.ListMod[i].ModType == ModType.客户端)
+                    if (_mods.ModList[i].ModType == ModType.客户端)
                     {
                         continue;
                     }
@@ -56,22 +56,22 @@ namespace 饥荒开服工具ByTpxxn.View
                     {
                         Width = 200,
                         Height = 70,
-                        UCTitle = { Content = _mods.ListMod[i].Name },
+                        UCTitle = { Content = _mods.ModList[i].Name },
                         UCCheckBox = { Tag = i },
                         UCConfig =
                         {
-                            Source = _mods.ListMod[i].ConfigurationOptions.Count != 0
+                            Source = _mods.ModList[i].ConfigurationOptions.Count != 0
                                 ? new BitmapImage(new Uri(
                                     "/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_mp_mod_config.png",
                                     UriKind.Relative))
                                 : null
                         }
                     };
-                    dediModBox.UCCheckBox.IsChecked = _mods.ListMod[i].Enabled;
+                    dediModBox.UCCheckBox.IsChecked = _mods.ModList[i].Enabled;
                     dediModBox.UCCheckBox.Checked += CheckBox_Checked;
                     dediModBox.UCCheckBox.Unchecked += CheckBox_Unchecked;
                     dediModBox.PreviewMouseLeftButtonDown += DediModBox_MouseLeftButtonDown;
-                    dediModBox.UCEnableLabel.Content = _mods.ListMod[i].ModType;
+                    dediModBox.UCEnableLabel.Content = _mods.ModList[i].ModType;
                     ModListStackPanel.Children.Add(dediModBox);
                 }
             }
@@ -84,15 +84,15 @@ namespace 饥荒开服工具ByTpxxn.View
         {
             // 左边显示
             var n = (int)((DediModBox)sender).UCCheckBox.Tag;
-            var author = "作者:\r\n" + _mods.ListMod[n].Author + "\r\n\r\n";
-            var description = "描述:\r\n" + _mods.ListMod[n].Description + "\r\n\r\n";
-            var strName = "Mod名字:\r\n" + _mods.ListMod[n].Name + "\r\n\r\n";
-            var version = "版本:\r\n" + _mods.ListMod[n].Version + "\r\n\r\n";
-            var fileName = "文件夹:\r\n" + _mods.ListMod[n].DirName + "\r\n\r\n";
+            var author = "作者:\r\n" + _mods.ModList[n].Author + "\r\n\r\n";
+            var description = "描述:\r\n" + _mods.ModList[n].Description + "\r\n\r\n";
+            var strName = "Mod名字:\r\n" + _mods.ModList[n].Name + "\r\n\r\n";
+            var version = "版本:\r\n" + _mods.ModList[n].Version + "\r\n\r\n";
+            var fileName = "文件夹:\r\n" + _mods.ModList[n].DirName + "\r\n\r\n";
             ModDescriptionStackPanel.FontSize = 12;
             ModDescriptionStackPanel.TextWrapping = TextWrapping.WrapWithOverflow;
             ModDescriptionStackPanel.Text = strName + author + description + version + fileName;
-            if (_mods.ListMod[n].ConfigurationOptions.Count == 0)
+            if (_mods.ModList[n].ConfigurationOptions.Count == 0)
             {
                 // 没有细节配置项
                 Debug.WriteLine(n);
@@ -112,7 +112,7 @@ namespace 饥荒开服工具ByTpxxn.View
                 // 有,显示细节配置项
                 Debug.WriteLine(n);
                 ModSettingStackPanel.Children.Clear();
-                foreach (var item in _mods.ListMod[n].ConfigurationOptions)
+                foreach (var item in _mods.ModList[n].ConfigurationOptions)
                 {
                     // stackPanel
                     var stackPanel = new StackPanel
@@ -163,8 +163,8 @@ namespace 饥荒开服工具ByTpxxn.View
                 var n = int.Parse(str[0]);
                 var name = str[1];
                 // 好复杂
-                _mods.ListMod[n].ConfigurationOptions[name].Current =
-                    _mods.ListMod[n].ConfigurationOptions[name].Options[((DediComboBox)sender).SelectedIndex].Data;
+                _mods.ModList[n].ConfigurationOptions[name].Current =
+                    _mods.ModList[n].ConfigurationOptions[name].Options[((DediComboBox)sender).SelectedIndex].Data;
 
             }
         }
@@ -174,7 +174,7 @@ namespace 饥荒开服工具ByTpxxn.View
         /// </summary>
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
-            _mods.ListMod[(int)(((CheckBox)sender).Tag)].Enabled = false;
+            _mods.ModList[(int)(((CheckBox)sender).Tag)].Enabled = false;
             //Debug.WriteLine(((CheckBox)sender).Tag.ToString());
         }
 
@@ -183,7 +183,7 @@ namespace 饥荒开服工具ByTpxxn.View
         /// </summary>
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            _mods.ListMod[(int)((CheckBox)sender).Tag].Enabled = true;
+            _mods.ModList[(int)((CheckBox)sender).Tag].Enabled = true;
             //Debug.WriteLine(((CheckBox)sender).Tag.ToString());
         }
     }

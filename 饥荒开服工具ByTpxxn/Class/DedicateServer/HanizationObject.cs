@@ -73,7 +73,9 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
 
     public class Hanization
     {
+        [JsonProperty("Master")]
         public Master Master { get; set; }
+        [JsonProperty("Caves")]
         public Caves Caves { get; set; }
 
         public Hanization()

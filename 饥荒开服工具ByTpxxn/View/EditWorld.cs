@@ -47,9 +47,9 @@ namespace 饥荒开服工具ByTpxxn.View
                 var dediEditWorldSelectBox = new DediEditWorldSelectBox
                 {
                     ImageSource = new BitmapImage(new Uri(item.Picture, UriKind.Relative)),
-                    TextList = HanizationList(item.Key),
+                    TextList = HanizationList(item.Key, false),
                     TextIndex = item.Index,
-                    ImageToolTip = Hanization(item.Key),
+                    ImageToolTip = Hanization(item.Key, false),
                     Tag = item.Key,
                     Width = 200,
                     Height = 60
@@ -66,9 +66,9 @@ namespace 饥荒开服工具ByTpxxn.View
                 var dediEditWorldSelectBox = new DediEditWorldSelectBox
                 {
                     ImageSource = new BitmapImage(new Uri(item.Picture, UriKind.Relative)),
-                    TextList = HanizationList(item.Key),
+                    TextList = HanizationList(item.Key, false),
                     TextIndex = item.Index,
-                    ImageToolTip = Hanization(item.Key),
+                    ImageToolTip = Hanization(item.Key, false),
                     Tag = item.Key,
                     Width = 200,
                     Height = 60
@@ -85,9 +85,9 @@ namespace 饥荒开服工具ByTpxxn.View
                 var dediEditWorldSelectBox = new DediEditWorldSelectBox
                 {
                     ImageSource = new BitmapImage(new Uri(item.Picture, UriKind.Relative)),
-                    TextList = HanizationList(item.Key),
+                    TextList = HanizationList(item.Key, false),
                     TextIndex = item.Index,
-                    ImageToolTip = Hanization(item.Key),
+                    ImageToolTip = Hanization(item.Key, false),
                     Tag = item.Key,
                     Width = 200,
                     Height = 60
@@ -104,9 +104,9 @@ namespace 饥荒开服工具ByTpxxn.View
                 var dediEditWorldSelectBox = new DediEditWorldSelectBox
                 {
                     ImageSource = new BitmapImage(new Uri(item.Picture, UriKind.Relative)),
-                    TextList = HanizationList(item.Key),
+                    TextList = HanizationList(item.Key, false),
                     TextIndex = item.Index,
-                    ImageToolTip = Hanization(item.Key),
+                    ImageToolTip = Hanization(item.Key, false),
                     Tag = item.Key,
                     Width = 200,
                     Height = 60
@@ -123,9 +123,9 @@ namespace 饥荒开服工具ByTpxxn.View
                 var dediEditWorldSelectBox = new DediEditWorldSelectBox
                 {
                     ImageSource = new BitmapImage(new Uri(item.Picture, UriKind.Relative)),
-                    TextList = HanizationList(item.Key),
+                    TextList = HanizationList(item.Key, false),
                     TextIndex = item.Index,
-                    ImageToolTip = Hanization(item.Key),
+                    ImageToolTip = Hanization(item.Key, false),
                     Tag = item.Key,
                     Width = 200,
                     Height = 60
@@ -143,35 +143,35 @@ namespace 饥荒开服工具ByTpxxn.View
             var dediEditWorldSelectBox = (DediEditWorldSelectBox)sender;
             foreach (var item in _overWorld._leveldataOverrideObject.World)
             {
-                if (Hanization(item.Key) == dediEditWorldSelectBox.TitleText)
+                if (Hanization(item.Key, false) == dediEditWorldSelectBox.TitleText)
                 {
                     item.Index = dediEditWorldSelectBox.TextIndex;
                 }
             }
             foreach (var item in _overWorld._leveldataOverrideObject.Resources)
             {
-                if (Hanization(item.Key) == dediEditWorldSelectBox.TitleText)
+                if (Hanization(item.Key, false) == dediEditWorldSelectBox.TitleText)
                 {
                     item.Index = dediEditWorldSelectBox.TextIndex;
                 }
             }
             foreach (var item in _overWorld._leveldataOverrideObject.Foods)
             {
-                if (Hanization(item.Key) == dediEditWorldSelectBox.TitleText)
+                if (Hanization(item.Key, false) == dediEditWorldSelectBox.TitleText)
                 {
                     item.Index = dediEditWorldSelectBox.TextIndex;
                 }
             }
             foreach (var item in _overWorld._leveldataOverrideObject.Animals)
             {
-                if (Hanization(item.Key) == dediEditWorldSelectBox.TitleText)
+                if (Hanization(item.Key, false) == dediEditWorldSelectBox.TitleText)
                 {
                     item.Index = dediEditWorldSelectBox.TextIndex;
                 }
             }
             foreach (var item in _overWorld._leveldataOverrideObject.Monsters)
             {
-                if (Hanization(item.Key) == dediEditWorldSelectBox.TitleText)
+                if (Hanization(item.Key, false) == dediEditWorldSelectBox.TitleText)
                 {
                     item.Index = dediEditWorldSelectBox.TextIndex;
                 }
@@ -193,7 +193,6 @@ namespace 饥荒开服工具ByTpxxn.View
             DediCavesMonsters.Children.Clear();
             DediCavesResources.Children.Clear();
             #region "显示" 地下
-            // animals
             foreach (var item in leveldataOverrideObject.World)
             {
                 if (item.Key == "roads" || item.Key == "layout_mode" || item.Key == "wormhole_prefab")
@@ -203,9 +202,9 @@ namespace 饥荒开服工具ByTpxxn.View
                 var dediEditWorldSelectBox = new DediEditWorldSelectBox
                 {
                     ImageSource = new BitmapImage(new Uri(item.Picture, UriKind.Relative)),
-                    TextList = HanizationList(item.Key),
+                    TextList = HanizationList(item.Key, true),
                     TextIndex = item.Index,
-                    ImageToolTip = Hanization(item.Key),
+                    ImageToolTip = Hanization(item.Key, true),
                     Tag = item.Key,
                     Width = 200,
                     Height = 60
@@ -222,9 +221,9 @@ namespace 饥荒开服工具ByTpxxn.View
                 var dediEditWorldSelectBox = new DediEditWorldSelectBox
                 {
                     ImageSource = new BitmapImage(new Uri(item.Picture, UriKind.Relative)),
-                    TextList = HanizationList(item.Key),
+                    TextList = HanizationList(item.Key, true),
                     TextIndex = item.Index,
-                    ImageToolTip = Hanization(item.Key),
+                    ImageToolTip = Hanization(item.Key, true),
                     Tag = item.Key,
                     Width = 200,
                     Height = 60
@@ -241,9 +240,9 @@ namespace 饥荒开服工具ByTpxxn.View
                 var dediEditWorldSelectBox = new DediEditWorldSelectBox
                 {
                     ImageSource = new BitmapImage(new Uri(item.Picture, UriKind.Relative)),
-                    TextList = HanizationList(item.Key),
+                    TextList = HanizationList(item.Key, true),
                     TextIndex = item.Index,
-                    ImageToolTip = Hanization(item.Key),
+                    ImageToolTip = Hanization(item.Key, true),
                     Tag = item.Key,
                     Width = 200,
                     Height = 60
@@ -260,9 +259,9 @@ namespace 饥荒开服工具ByTpxxn.View
                 var dediEditWorldSelectBox = new DediEditWorldSelectBox
                 {
                     ImageSource = new BitmapImage(new Uri(item.Picture, UriKind.Relative)),
-                    TextList = HanizationList(item.Key),
+                    TextList = HanizationList(item.Key, true),
                     TextIndex = item.Index,
-                    ImageToolTip = Hanization(item.Key),
+                    ImageToolTip = Hanization(item.Key, true),
                     Tag = item.Key,
                     Width = 200,
                     Height = 60
@@ -279,9 +278,9 @@ namespace 饥荒开服工具ByTpxxn.View
                 var dediEditWorldSelectBox = new DediEditWorldSelectBox
                 {
                     ImageSource = new BitmapImage(new Uri(item.Picture, UriKind.Relative)),
-                    TextList = HanizationList(item.Key),
+                    TextList = HanizationList(item.Key, true),
                     TextIndex = item.Index,
-                    ImageToolTip = Hanization(item.Key),
+                    ImageToolTip = Hanization(item.Key, true),
                     Tag = item.Key,
                     Width = 200,
                     Height = 60
@@ -300,35 +299,35 @@ namespace 饥荒开服工具ByTpxxn.View
             var dediEditWorldSelectBox = (DediEditWorldSelectBox)sender;
             foreach (var item in _caves._leveldataOverrideObject.World)
             {
-                if (Hanization(item.Key) == dediEditWorldSelectBox.TitleText)
+                if (Hanization(item.Key, true) == dediEditWorldSelectBox.TitleText)
                 {
                     item.Index = dediEditWorldSelectBox.TextIndex;
                 }
             }
             foreach (var item in _caves._leveldataOverrideObject.Resources)
             {
-                if (Hanization(item.Key) == dediEditWorldSelectBox.TitleText)
+                if (Hanization(item.Key, true) == dediEditWorldSelectBox.TitleText)
                 {
                     item.Index = dediEditWorldSelectBox.TextIndex;
                 }
             }
             foreach (var item in _caves._leveldataOverrideObject.Foods)
             {
-                if (Hanization(item.Key) == dediEditWorldSelectBox.TitleText)
+                if (Hanization(item.Key, true) == dediEditWorldSelectBox.TitleText)
                 {
                     item.Index = dediEditWorldSelectBox.TextIndex;
                 }
             }
             foreach (var item in _caves._leveldataOverrideObject.Animals)
             {
-                if (Hanization(item.Key) == dediEditWorldSelectBox.TitleText)
+                if (Hanization(item.Key, true) == dediEditWorldSelectBox.TitleText)
                 {
                     item.Index = dediEditWorldSelectBox.TextIndex;
                 }
             }
             foreach (var item in _caves._leveldataOverrideObject.Monsters)
             {
-                if (Hanization(item.Key) == dediEditWorldSelectBox.TitleText)
+                if (Hanization(item.Key, true) == dediEditWorldSelectBox.TitleText)
                 {
                     item.Index = dediEditWorldSelectBox.TextIndex;
                 }

@@ -228,7 +228,7 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
             // 清空
             var configWorld = new Dictionary<string, string>();
             // 先读文件
-            var luaTable = LuaConfig.ReadLua(_isCave ? _pathall.CaveConfigFilePath : _pathall.OverworldConfigFilePath, Encoding.UTF8, true);
+            var luaTable = LuaConfig.ReadLua(!_isCave ? _pathall.OverworldConfigFilePath : _pathall.CaveConfigFilePath, Encoding.UTF8, true);
             // 初始化override世界配置
             var overridesDictionary = ((LuaTable)luaTable["overrides"]).Members;
             var keyList = overridesDictionary.Keys.ToList();
@@ -273,7 +273,6 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
             else
             {
                 savePath = _pathall.ServerDirPath + @"\Caves\leveldataoverride.lua";
-
             }
             var fileStream = new FileStream(savePath, FileMode.Create);
             var streamWriter = new StreamWriter(fileStream, Global.Utf8WithoutBom);
@@ -281,21 +280,27 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
             var stringBuilder = new StringBuilder();
             // 地上世界
             // 读取模板中地上世界配置的前半部分和后半部分dishangStrQ，dishangStrH，用于拼接字符串，保存用
-            var dishangWorld = FileHelper.ReadResources("ServerTemplate.Master.leveldataoverride.lua");
-            dishangWorld = dishangWorld.Replace("\r\n", "\n").Replace("\n", "\r\n");
-            var regex = new Regex(@".*overrides\s*=\s*{|random_set_pieces.*", RegexOptions.Singleline);
-            var mcdishang = regex.Matches(dishangWorld);
-            var dishangStrQ = mcdishang[0].Value + "\r\n";
-            var dishangStrH = "\r\n},\r\n" + mcdishang[1].Value + "\r\n";
-            // 地下
-            var caveWorld = FileHelper.ReadResources("ServerTemplate.Caves.leveldataoverride.lua");
-            caveWorld = caveWorld.Replace("\r\n", "\n").Replace("\n", "\r\n");
-            var regex1 = new Regex(@".*overrides\s*=\s*{|required_prefabs.*", RegexOptions.Singleline);
-            var mcdixia = regex1.Matches(caveWorld);
-            var caveStrQ = mcdixia[0].Value + "\r\n";
-            var caveStrH = "\r\n},\r\n" + mcdixia[1].Value + "\r\n";
+            string strQ, strH;
+            if (!_isCave)
+            {
+                var masterWorld = FileHelper.ReadResources("ServerTemplate.Master.leveldataoverride.lua");
+                masterWorld = masterWorld.Replace("\r\n", "\n").Replace("\n", "\r\n");
+                var masterRegex = new Regex(@".*overrides\s*=\s*{|random_set_pieces.*", RegexOptions.Singleline);
+                var masterMatchCollection = masterRegex.Matches(masterWorld);
+                strQ = masterMatchCollection[0].Value + "\r\n";
+                strH = "\r\n},\r\n" + masterMatchCollection[1].Value + "\r\n";
+            }
+            else
+            {
+                var cavesWorld = FileHelper.ReadResources("ServerTemplate.Caves.leveldataoverride.lua");
+                cavesWorld = cavesWorld.Replace("\r\n", "\n").Replace("\n", "\r\n");
+                var cavesRegex = new Regex(@".*overrides\s*=\s*{|required_prefabs.*", RegexOptions.Singleline);
+                var cavesMatchCollection = cavesRegex.Matches(cavesWorld);
+                strQ = cavesMatchCollection[0].Value + "\r\n";
+                strH = "\r\n},\r\n" + cavesMatchCollection[1].Value + "\r\n";
+            }
             // 追加前半部分
-            stringBuilder.Append(!_isCave ? dishangStrQ : caveStrQ);
+            stringBuilder.Append(strQ);
             // 追加中间部分
             var ParameterDictionary = new Dictionary<string, string>();
             foreach (var item in _leveldataOverrideObject.World)
@@ -338,14 +343,7 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
             var str = stringBuilder.ToString();
             str = str.Substring(0, str.Length - 3);
             // 追加后半部分
-            if (!_isCave)
-            {
-                str += dishangStrH;
-            }
-            else
-            {
-                str += caveStrH;
-            }
+            str += strH;
             streamWriter.Write(str);
             //清空缓冲区
             streamWriter.Flush();
