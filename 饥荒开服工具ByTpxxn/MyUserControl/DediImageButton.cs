@@ -34,7 +34,7 @@ namespace 饥荒开服工具ByTpxxn.MyUserControl
         // http://blog.csdn.net/rabbitsoft_1987/article/details/18677067
 
         #region 属性：ImageMouseEnter
-            
+
         public ImageSource ImageMouseEnter
         {
             get => GetValue(ImageMouseEnterProperty) as ImageSource;
@@ -48,13 +48,13 @@ namespace 饥荒开服工具ByTpxxn.MyUserControl
         #endregion
 
         #region 属性：ImageMouseLeave
-        
+
         public ImageSource ImageMouseLeave
         {
             get => GetValue(ImageMouseLeaveProperty) as ImageSource;
             set => SetValue(ImageMouseLeaveProperty, value);
         }
-        
+
         public static readonly DependencyProperty ImageMouseLeaveProperty =
             DependencyProperty.Register("ImageMouseLeave", typeof(ImageSource), typeof(DediImageButton),
                 new PropertyMetadata(new BitmapImage(), new PropertyChangedCallback(PropertyChange)));
@@ -68,13 +68,13 @@ namespace 饥荒开服工具ByTpxxn.MyUserControl
             get => GetValue(TextProperty) as string;
             set => SetValue(TextProperty, value);
         }
-        
+
         public static readonly DependencyProperty TextProperty =
             DependencyProperty.Register("Text", typeof(string), typeof(DediImageButton),
                 new PropertyMetadata("", new PropertyChangedCallback(PropertyChange)));
 
         #endregion
-        
+
         private static void PropertyChange(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             //if (e.Property.Name == "ImageMouseEnter")

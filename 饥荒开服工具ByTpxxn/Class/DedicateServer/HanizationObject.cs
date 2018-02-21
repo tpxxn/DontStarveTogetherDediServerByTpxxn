@@ -1,13 +1,18 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace 饥荒开服工具ByTpxxn.Class.JsonDeserialize.Hanization
+namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
 {
     public class HanizationItem
     {
         public string Key { get; set; }
         public string KeyHanization { get; set; }
-        public string ValueHanization { get; set; }
+        public List<string> ValueHanization { get; set; }
+
+        public HanizationItem()
+        {
+            ValueHanization = new List<string>();
+        }
     }
 
     public class World : HanizationItem { }
@@ -78,11 +83,11 @@ namespace 饥荒开服工具ByTpxxn.Class.JsonDeserialize.Hanization
         }
     }
 
-    public class HanizationRootObject
+    public class HanizationObject
     {
         public Hanization Hanization { get; set; }
 
-        public HanizationRootObject()
+        public HanizationObject()
         {
             Hanization = new Hanization();
         }

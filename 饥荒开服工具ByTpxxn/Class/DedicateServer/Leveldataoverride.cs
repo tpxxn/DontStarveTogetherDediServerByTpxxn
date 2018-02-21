@@ -1,10 +1,13 @@
 ﻿using Neo.IronLua;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using Newtonsoft.Json;
+using 饥荒开服工具ByTpxxn.Class.JsonDeserialize.EditWorld;
 using 饥荒开服工具ByTpxxn.Class.Tools;
 
 namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
@@ -24,15 +27,15 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
         private readonly bool _isCave;
 
         /// <summary>
-        /// 读取的选项文件
+        /// 读取的选项对象
         /// </summary>
-        private readonly Dictionary<string, List<string>> _selectConfigWorld = new Dictionary<string, List<string>>();
+        public LeveldataoverrideObject _leveldataOverrideObject { get; set; }
 
         /// <summary>
-        /// 最终的world
+        /// 从lua中读取的所选项
         /// </summary>
-        public Dictionary<string, EditWorldItem> FinalWorldDictionary { get; set; } = new Dictionary<string, EditWorldItem>();
-
+        public Dictionary<string, string> _luaSelectedDictionary { get; set; }
+        
         #endregion
 
         /// <summary>
@@ -46,7 +49,7 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
             _isCave = isCave;
             // 初始化，就是，读取地上地下世界，放到 Dictionary<string（世界的key）,List<string>（世界的value）> 类型中，
             // 但是以后如何在里面取值赋值
-            var result = Init();
+            Debug.WriteLine("初始化结果：" + Init()); 
         }
 
         /// <summary>
@@ -59,75 +62,196 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
             {
                 return "世界配置文件路径不对";
             }
+            // 读取[世界选项]值
+            _luaSelectedDictionary = ReadEditWorldFromLua();
             // 给[世界选项文件]初始化
-            ReadSelectConfigWorld();
-            // 将上面读取到的两个融到一起，到world中
-            SetWorld();
+            ReadEditWorldJson();
             return "初始化成功";
         }
+
+        #region Redux方法
 
         /// <summary>
         /// 读取世界选项的文件,赋值到selectConfigWorld，类型
         /// </summary>
-        private void ReadSelectConfigWorld()
+        private void ReadEditWorldJson()
         {
             // 先清空,再赋值
-            _selectConfigWorld.Clear();
+            _leveldataOverrideObject = new LeveldataoverrideObject();
             // 读取文件,填入到字典
-            var listStr = JsonHelper.ReadWorldSelect(_isCave);
-            foreach (var str in listStr)
+            var serverConfig = JsonConvert.DeserializeObject<EditWorldRootObject>(StringProcess.GetJsonString("EditWorld/EditWorld.json"));
+            if (!_isCave)
             {
-                // 分类和分类中的所有选项
-                var keyValuePair = str.Split('=');
-                // 所有选项
-                var valueList = keyValuePair[1].Split(',').ToList();
-                _selectConfigWorld.Add(keyValuePair[0], valueList);
-            }
-        }
-
-        /// <summary>
-        /// 赋值world
-        /// </summary>
-        private void SetWorld()
-        {
-            FinalWorldDictionary.Clear();
-            var configWorld = ReadConfigWorld();
-            // 遍历configworld
-            foreach (var item in _selectConfigWorld)
-            {
-                var picturePath = @"Resources/DedicatedServer/World/" + item.Key + ".png";
-                // 如果包含，选项中有，则添加选项中的
-                if (configWorld.ContainsKey(item.Key))
+                var master = serverConfig.EditWorld.Master;
+                foreach (var world in master.World)
                 {
-                    FinalWorldDictionary[item.Key] = new EditWorldItem(picturePath, item.Value, configWorld[item.Key], item.Key);
+                    _leveldataOverrideObject.World.Add(new LeveldataoverrideWorld
+                    {
+                        Picture = @"/Resources/DedicatedServer/World/" + world.Key + ".png",
+                        Key = world.Key,
+                        Value = world.Value.Split(',').ToList()
+                    });
                 }
-                //如果不包含，说明ServerConfig中没有写，没有配置，就用当前的值临时替代
-                //else
-                //{
-                //    var valueList = new List<string> { configWorld[item.Key] };
-                //    FinalWorldDictionary[item.Key] = new EditWorldItem(picturePath, valueList, configWorld[item.Key], item.Key);
-                //}
+                foreach (var resources in master.Resources)
+                {
+                    _leveldataOverrideObject.Resources.Add(new LeveldataoverrideResources
+                    {
+                        Picture = @"/Resources/DedicatedServer/World/" + resources.Key + ".png",
+                        Key = resources.Key,
+                        Value = resources.Value.Split(',').ToList()
+                    });
+                }
+                foreach (var foods in master.Foods)
+                {
+                    _leveldataOverrideObject.Foods.Add(new LeveldataoverrideFoods
+                    {
+                        Picture = @"/Resources/DedicatedServer/World/" + foods.Key + ".png",
+                        Key = foods.Key,
+                        Value = foods.Value.Split(',').ToList()
+                    });
+                }
+                foreach (var animals in master.Animals)
+                {
+                    _leveldataOverrideObject.Animals.Add(new LeveldataoverrideAnimals
+                    {
+                        Picture = @"/Resources/DedicatedServer/World/" + animals.Key + ".png",
+                        Key = animals.Key,
+                        Value = animals.Value.Split(',').ToList()
+                    });
+                }
+                foreach (var monsters in master.Monsters)
+                {
+                    _leveldataOverrideObject.Monsters.Add(new LeveldataoverrideMonsters
+                    {
+                        Picture = @"/Resources/DedicatedServer/World/" + monsters.Key + ".png",
+                        Key = monsters.Key,
+                        Value = monsters.Value.Split(',').ToList()
+                    });
+                }
+                foreach (var world in _leveldataOverrideObject.World)
+                {
+                    world.Index = GetIndex(world);
+                }
+                foreach (var resources in _leveldataOverrideObject.Resources)
+                {
+                    resources.Index = GetIndex(resources);
+                }
+                foreach (var foods in _leveldataOverrideObject.Foods)
+                {
+                    foods.Index = GetIndex(foods);
+                }
+                foreach (var animals in _leveldataOverrideObject.Animals)
+                {
+                    animals.Index = GetIndex(animals);
+                }
+                foreach (var monsters in _leveldataOverrideObject.Monsters)
+                {
+                    monsters.Index = GetIndex(monsters);
+                }
+            }
+            else
+            {
+                var caves = serverConfig.EditWorld.Caves;
+                foreach (var world in caves.World)
+                {
+                    _leveldataOverrideObject.World.Add(new LeveldataoverrideWorld
+                    {
+                        Picture = @"/Resources/DedicatedServer/World/" + world.Key + ".png",
+                        Key = world.Key,
+                        Value = world.Value.Split(',').ToList()
+                    });
+                }
+                foreach (var resources in caves.Resources)
+                {
+                    _leveldataOverrideObject.Resources.Add(new LeveldataoverrideResources
+                    {
+                        Picture = @"/Resources/DedicatedServer/World/" + resources.Key + ".png",
+                        Key = resources.Key,
+                        Value = resources.Value.Split(',').ToList()
+                    });
+                }
+                foreach (var foods in caves.Foods)
+                {
+                    _leveldataOverrideObject.Foods.Add(new LeveldataoverrideFoods
+                    {
+                        Picture = @"/Resources/DedicatedServer/World/" + foods.Key + ".png",
+                        Key = foods.Key,
+                        Value = foods.Value.Split(',').ToList()
+                    });
+                }
+                foreach (var animals in caves.Animals)
+                {
+                    _leveldataOverrideObject.Animals.Add(new LeveldataoverrideAnimals
+                    {
+                        Picture = @"/Resources/DedicatedServer/World/" + animals.Key + ".png",
+                        Key = animals.Key,
+                        Value = animals.Value.Split(',').ToList()
+                    });
+                }
+                foreach (var monsters in caves.Monsters)
+                {
+                    _leveldataOverrideObject.Monsters.Add(new LeveldataoverrideMonsters
+                    {
+                        Picture = @"/Resources/DedicatedServer/World/" + monsters.Key + ".png",
+                        Key = monsters.Key,
+                        Value = monsters.Value.Split(',').ToList()
+                    });
+                }
+                foreach (var world in _leveldataOverrideObject.World)
+                {
+                    world.Index = GetIndex(world);
+                }
+                foreach (var resources in _leveldataOverrideObject.Resources)
+                {
+                    resources.Index = GetIndex(resources);
+                }
+                foreach (var foods in _leveldataOverrideObject.Foods)
+                {
+                    foods.Index = GetIndex(foods);
+                }
+                foreach (var animals in _leveldataOverrideObject.Animals)
+                {
+                    animals.Index = GetIndex(animals);
+                }
+                foreach (var monsters in _leveldataOverrideObject.Monsters)
+                {
+                    monsters.Index = GetIndex(monsters);
+                }
             }
         }
-
+        
         /// <summary>
         /// 读取世界配置文件，赋值到configWorld
         /// </summary>
-        private Dictionary<string, string> ReadConfigWorld()
+        private Dictionary<string, string> ReadEditWorldFromLua()
         {
             // 清空
             var configWorld = new Dictionary<string, string>();
             // 先读文件
             var luaTable = LuaConfig.ReadLua(_isCave ? _pathall.CaveConfigFilePath : _pathall.OverworldConfigFilePath, Encoding.UTF8, true);
             // 初始化override世界配置
-            var worldDictionary = ((LuaTable)luaTable["overrides"]).Members;
-            var keyList = worldDictionary.Keys.ToList();
-            var valuesList = worldDictionary.Values.ToList();
-            for (var i = 0; i < worldDictionary.Count; i++)
+            var overridesDictionary = ((LuaTable)luaTable["overrides"]).Members;
+            var keyList = overridesDictionary.Keys.ToList();
+            var valuesList = overridesDictionary.Values.ToList();
+            for (var i = 0; i < overridesDictionary.Count; i++)
             {
                 configWorld.Add(keyList[i], valuesList[i].ToString());
             }
             return configWorld;
+        }
+
+        /// <summary>
+        /// 获取索引
+        /// </summary>
+        /// <returns></returns>
+        private int GetIndex(LeveldataOverrideItem leveldataOverrideItem)
+        {
+            for (var i = 0; i < leveldataOverrideItem.Value.Count; i++)
+            {
+                if (_luaSelectedDictionary[leveldataOverrideItem.Key] == leveldataOverrideItem.Value[i])
+                    return i;
+            }
+            return 0;
         }
 
         /// <summary>
@@ -137,6 +261,7 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
         {
             if (!Directory.Exists(_pathall.ServerDirPath))
             {
+                Debug.WriteLine("Server路径不存在！");
                 return;
             }
             // 保存到文件
@@ -169,16 +294,32 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
             var mcdixia = regex1.Matches(caveWorld);
             var caveStrQ = mcdixia[0].Value + "\r\n";
             var caveStrH = "\r\n},\r\n" + mcdixia[1].Value + "\r\n";
+            // 追加前半部分
             stringBuilder.Append(!_isCave ? dishangStrQ : caveStrQ);
-            foreach (var kvp in FinalWorldDictionary)
+            // 追加中间部分
+            foreach (var item in _leveldataOverrideObject.World)
             {
-                // stringBuilder += string.Format("{0}=\"{1}\",", kvp.Key, kvp.Value);
-                stringBuilder.AppendFormat("{0}=\"{1}\",", kvp.Key, kvp.Value.WorldConfig);
-                stringBuilder.Append("\r\n");
-                // stringBuilder += "\r\n";
+                stringBuilder.AppendFormat("        {0}=\"{1}\",\r\n", item.Key, item.Value[item.Index]);
+            }
+            foreach (var item in _leveldataOverrideObject.Resources)
+            {
+                stringBuilder.AppendFormat("        {0}=\"{1}\",\r\n", item.Key, item.Value[item.Index]);
+            }
+            foreach (var item in _leveldataOverrideObject.Foods)
+            {
+                stringBuilder.AppendFormat("        {0}=\"{1}\",\r\n", item.Key, item.Value[item.Index]);
+            }
+            foreach (var item in _leveldataOverrideObject.Animals)
+            {
+                stringBuilder.AppendFormat("        {0}=\"{1}\",\r\n", item.Key, item.Value[item.Index]);
+            }
+            foreach (var item in _leveldataOverrideObject.Monsters)
+            {
+                stringBuilder.AppendFormat("        {0}=\"{1}\",\r\n", item.Key, item.Value[item.Index]);
             }
             var str = stringBuilder.ToString();
             str = str.Substring(0, str.Length - 3);
+            // 追加后半部分
             if (!_isCave)
             {
                 str += dishangStrH;
@@ -195,5 +336,6 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
             fileStream.Close();
         }
 
+        #endregion
     }
 }

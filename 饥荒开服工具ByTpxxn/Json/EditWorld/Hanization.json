@@ -4,299 +4,371 @@
       "world": [
         {
           "Key": "task_set",
-          "Value": "经典,Together"
+          "KeyHanization": "生物群系",
+          "ValueHanization": "经典,Together"
         },
         {
           "Key": "start_location",
-          "Value": "增强,黑暗的,默认"
+          "KeyHanization": "出生区域",
+          "ValueHanization": "增强,黑暗的,默认"
         },
         {
           "Key": "world_size",
-          "Value": "小,中等,默认,巨大"
+          "KeyHanization": "世界大小",
+          "ValueHanization": "小,中等,默认,巨大"
         },
         {
           "Key": "branching",
-          "Value": "无,最少,默认,大部分"
+          "KeyHanization": "分支路",
+          "ValueHanization": "无,最少,默认,大部分"
         },
         {
           "Key": "loop",
-          "Value": "无,默认,大量"
+          "KeyHanization": "环形路",
+          "ValueHanization": "无,默认,大量"
         },
         {
           "Key": "specialevent",
-          "Value": "无,默认,万圣节之夜,冬季盛宴,火鸡之年"
+          "KeyHanization": "活动",
+          "ValueHanization": "无,默认,万圣节之夜,冬季盛宴,火鸡之年"
         },
         {
           "Key": "autumn",
-          "Value": "无,非常短,短,默认,长,非常长,随机"
+          "KeyHanization": "秋季",
+          "ValueHanization": "无,非常短,短,默认,长,非常长,随机"
         },
         {
           "Key": "winter",
-          "Value": "无,非常短,短,默认,长,非常长,随机"
+          "KeyHanization": "冬季",
+          "ValueHanization": "无,非常短,短,默认,长,非常长,随机"
         },
         {
           "Key": "spring",
-          "Value": "无,非常短,短,默认,长,非常长,随机"
+          "KeyHanization": "春季",
+          "ValueHanization": "无,非常短,短,默认,长,非常长,随机"
         },
         {
           "Key": "summer",
-          "Value": "无,非常短,短,默认,长,非常长,随机"
+          "KeyHanization": "夏季",
+          "ValueHanization": "无,非常短,短,默认,长,非常长,随机"
         },
         {
           "Key": "season_start",
-          "Value": "秋季,冬季,春季,夏季,春或秋,冬或夏,随机"
+          "KeyHanization": "开始季节",
+          "ValueHanization": "秋季,冬季,春季,夏季,春或秋,冬或夏,随机"
         },
         {
           "Key": "day",
-          "Value": "默认,长白天,长黄昏,长夜晚,无白天,无黄昏,无夜晚,仅白天,仅黄昏,仅夜晚"
+          "KeyHanization": "时间设置",
+          "ValueHanization": "默认,长白天,长黄昏,长夜晚,无白天,无黄昏,无夜晚,仅白天,仅黄昏,仅夜晚"
         },
         {
           "Key": "weather",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "降雨",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "lightning",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "闪电",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "frograin",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "青蛙雨",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "wildfires",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "自燃",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "regrowth",
-          "Value": "极慢,慢,默认,快,极快"
+          "KeyHanization": "世界再生",
+          "ValueHanization": "极慢,慢,默认,快,极快"
         },
         {
           "Key": "touchstone",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "复活石",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "boons",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "失败的幸存者",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "disease_delay",
-          "Value": "无,慢,默认,快,随机"
+          "KeyHanization": "疾病",
+          "ValueHanization": "无,慢,默认,快,随机"
         },
         {
           "Key": "prefabswaps_start",
-          "Value": "经典,默认,高度随机"
+          "KeyHanization": "开始资源种类",
+          "ValueHanization": "经典,默认,高度随机"
         },
         {
           "Key": "petrification",
-          "Value": "无,少,默认,多,最多"
+          "KeyHanization": "森林石化",
+          "ValueHanization": "无,少,默认,多,最多"
         }
       ],
       "resources": [
         {
           "Key": "flowers",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "花&恶魔花",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "grass",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "草",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "sapling",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "小树枝",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "marshbush",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "荆棘丛",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "tumbleweed",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "风滚草",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "reeds",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "芦苇",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "trees",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "树（所有种类）",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "flint",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "燧石",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "rock",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "岩石",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "rock_ice",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "小型冰川",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "meteorspawner",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "陨石生成区域",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "meteorshowers",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "陨石降落频率",
+          "ValueHanization": "无,较少,默认,较多,大量"
         }
       ],
       "foods": [
         {
           "Key": "berrybush",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "浆果丛",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "carrot",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "胡萝卜",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "mushroom",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "蘑菇",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "cactus",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "仙人掌",
+          "ValueHanization": "无,较少,默认,较多,大量"
         }
       ],
       "animals": [
         {
           "Key": "rabbits",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "兔子",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "moles",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "鼹鼠",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "butterfly",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "蝴蝶",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "birds",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "鸟",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "buzzard",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "秃鹫",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "catcoon",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "浣猫",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "perd",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "火鸡",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "pigs",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "猪人",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "lightninggoat",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "电羊",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "beefalo",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "皮弗娄牛",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "beefaloheat",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "皮弗娄牛发情频率",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "hunt",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "脚印",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "alternatehunt",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "狩猎惊喜",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "penguins",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "企鸥",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "ponds",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "池塘",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "bees",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "蜜蜂",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "angrybees",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "杀人蜂",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "tallbirds",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "高鸟",
+          "ValueHanization": "无,较少,默认,较多,大量"
         }
       ],
       "monsters": [
         {
           "Key": "spiders",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "蜘蛛",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "hounds",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "猎犬突袭",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "houndmound",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "猎犬窝",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "merm",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "鱼人",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "tentacles",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "触手",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "chess",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "发条生物",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "lureplants",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "诱饵草",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "walrus",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "海象营地",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "liefs",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "树人守卫",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "deciduousmonster",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "毒桦树",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "krampus",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "坎普斯",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "bearger",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "熊獾",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "deerclops",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "独眼巨鹿",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "goosemoose",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "鹿角鹅",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "dragonfly",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "龙蝇",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "antliontribute",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "蚁狮贡品",
+          "ValueHanization": "无,较少,默认,较多,大量"
         }
       ]
     },
@@ -304,183 +376,226 @@
       "world": [
         {
           "Key": "task_set",
-          "Value": "地下"
+          "KeyHanization": "生物群系",
+          "ValueHanization": "地下"
         },
         {
           "Key": "start_location",
-          "Value": "洞穴"
+          "KeyHanization": "出生区域",
+          "ValueHanization": "洞穴"
         },
         {
           "Key": "world_size",
-          "Value": "小,中等,默认,巨大"
+          "KeyHanization": "世界大小",
+          "ValueHanization": "小,中等,默认,巨大"
         },
         {
           "Key": "branching",
-          "Value": "无,最少,默认,大部分"
+          "KeyHanization": "分支路",
+          "ValueHanization": "无,最少,默认,大部分"
         },
         {
           "Key": "loop",
-          "Value": "无,默认,大量"
+          "KeyHanization": "环形路",
+          "ValueHanization": "无,默认,大量"
         },
         {
           "Key": "weather",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "降雨",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "earthquakes",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "地震",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "regrowth",
-          "Value": "极慢,慢,默认,快,极快"
+          "KeyHanization": "世界再生",
+          "ValueHanization": "极慢,慢,默认,快,极快"
         },
         {
           "Key": "touchstone",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "复活石",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "cavelight",
-          "Value": "极慢,慢,默认,快,极快"
+          "KeyHanization": "洞穴透光",
+          "ValueHanization": "极慢,慢,默认,快,极快"
         },
         {
           "Key": "boons",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "失败的幸存者",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "disease_delay",
-          "Value": "无,慢,默认,快,随机"
+          "KeyHanization": "疾病",
+          "ValueHanization": "无,慢,默认,快,随机"
         },
         {
           "Key": "prefabswaps_start",
-          "Value": "经典,默认,高度随机"
+          "KeyHanization": "开始资源种类",
+          "ValueHanization": "经典,默认,高度随机"
         },
         {
           "Key": "petrification",
-          "Value": "无,少,默认,多,最多"
+          "KeyHanization": "森林石化",
+          "ValueHanization": "无,少,默认,多,最多"
         }
       ],
       "resources": [
         {
           "Key": "grass",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "草",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "sapling",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "小树枝",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "marshbush",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "荆棘丛",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "reeds",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "芦苇",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "trees",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "树（所有种类）",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "flint",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "燧石",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "rock",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "岩石",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "mushtree",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "蘑菇树",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "fern",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "洞穴蕨菜",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "flower_cave",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "灯笼花",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "wormlights",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "发光浆果",
+          "ValueHanization": "无,较少,默认,较多,大量"
         }
       ],
       "foods": [
         {
           "Key": "berrybush",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "浆果丛",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "mushroom",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "蘑菇",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "banana",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "洞穴香蕉",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "lichen",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "苔藓",
+          "ValueHanization": "无,较少,默认,较多,大量"
         }
       ],
       "animals": [
         {
           "Key": "cave_ponds",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "池塘",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "slurper",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "吞噬者",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "bunnymen",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "兔人",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "slurtles",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "龟壳蜗牛",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "rocky",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "石虾",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "monkey",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "猴子",
+          "ValueHanization": "无,较少,默认,较多,大量"
         }
       ],
       "monsters": [
         {
           "Key": "cave_spiders",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "蜘蛛",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "tentacles",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "触手",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "chess",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "发条生物",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "liefs",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "树人守卫",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "bats",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "蝙蝠",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "fissure",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "梦魇裂缝",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "wormattacks",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "洞穴蠕虫的突袭",
+          "ValueHanization": "无,较少,默认,较多,大量"
         },
         {
           "Key": "worms",
-          "Value": "无,较少,默认,较多,大量"
+          "KeyHanization": "洞穴蠕虫",
+          "ValueHanization": "无,较少,默认,较多,大量"
         }
       ]
     }

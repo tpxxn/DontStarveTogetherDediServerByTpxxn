@@ -25,7 +25,7 @@ namespace 饥荒开服工具ByTpxxn.MyUserControl
 
         public DediImageButton LeftButton;
         public DediImageButton RightButton;
-         
+
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();

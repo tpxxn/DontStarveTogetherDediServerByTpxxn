@@ -34,7 +34,7 @@ namespace 饥荒开服工具ByTpxxn.View
 
         private BaseSet _baseSet;                        // 基本设置
 
-        private Dictionary<string, string> _Hanization;  // 汉化
+        private HanizationObject _Hanization;  // 汉化
         private Leveldataoverride _overWorld;            // 地上世界
         private Leveldataoverride _caves;                // 地下世界
 
@@ -464,21 +464,121 @@ namespace 饥荒开服工具ByTpxxn.View
         /// <summary>
         /// 汉化[字符串]
         /// </summary>
-        /// <param name="str">字符串str</param>
+        /// <param name="key">键</param>
         /// <returns>汉化文本</returns>
-        private string Hanization(string str)
+        private string Hanization(string key)
         {
-            return _Hanization.ContainsKey(str) ? _Hanization[str] : str;
+            foreach (var item in _Hanization.Hanization.Master.World)
+            {
+                if (key == item.Key)
+                    return item.KeyHanization;
+            }
+            foreach (var item in _Hanization.Hanization.Master.Resources)
+            {
+                if (key == item.Key)
+                    return item.KeyHanization;
+            }
+            foreach (var item in _Hanization.Hanization.Master.Foods)
+            {
+                if (key == item.Key)
+                    return item.KeyHanization;
+            }
+            foreach (var item in _Hanization.Hanization.Master.Animals)
+            {
+                if (key == item.Key)
+                    return item.KeyHanization;
+            }
+            foreach (var item in _Hanization.Hanization.Master.Monsters)
+            {
+                if (key == item.Key)
+                    return item.KeyHanization;
+            }
+            foreach (var item in _Hanization.Hanization.Caves.World)
+            {
+                if (key == item.Key)
+                    return item.KeyHanization;
+            }
+            foreach (var item in _Hanization.Hanization.Caves.Resources)
+            {
+                if (key == item.Key)
+                    return item.KeyHanization;
+            }
+            foreach (var item in _Hanization.Hanization.Caves.Foods)
+            {
+                if (key == item.Key)
+                    return item.KeyHanization;
+            }
+            foreach (var item in _Hanization.Hanization.Caves.Animals)
+            {
+                if (key == item.Key)
+                    return item.KeyHanization;
+            }
+            foreach (var item in _Hanization.Hanization.Caves.Monsters)
+            {
+                if (key == item.Key)
+                    return item.KeyHanization;
+            }
+            return string.Empty;
         }
 
         /// <summary>
         /// 汉化[字符串公开枚举数]
         /// </summary>
-        /// <param name="str">字符串str</param>
+        /// <param name="key">键</param>
         /// <returns>汉化文本[List]</returns>
-        private List<string> Hanization(List<string> str)
+        private List<string> HanizationList(string key)
         {
-            return str.Select(item => _Hanization.ContainsKey(item) ? _Hanization[item] : item).ToList();
+            foreach (var item in _Hanization.Hanization.Master.World)
+            {
+                if (key == item.Key)
+                    return item.ValueHanization;
+            }
+            foreach (var item in _Hanization.Hanization.Master.Resources)
+            {
+                if (key == item.Key)
+                    return item.ValueHanization;
+            }
+            foreach (var item in _Hanization.Hanization.Master.Foods)
+            {
+                if (key == item.Key)
+                    return item.ValueHanization;
+            }
+            foreach (var item in _Hanization.Hanization.Master.Animals)
+            {
+                if (key == item.Key)
+                    return item.ValueHanization;
+            }
+            foreach (var item in _Hanization.Hanization.Master.Monsters)
+            {
+                if (key == item.Key)
+                    return item.ValueHanization;
+            }
+            foreach (var item in _Hanization.Hanization.Caves.World)
+            {
+                if (key == item.Key)
+                    return item.ValueHanization;
+            }
+            foreach (var item in _Hanization.Hanization.Caves.Resources)
+            {
+                if (key == item.Key)
+                    return item.ValueHanization;
+            }
+            foreach (var item in _Hanization.Hanization.Caves.Foods)
+            {
+                if (key == item.Key)
+                    return item.ValueHanization;
+            }
+            foreach (var item in _Hanization.Hanization.Caves.Animals)
+            {
+                if (key == item.Key)
+                    return item.ValueHanization;
+            }
+            foreach (var item in _Hanization.Hanization.Caves.Monsters)
+            {
+                if (key == item.Key)
+                    return item.ValueHanization;
+            }
+            return null;
         }
 
         #endregion

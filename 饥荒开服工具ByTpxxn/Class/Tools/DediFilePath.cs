@@ -9,6 +9,9 @@
         /// </summary>
         private string _serverDirPath;
 
+        /// <summary>
+        /// Server路径
+        /// </summary>
         public string ServerDirPath
         {
             get => _serverDirPath;

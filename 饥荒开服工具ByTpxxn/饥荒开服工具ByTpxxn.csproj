@@ -76,18 +76,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class\DedicateServer\BaseSet.cs" />
+    <Compile Include="Class\DedicateServer\HanizationObject.cs" />
     <Compile Include="Class\DedicateServer\Leveldataoverride.cs" />
+    <Compile Include="Class\DedicateServer\LeveldataOverrideObject.cs" />
     <Compile Include="Class\DedicateServer\Mod.cs" />
     <Compile Include="Class\DedicateServer\Mods.cs" />
     <Compile Include="Class\DedicateServer\ModSetting.cs" />
     <Compile Include="Class\DedicateServer\Player.cs" />
     <Compile Include="Class\DedicateServer\Server.cs" />
-    <Compile Include="Class\DedicateServer\EditWorldItem.cs" />
     <Compile Include="Class\JsonDeserialize\EditWorld\EditWorldJson.cs" />
     <Compile Include="Class\JsonDeserialize\Hanization\HanizationJson.cs" />
     <Compile Include="Class\JsonDeserialize\ItemListJson.cs" />
     <Compile Include="Class\JsonDeserialize\Preset\PresetJson.cs" />
-    <Compile Include="Class\JsonDeserialize\ServerConfigJson.cs" />
     <Compile Include="Class\StringProcess.cs" />
     <Compile Include="Class\Tools\IniHelper.cs" />
     <Compile Include="Class\Tools\JsonHelper.cs" />
@@ -221,7 +221,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <Resource Include="Json\ItemList.json" />
-    <Resource Include="Json\ServerConfig.json" />
     <Resource Include="Json\EditWorld\Hanization.json" />
     <Resource Include="Json\EditWorld\EditWorld.json" />
     <Resource Include="Json\EditWorld\Preset\CavesPresetDefault.json" />

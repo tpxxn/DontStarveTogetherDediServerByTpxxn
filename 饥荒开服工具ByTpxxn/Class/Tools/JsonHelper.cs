@@ -9,74 +9,68 @@ using System.Xml;
 using Newtonsoft.Json;
 using 饥荒开服工具ByTpxxn.Class.JsonDeserialize;
 using 饥荒开服工具ByTpxxn.Class;
+using 饥荒开服工具ByTpxxn.Class.DedicateServer;
+using 饥荒开服工具ByTpxxn.Class.JsonDeserialize.Hanization;
 
 namespace 饥荒开服工具ByTpxxn.Class.Tools
 {
     internal class JsonHelper
     {
         #region 读取汉化
+
         /// <summary>
         /// 读取汉化
         /// </summary>
-        public static Dictionary<string, string> ReadHanization()
+        public static HanizationObject ReadHanization()
         {
-            var serverConfig = JsonConvert.DeserializeObject<ServerConfigRootObject>(StringProcess.GetJsonString("ServerConfig.json"));
-            var dictionary = new Dictionary<string, string>();
-            foreach (var detail in serverConfig.Configuration.Hanization.Details)
+            var serverConfig = JsonConvert.DeserializeObject<HanizationRootObject>(StringProcess.GetJsonString("EditWorld/Hanization.json"));
+            var master = serverConfig.Hanization.Master;
+            var caves = serverConfig.Hanization.Caves;
+            var hanizationObject = new HanizationObject();
+            foreach (var item in master.World)
             {
-                dictionary[detail.English] = detail.Chinese;
+                hanizationObject.Hanization.Master.World.Add(new DedicateServer.World { Key = item.Key, KeyHanization = item.KeyHanization, ValueHanization = item.ValueHanization.Split(',').ToList() });
             }
-            return dictionary;
+            foreach (var item in master.Resources)
+            {
+                hanizationObject.Hanization.Master.Resources.Add(new DedicateServer.Resources { Key = item.Key, KeyHanization = item.KeyHanization, ValueHanization = item.ValueHanization.Split(',').ToList() });
+            }
+            foreach (var item in master.Foods)
+            {
+                hanizationObject.Hanization.Master.Foods.Add(new DedicateServer.Foods { Key = item.Key, KeyHanization = item.KeyHanization, ValueHanization = item.ValueHanization.Split(',').ToList() });
+            }
+            foreach (var item in master.Animals)
+            {
+                hanizationObject.Hanization.Master.Animals.Add(new DedicateServer.Animals { Key = item.Key, KeyHanization = item.KeyHanization, ValueHanization = item.ValueHanization.Split(',').ToList() });
+            }
+            foreach (var item in master.Monsters)
+            {
+                hanizationObject.Hanization.Master.Monsters.Add(new DedicateServer.Monsters { Key = item.Key, KeyHanization = item.KeyHanization, ValueHanization = item.ValueHanization.Split(',').ToList() });
+            }
+            foreach (var item in caves.World)
+            {
+                hanizationObject.Hanization.Master.World.Add(new DedicateServer.World { Key = item.Key, KeyHanization = item.KeyHanization, ValueHanization = item.ValueHanization.Split(',').ToList() });
+            }
+            foreach (var item in caves.Resources)
+            {
+                hanizationObject.Hanization.Master.Resources.Add(new DedicateServer.Resources { Key = item.Key, KeyHanization = item.KeyHanization, ValueHanization = item.ValueHanization.Split(',').ToList() });
+            }
+            foreach (var item in caves.Foods)
+            {
+                hanizationObject.Hanization.Master.Foods.Add(new DedicateServer.Foods { Key = item.Key, KeyHanization = item.KeyHanization, ValueHanization = item.ValueHanization.Split(',').ToList() });
+            }
+            foreach (var item in caves.Animals)
+            {
+                hanizationObject.Hanization.Master.Animals.Add(new DedicateServer.Animals { Key = item.Key, KeyHanization = item.KeyHanization, ValueHanization = item.ValueHanization.Split(',').ToList() });
+            }
+            foreach (var item in caves.Monsters)
+            {
+                hanizationObject.Hanization.Master.Monsters.Add(new DedicateServer.Monsters { Key = item.Key, KeyHanization = item.KeyHanization, ValueHanization = item.ValueHanization.Split(',').ToList() });
+            }
+            return hanizationObject;
         }
-        #endregion
 
-        #region 读取世界选项,世界分类
-        /// <summary>
-        /// 读取世界选项,返回 x=xx,xx,xx
-        /// </summary>
-        /// <param name="isCave"></param>
-        /// <returns>x=xx,xx,xx</returns>
-        public static List<string> ReadWorldSelect(bool isCave)
-        {
-            var serverConfig = JsonConvert.DeserializeObject<ServerConfigRootObject>(StringProcess.GetJsonString("ServerConfig.json"));
-            var listStr = new List<string>();
-            listStr.AddRange(!isCave
-                ? serverConfig.Configuration.Master.Details.Select(detail => detail.Key.Trim() + "=" + detail.Value.Trim())
-                : serverConfig.Configuration.Caves.Details.Select(detail => detail.Key.Trim() + "=" + detail.Value.Trim()));
-            return listStr;
-        }
-
-        /// <summary>
-        /// 读取世界分类["foods","animals","world","monsters","resources"]
-        /// </summary>
-        public static Dictionary<string, string> ReadWorldClassification(bool isCave)
-        {
-            var serverConfig = JsonConvert.DeserializeObject<ServerConfigRootObject>(StringProcess.GetJsonString("ServerConfig.json"));
-            var dictionary = new Dictionary<string, string>();
-            if (!isCave)
-            {
-                foreach (var detail in serverConfig.Configuration.Classification.Master.Details)
-                {
-                    var values = detail.Value.Split(',');
-                    foreach (var value in values)
-                    {
-                        dictionary[value] = detail.Key;
-                    }
-                }
-            }
-            else
-            {
-                foreach (var detail in serverConfig.Configuration.Classification.Cave.Details)
-                {
-                    var values = detail.Value.Split(',');
-                    foreach (var value in values)
-                    {
-                        dictionary[value] = detail.Key;
-                    }
-                }
-            }
-            return dictionary;
-        }
         #endregion
+        
     }
 }

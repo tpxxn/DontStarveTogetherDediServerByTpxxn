@@ -3,35 +3,21 @@ using Newtonsoft.Json;
 
 namespace 饥荒开服工具ByTpxxn.Class.JsonDeserialize.EditWorld
 {
-    public class World
+    public class EditWorldItem
     {
         public string Key { get; set; }
         public string Value { get; set; }
     }
 
-    public class Resources
-    {
-        public string Key { get; set; }
-        public string Value { get; set; }
-    }
+    public class World : EditWorldItem { }
 
-    public class Foods
-    {
-        public string Key { get; set; }
-        public string Value { get; set; }
-    }
+    public class Resources : EditWorldItem { }
 
-    public class Animals
-    {
-        public string Key { get; set; }
-        public string Value { get; set; }
-    }
+    public class Foods : EditWorldItem { }
 
-    public class Monsters
-    {
-        public string Key { get; set; }
-        public string Value { get; set; }
-    }
+    public class Animals : EditWorldItem { }
+
+    public class Monsters : EditWorldItem { }
 
     public class Master
     {
