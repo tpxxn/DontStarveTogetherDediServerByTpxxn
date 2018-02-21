@@ -339,7 +339,7 @@ namespace 饥荒开服工具ByTpxxn.View
                 };
                 masterProcess.Start();
                 // 打开服务器(洞穴)
-                if (EditWorldIsCaveSelectBox.Text == "是")
+                if (EditWorldIsCaveSelectBox.Text == "开启")
                 {
                     var caveProcess = new Process
                     {

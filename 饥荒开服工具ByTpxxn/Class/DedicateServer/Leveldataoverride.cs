@@ -297,25 +297,43 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
             // 追加前半部分
             stringBuilder.Append(!_isCave ? dishangStrQ : caveStrQ);
             // 追加中间部分
+            var ParameterDictionary = new Dictionary<string, string>();
             foreach (var item in _leveldataOverrideObject.World)
             {
-                stringBuilder.AppendFormat("        {0}=\"{1}\",\r\n", item.Key, item.Value[item.Index]);
+                ParameterDictionary.Add(item.Key, item.Value[item.Index]);
             }
             foreach (var item in _leveldataOverrideObject.Resources)
             {
-                stringBuilder.AppendFormat("        {0}=\"{1}\",\r\n", item.Key, item.Value[item.Index]);
+                ParameterDictionary.Add(item.Key, item.Value[item.Index]);
             }
             foreach (var item in _leveldataOverrideObject.Foods)
             {
-                stringBuilder.AppendFormat("        {0}=\"{1}\",\r\n", item.Key, item.Value[item.Index]);
+                ParameterDictionary.Add(item.Key, item.Value[item.Index]);
             }
             foreach (var item in _leveldataOverrideObject.Animals)
             {
-                stringBuilder.AppendFormat("        {0}=\"{1}\",\r\n", item.Key, item.Value[item.Index]);
+                ParameterDictionary.Add(item.Key, item.Value[item.Index]);
             }
             foreach (var item in _leveldataOverrideObject.Monsters)
             {
-                stringBuilder.AppendFormat("        {0}=\"{1}\",\r\n", item.Key, item.Value[item.Index]);
+                ParameterDictionary.Add(item.Key, item.Value[item.Index]);
+            }
+            if (!_isCave)
+            {
+                ParameterDictionary.Add("layout_mode", "LinkNodesByKeys");
+                ParameterDictionary.Add("roads", "default");
+                ParameterDictionary.Add("wormhole_prefab", "wormhole");
+            }
+            else
+            {
+                ParameterDictionary.Add("layout_mode", "RestrictNodesByKey");
+                ParameterDictionary.Add("roads", "never");
+                ParameterDictionary.Add("wormhole_prefab", "tentacle_pillar");
+            }
+            ParameterDictionary = ParameterDictionary.OrderBy(item => item.Key).ToDictionary(item => item.Key, item => item.Value);
+            foreach (var item in ParameterDictionary)
+            {
+                stringBuilder.AppendFormat("        {0}=\"{1}\",\r\n", item.Key, item.Value);
             }
             var str = stringBuilder.ToString();
             str = str.Substring(0, str.Length - 3);

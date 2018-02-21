@@ -71,6 +71,16 @@ namespace 饥荒开服工具ByTpxxn.MyUserControl
                 dediSelectBox.SwitchLeftButton.IsEnabled = true;
                 dediSelectBox.SwitchRightButton.IsEnabled = false;
             }
+            else if ((int)e.NewValue == 0)
+            {
+                dediSelectBox.SwitchLeftButton.IsEnabled = false;
+                dediSelectBox.SwitchRightButton.IsEnabled = true;
+            }
+            else
+            {
+                dediSelectBox.SwitchLeftButton.IsEnabled = true;
+                dediSelectBox.SwitchRightButton.IsEnabled = true;
+            }
         }
         #endregion
 
