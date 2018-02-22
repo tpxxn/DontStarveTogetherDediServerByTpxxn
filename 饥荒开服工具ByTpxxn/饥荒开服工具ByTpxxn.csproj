@@ -48,7 +48,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\dll\KleiLib.dll</HintPath>
     </Reference>
-    <Reference Include="ManagedSquish, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="ManagedSquish, Version=2.0.0.0, Culture=neutral, PublicKeyToken=fac8b2bfeda84eab, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\dll\ManagedSquish.dll</HintPath>
     </Reference>
