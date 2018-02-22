@@ -175,7 +175,7 @@
                             <Viewbox Margin="0,2">
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="游戏风格" FontWeight="Bold" FontSize="16" Foreground="#FFC5AA73"/>
-                                    <Button x:Name="DediBaseSetIntentionButton" Content="{Binding GameStyle, Mode=TwoWay}" Width="124" Style="{StaticResource DediButtonCreateWorldStyle}" Focusable="False" FontWeight="Bold" Height="27" Click="DediBaseSetIntentionButton_Click" FontSize="10"/>
+                                    <Button x:Name="DediBaseSetIntentionButton" Content="{Binding GameStyle, Mode=TwoWay}" Width="124" Style="{StaticResource DediBottomButtonStyle}" Focusable="False" FontWeight="Bold" Height="27" Click="DediBaseSetIntentionButton_Click" FontSize="10"/>
                                 </StackPanel>
                             </Viewbox>
                         </Grid>
@@ -269,7 +269,7 @@
                         </Grid>
                     </StackPanel>
                 </ScrollViewer>
-                <Grid x:Name="DediWorldSet" d:IsHidden="True">
+                <Grid x:Name="DediWorldSet" d:IsHidden="True" Margin="10,20">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="10"/>
                         <ColumnDefinition Width="*"/>
@@ -320,15 +320,15 @@
                         </StackPanel>
                     </ScrollViewer>
                 </Grid>
-                <Grid x:Name="DediModSet">
+                <Grid x:Name="DediModSet" Margin="10,20">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="240"/>
+                        <ColumnDefinition Width="300"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <ScrollViewer Grid.Column="0" Template="{StaticResource DediRightPanelScrollViewerControlTemplate}">
                         <StackPanel x:Name="ModListStackPanel"/>
                     </ScrollViewer>
-                    <ScrollViewer Grid.Column="1" Template="{StaticResource DediRightPanelScrollViewerControlTemplate}" Margin="10,10,0,0">
+                    <ScrollViewer Grid.Column="1" Template="{StaticResource DediRightPanelScrollViewerControlTemplate}" Margin="10,0,0,0">
                         <StackPanel Orientation="Vertical">
                             <Grid x:Name="ModInfoGrid">
                                 <Grid.ColumnDefinitions>
@@ -374,17 +374,17 @@
                     <WrapPanel Grid.Row="0" >
                         <Label Content="添加管理员:" />
                         <TextBox Style="{StaticResource DediTextBoxStyle}" Width="300" />
-                        <Button Content="添加管理员" Style="{StaticResource DediButtonCreateWorldStyle}" Width="100"/>
+                        <Button Content="添加管理员" Style="{StaticResource DediBottomButtonStyle}" Width="100"/>
                     </WrapPanel>
                     <WrapPanel Grid.Row="1" >
                         <Label Content="添加白名单:" />
                         <TextBox Style="{StaticResource DediTextBoxStyle}" Width="300" />
-                        <Button Content="添加白名单" Style="{StaticResource DediButtonCreateWorldStyle}" Width="100"/>
+                        <Button Content="添加白名单" Style="{StaticResource DediBottomButtonStyle}" Width="100"/>
                     </WrapPanel>
                     <WrapPanel Grid.Row="2" >
                         <Label Content="添加黑名单:" />
                         <TextBox Style="{StaticResource DediTextBoxStyle}" Width="300" />
-                        <Button Content="添加黑名单" Style="{StaticResource DediButtonCreateWorldStyle}" Width="100"/>
+                        <Button Content="添加黑名单" Style="{StaticResource DediBottomButtonStyle}" Width="100"/>
                     </WrapPanel>
                 </Grid>
             </Grid>
@@ -402,15 +402,15 @@
                 <Image x:Name="BottomGridBackground4" Grid.Column="3" Source="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/Background/MainPanelBottom4.png" VerticalAlignment="Top" Margin="0,-1,0,0" Stretch="Fill" Height="10"/>
                 <Image x:Name="BottomGridBackground5" Grid.Column="4" Source="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/Background/MainPanelBottom5.png" VerticalAlignment="Top" Margin="0,-1,0,0" Stretch="None" HorizontalAlignment="Left" />
                 <StackPanel Grid.Column="0" Grid.ColumnSpan="5" x:Name="BottomStackPanel" Orientation="Horizontal" HorizontalAlignment="Right" Visibility="Visible" Margin="0,25,0,0">
-                    <Button x:Name="CommonSettingButton" Content="通用设置" Style="{StaticResource DediButtonCreateWorldStyle}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,10,0" Width="150" Height="50" FontSize="18" FontWeight="Bold" Click="CommonSettingButton_Click" />
-                    <Button x:Name="CtrateRunGame" Content="打开游戏" Style="{StaticResource DediButtonCreateWorldStyle}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,10,0" Width="150" Height="50" FontSize="18" FontWeight="Bold" Click="OpenGameButton_Click" />
-                    <Button x:Name="DeleteWorldButton" Style="{StaticResource DediButtonCreateWorldStyle}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,10,0" Width="150" Height="50" FontSize="18" FontWeight="Bold" Click="DeleteWorldButton_OnClick" >
+                    <Button x:Name="CommonSettingButton" Content="通用设置" Style="{StaticResource DediBottomButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,10,0" Width="150" Height="50" FontSize="18" FontWeight="Bold" Click="CommonSettingButton_Click" />
+                    <Button x:Name="CtrateRunGame" Content="打开游戏" Style="{StaticResource DediBottomButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,10,0" Width="150" Height="50" FontSize="18" FontWeight="Bold" Click="OpenGameButton_Click" />
+                    <Button x:Name="DeleteWorldButton" Style="{StaticResource DediBottomButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,10,0" Width="150" Height="50" FontSize="18" FontWeight="Bold" Click="DeleteWorldButton_OnClick" >
                         <WrapPanel>
                             <Image Source="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_mp_btn_delete.png" Height="23.2"/>
                             <TextBlock Text="删除档位"/>
                         </WrapPanel>
                     </Button>
-                    <Button x:Name="CtrateWorldButton" Content="创建世界" Style="{StaticResource DediButtonCreateWorldStyle}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,10,0" Width="150" Height="50" FontSize="18" FontWeight="Bold" Click="CtrateWorldButton_Click" />
+                    <Button x:Name="CtrateWorldButton" Content="创建世界" Style="{StaticResource DediBottomButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,10,0" Width="150" Height="50" FontSize="18" FontWeight="Bold" Click="CtrateWorldButton_Click" />
                 </StackPanel>
             </Grid>
         </Grid>

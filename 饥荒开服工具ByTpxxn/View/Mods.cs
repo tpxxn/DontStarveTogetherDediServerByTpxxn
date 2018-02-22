@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using 饥荒开服工具ByTpxxn.Class.DedicateServer;
 using 饥荒开服工具ByTpxxn.Class.Tools;
 using 饥荒开服工具ByTpxxn.MyUserControl;
+using Color = System.Windows.Media.Color;
 
 namespace 饥荒开服工具ByTpxxn.View
 {
@@ -52,24 +53,15 @@ namespace 饥荒开服工具ByTpxxn.View
                 {
                     var dediModBox = new DediModBox
                     {
-                        Width = 200,
-                        Height = 70,
-                        UCTitle = { Content = _mods.ModList[i].Name },
+                        Width = 250,
+                        Height = 100,
+                        ContentMod = _mods.ModList[i],
                         UCCheckBox = { Tag = i },
-                        UCConfig =
-                        {
-                            Source = _mods.ModList[i].ConfigurationOptions.Count != 0
-                                ? new BitmapImage(new Uri(
-                                    "/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_mp_mod_config.png",
-                                    UriKind.Relative))
-                                : null
-                        }
                     };
                     dediModBox.UCCheckBox.IsChecked = _mods.ModList[i].Enabled;
                     dediModBox.UCCheckBox.Checked += CheckBox_Checked;
                     dediModBox.UCCheckBox.Unchecked += CheckBox_Unchecked;
                     dediModBox.PreviewMouseLeftButtonDown += DediModBox_MouseLeftButtonDown;
-                    dediModBox.UCEnableLabel.Content = _mods.ModList[i].ModType;
                     ModListStackPanel.Children.Add(dediModBox);
                 }
             }
@@ -87,7 +79,7 @@ namespace 饥荒开服工具ByTpxxn.View
             ModInfoAuthorTextBlock.Text = "作者：" + _mods.ModList[n].Author;
             ModInfoVersionTextBlock.Text = "版本：" + _mods.ModList[n].Version;
             ModInfoFolderTextBlock.Text = "文件夹：" + _mods.ModList[n].ModDirName;
-            ModInfoTypeTextBlock.Text = _mods.ModList[n].ModType == ModType.Server ? "服务端" : "所有人";
+            ModInfoTypeTextBlock.Text = _mods.ModList[n].ModType == ModType.Server ? "服务器" : "所有人";
             // [Mod描述]
             ModDescriptionStackPanel.Text =_mods.ModList[n].Description;
             // [Mod设置]
@@ -111,50 +103,61 @@ namespace 饥荒开服工具ByTpxxn.View
                         Width = 330,
                         Orientation = Orientation.Horizontal
                     };
-                    var labelModXiJie = new Label
+                    var modOptionTitleTextBlock = new TextBlock()
                     {
                         VerticalAlignment = VerticalAlignment.Center,
                         Width = 150,
+                        Foreground = new SolidColorBrush(Color.FromRgb(197, 170, 115)),
+                        TextWrapping = TextWrapping.WrapWithOverflow,
                         FontWeight = FontWeights.Bold,
-                        Content = string.IsNullOrEmpty(item.Value.Label) ? item.Value.Name : item.Value.Label
+                        Text = string.IsNullOrEmpty(item.Value.Label) ? item.Value.Name : item.Value.Label
                     };
                     // dediComboBox
-                    var dediComboBox = new DediComboBox
+                    var dediSelectBox = new DediSelectBox
                     {
                         Height = stackPanel.Height,
                         Width = 150,
+                        Foreground = new SolidColorBrush(Color.FromRgb(197, 170, 115)),
                         FontSize = 12,
-                        Tag = n + "$" + item.Key
+                        Tag = n + "$" + item.Key,
+                        TextList = item.Value.Options.Select(option => option.Description).ToList()
                     };
                     // 把当前选择mod的第n个,放到tag里
-                    foreach (var option in item.Value.Options)
-                    {
-                        dediComboBox.Items.Add(option.Description);
-                    }
-                    dediComboBox.SelectedValue = item.Value.CurrentDescription;
-                    dediComboBox.SelectionChanged += DediComboBox_SelectionChanged;
+                    dediSelectBox.TextIndex = CurrentDescriptionToTextIndex(item.Value.CurrentDescription, dediSelectBox.TextList);
+                    dediSelectBox.SelectionChangedWithSender += DediComboBox_SelectionChanged;
                     // 添加
-                    stackPanel.Children.Add(labelModXiJie);
-                    stackPanel.Children.Add(dediComboBox);
+                    stackPanel.Children.Add(modOptionTitleTextBlock);
+                    stackPanel.Children.Add(dediSelectBox);
                     ModSettingStackPanel.Children.Add(stackPanel);
                 }
+                UpdateLayout();
             }
+        }
+
+        private int CurrentDescriptionToTextIndex(string currentDescription, List<string> dediSelectBoxTextList)
+        {
+            for (var i = 0; i < dediSelectBoxTextList.Count; i++)
+            {
+                if (currentDescription == dediSelectBoxTextList[i])
+                    return i;
+            }
+            return 0;
         }
 
         /// <summary>
         /// 设置 "Mod" "SelectionChanged"
         /// </summary>
-        private void DediComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void DediComboBox_SelectionChanged(object sender)
         {
-            Debug.WriteLine(((DediComboBox)sender).Tag);
-            var str = ((DediComboBox)sender).Tag.ToString().Split('$');
+            Debug.WriteLine(((DediSelectBox)sender).Tag);
+            var str = ((DediSelectBox)sender).Tag.ToString().Split('$');
             if (str.Length != 0)
             {
                 var n = int.Parse(str[0]);
                 var name = str[1];
                 // 好复杂
                 _mods.ModList[n].ConfigurationOptions[name].Current =
-                    _mods.ModList[n].ConfigurationOptions[name].Options[((DediComboBox)sender).SelectedIndex].Data;
+                    _mods.ModList[n].ConfigurationOptions[name].Options[((DediSelectBox)sender).TextIndex].Data;
 
             }
         }

@@ -25,7 +25,7 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
     /// 客户端不能显示
     /// 另外看看地窖这个mod是不是有毒，还会总出错吗
     /// </summary>
-    internal class Mod
+    public class Mod
     {
 
         #region mod属性
@@ -100,6 +100,7 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
             ModDirName = directoryInfo.Name;
             // 读取modinfo文件
             var modInfoLuaTable = LuaConfig.ReadLua(modinfoLuaPath, Encoding.UTF8, false);
+            // TODO 可能引发读取错误
             // 读取图片
             try
             {

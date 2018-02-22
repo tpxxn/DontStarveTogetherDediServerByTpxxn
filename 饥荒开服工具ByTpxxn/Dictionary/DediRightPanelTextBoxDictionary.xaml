@@ -32,7 +32,7 @@
                             </ToolTip>
                         </Border.ToolTip>
                         <Border.Background>
-                            <ImageBrush ImageSource="/Resources/DedicatedServer/D_baseset_textbox.png"/>
+                            <ImageBrush ImageSource="/Resources/DedicatedServer/TextBox/Textbox.png"/>
                         </Border.Background>
                         <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" VerticalContentAlignment="Top" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="15,0"/>
                     </Border>
@@ -40,14 +40,14 @@
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter Property="Background" TargetName="border">
                                 <Setter.Value>
-                                    <ImageBrush ImageSource="/Resources/DedicatedServer/D_baseset_textbox_mouseover.png"/>
+                                    <ImageBrush ImageSource="/Resources/DedicatedServer/TextBox/Textbox_mouseover.png"/>
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
                         <Trigger Property="IsFocused" Value="true">
                             <Setter Property="Background" TargetName="border">
                                 <Setter.Value>
-                                    <ImageBrush ImageSource="/Resources/DedicatedServer/D_baseset_textbox_edit.png"/>
+                                    <ImageBrush ImageSource="/Resources/DedicatedServer/TextBox/Textbox_edit.png"/>
                                 </Setter.Value>
                             </Setter>
                         </Trigger>

@@ -287,15 +287,9 @@
     <Resource Include="Resources\Setting_Update.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\DedicatedServer\D_baseset_intention.png" />
-    <Resource Include="Resources\DedicatedServer\D_baseset_intention_tobeclick.png" />
-    <Resource Include="Resources\DedicatedServer\D_baseset_radiobutton.png" />
-    <Resource Include="Resources\DedicatedServer\D_baseset_radiobutton_selected.png" />
-    <Resource Include="Resources\DedicatedServer\D_baseset_textbox.png" />
-    <Resource Include="Resources\DedicatedServer\D_baseset_textbox_edit.png" />
-    <Resource Include="Resources\DedicatedServer\D_baseset_textbox_mouseover.png" />
-    <Resource Include="Resources\DedicatedServer\D_ComboBoxBackground.png" />
-    <Resource Include="Resources\DedicatedServer\D_ComboBoxBackGroundhui.png" />
+    <Resource Include="Resources\DedicatedServer\TextBox\Textbox.png" />
+    <Resource Include="Resources\DedicatedServer\TextBox\Textbox_edit.png" />
+    <Resource Include="Resources\DedicatedServer\TextBox\Textbox_mouseover.png" />
     <Resource Include="Resources\DedicatedServer\Intention\D_intention_bg.png" />
     <Resource Include="Resources\DedicatedServer\Intention\D_intention_bg_tobeclick.png" />
     <Resource Include="Resources\DedicatedServer\Intention\D_intention_competitive.png" />
@@ -309,7 +303,6 @@
     <Resource Include="Resources\DedicatedServer\D_lp_bg.png" />
     <Resource Include="Resources\DedicatedServer\D_lp_decrease.png" />
     <Resource Include="Resources\DedicatedServer\D_lp_increase.png" />
-    <Resource Include="Resources\DedicatedServer\D_lp_selected.png" />
     <Resource Include="Resources\DedicatedServer\D_lp_thumb.png" />
     <Resource Include="Resources\DedicatedServer\D_lp_tobeselected.png" />
     <Resource Include="Resources\DedicatedServer\D_mp_btn_1.png" />
@@ -320,20 +313,9 @@
     <Resource Include="Resources\DedicatedServer\D_mp_btn_light.png" />
     <Resource Include="Resources\DedicatedServer\D_mp_btn_save.png" />
     <Resource Include="Resources\DedicatedServer\D_mp_btn_tip.png" />
-    <Resource Include="Resources\DedicatedServer\D_mp_content_bg.png" />
     <Resource Include="Resources\DedicatedServer\D_mp_createworld.png" />
     <Resource Include="Resources\DedicatedServer\D_mp_createworld_tobeclick.png" />
-    <Resource Include="Resources\DedicatedServer\D_mp_header_bg.png" />
-    <Resource Include="Resources\DedicatedServer\D_mp_header_bg_selected.png" />
-    <Resource Include="Resources\DedicatedServer\D_mp_header_bg_tobeselected.png" />
-    <Resource Include="Resources\DedicatedServer\D_mp_mod_bg.png" />
-    <Resource Include="Resources\DedicatedServer\D_mp_mod_bg_unchecked.png" />
-    <Resource Include="Resources\DedicatedServer\D_mp_mod_border.png" />
-    <Resource Include="Resources\DedicatedServer\D_mp_mod_checked.png" />
-    <Resource Include="Resources\DedicatedServer\D_mp_mod_checked_tobeclick.png" />
-    <Resource Include="Resources\DedicatedServer\D_mp_mod_config.png" />
-    <Resource Include="Resources\DedicatedServer\D_mp_mod_unchecked.png" />
-    <Resource Include="Resources\DedicatedServer\D_mp_mod_unchecked_tobeclick.png" />
+    <Resource Include="Resources\DedicatedServer\ModBox\ModBoxConfig.png" />
     <Resource Include="Resources\DedicatedServer\D_set_bg.png" />
     <Resource Include="Resources\DedicatedServer\D_set_border.png" />
     <Resource Include="Resources\DedicatedServer\D_set_leftarrow.png" />
@@ -342,8 +324,6 @@
     <Resource Include="Resources\DedicatedServer\D_set_rightarrow.png" />
     <Resource Include="Resources\DedicatedServer\D_set_rightarrow_click.png" />
     <Resource Include="Resources\DedicatedServer\D_set_rightarrow_tobeclick.png" />
-    <Resource Include="Resources\DedicatedServer\设置1_Enter.png" />
-    <Resource Include="Resources\DedicatedServer\设置1_Leave.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\DedicatedServer\World\alternatehunt.png" />
@@ -519,6 +499,17 @@
   <ItemGroup>
     <Resource Include="Resources\DedicatedServer\LeftPanelRadioButton\LeftPanelRadioButton_Border.png" />
     <Resource Include="Resources\DedicatedServer\LeftPanelRadioButton\LeftPanelRadioButton_Selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\DedicatedServer\ModBox\ModBoxSelect_Checked.png" />
+    <Resource Include="Resources\DedicatedServer\ModBox\ModBoxSelect_CheckedMouseOver.png" />
+    <Resource Include="Resources\DedicatedServer\ModBox\ModBoxSelect_Default.png" />
+    <Resource Include="Resources\DedicatedServer\ModBox\ModBoxSelect_MouseOver.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\DedicatedServer\ModBox\ModBoxBackground_Border.png" />
+    <Resource Include="Resources\DedicatedServer\ModBox\ModBoxBackground_Default.png" />
+    <Resource Include="Resources\DedicatedServer\ModBox\ModBoxBackground_Selected.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

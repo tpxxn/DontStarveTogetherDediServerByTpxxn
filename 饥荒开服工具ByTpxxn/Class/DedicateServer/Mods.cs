@@ -24,7 +24,6 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
         internal List<Mod> ModList { get; set; }
         #endregion
 
-
         #region 构造函数
         /// <summary>
         /// 读取所有的mod，放到listMod中

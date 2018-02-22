@@ -217,7 +217,7 @@ namespace 饥荒开服工具ByTpxxn.View
                 Height = 35,
                 Tag = codeString,
                 FontWeight = FontWeights.Bold,
-                Style = (Style)FindResource("DediButtonCreateWorldStyle")
+                Style = (Style)FindResource("DediBottomButtonStyle")
             };
             button.Click += ConsoleButton_Click;
             ConsoleDetailsWrapPanel.Children.Add(button);

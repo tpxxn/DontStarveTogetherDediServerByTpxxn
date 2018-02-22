@@ -117,6 +117,7 @@ namespace 饥荒开服工具ByTpxxn.MyUserControl
             }
             TextBlock.Text = TextList[TextIndex];
             SelectionChanged?.Invoke();
+            SelectionChangedWithSender?.Invoke(this);
         }
 
         private void SwitchRightButton_Click(object sender, RoutedEventArgs e)
@@ -132,17 +133,34 @@ namespace 饥荒开服工具ByTpxxn.MyUserControl
             }
             TextBlock.Text = TextList[TextIndex];
             SelectionChanged?.Invoke();
+            SelectionChangedWithSender?.Invoke(this);
         }
+
+        #endregion
+
+        #region [SelectChanged|SelectionChangedWithSender]事件委托
 
         /// <summary>
         /// SelectChanged事件委托
         /// </summary>
         public delegate void SelectionChangedEventHandler();
 
+
         /// <summary>
         /// SelectChanged事件
         /// </summary>
         public event SelectionChangedEventHandler SelectionChanged;
+
+        /// <summary>
+        /// SelectionChangedWithSender事件委托
+        /// </summary>
+        public delegate void SelectionChangedWithSenderEventHandler(object sender);
+
+
+        /// <summary>
+        /// SelectionChangedWithSender事件
+        /// </summary>
+        public event SelectionChangedWithSenderEventHandler SelectionChangedWithSender;
 
         #endregion
         public DediSelectBox()

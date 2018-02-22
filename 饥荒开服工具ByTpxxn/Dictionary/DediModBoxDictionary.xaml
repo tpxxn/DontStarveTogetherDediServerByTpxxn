@@ -6,13 +6,12 @@
             <Trigger Property="IsMouseOver" Value="true">
                 <Setter Property="Background">
                     <Setter.Value>
-                        <ImageBrush ImageSource="/Resources/DedicatedServer/D_mp_mod_border.png"/>
+                        <ImageBrush ImageSource="/Resources/DedicatedServer/ModBox/ModBoxBackground_Border.png"/>
                     </Setter.Value>
                 </Setter>
             </Trigger>
         </Style.Triggers>
     </Style>
-
     <Style x:Key="FocusVisual">
         <Setter Property="Control.Template">
             <Setter.Value>
@@ -58,12 +57,28 @@
                     <ControlTemplate.Triggers>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked" Value="false"/>
+                                <Condition Property="IsPressed" Value="true"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="RenderTransform" TargetName="templateRoot">
+                                <Setter.Value>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform Y="2"/>
+                                    </TransformGroup>
+                                </Setter.Value>
+                            </Setter>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
                                 <Condition Property="IsMouseOver" Value="true"/>
                                 <Condition Property="IsChecked" Value="false"/>
                             </MultiTrigger.Conditions>
                             <Setter Property="Background" TargetName="checkBoxBorder" >
                                 <Setter.Value>
-                                    <ImageBrush ImageSource="/Resources/DedicatedServer/D_mp_mod_unchecked_tobeclick.png"/>
+                                    <ImageBrush ImageSource="/Resources/DedicatedServer/ModBox/ModBoxSelect_MouseOver.png"/>
                                 </Setter.Value>
                             </Setter>
                         </MultiTrigger>
@@ -74,7 +89,7 @@
                             </MultiTrigger.Conditions>
                             <Setter Property="Background" TargetName="checkBoxBorder" >
                                 <Setter.Value>
-                                    <ImageBrush ImageSource="/Resources/DedicatedServer/D_mp_mod_unchecked.png"/>
+                                    <ImageBrush ImageSource="/Resources/DedicatedServer/ModBox/ModBoxSelect_Default.png"/>
                                 </Setter.Value>
                             </Setter>
                         </MultiTrigger>
@@ -85,7 +100,7 @@
                             </MultiTrigger.Conditions>
                             <Setter Property="Background" TargetName="checkBoxBorder" >
                                 <Setter.Value>
-                                    <ImageBrush ImageSource="/Resources/DedicatedServer/D_mp_mod_checked_tobeclick.png"/>
+                                    <ImageBrush ImageSource="/Resources/DedicatedServer/ModBox/ModBoxSelect_CheckedMouseOver.png"/>
                                 </Setter.Value>
                             </Setter>
                         </MultiTrigger>
@@ -96,10 +111,70 @@
                             </MultiTrigger.Conditions>
                             <Setter Property="Background" TargetName="checkBoxBorder" >
                                 <Setter.Value>
-                                    <ImageBrush ImageSource="/Resources/DedicatedServer/D_mp_mod_checked.png"/>
+                                    <ImageBrush ImageSource="/Resources/DedicatedServer/ModBox/ModBoxSelect_Checked.png"/>
                                 </Setter.Value>
                             </Setter>
                         </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <SolidColorBrush x:Key="RadioButton.Static.Background" Color="#FFFFFFFF"/>
+    <SolidColorBrush x:Key="RadioButton.Static.Border" Color="#FF707070"/>
+    <SolidColorBrush x:Key="RadioButton.MouseOver.Background" Color="#FFF3F9FF"/>
+    <SolidColorBrush x:Key="RadioButton.MouseOver.Border" Color="#FF5593FF"/>
+    <SolidColorBrush x:Key="RadioButton.MouseOver.Glyph" Color="#FF212121"/>
+    <SolidColorBrush x:Key="RadioButton.Disabled.Background" Color="#FFE6E6E6"/>
+    <SolidColorBrush x:Key="RadioButton.Disabled.Border" Color="#FFBCBCBC"/>
+    <SolidColorBrush x:Key="RadioButton.Disabled.Glyph" Color="#FF707070"/>
+    <SolidColorBrush x:Key="RadioButton.Pressed.Background" Color="#FFD9ECFF"/>
+    <SolidColorBrush x:Key="RadioButton.Pressed.Border" Color="#FF3C77DD"/>
+    <SolidColorBrush x:Key="RadioButton.Pressed.Glyph" Color="#FF212121"/>
+    <SolidColorBrush x:Key="RadioButton.Static.Glyph" Color="#FF212121"/>
+    <Style x:Key="DediModBoxRadioButtonStyle" TargetType="{x:Type RadioButton}">
+        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+        <Setter Property="Background" Value="{StaticResource RadioButton.Static.Background}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource RadioButton.Static.Border}"/>
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RadioButton}">
+                    <Grid x:Name="templateRoot" SnapsToDevicePixels="True">
+                        <Grid.Background>
+                            <ImageBrush ImageSource="/Resources/DedicatedServer/ModBox/ModBoxBackground_Default.png"/>
+                        </Grid.Background>
+                        <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="HasContent" Value="true">
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter Property="RenderTransform">
+                                <Setter.Value>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform Y="2"/>
+                                    </TransformGroup>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="true">
+                            <Setter Property="Background" TargetName="templateRoot">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="/Resources/DedicatedServer/ModBox/ModBoxBackground_Selected.png"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="{x:Null}">
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
