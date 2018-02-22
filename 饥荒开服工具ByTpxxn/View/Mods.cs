@@ -75,44 +75,22 @@ namespace 饥荒开服工具ByTpxxn.View
             }
         }
 
-        [DllImport("gdi32.dll", SetLastError = true)]
-        private static extern bool DeleteObject(IntPtr hObject);
-        /// <summary>  
-        /// 从bitmap转换成ImageSource  
-        /// </summary>  
-        /// <param name="icon"></param>  
-        /// <returns></returns>  
-        public static ImageSource ChangeBitmapToImageSource(Bitmap bitmap)
-        {
-            //Bitmap bitmap = icon.ToBitmap();  
-            IntPtr hBitmap = bitmap.GetHbitmap();
-            ImageSource wpfBitmap = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
-                hBitmap,
-                IntPtr.Zero,
-                Int32Rect.Empty,
-                BitmapSizeOptions.FromEmptyOptions());
-            if (!DeleteObject(hBitmap))
-            {
-                throw new System.ComponentModel.Win32Exception();
-            }
-            return wpfBitmap;
-        }
-
         /// <summary>
         /// 设置 "Mod" "MouseLeftButtonDown"
         /// </summary>
         private void DediModBox_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            // 左边显示
+            // [Mod信息]
             var n = (int)((DediModBox)sender).UCCheckBox.Tag;
-            ModInfoImage.Source = _mods.ModList[n].Picture != null ? ChangeBitmapToImageSource(_mods.ModList[n].Picture) : null;
+            ModInfoImage.Source = _mods.ModList[n].Picture != null ? PictureHelper.ChangeBitmapToImageSource(_mods.ModList[n].Picture) : null;
             ModInfoNameTextBlock.Text = _mods.ModList[n].Name;
             ModInfoAuthorTextBlock.Text = "作者：" + _mods.ModList[n].Author;
             ModInfoVersionTextBlock.Text = "版本：" + _mods.ModList[n].Version;
             ModInfoFolderTextBlock.Text = "文件夹：" + _mods.ModList[n].ModDirName;
             ModInfoTypeTextBlock.Text = _mods.ModList[n].ModType == ModType.Server ? "服务端" : "所有人";
-
+            // [Mod描述]
             ModDescriptionStackPanel.Text =_mods.ModList[n].Description;
+            // [Mod设置]
             if (_mods.ModList[n].ConfigurationOptions.Count == 0)
             {
                 // 没有细节配置项

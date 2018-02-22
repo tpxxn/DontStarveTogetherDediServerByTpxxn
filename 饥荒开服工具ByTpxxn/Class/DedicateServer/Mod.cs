@@ -105,13 +105,19 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
             {
                 var filename = new DirectoryInfo(Path.GetFileName(modinfoLuaPath) ?? throw new InvalidOperationException());
                 PicturePath = modInfoLuaTable["icon"]?.ToString() ?? "";
-                PicturePath = modinfoLuaPath.Replace(filename.ToString(), "") + PicturePath;
-                Picture = new TEXTool().OpenFile(PicturePath);
+                if (!string.IsNullOrEmpty(PicturePath))
+                {
+                    PicturePath = modinfoLuaPath.Replace(filename.ToString(), "") + PicturePath;
+                    Debug.WriteLine("图片路径：" + PicturePath);
+                    Picture = new TEXTool().OpenFile(PicturePath);
+                    Debug.WriteLine("图片：" + Picture);
+                }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                Debug.WriteLine(e.Message);
+                Debug.WriteLine("读取图片错误，错误消息：" + e.Message);
             }
+            // 读取其他元信息
             Name = modInfoLuaTable["name"]?.ToString() ?? "";
             Description = modInfoLuaTable["description"]?.ToString() ?? "";
             Author = modInfoLuaTable["author"]?.ToString() ?? "";
