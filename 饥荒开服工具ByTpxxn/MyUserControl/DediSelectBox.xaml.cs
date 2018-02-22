@@ -50,7 +50,27 @@ namespace 饥荒开服工具ByTpxxn.MyUserControl
         }
         #endregion
 
+        #region 属性：TextFontSize
+
+        public double TextFontSize
+        {
+            get => (double)GetValue(TextFontSizeProperty);
+            set => SetValue(TextFontSizeProperty, value);
+        }
+
+        public static readonly DependencyProperty TextFontSizeProperty =
+            DependencyProperty.Register("TextFontSize", typeof(double), typeof(DediSelectBox), new PropertyMetadata((double)0, OnTextFontSizeChange));
+
+        private static void OnTextFontSizeChange(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (e.NewValue == null) return;
+            var dediSelectBox = (DediSelectBox)d;
+            dediSelectBox.TextBlock.FontSize = (double)e.NewValue;
+        }
+        #endregion
+
         #region 属性：TextIndex
+
         public int TextIndex
         {
             get => (int)GetValue(TextIndexProperty);

@@ -23,7 +23,7 @@
                     <ColumnDefinition Width="25.6"/>
                 </Grid.ColumnDefinitions>
                 <Button x:Name="SwitchLeftButton" Grid.Column="0" Style="{DynamicResource DediSelectBoxLeftButtonStyle}" Click="SwitchLeftButton_Click" IsEnabled="False"/>
-                <TextBlock Grid.Column="1" x:Name="TextBlock" TextAlignment="Center" VerticalAlignment="Center" Foreground="#FFBEA46F" FontSize="20" FontWeight="Bold"/>
+                <TextBlock Grid.Column="1" x:Name="TextBlock" TextAlignment="Center" VerticalAlignment="Center" Foreground="#FFBEA46F" FontSize="20" FontWeight="Bold" TextWrapping="WrapWithOverflow"/>
                 <Button x:Name="SwitchRightButton" Grid.Column="2" Style="{DynamicResource DediSelectBoxRightButtonStyle}" Click="SwitchRightButton_Click"/>
             </Grid>
         </Border>

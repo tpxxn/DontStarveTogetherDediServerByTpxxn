@@ -66,6 +66,11 @@ namespace 饥荒开服工具ByTpxxn.MyUserControl
         {
             InitializeComponent();
         }
-        
+
+        protected override void OnMouseDoubleClick(MouseButtonEventArgs e)
+        {
+            base.OnMouseDoubleClick(e);
+            ModSelectCheckBox.IsChecked = !ModSelectCheckBox.IsChecked;
+        }
     }
 }

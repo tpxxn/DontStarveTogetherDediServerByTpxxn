@@ -320,7 +320,7 @@
                         </StackPanel>
                     </ScrollViewer>
                 </Grid>
-                <Grid x:Name="DediModSet" Margin="10,20">
+                <Grid x:Name="DediModSet" Margin="10,20" d:IsHidden="True">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="300"/>
                         <ColumnDefinition Width="*"/>
@@ -354,9 +354,9 @@
                         </StackPanel>
                     </ScrollViewer>
                 </Grid>
-                <Grid x:Name="DediConsole" d:IsHidden="True">
+                <Grid x:Name="DediConsole" Margin="10,20">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="140"/>
+                        <ColumnDefinition Width="200"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <StackPanel x:Name="ConsoleClassificationStackPanel" Orientation="Vertical"  Margin="0" Grid.Column="0"/>

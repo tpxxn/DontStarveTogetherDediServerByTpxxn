@@ -56,14 +56,19 @@ namespace 饥荒开服工具ByTpxxn.View
                         Width = 250,
                         Height = 100,
                         ContentMod = _mods.ModList[i],
-                        UCCheckBox = { Tag = i },
+                        ModSelectCheckBox = { Tag = i },
                     };
-                    dediModBox.UCCheckBox.IsChecked = _mods.ModList[i].Enabled;
-                    dediModBox.UCCheckBox.Checked += CheckBox_Checked;
-                    dediModBox.UCCheckBox.Unchecked += CheckBox_Unchecked;
+                    dediModBox.ModSelectCheckBox.IsChecked = _mods.ModList[i].Enabled;
+                    dediModBox.ModSelectCheckBox.Checked += CheckBox_Checked;
+                    dediModBox.ModSelectCheckBox.Unchecked += CheckBox_Unchecked;
                     dediModBox.PreviewMouseLeftButtonDown += DediModBox_MouseLeftButtonDown;
                     ModListStackPanel.Children.Add(dediModBox);
                 }
+            }
+            // 自动显示第一个mod的详情
+            if (ModListStackPanel.Children.Count != 0)
+            {
+                DediModBox_MouseLeftButtonDown(ModListStackPanel.Children[0], null);
             }
         }
 
@@ -73,7 +78,7 @@ namespace 饥荒开服工具ByTpxxn.View
         private void DediModBox_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             // [Mod信息]
-            var n = (int)((DediModBox)sender).UCCheckBox.Tag;
+            var n = (int)((DediModBox)sender).ModSelectCheckBox.Tag;
             ModInfoImage.Source = _mods.ModList[n].Picture != null ? PictureHelper.ChangeBitmapToImageSource(_mods.ModList[n].Picture) : null;
             ModInfoNameTextBlock.Text = _mods.ModList[n].Name;
             ModInfoAuthorTextBlock.Text = "作者：" + _mods.ModList[n].Author;
@@ -96,14 +101,15 @@ namespace 饥荒开服工具ByTpxxn.View
                 ModSettingStackPanel.Children.Clear();
                 foreach (var item in _mods.ModList[n].ConfigurationOptions)
                 {
-                    // stackPanel
-                    var stackPanel = new StackPanel
+                    // StackPanel
+                    var modOptionStackPanel = new StackPanel
                     {
                         Height = 40,
                         Width = 330,
                         Orientation = Orientation.Horizontal
                     };
-                    var modOptionTitleTextBlock = new TextBlock()
+                    // TextBlock
+                    var modOptionTitleTextBlock = new TextBlock
                     {
                         VerticalAlignment = VerticalAlignment.Center,
                         Width = 150,
@@ -112,23 +118,23 @@ namespace 饥荒开服工具ByTpxxn.View
                         FontWeight = FontWeights.Bold,
                         Text = string.IsNullOrEmpty(item.Value.Label) ? item.Value.Name : item.Value.Label
                     };
-                    // dediComboBox
-                    var dediSelectBox = new DediSelectBox
+                    // DediSelectBox
+                    var modOptionDediSelectBox = new DediSelectBox
                     {
-                        Height = stackPanel.Height,
+                        Height = modOptionStackPanel.Height,
                         Width = 150,
+                        TextFontSize = 14,
                         Foreground = new SolidColorBrush(Color.FromRgb(197, 170, 115)),
-                        FontSize = 12,
                         Tag = n + "$" + item.Key,
                         TextList = item.Value.Options.Select(option => option.Description).ToList()
                     };
                     // 把当前选择mod的第n个,放到tag里
-                    dediSelectBox.TextIndex = CurrentDescriptionToTextIndex(item.Value.CurrentDescription, dediSelectBox.TextList);
-                    dediSelectBox.SelectionChangedWithSender += DediComboBox_SelectionChanged;
+                    modOptionDediSelectBox.TextIndex = CurrentDescriptionToTextIndex(item.Value.CurrentDescription, modOptionDediSelectBox.TextList);
+                    modOptionDediSelectBox.SelectionChangedWithSender += DediComboBox_SelectionChanged;
                     // 添加
-                    stackPanel.Children.Add(modOptionTitleTextBlock);
-                    stackPanel.Children.Add(dediSelectBox);
-                    ModSettingStackPanel.Children.Add(stackPanel);
+                    modOptionStackPanel.Children.Add(modOptionTitleTextBlock);
+                    modOptionStackPanel.Children.Add(modOptionDediSelectBox);
+                    ModSettingStackPanel.Children.Add(modOptionStackPanel);
                 }
                 UpdateLayout();
             }
