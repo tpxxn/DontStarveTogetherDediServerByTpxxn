@@ -1,4 +1,4 @@
-# DontStarveTogetherDediServerByTpxxn
+# 饥荒开服工具 By Tpxxn
 饥荒开服工具(感谢铅笔的前期辛勤付出~)
 
 ## 许可
