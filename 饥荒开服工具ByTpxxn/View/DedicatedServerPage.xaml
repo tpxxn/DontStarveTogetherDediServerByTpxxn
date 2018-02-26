@@ -48,7 +48,7 @@
                         <RadioButton x:Name="TitleMenuBaseSet" Content="基本设置" Style="{StaticResource DediMainPanelRadioButtonStyle}" Click="TitleMenuBaseSet_Click" Margin="0"/>
                         <RadioButton x:Name="TitleMenuEditWorld" Content="编辑世界" Style="{StaticResource DediMainPanelRadioButtonStyle}" Click="TitleMenuEditWorld_Click"/>
                         <RadioButton x:Name="TitleMenuMod" Content="Mods" Style="{StaticResource DediMainPanelRadioButtonStyle}" Click="TitleMenuMod_Click"/>
-                        <RadioButton x:Name="TitleMenuRollback" Content="控制台" Style="{StaticResource DediMainPanelRadioButtonStyle}" Click="TitleMenuRollback_Click"/>
+                        <RadioButton Visibility="Collapsed" x:Name="TitleMenuRollback" Content="控制台" Style="{StaticResource DediMainPanelRadioButtonStyle}" Click="TitleMenuRollback_Click"/>
                     </StackPanel>
                 </Grid>
                 <Image x:Name="TopMenuRightBackground" Grid.Column="2" Source="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/Background/MainPanelTopRight.png" VerticalAlignment="Bottom" Stretch="None" HorizontalAlignment="Left" />
@@ -60,13 +60,7 @@
                 <ScrollViewer x:Name="DediCommonSetting" Template="{StaticResource DediRightPanelScrollViewerControlTemplate}" Focusable="False" VerticalAlignment="Stretch" VerticalContentAlignment="Top" Margin="10,20" d:IsHidden="True" >
                     <StackPanel>
                         <Grid x:Name="DediSettingGameVersion" Height="40">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="15*"/>
-                                <ColumnDefinition Width="206*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.Background>
-                                <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_set_bg.png"/>
-                            </Grid.Background>
+                            <dedicatedServer:DediSetBackground/>
                             <Viewbox Margin="0,2,0.2,2" Grid.ColumnSpan="2">
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="游戏平台:" FontWeight="Bold" FontSize="16" Foreground="#FFC5AA73"/>
@@ -75,48 +69,42 @@
                             </Viewbox>
                         </Grid>
                         <Grid x:Name="DediSettingGameDir" Height="40">
-                            <Grid.Background>
-                                <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_set_bg.png"/>
-                            </Grid.Background>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="117.2"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="27.2"/>
                                 <ColumnDefinition Width="15"/>
                             </Grid.ColumnDefinitions>
-                            <Label Content="游戏exe地址:" FontWeight="Bold" FontSize="16" VerticalAlignment="Center" Margin="10,0,0,0" Foreground="#FFC5AA73"/>
+                            <dedicatedServer:DediSetBackground Grid.ColumnSpan="4"/>
+                            <Label Grid.Column="0" Content="游戏exe地址:" FontWeight="Bold" FontSize="16" VerticalAlignment="Center" Margin="10,0,0,0" Foreground="#FFC5AA73"/>
                             <TextBox Grid.Column="1" x:Name="GameDirSelectTextBox" Tag="双击打开目录" Style="{StaticResource DediTextBoxStyle}" Height="30" IsReadOnly="True" Cursor="{StaticResource CursorLink}" PreviewMouseDoubleClick="OpenGameDir" VerticalAlignment="Center"/>
                             <Button Grid.Column="2" x:Name="GameDirSelectButton" Tag="选择文件" Width="30" Height="30" Style="{StaticResource DediLittleButtonMainPanelStyle}" Click="SelectGameDir" VerticalAlignment="Center" Margin="0,3,0,0">
                                 <Image Source="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_mp_btn_dirselect.png"/>
                             </Button>
                         </Grid>
                         <Grid x:Name="DediSettingDediDir" Height="40">
-                            <Grid.Background>
-                                <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_set_bg.png"/>
-                            </Grid.Background>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="133.2"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="27.2"/>
                                 <ColumnDefinition Width="15"/>
                             </Grid.ColumnDefinitions>
-                            <Label Content="服务器exe地址:" FontWeight="Bold" FontSize="16" VerticalAlignment="Center" Margin="10,0,0,0" Foreground="#FFC5AA73"/>
+                            <dedicatedServer:DediSetBackground Grid.ColumnSpan="4"/>
+                            <Label Grid.Column="0" Content="服务器exe地址:" FontWeight="Bold" FontSize="16" VerticalAlignment="Center" Margin="10,0,0,0" Foreground="#FFC5AA73"/>
                             <TextBox Grid.Column="1" x:Name="DediDirSelectTextBox" Tag="双击打开目录" Style="{StaticResource DediTextBoxStyle}" Height="30" IsReadOnly="True" Cursor="{StaticResource CursorLink}" PreviewMouseDoubleClick="OpenDediDir" VerticalAlignment="Center"/>
                             <Button Grid.Column="2" x:Name="DediDirSelectButton" Tag="选择文件" Width="30" Height="30" Style="{StaticResource DediLittleButtonMainPanelStyle}" Click="SelectDediDir" VerticalAlignment="Center" Margin="0,3,0,0">
                                 <Image Source="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_mp_btn_dirselect.png"/>
                             </Button>
                         </Grid>
                         <Grid x:Name="DediSettingDediCluster" Height="40">
-                            <Grid.Background>
-                                <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_set_bg.png"/>
-                            </Grid.Background>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="131.6"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="27.2"/>
                                 <ColumnDefinition Width="15"/>
                             </Grid.ColumnDefinitions>
-                            <Label Content="ClusterToken:" FontWeight="Bold" FontSize="16" VerticalAlignment="Center" Margin="10,0,0,0" Foreground="#FFC5AA73"/>
+                            <dedicatedServer:DediSetBackground Grid.ColumnSpan="4"/>
+                            <Label Grid.Column="0" Content="ClusterToken:" FontWeight="Bold" FontSize="16" VerticalAlignment="Center" Margin="10,0,0,0" Foreground="#FFC5AA73"/>
                             <TextBox Grid.Column="1" x:Name="DediSettingClusterTokenTextBox" Tag="输入ClusterToken" Style="{StaticResource DediTextBoxStyle}" Height="30"  Cursor="{StaticResource CursorText}" VerticalAlignment="Center"  />
                             <Button Grid.Column="2" x:Name="DediSettingSaveCluster" Tag="保存" Width="30" Height="30" Style="{StaticResource DediLittleButtonMainPanelStyle}" Click="SaveClusterToken" VerticalAlignment="Center" Margin="0,3,0,0">
                                 <Image Source="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_mp_btn_save.png"/>
@@ -169,9 +157,7 @@
                 <ScrollViewer x:Name="DediBaseSet" Template="{StaticResource DediRightPanelScrollViewerControlTemplate}" Margin="10,20" Focusable="False" d:IsHidden="True" >
                     <StackPanel>
                         <Grid x:Name="DediBaseSetIntention" Height="40">
-                            <Grid.Background>
-                                <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_set_bg.png"/>
-                            </Grid.Background>
+                            <dedicatedServer:DediSetBackground/>
                             <Viewbox Margin="0,2">
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="游戏风格" FontWeight="Bold" FontSize="16" Foreground="#FFC5AA73"/>
@@ -180,9 +166,7 @@
                             </Viewbox>
                         </Grid>
                         <Grid x:Name="DediBaseSetName" Height="40">
-                            <Grid.Background>
-                                <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_set_bg.png"/>
-                            </Grid.Background>
+                            <dedicatedServer:DediSetBackground/>
                             <Viewbox Margin="0,2">
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="名称" FontWeight="Bold" FontSize="16" Foreground="#FFC5AA73"/>
@@ -191,9 +175,7 @@
                             </Viewbox>
                         </Grid>
                         <Grid x:Name="DediBaseSetDescription" Height="40">
-                            <Grid.Background>
-                                <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_set_bg.png"/>
-                            </Grid.Background>
+                            <dedicatedServer:DediSetBackground/>
                             <Viewbox Margin="0,2">
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="描述"  FontWeight="Bold" FontSize="16" Foreground="#FFC5AA73"/>
@@ -202,9 +184,7 @@
                             </Viewbox>
                         </Grid>
                         <Grid x:Name="DediBaseSetGamemode" Height="40">
-                            <Grid.Background>
-                                <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_set_bg.png"/>
-                            </Grid.Background>
+                            <dedicatedServer:DediSetBackground/>
                             <Viewbox Margin="0,2">
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="游戏模式" FontWeight="Bold" FontSize="16" Foreground="#FFC5AA73"/>
@@ -213,9 +193,7 @@
                             </Viewbox>
                         </Grid>
                         <Grid x:Name="DediBaseSetPvp" Height="40">
-                            <Grid.Background>
-                                <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_set_bg.png"/>
-                            </Grid.Background>
+                            <dedicatedServer:DediSetBackground/>
                             <Viewbox Margin="0,2">
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="PvP:" FontWeight="Bold" FontSize="16" Foreground="#FFC5AA73"/>
@@ -224,9 +202,7 @@
                             </Viewbox>
                         </Grid>
                         <Grid x:Name="DediBaseSetMaxPlayer" Height="40">
-                            <Grid.Background>
-                                <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_set_bg.png"/>
-                            </Grid.Background>
+                            <dedicatedServer:DediSetBackground/>
                             <Viewbox Margin="0,2">
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="玩家:" FontWeight="Bold" FontSize="16" Foreground="#FFC5AA73"/>
@@ -235,9 +211,7 @@
                             </Viewbox>
                         </Grid>
                         <Grid x:Name="DediBaseSetPassword" Height="40">
-                            <Grid.Background>
-                                <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_set_bg.png"/>
-                            </Grid.Background>
+                            <dedicatedServer:DediSetBackground/>
                             <Viewbox Margin="0,2">
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="密码" FontWeight="Bold" FontSize="16" Foreground="#FFC5AA73"/>
@@ -246,9 +220,7 @@
                             </Viewbox>
                         </Grid>
                         <Grid x:Name="DediBaseSetOffline" Height="40">
-                            <Grid.Background>
-                                <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_set_bg.png"/>
-                            </Grid.Background>
+                            <dedicatedServer:DediSetBackground/>
                             <Viewbox Margin="0,2">
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="服务器模式" FontWeight="Bold" FontSize="16" Foreground="#FFC5AA73"/>
@@ -257,9 +229,7 @@
                             </Viewbox>
                         </Grid>
                         <Grid x:Name="DediBaseSetIsPause" Height="40">
-                            <Grid.Background>
-                                <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_set_bg.png"/>
-                            </Grid.Background>
+                            <dedicatedServer:DediSetBackground/>
                             <Viewbox Margin="0,2">
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="无人时暂停" FontWeight="Bold" FontSize="16" Foreground="#FFC5AA73"/>
@@ -269,7 +239,7 @@
                         </Grid>
                     </StackPanel>
                 </ScrollViewer>
-                <Grid x:Name="DediWorldSet" d:IsHidden="True" Margin="10,20">
+                <Grid x:Name="DediWorldSet" Margin="10,20">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="10"/>
                         <ColumnDefinition Width="*"/>
@@ -281,9 +251,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid x:Name="DediBaseSetIsCave" Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="1">
-                        <Grid.Background>
-                            <ImageBrush ImageSource="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/D_set_bg.png"/>
-                        </Grid.Background>
+                        <dedicatedServer:DediSetBackground/>
                         <Viewbox Margin="0,2">
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="开启洞穴" FontWeight="Bold" FontSize="16" Foreground="#FFC5AA73"/>
@@ -354,7 +322,7 @@
                         </StackPanel>
                     </ScrollViewer>
                 </Grid>
-                <Grid x:Name="DediConsole" Margin="10,20">
+                <Grid x:Name="DediConsole" Margin="10,20" d:IsHidden="True">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="200"/>
                         <ColumnDefinition Width="*"/>

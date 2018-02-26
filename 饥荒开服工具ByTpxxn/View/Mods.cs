@@ -130,7 +130,7 @@ namespace 饥荒开服工具ByTpxxn.View
                     };
                     // 把当前选择mod的第n个,放到tag里
                     modOptionDediSelectBox.TextIndex = CurrentDescriptionToTextIndex(item.Value.CurrentDescription, modOptionDediSelectBox.TextList);
-                    modOptionDediSelectBox.SelectionChangedWithSender += DediComboBox_SelectionChanged;
+                    modOptionDediSelectBox.SelectionChangedWithSender += DediSelectBox_SelectionChanged;
                     // 添加
                     modOptionStackPanel.Children.Add(modOptionTitleTextBlock);
                     modOptionStackPanel.Children.Add(modOptionDediSelectBox);
@@ -153,7 +153,7 @@ namespace 饥荒开服工具ByTpxxn.View
         /// <summary>
         /// 设置 "Mod" "SelectionChanged"
         /// </summary>
-        private void DediComboBox_SelectionChanged(object sender)
+        private void DediSelectBox_SelectionChanged(object sender)
         {
             Debug.WriteLine(((DediSelectBox)sender).Tag);
             var str = ((DediSelectBox)sender).Tag.ToString().Split('$');

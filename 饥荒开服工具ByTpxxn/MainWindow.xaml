@@ -79,8 +79,8 @@
                             </StackPanel>
                             <TextBlock x:Name="SeBgAlphaText" TextWrapping="Wrap" Text="背景不透明度：100%" Margin="0,10,0,0"/>
                             <Slider x:Name="SeBgAlpha" ValueChanged="Se_BG_Alpha_ValueChanged" Maximum="100" SmallChange="1" LargeChange="10" Value="100" Cursor="{StaticResource CursorLink}" Margin="0,0,1,0" />
-                            <TextBlock x:Name="SePanelAlphaText" TextWrapping="Wrap" Text="面板不透明度：100%" Margin="0,10,0,0"/>
-                            <Slider x:Name="SePanelAlpha" ValueChanged="Se_Panel_Alpha_ValueChanged" Maximum="100" SmallChange="1" LargeChange="10" Cursor="{StaticResource CursorLink}" Margin="0,0,1,0" />
+                            <TextBlock Foreground="Gray" x:Name="SePanelAlphaText" TextWrapping="Wrap" Text="面板不透明度：60%" Margin="0,10,0,0"/>
+                            <Slider IsEnabled="False" Value="60" x:Name="SePanelAlpha" ValueChanged="Se_Panel_Alpha_ValueChanged" Maximum="100" SmallChange="1" LargeChange="10" Cursor="{StaticResource CursorLink}" Margin="0,0,1,0" />
                             <TextBlock x:Name="SeWindowAlphaText" TextWrapping="Wrap" Text="窗口不透明度：100%" Margin="0,10,0,0"/>
                             <Slider x:Name="SeWindowAlpha" ValueChanged="Se_Window_Alpha_ValueChanged" Maximum="100" SmallChange="1" LargeChange="10" Value="100" Minimum="10" Cursor="{StaticResource CursorLink}" Margin="0,0,1,0"/>
                         </StackPanel>

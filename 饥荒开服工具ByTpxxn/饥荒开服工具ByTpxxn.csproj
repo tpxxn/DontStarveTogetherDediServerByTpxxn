@@ -116,17 +116,17 @@
     <Compile Include="Class\Tools\PictureHelper.cs" />
     <Compile Include="Class\Tools\SendMessage.cs" />
     <Compile Include="Class\Tools\FileHelper.cs" />
-    <Compile Include="MyUserControl\DediComboBox.cs" />
-    <Compile Include="MyUserControl\DediComboBoxWithImage.cs" />
     <Compile Include="MyUserControl\DediEditWorldSelectBox.xaml.cs">
       <DependentUpon>DediEditWorldSelectBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MyUserControl\DediImageButton.cs" />
     <Compile Include="MyUserControl\DediModBox.xaml.cs">
       <DependentUpon>DediModBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="MyUserControl\DediSelectBox.xaml.cs">
       <DependentUpon>DediSelectBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyUserControl\DediSetBackground.xaml.cs">
+      <DependentUpon>DediSetBackground.xaml</DependentUpon>
     </Compile>
     <Compile Include="ValueConverter\DediTooltipPlacementConverter.cs" />
     <Compile Include="View\BaseSet.cs" />
@@ -146,18 +146,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Dictionary\Cursor\DefaultCursorDictionary.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Dictionary\DediComboBoxDictionary.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Dictionary\DediComboBoxWithImageDictionary.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Dictionary\DediImageButtonDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -213,6 +201,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MyUserControl\DediSelectBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyUserControl\DediSetBackground.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -510,6 +502,11 @@
     <Resource Include="Resources\DedicatedServer\ModBox\ModBoxBackground_Border.png" />
     <Resource Include="Resources\DedicatedServer\ModBox\ModBoxBackground_Default.png" />
     <Resource Include="Resources\DedicatedServer\ModBox\ModBoxBackground_Selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\DedicatedServer\SetBackground\SetBG_Center.png" />
+    <Resource Include="Resources\DedicatedServer\SetBackground\SetBG_Left.png" />
+    <Resource Include="Resources\DedicatedServer\SetBackground\SetBG_Right.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

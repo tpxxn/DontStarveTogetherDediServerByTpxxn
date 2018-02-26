@@ -134,24 +134,6 @@ namespace 饥荒开服工具ByTpxxn
                     new ResourceDictionary
                     {
                         Source = new Uri(
-                            "pack://application:,,,/饥荒开服工具ByTpxxn;component/Dictionary/DediComboBoxDictionary.xaml",
-                            UriKind.Absolute)
-                    },
-                    new ResourceDictionary
-                    {
-                        Source = new Uri(
-                            "pack://application:,,,/饥荒开服工具ByTpxxn;component/Dictionary/DediComboBoxWithImageDictionary.xaml",
-                            UriKind.Absolute)
-                    },
-                    new ResourceDictionary
-                    {
-                        Source = new Uri(
-                            "pack://application:,,,/饥荒开服工具ByTpxxn;component/Dictionary/DediImageButtonDictionary.xaml",
-                            UriKind.Absolute)
-                    },
-                    new ResourceDictionary
-                    {
-                        Source = new Uri(
                             "pack://application:,,,/饥荒开服工具ByTpxxn;component/Dictionary/DediLeftPanelRadioButtonDictionary.xaml",
                             UriKind.Absolute)
                     },

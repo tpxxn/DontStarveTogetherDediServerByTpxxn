@@ -268,9 +268,9 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
 
             // 读取游戏模式
             var gameMode = clusterIniFile.ReadValue("GAMEPLAY", "game_mode");
-            if (gameMode == "endless") { GameMode = 0; }
-            if (gameMode == "survival") { GameMode = 1; }
-            if (gameMode == "wilderness") { GameMode = 2; }
+            if (gameMode == "survival") { GameMode = 0; }
+            if (gameMode == "wilderness") { GameMode = 1; }
+            if (gameMode == "endless") { GameMode = 2; }
 
             // 读取PVP[标记：这里没有变成小写]
             var pvp = clusterIniFile.ReadValue("GAMEPLAY", "pvp");
@@ -285,8 +285,8 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
 
             // 读取服务器模式 offline_cluster=true
             var offlineCluster = clusterIniFile.ReadValue("NETWORK", "offline_cluster");
-            if (offlineCluster == "true") { ServerMode = 0; }
-            if (offlineCluster == "false") { ServerMode = 1; }
+            if (offlineCluster == "false") { ServerMode = 0; }
+            if (offlineCluster == "true") { ServerMode = 1; }
 
             // 读取无人时暂停[标记：这里没有变成小写]
             var pauseWhenEmpty = clusterIniFile.ReadValue("GAMEPLAY", "pause_when_empty");
