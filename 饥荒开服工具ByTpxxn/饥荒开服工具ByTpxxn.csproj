@@ -137,6 +137,9 @@
     <Compile Include="View\DedicatedServerPage.xaml.cs">
       <DependentUpon>DedicatedServerPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\DialogWindow.xaml.cs">
+      <DependentUpon>DialogWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Mods.cs" />
     <Compile Include="View\EditWorld.cs" />
     <Page Include="Dictionary\ComboBoxDictionary.xaml">
@@ -211,6 +214,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\DedicatedServerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DialogWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

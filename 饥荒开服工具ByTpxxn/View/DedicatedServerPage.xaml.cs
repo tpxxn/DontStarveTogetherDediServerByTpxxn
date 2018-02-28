@@ -72,7 +72,7 @@ namespace 饥荒开服工具ByTpxxn.View
         /// <summary>
         /// 面板初始化
         /// </summary>
-        private void PanelInitalize()
+        private async void PanelInitalize()
         {
             // 隐藏所有面板
             PanelVisibility("Null");
@@ -100,7 +100,13 @@ namespace 饥荒开服工具ByTpxxn.View
             _mods = null;
             if (!string.IsNullOrEmpty(CommonPath.ServerModsDirPath))
             {
-                _mods = new Mods();
+                var dialogWindow = new DialogWindow("mod加载中");
+                dialogWindow.InitializeComponent();
+                MainGrid.IsEnabled = false;
+                dialogWindow.Show();
+                _mods = await Task.Run(() => new Mods());
+                MainGrid.IsEnabled = true;
+                dialogWindow.Close();
             }
             #endregion
             // 初始化

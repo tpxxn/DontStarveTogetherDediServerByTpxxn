@@ -56,6 +56,7 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
                     Debug.WriteLine(e.ToString());
                 }
             }
+            Debug.WriteLine("读取mod完成！");
         }
 
         public void ReadModsOverrides(string modoverridesFilePath)

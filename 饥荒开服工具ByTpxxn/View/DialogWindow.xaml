@@ -1,0 +1,16 @@
+﻿<Window x:Class="饥荒开服工具ByTpxxn.View.DialogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:饥荒开服工具ByTpxxn.View"
+        mc:Ignorable="d"
+        Cursor="{StaticResource CursorPointer}" 
+        WindowStyle="None" Width="250" Height="118" AllowsTransparency="True" Title="饥荒百科全书" Background="Transparent" Icon="/Resources/DSEC.ico" WindowStartupLocation="CenterScreen" Topmost="True" ShowInTaskbar="False">
+    <Grid x:Name="SplashWindowCanvas" Width="230" Height="98" HorizontalAlignment="Center" VerticalAlignment="Center" d:LayoutOverrides="Height" Background="Black">
+        <Grid.Effect>
+            <DropShadowEffect ShadowDepth="0" Color="#FF323232" BlurRadius="10"/>
+        </Grid.Effect>
+        <TextBlock x:Name="ContentTextBlock" Foreground="WhiteSmoke" FontWeight="Bold" FontSize="30" VerticalAlignment="Center" TextWrapping="Wrap" x:FieldModifier="public" TextAlignment="Center" HorizontalAlignment="Center"/>
+    </Grid>
+</Window>
