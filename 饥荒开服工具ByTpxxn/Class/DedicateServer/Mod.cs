@@ -21,13 +21,12 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
     }
 
     /// <summary>
-    /// 2016.11.28 重新写的mod类,代表每单个mod，注意两点：  
-    /// 客户端不能显示
-    /// 另外看看地窖这个mod是不是有毒，还会总出错吗
+    /// mod类,代表每单个mod<para/>  
+    /// 客户端不能显示<para/>
     /// </summary>
+    // TODO 看看地窖这个mod是不是有毒，还会总出错吗
     public class Mod
     {
-
         #region mod属性
         /// <summary>
         /// mod的文件夹名
@@ -100,7 +99,6 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
             ModDirName = directoryInfo.Name;
             // 读取modinfo文件
             var modInfoLuaTable = LuaConfig.ReadLua(modinfoLuaPath, Encoding.UTF8, false);
-            // TODO 可能引发读取错误
             // 读取图片
             try
             {
@@ -140,15 +138,14 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
                 ModType = ModType.Client;
             }
             #endregion
-            #region mod的设置
+            #region mod的设置信息
             if (ModType != ModType.Client)
             {
                 // mod的设置 configuration_options
                 ConfigurationOptions = new Dictionary<string, ModSetting>();
-                // 如果没有设置。返回
+                // 如果没有设置，返回
                 if (modInfoLuaTable["configuration_options"] == null) { return; }
                 var configurationOptionsLuaTable = (LuaTable)modInfoLuaTable["configuration_options"];
-                //    private Dictionary<string, ModSetting> configuration_options;
                 // lua下标从1开始
                 for (var i = 1; i <= configurationOptionsLuaTable.Length; i++)
                 {
@@ -279,7 +276,7 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
                 {
                     continue;
                 }
-                // 赋值到当前值,【到这里，用当前值覆盖了default，如果没有被覆盖的就是默认值】
+                // 赋值到当前值,［到这里，用当前值覆盖了default，如果没有被覆盖的就是默认值］
                 if (item.Value != null)
                 {
                     ConfigurationOptions[item.Key].Current = item.Value.ToString();

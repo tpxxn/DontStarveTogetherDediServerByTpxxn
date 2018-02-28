@@ -21,7 +21,7 @@
     <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
     <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
     <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
-    <Style x:Key="DediBottomButtonStyle" TargetType="{x:Type Button}">
+    <Style x:Key="DediFooterButtonStyle" TargetType="{x:Type Button}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
         <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
         <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
@@ -36,7 +36,7 @@
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border x:Name="border" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
                         <Border.Background>
-                            <ImageBrush ImageSource="/Resources/DedicatedServer/D_mp_createworld.png"/>
+                            <ImageBrush ImageSource="/Resources/DedicatedServer/Button/SettingFooterButton_Default.png"/>
                         </Border.Background>
                         <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Margin="1"/>
                     </Border>
@@ -44,14 +44,14 @@
                         <Trigger Property="IsDefaulted" Value="true">
                             <Setter Property="Background" TargetName="border">
                                 <Setter.Value>
-                                    <ImageBrush ImageSource="/Resources/DedicatedServer/D_mp_createworld.png"/>
+                                    <ImageBrush ImageSource="/Resources/DedicatedServer/Button/SettingFooterButton_Default.png"/>
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter Property="Background" TargetName="border">
                                 <Setter.Value>
-                                    <ImageBrush ImageSource="/Resources/DedicatedServer/D_mp_createworld_tobeclick.png"/>
+                                    <ImageBrush ImageSource="/Resources/DedicatedServer/Button/SettingFooterButton_MouseOver.png"/>
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
@@ -68,83 +68,14 @@
                             </Setter>
                             <Setter Property="Background" TargetName="border">
                                 <Setter.Value>
-                                    <ImageBrush ImageSource="/Resources/DedicatedServer/D_mp_createworld_pressed.png"/>
+                                    <ImageBrush ImageSource="/Resources/DedicatedServer/Button/SettingFooterButton_Pressed.png"/>
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Background" TargetName="border">
                                 <Setter.Value>
-                                    <ImageBrush ImageSource="/Resources/DedicatedServer/D_mp_createworld_disable.png"/>
-                                </Setter.Value>
-                            </Setter>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    <Style x:Key="DediButtonMainPanelStyle" TargetType="{x:Type Button}">
-        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
-        <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
-        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="Cursor" Value="{DynamicResource CursorLink}" />
-        <Setter Property="Padding" Value="1"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Button}">
-                    <Canvas x:Name="canvas" SnapsToDevicePixels="true">
-                        <Canvas.ToolTip>
-                            <ToolTip BorderBrush="{x:Null}" Foreground="{x:Null}" Placement="Top" HorizontalOffset="{Binding ActualWidth, ConverterParameter=ActualWidth, Converter={StaticResource DediTooltipPlacementConverter}, Mode=Default, RelativeSource={RelativeSource Self}}" >
-                                <ToolTip.Background>
-                                    <ImageBrush ImageSource="/Resources/DedicatedServer/D_mp_btn_tip.png" Opacity="0.7"/>
-                                </ToolTip.Background>
-                                <TextBlock Text="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}" Foreground="White" FontSize="15" Margin="10,2" />
-                            </ToolTip>
-                        </Canvas.ToolTip>
-                        <Canvas.Background>
-                            <ImageBrush ImageSource="/Resources/DedicatedServer/D_mp_btn_1.png"/>
-                        </Canvas.Background>
-                        <Image x:Name="light" Source="/Resources/DedicatedServer/D_mp_btn_light.png" Height="60" Width="60" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Collapsed" />
-                        <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Width="50" Height="50" Margin="4,4,0,0" />
-                    </Canvas>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsDefaulted" Value="true">
-                            <Setter Property="Visibility" TargetName="light" Value="Collapsed"/>
-                            <Setter Property="Background" TargetName="canvas">
-                                <Setter.Value>
-                                    <ImageBrush ImageSource="/Resources/DedicatedServer/D_mp_btn_1.png"/>
-                                </Setter.Value>
-                            </Setter>
-                        </Trigger>
-                        <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Visibility" TargetName="light" Value="Visible"/>
-                            <Setter Property="Background" TargetName="canvas">
-                                <Setter.Value>
-                                    <ImageBrush ImageSource="/Resources/DedicatedServer/D_mp_btn_2.png"/>
-                                </Setter.Value>
-                            </Setter>
-                        </Trigger>
-                        <Trigger Property="IsPressed" Value="true">
-                            <Setter Property="RenderTransform" TargetName="canvas">
-                                <Setter.Value>
-                                    <TransformGroup>
-                                        <ScaleTransform/>
-                                        <SkewTransform/>
-                                        <RotateTransform/>
-                                        <TranslateTransform Y="2"/>
-                                    </TransformGroup>
-                                </Setter.Value>
-                            </Setter>
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Background" TargetName="canvas">
-                                <Setter.Value>
-                                    <ImageBrush ImageSource="/Resources/DedicatedServer/D_mp_btn_3.png"/>
+                                    <ImageBrush ImageSource="/Resources/DedicatedServer/Button/SettingFooterButton_Disable.png"/>
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
@@ -154,7 +85,7 @@
         </Setter>
     </Style>
     
-    <Style x:Key="DediLittleButtonMainPanelStyle" TargetType="{x:Type Button}">
+    <Style x:Key="DediLittleButtonStyle" TargetType="{x:Type Button}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
         <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
         <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
@@ -177,25 +108,22 @@
                             </ToolTip>
                         </Canvas.ToolTip>
                         <Canvas.Background>
-                            <ImageBrush ImageSource="/Resources/DedicatedServer/D_mp_btn_1.png"/>
+                            <ImageBrush ImageSource="/Resources/DedicatedServer/Button/Button_Default.png"/>
                         </Canvas.Background>
-                        <Image x:Name="light" Source="/Resources/DedicatedServer/D_mp_btn_light.png" Height="24" Width="24" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Collapsed" />
-                        <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Width="20" Height="20" Margin="1,1,0,0" />
+                        <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Width="20" Height="20" Margin="4,4,0,0" />
                     </Canvas>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsDefaulted" Value="true">
-                            <Setter Property="Visibility" TargetName="light" Value="Collapsed"/>
                             <Setter Property="Background" TargetName="canvas">
                                 <Setter.Value>
-                                    <ImageBrush ImageSource="/Resources/DedicatedServer/D_mp_btn_1.png"/>
+                                    <ImageBrush ImageSource="/Resources/DedicatedServer/Button/Button_Default.png"/>
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Visibility" TargetName="light" Value="Visible"/>
                             <Setter Property="Background" TargetName="canvas">
                                 <Setter.Value>
-                                    <ImageBrush ImageSource="/Resources/DedicatedServer/D_mp_btn_2.png"/>
+                                    <ImageBrush ImageSource="/Resources/DedicatedServer/Button/Button_MouseOver.png"/>
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
@@ -210,11 +138,88 @@
                                     </TransformGroup>
                                 </Setter.Value>
                             </Setter>
+                            <Setter Property="Background" TargetName="canvas">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="/Resources/DedicatedServer/Button/Button_Pressed.png"/>
+                                </Setter.Value>
+                            </Setter>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Background" TargetName="canvas">
                                 <Setter.Value>
-                                    <ImageBrush ImageSource="/Resources/DedicatedServer/D_mp_btn_3.png"/>
+                                    <ImageBrush ImageSource="/Resources/DedicatedServer/Button/Button_Disable.png"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="DediModLittleButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+        <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Cursor" Value="{DynamicResource CursorLink}" />
+        <Setter Property="Padding" Value="1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Canvas x:Name="canvas" SnapsToDevicePixels="true">
+                        <Canvas.ToolTip>
+                            <ToolTip BorderBrush="{x:Null}" Foreground="{x:Null}" Placement="Top" HorizontalOffset="{Binding ActualWidth, ConverterParameter=ActualWidth, Converter={StaticResource DediTooltipPlacementConverter}, Mode=Default, RelativeSource={RelativeSource Self}}" >
+                                <ToolTip.Background>
+                                    <ImageBrush ImageSource="/Resources/DedicatedServer/D_mp_btn_tip.png" Opacity="0.7"/>
+                                </ToolTip.Background>
+                                <TextBlock Text="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}" Foreground="White" FontSize="15" Margin="10,2" />
+                            </ToolTip>
+                        </Canvas.ToolTip>
+                        <Canvas.Background>
+                            <ImageBrush ImageSource="/Resources/DedicatedServer/Button/Button_Default.png"/>
+                        </Canvas.Background>
+                        <ContentPresenter x:Name="contentPresenter" Width="30" Height="30" Margin="10,10,0,0" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Canvas>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsDefaulted" Value="true">
+                            <Setter Property="Background" TargetName="canvas">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="/Resources/DedicatedServer/Button/Button_Default.png"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" TargetName="canvas">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="/Resources/DedicatedServer/Button/Button_MouseOver.png"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter Property="RenderTransform" TargetName="canvas">
+                                <Setter.Value>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform Y="2"/>
+                                    </TransformGroup>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Background" TargetName="canvas">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="/Resources/DedicatedServer/Button/Button_Pressed.png"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Background" TargetName="canvas">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="/Resources/DedicatedServer/Button/Button_Disable.png"/>
                                 </Setter.Value>
                             </Setter>
                         </Trigger>

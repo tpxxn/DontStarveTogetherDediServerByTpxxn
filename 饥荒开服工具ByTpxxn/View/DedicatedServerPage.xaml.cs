@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -81,7 +82,7 @@ namespace 饥荒开服工具ByTpxxn.View
             // 检查通用设置
             CheckCommonSetting();
             #endregion
-            #region ComboBox初始化
+            #region BaseSet初始化
             BaseSetGameModeSelectBox.TextList = new List<string> { "生存", "荒野", "无尽" };
             BaseSetPvpSelectBox.TextList = new List<string> { "关闭", "开启" };
             var maxPlayer = new List<string>();
@@ -93,6 +94,14 @@ namespace 饥荒开服工具ByTpxxn.View
             BaseSetOfflineSelectBox.TextList = new List<string> { "在线", "离线" };
             BaseSetIsPauseSelectBox.TextList = new List<string> { "关闭", "开启" }; ;
             EditWorldIsCaveSelectBox.TextList = new List<string> { "关闭", "开启" }; ;
+            #endregion
+            #region Mod初始化
+            // 此时的mod没有被current覆盖
+            _mods = null;
+            if (!string.IsNullOrEmpty(CommonPath.ServerModsDirPath))
+            {
+                _mods = new Mods();
+            }
             #endregion
             // 初始化
             InitServer();
@@ -108,7 +117,7 @@ namespace 饥荒开服工具ByTpxxn.View
         /// <param name="str">要显示的面板</param>
         private void PanelVisibility(string str)
         {
-            foreach (UIElement vControl in CenterMainGrid.Children)
+            foreach (UIElement vControl in SettingMainGrid.Children)
             {
                 vControl.Visibility = Visibility.Collapsed;
             }
@@ -386,12 +395,9 @@ namespace 饥荒开服工具ByTpxxn.View
             {
                 _dediFilePath = new DediFilePath(SaveSlot);
             }
-            // [创建世界]读取服务器mods文件夹下所有信息.mod多的话,读取时间也多
-            //   此时的mod没有被current覆盖
-            _mods = null;
+            // [创建世界]从modoverrides.lua读取mod设置
             if (!string.IsNullOrEmpty(CommonPath.ServerModsDirPath) && whenCreateWorld)
             {
-                _mods = new Mods();
                 SetModSet();
             }
             #endregion

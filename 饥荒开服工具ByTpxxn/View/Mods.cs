@@ -20,6 +20,8 @@ namespace 饥荒开服工具ByTpxxn.View
 {
     public partial class DedicatedServerPage : Page
     {
+        #region Mod配置
+
         /// <summary>
         /// 设置 "Mod集"
         /// </summary>
@@ -185,5 +187,40 @@ namespace 饥荒开服工具ByTpxxn.View
             _mods.ModList[(int)((CheckBox)sender).Tag].Enabled = true;
             //Debug.WriteLine(((CheckBox)sender).Tag.ToString());
         }
+
+        #endregion
+
+        #region Mod管理
+
+        /// <summary>
+        /// 从创意工坊添加mod
+        /// </summary>
+        private void AddModButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            // TODO
+        }
+
+        /// <summary>
+        /// 更新全部mod
+        /// </summary>
+        private void UpdateAllModButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            // TODO
+        }
+
+        /// <summary>
+        /// 刷新mod列表[重新读取mods文件夹和modoverrides.lua]
+        /// </summary>
+        private void RefreshModButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            _mods = null;
+            if (!string.IsNullOrEmpty(CommonPath.ServerModsDirPath))
+            {
+                _mods = new Mods();
+            }
+            SetModSet();
+        }
+
+        #endregion
     }
 }

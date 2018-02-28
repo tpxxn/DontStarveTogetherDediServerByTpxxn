@@ -108,11 +108,13 @@
     <Compile Include="Class\JsonDeserialize\ItemListJson.cs" />
     <Compile Include="Class\JsonDeserialize\Preset\PresetJson.cs" />
     <Compile Include="Class\StringProcess.cs" />
+    <Compile Include="Class\Tools\HttpHelper.cs" />
     <Compile Include="Class\Tools\IniHelper.cs" />
     <Compile Include="Class\Tools\JsonHelper.cs" />
     <Compile Include="Class\Tools\LuaConfig.cs" />
     <Compile Include="Class\Tools\DediFilePath.cs" />
     <Compile Include="Class\Tools\CommonPath.cs" />
+    <Compile Include="Class\Tools\ModDownloadHelper.cs" />
     <Compile Include="Class\Tools\PictureHelper.cs" />
     <Compile Include="Class\Tools\SendMessage.cs" />
     <Compile Include="Class\Tools\FileHelper.cs" />
@@ -297,16 +299,12 @@
     <Resource Include="Resources\DedicatedServer\D_lp_increase.png" />
     <Resource Include="Resources\DedicatedServer\D_lp_thumb.png" />
     <Resource Include="Resources\DedicatedServer\D_lp_tobeselected.png" />
-    <Resource Include="Resources\DedicatedServer\D_mp_btn_1.png" />
-    <Resource Include="Resources\DedicatedServer\D_mp_btn_2.png" />
-    <Resource Include="Resources\DedicatedServer\D_mp_btn_3.png" />
-    <Resource Include="Resources\DedicatedServer\D_mp_btn_delete.png" />
-    <Resource Include="Resources\DedicatedServer\D_mp_btn_dirselect.png" />
-    <Resource Include="Resources\DedicatedServer\D_mp_btn_light.png" />
-    <Resource Include="Resources\DedicatedServer\D_mp_btn_save.png" />
+    <Resource Include="Resources\DedicatedServer\Button\ButtonIcon_delete.png" />
+    <Resource Include="Resources\DedicatedServer\Button\ButtonIcon_dirselect.png" />
+    <Resource Include="Resources\DedicatedServer\Button\ButtonIcon_save.png" />
     <Resource Include="Resources\DedicatedServer\D_mp_btn_tip.png" />
-    <Resource Include="Resources\DedicatedServer\D_mp_createworld.png" />
-    <Resource Include="Resources\DedicatedServer\D_mp_createworld_tobeclick.png" />
+    <Resource Include="Resources\DedicatedServer\Button\SettingFooterButton_Default.png" />
+    <Resource Include="Resources\DedicatedServer\Button\SettingFooterButton_MouseOver.png" />
     <Resource Include="Resources\DedicatedServer\ModBox\ModBoxConfig.png" />
     <Resource Include="Resources\DedicatedServer\D_set_bg.png" />
     <Resource Include="Resources\DedicatedServer\D_set_border.png" />
@@ -448,10 +446,10 @@
     <Resource Include="Resources\DefaultBackground.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\DedicatedServer\D_mp_createworld_disable.png" />
+    <Resource Include="Resources\DedicatedServer\Button\SettingFooterButton_Disable.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\DedicatedServer\D_mp_createworld_pressed.png" />
+    <Resource Include="Resources\DedicatedServer\Button\SettingFooterButton_Pressed.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\DedicatedServer\SelectBox\SelectBoxLeftButton_Default.png" />
@@ -507,6 +505,21 @@
     <Resource Include="Resources\DedicatedServer\SetBackground\SetBG_Center.png" />
     <Resource Include="Resources\DedicatedServer\SetBackground\SetBG_Left.png" />
     <Resource Include="Resources\DedicatedServer\SetBackground\SetBG_Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\DedicatedServer\Button\Button_Default.png" />
+    <Resource Include="Resources\DedicatedServer\Button\Button_Disable.png" />
+    <Resource Include="Resources\DedicatedServer\Button\Button_MouseOver.png" />
+    <Resource Include="Resources\DedicatedServer\Button\Button_Pressed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\DedicatedServer\Button\ButtonIcon_refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\DedicatedServer\Button\ButtonIcon_updateall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\DedicatedServer\Button\ButtonIcon_workshop.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

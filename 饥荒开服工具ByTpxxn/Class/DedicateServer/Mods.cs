@@ -15,7 +15,9 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
     {
 
         #region 字段和属性
-
+        /// <summary>
+        /// Modoverride文件路径
+        /// </summary>
         public string ModoverrideFilePath { get; set; }
 
         /// <summary>
@@ -26,7 +28,7 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
 
         #region 构造函数
         /// <summary>
-        /// 读取所有的mod，放到listMod中
+        /// 读取所有的mod，放到ModList中
         /// </summary>
         public Mods()
         {
@@ -40,13 +42,14 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
                 {
                     // modinfo的路径
                     var modinfoPath = directoryInfoInDirectoryInfos.FullName + @"\modinfo.lua";
-                    // 这个mod的配置lt1，可以为空，后面有判断
-                    //LuaTable lt1 = lt[strdir[i].Name] == null ? null : (LuaTable)lt[strdir[i].Name];
                     // 创建mod
                     var mod = new Mod(modinfoPath);
                     // [如果不是客户端mod]添加
                     if (mod.ModType != ModType.Client)
                         ModList.Add(mod);
+                    else
+                        // [若为客户端mod]删除
+                        Directory.Delete(directoryInfoInDirectoryInfos.FullName, true);
                 }
                 catch (IOException e)
                 {
@@ -75,7 +78,7 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
 
         #endregion
 
-        #region 【保存到文件】 把listmods保存到文件,保存的时候注意格式
+        #region ［保存到文件］把listmods保存到文件,保存的时候注意格式
 
         /// <summary>
         /// 把listmods保存到文件,保存的时候注意格式

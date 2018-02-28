@@ -4,7 +4,8 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
 {
 
     /// <summary>
-    /// 小细节的每一个选项
+    /// 小细节的每一个选项<para/>
+    /// 示例：{description = "Detect", data = "detect", hover = "Detect the language based on language mods installed."},
     /// </summary>
     public class Option
     {
