@@ -67,6 +67,10 @@
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter Property="Source" TargetName="Border" Value="/饥荒开服工具ByTpxxn;component/Resources/DedicatedServer/TitleMenuRadioButton/TitleMenuRadioButton_Border.png"/>
                         </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="Gray"/>
+                            <Setter Property="Visibility" TargetName="Border" Value="Collapsed"/>
+                        </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsChecked" Value="false"/>

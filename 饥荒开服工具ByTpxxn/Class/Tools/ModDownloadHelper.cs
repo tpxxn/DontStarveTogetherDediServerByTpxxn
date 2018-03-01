@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using Newtonsoft.Json.Linq;
+using 饥荒开服工具ByTpxxn.Class.DedicateServer;
+using 饥荒开服工具ByTpxxn.View;
 
 // 经作者同意，代码改自
 // https://github.com/vvwall/DSTseverTools
@@ -33,6 +38,7 @@ namespace 饥荒开服工具ByTpxxn.Class.Tools
             {
                 var postString = "mid=" + modId;
                 var httpPostBack = HttpHelper.HttpPost("http://t.vvwall.com/DST/modinfo.php", postString);
+                Debug.WriteLine("mod Json:"+httpPostBack);
                 var jObject = JObject.Parse(httpPostBack);
                 if (jObject["code"].ToString() == "200")
                 {
@@ -59,12 +65,10 @@ namespace 饥荒开服工具ByTpxxn.Class.Tools
             return modDownloadObject;
         }
 
-        public static void DownloadModFile(ModDownloadObject modDownloadObject, TextBlock textBlock)
+        public static void DownloadModFile(ModDownloadObject modDownloadObject)
         {
-            HttpHelper.DownloadFile(
-                modDownloadObject.ModDownloadUrl,
-                @".\temp\mod\workshop-" + modDownloadObject.ModId + ".zip",
-                textBlock);
+            Directory.CreateDirectory(@".\Temp\ModUpdate\");
+            HttpHelper.DownloadFile(modDownloadObject.ModDownloadUrl, @".\Temp\ModUpdate\workshop-" + modDownloadObject.ModId + ".zip");
         }
     }
 }

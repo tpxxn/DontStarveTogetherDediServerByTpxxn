@@ -15,7 +15,7 @@
         </ResourceDictionary>
     </RadioButton.Resources>
 
-    <Border Style="{DynamicResource DediModBoxBorderStyle}" Width="250" Height="100">
+    <Border Style="{DynamicResource DediModBoxBorderStyle}" Width="250" Height="100" Cursor="{StaticResource CursorLink}">
         <Grid Width="240" Height="90" Margin="5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>

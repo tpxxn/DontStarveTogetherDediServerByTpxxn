@@ -71,6 +71,10 @@
                             <Setter Property="Foreground" Value="#FFD5D09C"/>
                             <Setter Property="Visibility" TargetName="Border" Value="Collapsed"/>
                         </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="Gray"/>
+                            <Setter Property="Visibility" TargetName="Border" Value="Collapsed"/>
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

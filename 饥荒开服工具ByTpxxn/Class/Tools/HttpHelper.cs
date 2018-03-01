@@ -71,7 +71,7 @@ namespace 饥荒开服工具ByTpxxn.Class.Tools
             }
         }
 
-        public static void DownloadFile(string URL, string filename, System.Windows.Controls.TextBlock textBlock)
+        public static bool DownloadFile(string URL, string filename)
         {
             try
             {
@@ -92,19 +92,19 @@ namespace 饥荒开服工具ByTpxxn.Class.Tools
                         fileStream.Write(buffer, 0, osize);
                         osize = responseStream.Read(buffer, 0, buffer.Length);
                         var percent = (float)totalDownloadedByte / (float)totalBytes * 100;
-                        percent = (float)Math.Round(percent, 3);
-                        textBlock.Text = "当前下载进度：" + percent.ToString(CultureInfo.InvariantCulture) + "%";
+                        percent = (float)Math.Round(percent, 3); // 下载百分比
                         System.Windows.Forms.Application.DoEvents(); //必须加注这句代码，否则textBlock将因为循环执行太快而来不及显示信息
                     }
                 }
                 fileStream.Close();
                 responseStream?.Close();
+                return true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                MessageBox.Show("下载失败，可能是网络问题");
+                MessageBox.Show("下载失败，可能是网络问题\r\n错误信息：" + e);
+                return false;
             }
         }
-
     }
 }

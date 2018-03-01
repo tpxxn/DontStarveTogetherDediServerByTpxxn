@@ -6,11 +6,15 @@
         xmlns:local="clr-namespace:饥荒开服工具ByTpxxn.View"
         mc:Ignorable="d"
         Cursor="{StaticResource CursorPointer}" 
-        WindowStyle="None" Width="250" Height="118" AllowsTransparency="True" Title="饥荒百科全书" Background="Transparent" Icon="/Resources/DSEC.ico" WindowStartupLocation="CenterScreen" Topmost="True" ShowInTaskbar="False">
-    <Grid x:Name="SplashWindowCanvas" Width="230" Height="98" HorizontalAlignment="Center" VerticalAlignment="Center" d:LayoutOverrides="Height" Background="Black">
+        WindowStyle="None" Width="300" Height="168" AllowsTransparency="True" Title="饥荒百科全书" Background="Transparent" Icon="/Resources/DSEC.ico" WindowStartupLocation="CenterOwner" Topmost="True" ShowInTaskbar="False">
+
+    <Grid x:Name="DialogWindowCanvas" Width="280" Height="148" HorizontalAlignment="Center" VerticalAlignment="Center" d:LayoutOverrides="Height" x:FieldModifier="public" >
+        <Grid.Background>
+            <ImageBrush ImageSource="/Resources/DedicatedServer/DialogWindowBackground.png"/>
+        </Grid.Background>
         <Grid.Effect>
             <DropShadowEffect ShadowDepth="0" Color="#FF323232" BlurRadius="10"/>
         </Grid.Effect>
-        <TextBlock x:Name="ContentTextBlock" Foreground="WhiteSmoke" FontWeight="Bold" FontSize="30" VerticalAlignment="Center" TextWrapping="Wrap" x:FieldModifier="public" TextAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock x:Name="ContentTextBlock" Margin="20" Foreground="WhiteSmoke" FontWeight="Bold" FontSize="30" VerticalAlignment="Center" TextWrapping="Wrap" x:FieldModifier="public" TextAlignment="Center" HorizontalAlignment="Center"/>
     </Grid>
 </Window>

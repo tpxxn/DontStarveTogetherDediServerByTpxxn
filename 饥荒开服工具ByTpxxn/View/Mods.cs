@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -88,7 +91,7 @@ namespace 饥荒开服工具ByTpxxn.View
             ModInfoFolderTextBlock.Text = "文件夹：" + _mods.ModList[n].ModDirName;
             ModInfoTypeTextBlock.Text = _mods.ModList[n].ModType == ModType.Server ? "服务器" : "所有人";
             // [Mod描述]
-            ModDescriptionStackPanel.Text =_mods.ModList[n].Description;
+            ModDescriptionStackPanel.Text = _mods.ModList[n].Description;
             // [Mod设置]
             if (_mods.ModList[n].ConfigurationOptions.Count == 0)
             {
@@ -193,32 +196,151 @@ namespace 饥荒开服工具ByTpxxn.View
         #region Mod管理
 
         /// <summary>
+        /// 验证mod id
+        /// </summary>
+        /// <param name="dialogWindowWithButton"></param>
+        private static void ValidateModId(DialogWindowWithButton dialogWindowWithButton)
+        {
+            var modIdString = dialogWindowWithButton.InputTextBox.Text;
+            if (modIdString.Length >= 9 && modIdString.Length <= 10)
+            {
+                double.TryParse(modIdString, out var modId);
+                dialogWindowWithButton.Result = modId;
+            }
+            else
+                dialogWindowWithButton.Result = (double)0;
+        }
+
+        /// <summary>
         /// 从创意工坊添加mod
         /// </summary>
-        private void AddModButton_OnClick(object sender, RoutedEventArgs e)
+        private async void AddModButton_OnClick(object sender, RoutedEventArgs e)
         {
-            // TODO
+            try
+            {
+                var tempPath = Environment.CurrentDirectory + @"\Temp\";
+                if (Directory.Exists(tempPath))
+                    Directory.Delete(tempPath, true);
+                Directory.CreateDirectory(tempPath);
+
+                var dialogWindowWithButton = new DialogWindowWithButton("请输入mod ID", DialogWindowWithButton.DialogButtons.OKCancel);
+                dialogWindowWithButton.InitializeComponent();
+                dialogWindowWithButton.OKbuttonEvent += ValidateModId;
+                dialogWindowWithButton.ShowDialog();
+                var modIdFromResult = (double)dialogWindowWithButton.Result;
+                if (modIdFromResult == 0)
+                {
+                    Debug.WriteLine("错误的mod ID");
+                    return;
+                }
+                var modDirName = CommonPath.ServerModsDirPath + "\\workshop-" + modIdFromResult;
+
+                var dialogWindow = new DialogWindow(modIdFromResult + "下载中") { Owner = Application.Current.MainWindow };
+                dialogWindow.InitializeComponent();
+                MainGrid.IsEnabled = false;
+                dialogWindow.Width = 450;
+                dialogWindow.Height = 350;
+                dialogWindow.DialogWindowCanvas.Width = 430;
+                dialogWindow.DialogWindowCanvas.Height = 340;
+                dialogWindow.Show();
+                await Task.Run(() =>
+                {
+                    try
+                    {
+                        // 下载
+                        var modDownloadObject = ModDownloadHelper.DownloadModFromId(modIdFromResult.ToString());
+                        ModDownloadHelper.DownloadModFile(modDownloadObject);
+                        // 解压
+                        ZipFile.ExtractToDirectory(@".\Temp\ModUpdate\workshop-" + modIdFromResult + ".zip",
+                            modDirName + ".tmp");
+                        if (Directory.Exists(modDirName))
+                            Directory.Delete(modDirName, true);
+                        new FileInfo(modDirName + ".tmp").MoveTo(modDirName);
+                    }
+                    catch
+                    {
+                        // ignored
+                    }
+                });
+                MainGrid.IsEnabled = true;
+                dialogWindow.Close();
+                RefreshModButton_OnClick(null, null);
+            }
+            catch (Exception exception)
+            {
+                Debug.WriteLine(exception.ToString());
+            }
         }
 
         /// <summary>
         /// 更新全部mod
         /// </summary>
-        private void UpdateAllModButton_OnClick(object sender, RoutedEventArgs e)
+        private async void UpdateAllModButton_OnClick(object sender, RoutedEventArgs e)
         {
-            // TODO
+            try
+            {
+                var tempPath = Environment.CurrentDirectory + @"\Temp\";
+                if (Directory.Exists(tempPath))
+                    Directory.Delete(tempPath, true);
+                Directory.CreateDirectory(tempPath);
+                foreach (var mod in _mods.ModList)
+                {
+                    var dialogWindow = new DialogWindow(mod.Name + "下载中") { Owner = Application.Current.MainWindow };
+                    dialogWindow.InitializeComponent();
+                    MainGrid.IsEnabled = false;
+                    dialogWindow.Width = 450;
+                    dialogWindow.Height = 350;
+                    dialogWindow.DialogWindowCanvas.Width = 430;
+                    dialogWindow.DialogWindowCanvas.Height = 340;
+                    dialogWindow.Show();
+                    await Task.Run(() =>
+                    {
+                        try
+                        {
+                            // 下载
+                            var modId = mod.ModDirName.Replace("workshop-", "");
+                            var modDownloadObject = ModDownloadHelper.DownloadModFromId(modId);
+                            ModDownloadHelper.DownloadModFile(modDownloadObject);
+                            // 解压
+                            ZipFile.ExtractToDirectory(@".\Temp\ModUpdate\workshop-" + modId + ".zip",
+                                CommonPath.ServerModsDirPath + "\\" + mod.ModDirName + ".tmp");
+                            if (Directory.Exists(CommonPath.ServerModsDirPath + "\\" + mod.ModDirName))
+                                Directory.Delete(CommonPath.ServerModsDirPath + "\\" + mod.ModDirName, true);
+                            new FileInfo(CommonPath.ServerModsDirPath + "\\" + mod.ModDirName + ".tmp").MoveTo(CommonPath.ServerModsDirPath + "\\" + mod.ModDirName);
+                        }
+                        catch
+                        {
+                            // ignored
+                        }
+                    });
+                    MainGrid.IsEnabled = true;
+                    dialogWindow.Close();
+                }
+                RefreshModButton_OnClick(null, null);
+            }
+            catch (Exception exception)
+            {
+                Debug.WriteLine(exception.ToString());
+            }
         }
 
         /// <summary>
         /// 刷新mod列表[重新读取mods文件夹和modoverrides.lua]
         /// </summary>
-        private void RefreshModButton_OnClick(object sender, RoutedEventArgs e)
+        private async void RefreshModButton_OnClick(object sender, RoutedEventArgs e)
         {
+            var dialogWindow = new DialogWindow("mod加载中") { Owner = Application.Current.MainWindow };
+            dialogWindow.InitializeComponent();
+            MainGrid.IsEnabled = false;
+            dialogWindow.Show();
             _mods = null;
             if (!string.IsNullOrEmpty(CommonPath.ServerModsDirPath))
             {
-                _mods = new Mods();
+                _mods = await Task.Run(() => new Mods());
             }
             SetModSet();
+            MainGrid.IsEnabled = true;
+            dialogWindow.Close();
         }
 
         #endregion

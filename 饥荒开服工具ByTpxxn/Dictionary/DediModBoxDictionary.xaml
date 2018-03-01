@@ -48,6 +48,7 @@
         <Setter Property="BorderBrush" Value="{StaticResource OptionMark.Static.Border}"/>
         <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
         <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Cursor" Value="{DynamicResource CursorLink}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type CheckBox}">

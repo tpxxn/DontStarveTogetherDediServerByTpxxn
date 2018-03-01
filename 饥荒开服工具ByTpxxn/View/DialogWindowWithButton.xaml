@@ -1,0 +1,40 @@
+﻿<Window x:Class="饥荒开服工具ByTpxxn.View.DialogWindowWithButton"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:饥荒开服工具ByTpxxn.View"
+        mc:Ignorable="d"
+        Cursor="{StaticResource CursorPointer}" 
+        WindowStyle="None" Width="500" Height="250" AllowsTransparency="True" Title="饥荒百科全书" Background="Transparent" Icon="/Resources/DSEC.ico" WindowStartupLocation="CenterScreen" Topmost="True" ShowInTaskbar="False">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/饥荒开服工具ByTpxxn;component/Dictionary/DediRightPanelTextBoxDictionary.xaml"/>
+                <ResourceDictionary Source="/饥荒开服工具ByTpxxn;component/Dictionary/DediRightPanelButtonDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid x:Name="DialogWindowCanvas" Width="500" Height="250" HorizontalAlignment="Center" VerticalAlignment="Center" d:LayoutOverrides="Height" x:FieldModifier="public" >
+        <Grid.Background>
+            <ImageBrush ImageSource="/Resources/DedicatedServer/DialogWindowBackground.png"/>
+        </Grid.Background>
+        <Grid.Effect>
+            <DropShadowEffect ShadowDepth="0" Color="#FF323232" BlurRadius="10"/>
+        </Grid.Effect>
+        <Grid Margin="45">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="ContentTextBlock" Margin="20,5,20,5" Foreground="WhiteSmoke" FontWeight="Bold" FontSize="30" VerticalAlignment="Center" TextWrapping="Wrap" x:FieldModifier="public" TextAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBox Grid.Row="1" Margin="10,0" x:Name="InputTextBox" Tag="输入ClusterToken" Style="{StaticResource DediTextBoxStyle}" Height="30"  Cursor="{StaticResource CursorText}" VerticalAlignment="Center"  />
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button x:Name="OKButton" Content="确定" Style="{StaticResource DediFooterButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,10,0" Width="150" Height="50" FontSize="18" FontWeight="Bold" Click="OKButton_Click"/>
+                <Button x:Name="CancelButton" Content="取消" Style="{StaticResource DediFooterButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,10,0" Width="150" Height="50" FontSize="18" FontWeight="Bold" Click="CancelButton_Click"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

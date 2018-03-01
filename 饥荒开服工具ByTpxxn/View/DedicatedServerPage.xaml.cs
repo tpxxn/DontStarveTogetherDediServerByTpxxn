@@ -100,7 +100,7 @@ namespace 饥荒开服工具ByTpxxn.View
             _mods = null;
             if (!string.IsNullOrEmpty(CommonPath.ServerModsDirPath))
             {
-                var dialogWindow = new DialogWindow("mod加载中");
+                var dialogWindow = new DialogWindow("mod加载中") { Owner = Application.Current.MainWindow };
                 dialogWindow.InitializeComponent();
                 MainGrid.IsEnabled = false;
                 dialogWindow.Show();
@@ -203,7 +203,7 @@ namespace 饥荒开服工具ByTpxxn.View
 
         #endregion
 
-        #region Top按钮
+        #region SettingTitle按钮
 
         private void TitleMenuBaseSet_Click(object sender, RoutedEventArgs e)
         {
@@ -233,7 +233,7 @@ namespace 饥荒开服工具ByTpxxn.View
 
         #endregion
 
-        #region Bottom按钮
+        #region SettingFooter按钮
 
         /// <summary>
         /// 通用设置

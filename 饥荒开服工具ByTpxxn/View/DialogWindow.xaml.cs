@@ -13,7 +13,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using 饥荒开服工具ByTpxxn.Class;
-using Application = System.Windows.Application;
 
 namespace 饥荒开服工具ByTpxxn.View
 {
@@ -22,12 +21,25 @@ namespace 饥荒开服工具ByTpxxn.View
     /// </summary>
     public partial class DialogWindow : Window
     {
+        private readonly Timer _dialogWindowTimer = new Timer();
+
         public DialogWindow(string content)
         {
             InitializeComponent();
             ContentTextBlock.Text = content;
             if (Global.FontFamily != null)
                 FontFamily = Global.FontFamily;
+            _dialogWindowTimer.Interval = 1;
+            _dialogWindowTimer.Tick += DialogWindowTick;
+            _dialogWindowTimer.Start();
+        }
+
+        private void DialogWindowTick(object sender, EventArgs e)
+        {
+            var mainWindow = System.Windows.Application.Current.MainWindow;
+            // ReSharper disable once PossibleNullReferenceException
+            Left = mainWindow.Left + mainWindow.Width / 2 - Width / 2;
+            Top = mainWindow.Top + mainWindow.Height / 2 - Height / 2;
         }
     }
 }
