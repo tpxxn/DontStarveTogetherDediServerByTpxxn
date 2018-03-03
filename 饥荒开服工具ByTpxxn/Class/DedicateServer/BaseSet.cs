@@ -69,6 +69,22 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
         }
 
         /// <summary>
+        /// 基本设置-密码
+        /// </summary>
+        private string _password;
+
+        public string Password
+        {
+            get => _password;
+            set
+            {
+                _password = value;
+                NotifyPropertyChange("Password");
+                if (!_isFileToProperty) { SavePropertyToFile("Password"); }
+            }
+        }
+
+        /// <summary>
         /// 基本设置-描述
         /// </summary>
         private string _describe;
@@ -83,7 +99,23 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
                 if (!_isFileToProperty) { SavePropertyToFile("Describe"); }
             }
         }
-        
+
+        /// <summary>
+        /// 基本设置-最大回档数
+        /// </summary>
+        private int _maxSnapshots;
+
+        public int MaxSnapshots
+        {
+            get => _maxSnapshots;
+            set
+            {
+                _maxSnapshots = value;
+                NotifyPropertyChange("MaxSnapshots");
+                if (!_isFileToProperty) { SavePropertyToFile("MaxSnapshots"); }
+            }
+        }
+
         /// <summary>
         /// [当前显示的]游戏模式
         /// </summary>
@@ -129,22 +161,6 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
                 _maxPlayers = value;
                 NotifyPropertyChange("LimitNumOfPeople");
                 if (!_isFileToProperty) { SavePropertyToFile("MaxPlayers"); }
-            }
-        }
-
-        /// <summary>
-        /// 基本设置-密码
-        /// </summary>
-        private string _password;
-
-        public string Password
-        {
-            get => _password;
-            set
-            {
-                _password = value;
-                NotifyPropertyChange("Password");
-                if (!_isFileToProperty) { SavePropertyToFile("Password"); }
             }
         }
 
@@ -263,8 +279,18 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
             // 读取房间名称
             ClusterName = clusterIniFile.ReadValue("NETWORK", "cluster_name");
 
+            // 读取密码
+            Password = clusterIniFile.ReadValue("NETWORK", "cluster_password");
+
             // 读取描述
             Describe = clusterIniFile.ReadValue("NETWORK", "cluster_description");
+
+            // 最大回档数
+            var maxSnapshotsString = clusterIniFile.ReadValue("MISC", "max_snapshots");
+            if (string.IsNullOrEmpty(maxSnapshotsString))
+                MaxSnapshots = 6;
+            else
+                MaxSnapshots = int.Parse(maxSnapshotsString);
 
             // 读取游戏模式
             var gameMode = clusterIniFile.ReadValue("GAMEPLAY", "game_mode");
@@ -278,10 +304,11 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
             if (pvp == "true") { IsPvp = 1; }
 
             // 读取人数限制
-            MaxPlayers = int.Parse(clusterIniFile.ReadValue("GAMEPLAY", "max_players")) - 1;
-
-            // 读取密码
-            Password = clusterIniFile.ReadValue("NETWORK", "cluster_password");
+            var maxPlayersString = clusterIniFile.ReadValue("GAMEPLAY", "max_players");
+            if (string.IsNullOrEmpty(maxPlayersString))
+                MaxPlayers = 6;
+            else
+                MaxPlayers = int.Parse(maxPlayersString) - 1;
 
             // 读取服务器模式 offline_cluster=true
             var offlineCluster = clusterIniFile.ReadValue("NETWORK", "offline_cluster");
@@ -327,9 +354,15 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
                     case "ClusterName":
                         clusterIniFile.WriteValue("NETWORK", "cluster_name", ClusterName, Global.Utf8WithoutBom);
                         break;
+                    case "Password":
+                        clusterIniFile.WriteValue("NETWORK", "cluster_password", Password, Global.Utf8WithoutBom);
+                        break;
                     case "Describe":
                         clusterIniFile.WriteValue("NETWORK", "cluster_description", Describe, Global.Utf8WithoutBom);
-                        break; 
+                        break;
+                    case "MaxSnapshots":
+                        clusterIniFile.WriteValue("MISC", "max_snapshots", MaxSnapshots.ToString(), Global.Utf8WithoutBom);
+                        break;
                     case "GameMode":
                         if (GameMode == 0) { clusterIniFile.WriteValue("GAMEPLAY", "game_mode", "endless", Global.Utf8WithoutBom); }
                         if (GameMode == 1) { clusterIniFile.WriteValue("GAMEPLAY", "game_mode", "survival", Global.Utf8WithoutBom); }
@@ -340,9 +373,6 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
                         break;
                     case "MaxPlayers":
                         clusterIniFile.WriteValue("GAMEPLAY", "max_players", (MaxPlayers + 1).ToString(), Global.Utf8WithoutBom);
-                        break;
-                    case "Password":
-                        clusterIniFile.WriteValue("NETWORK", "cluster_password", Password, Global.Utf8WithoutBom);
                         break;
                     case "ServerMode":
                         if (ServerMode == 0) { clusterIniFile.WriteValue("NETWORK", "offline_cluster", "false", Global.Utf8WithoutBom); }

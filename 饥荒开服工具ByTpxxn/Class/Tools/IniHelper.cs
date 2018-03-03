@@ -78,7 +78,11 @@ namespace 饥荒开服工具ByTpxxn.Class.Tools
         /// <returns>参数[值]</returns>
         public string ReadValue(string section, string key)
         {
-            return iniObjectDictionary != null ? iniObjectDictionary[section][key] : "";
+            if (iniObjectDictionary == null)
+                return "";
+            if(!iniObjectDictionary.ContainsKey(section))
+                return "";
+            return !iniObjectDictionary[section].ContainsKey(key) ? "" : iniObjectDictionary[section][key];
         }
 
         /// <summary>

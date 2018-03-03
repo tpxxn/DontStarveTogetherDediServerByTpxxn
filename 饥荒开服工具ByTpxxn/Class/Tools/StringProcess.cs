@@ -52,30 +52,32 @@ namespace 饥荒开服工具ByTpxxn.Class.Tools
         }
 
         /// <summary>
-        /// 检查控制台数字文本框
+        /// 检查数字文本框
         /// </summary>
         /// <param name="textbox">文本框对象</param>
-        public static void ConsoleNumTextCheck(TextBox textbox)
+        /// <param name="maxNum">数字最大值</param>
+        /// <param name="defaultString">默认字符串</param>
+        public static void NumTextCheck(TextBox textbox, int maxNum = 1000, string defaultString = "1")
         {
             try
             {
                 if (!Regex.IsMatch(textbox.Text, "^\\d*\\.?\\d*$") && textbox.Text != "")
                 {
-                    int pos = textbox.SelectionStart - 1;
+                    var pos = textbox.SelectionStart - 1;
                     textbox.Text = textbox.Text.Remove(pos, 1);
                     textbox.SelectionStart = pos;
                 }
                 if (textbox.Text != "")
                 {
-                    if (int.Parse(textbox.Text) > 1000)
+                    if (int.Parse(textbox.Text) > maxNum)
                     {
-                        textbox.Text = "1000";
+                        textbox.Text = maxNum.ToString();
                     }
                 }
             }
             catch (Exception)
             {
-                textbox.Text = "1";
+                textbox.Text = defaultString;
             }
         }
 

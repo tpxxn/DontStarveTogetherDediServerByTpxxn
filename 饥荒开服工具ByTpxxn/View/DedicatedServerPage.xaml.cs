@@ -629,6 +629,5 @@ namespace 饥荒开服工具ByTpxxn.View
             CtrateWorldButton.IsEnabled = !isDisable;
         }
         #endregion
-
     }
 }

@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using 饥荒开服工具ByTpxxn.Class;
 using 饥荒开服工具ByTpxxn.Class.DedicateServer;
+using 饥荒开服工具ByTpxxn.Class.Tools;
 
 namespace 饥荒开服工具ByTpxxn.View
 {
@@ -140,16 +141,18 @@ namespace 饥荒开服工具ByTpxxn.View
             DediBaseSetIntentionButton.DataContext = _baseSet;
             // 名称
             DediBaseSetClusterName.DataContext = _baseSet;
+            // 密码
+            DediBaseSetSecret.DataContext = _baseSet;
             // 描述
             DediBaseSetDescribe.DataContext = _baseSet;
+            // 最大回档数
+            DediBaseSetMaxSnapshots.DataContext = _baseSet;
             // 游戏模式
             BaseSetGameModeSelectBox.DataContext = _baseSet;
             // PVP
             BaseSetPvpSelectBox.DataContext = _baseSet;
             // 玩家
             BaseSetMaxPlayerSelectBox.DataContext = _baseSet;
-            // 密码
-            DediBaseSetSecret.DataContext = _baseSet;
             // 服务器模式
             BaseSetOfflineSelectBox.DataContext = _baseSet;
             // 无人时暂停
@@ -163,6 +166,14 @@ namespace 饥荒开服工具ByTpxxn.View
             Debug.WriteLine("基本设置-完");
         }
 
+        /// <summary>
+        /// 最大回档数输入检测
+        /// </summary>
+        private void DediBaseSetMaxSnapshots_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var textbox = (TextBox)sender;
+            StringProcess.NumTextCheck(textbox, 20, "6");
+        }
         #endregion
 
     }

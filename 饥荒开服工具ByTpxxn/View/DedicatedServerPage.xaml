@@ -154,7 +154,7 @@
                     </Button>
                     <TextBlock x:Name="DidiIntentionTextBlock" Grid.ColumnSpan="4" FontSize="16" FontWeight="Bold" Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" TextAlignment="Center" Foreground="#FFF5F3DE"/>
                 </Grid>
-                <ScrollViewer x:Name="DediBaseSet" Template="{StaticResource DediRightPanelScrollViewerControlTemplate}" Margin="10,20" Focusable="False" d:IsHidden="True" >
+                <ScrollViewer x:Name="DediBaseSet" Template="{StaticResource DediRightPanelScrollViewerControlTemplate}" Margin="10,20" Focusable="False" >
                     <StackPanel>
                         <Grid x:Name="DediBaseSetIntention" Height="40">
                             <dedicatedServer:DediSetBackground/>
@@ -174,12 +174,31 @@
                                 </StackPanel>
                             </Viewbox>
                         </Grid>
+                        <Grid x:Name="DediBaseSetPassword" Height="40">
+                            <dedicatedServer:DediSetBackground/>
+                            <Viewbox Margin="0,2">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="密码" FontWeight="Bold" FontSize="16" Foreground="#FFC5AA73"/>
+                                    <TextBox x:Name="DediBaseSetSecret" Tag="服务器密码" Text="{Binding Password, Mode=TwoWay}" Style="{StaticResource DediTextBoxStyle}" Height="30" Width="250"/>
+                                </StackPanel>
+                            </Viewbox>
+                        </Grid>
                         <Grid x:Name="DediBaseSetDescription" Height="40">
                             <dedicatedServer:DediSetBackground/>
                             <Viewbox Margin="0,2">
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="描述"  FontWeight="Bold" FontSize="16" Foreground="#FFC5AA73"/>
                                     <TextBox x:Name="DediBaseSetDescribe" Tag="服务器描述" Text="{Binding Describe, Mode=TwoWay}" Style="{StaticResource DediTextBoxStyle}" Height="30" Width="250"/>
+                                </StackPanel>
+                            </Viewbox>
+                        </Grid>
+
+                        <Grid x:Name="DediBaseSetMaxSnapshotsGrid" Height="40">
+                            <dedicatedServer:DediSetBackground/>
+                            <Viewbox Margin="0,2">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="最大回档数"  FontWeight="Bold" FontSize="16" Foreground="#FFC5AA73"/>
+                                    <TextBox x:Name="DediBaseSetMaxSnapshots" Tag="最大回档数" Text="{Binding MaxSnapshots, Mode=TwoWay}" Style="{StaticResource DediTextBoxStyle}" Height="30" Width="250" TextChanged="DediBaseSetMaxSnapshots_TextChanged"/>
                                 </StackPanel>
                             </Viewbox>
                         </Grid>
@@ -207,15 +226,6 @@
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="玩家:" FontWeight="Bold" FontSize="16" Foreground="#FFC5AA73"/>
                                     <dedicatedServer:DediSelectBox x:Name="BaseSetMaxPlayerSelectBox" TextIndex="{Binding MaxPlayers, Mode=TwoWay}" Height="35" Width="140" Foreground="#FFC5AA73"/>
-                                </StackPanel>
-                            </Viewbox>
-                        </Grid>
-                        <Grid x:Name="DediBaseSetPassword" Height="40">
-                            <dedicatedServer:DediSetBackground/>
-                            <Viewbox Margin="0,2">
-                                <StackPanel Orientation="Horizontal">
-                                    <Label Content="密码" FontWeight="Bold" FontSize="16" Foreground="#FFC5AA73"/>
-                                    <TextBox x:Name="DediBaseSetSecret" Tag="服务器密码" Text="{Binding Password, Mode=TwoWay}" Style="{StaticResource DediTextBoxStyle}" Height="30" Width="250"/>
                                 </StackPanel>
                             </Viewbox>
                         </Grid>
@@ -288,7 +298,7 @@
                         </StackPanel>
                     </ScrollViewer>
                 </Grid>
-                <Grid x:Name="DediModSet" Margin="10,20,10,5">
+                <Grid x:Name="DediModSet" Margin="10,20,10,5" d:IsHidden="True">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="300"/>
                         <ColumnDefinition Width="*"/>
