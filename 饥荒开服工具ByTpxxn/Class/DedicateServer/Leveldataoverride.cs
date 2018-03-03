@@ -228,7 +228,7 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
             // 清空
             var configWorld = new Dictionary<string, string>();
             // 先读文件
-            var luaTable = LuaConfig.ReadLua(!_isCave ? _pathall.OverworldConfigFilePath : _pathall.CaveConfigFilePath, Encoding.UTF8, true);
+            var luaTable = LuaHelper.ReadLua(!_isCave ? _pathall.OverworldConfigFilePath : _pathall.CaveConfigFilePath, Encoding.UTF8, true);
             // 初始化override世界配置
             var overridesDictionary = ((LuaTable)luaTable["overrides"]).Members;
             var keyList = overridesDictionary.Keys.ToList();

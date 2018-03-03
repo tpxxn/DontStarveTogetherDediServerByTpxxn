@@ -107,11 +107,11 @@
     <Compile Include="Class\JsonDeserialize\Hanization\HanizationJson.cs" />
     <Compile Include="Class\JsonDeserialize\ItemListJson.cs" />
     <Compile Include="Class\JsonDeserialize\Preset\PresetJson.cs" />
-    <Compile Include="Class\StringProcess.cs" />
+    <Compile Include="Class\Tools\StringProcess.cs" />
     <Compile Include="Class\Tools\HttpHelper.cs" />
     <Compile Include="Class\Tools\IniHelper.cs" />
     <Compile Include="Class\Tools\JsonHelper.cs" />
-    <Compile Include="Class\Tools\LuaConfig.cs" />
+    <Compile Include="Class\Tools\LuaHelper.cs" />
     <Compile Include="Class\Tools\DediFilePath.cs" />
     <Compile Include="Class\Tools\CommonPath.cs" />
     <Compile Include="Class\Tools\ModDownloadHelper.cs" />

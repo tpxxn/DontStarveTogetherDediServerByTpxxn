@@ -13,8 +13,8 @@ namespace 饥荒开服工具ByTpxxn.Class
 {
     public static class Global
     {
+        #region 字段、属性
 
-        public static readonly UTF8Encoding Utf8WithoutBom = new UTF8Encoding(false); // 编码
         /// <summary>
         /// 枚举类型 Message
         /// </summary>
@@ -27,11 +27,30 @@ namespace 饥荒开服工具ByTpxxn.Class
         }
 
         /// <summary>
+        ///  UTF8WithoutBom编码
+        /// </summary>
+        public static readonly UTF8Encoding Utf8WithoutBom = new UTF8Encoding(false);
+
+        /// <summary>
+        /// 工程名 [饥荒开服工具ByTpxxn]
+        /// </summary>
+        public static string ProjectName = Assembly.GetExecutingAssembly().GetName().Name;
+
+        /// <summary>
+        /// 几个文件夹监视对象
+        /// </summary>
+        public static FileSystemWatcher ServerModsDirWatcher;
+
+        /// <summary>
         /// MainPage需要保存在Global里额几个控件对象
         /// </summary>
         public static FontFamily FontFamily { get; set; }
         public static FontWeight FontWeight { get; set; }
         public static Frame DedicatedServerFrame { get; set; }
+
+        #endregion
+
+        #region 方法
 
         /// <summary>
         /// 遍历视觉树
@@ -53,11 +72,6 @@ namespace 饥荒开服工具ByTpxxn.Class
                 FindChildren(results, current);
             }
         }
-
-        /// <summary>
-        /// 工程名 [饥荒开服工具ByTpxxn]
-        /// </summary>
-        public static string ProjectName = Assembly.GetExecutingAssembly().GetName().Name;
 
         /// <summary>
         /// 控件可视性设置
@@ -82,5 +96,7 @@ namespace 饥荒开服工具ByTpxxn.Class
             var assembly = Assembly.GetExecutingAssembly();
             return assembly.GetManifestResourceStream(ProjectName + "." + path);
         }
+
+        #endregion
     }
 }

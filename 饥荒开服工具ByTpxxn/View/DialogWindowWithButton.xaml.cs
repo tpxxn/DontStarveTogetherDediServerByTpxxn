@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using 饥荒开服工具ByTpxxn.Class;
+using Application = System.Windows.Application;
 
 namespace 饥荒开服工具ByTpxxn.View
 {
@@ -22,6 +23,7 @@ namespace 饥荒开服工具ByTpxxn.View
     public partial class DialogWindowWithButton : Window
     {
         public object Result;
+
         public enum DialogButtons
         {
             OK,
@@ -29,7 +31,7 @@ namespace 饥荒开服工具ByTpxxn.View
             OKCancel
         }
 
-        public DialogWindowWithButton(string content,DialogButtons dialogButtons)
+        public DialogWindowWithButton(string content,DialogButtons dialogButtons,bool hideInputTextBox = false)
         {
             InitializeComponent();
             ContentTextBlock.Text = content;
@@ -45,6 +47,11 @@ namespace 饥荒开服工具ByTpxxn.View
                     break;
                 case DialogButtons.OKCancel:
                     break;
+            }
+            if (hideInputTextBox)
+            {
+                InputTextBox.Visibility = Visibility.Collapsed;
+                Grid.SetRowSpan(ContentTextBlock, 2);
             }
         }
 

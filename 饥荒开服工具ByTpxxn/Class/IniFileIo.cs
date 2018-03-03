@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace 饥荒开服工具ByTpxxn.Class
 {
+    /// <summary>
+    /// 用于读写软件配置
+    /// </summary>
     internal static class IniFileIo
     {
         /// <summary>

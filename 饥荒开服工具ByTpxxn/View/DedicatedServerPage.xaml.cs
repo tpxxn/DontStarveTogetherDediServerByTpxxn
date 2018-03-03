@@ -35,7 +35,7 @@ namespace 饥荒开服工具ByTpxxn.View
 
         private BaseSet _baseSet;                        // 基本设置
 
-        private HanizationObject _Hanization;  // 汉化
+        private HanizationObject _Hanization;            // 汉化
         private Leveldataoverride _overWorld;            // 地上世界
         private Leveldataoverride _caves;                // 地下世界
 

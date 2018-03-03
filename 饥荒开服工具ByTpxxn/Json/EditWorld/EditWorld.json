@@ -24,7 +24,7 @@
         },
         {
           "Key": "specialevent",
-          "Value": "none,default,hallowed_nights,winters_feast,year_of_the_gobbler"
+          "Value": "none,default,hallowed_nights,winters_feast,year_of_the_gobbler,year_of_the_varg"
         },
         {
           "Key": "autumn",

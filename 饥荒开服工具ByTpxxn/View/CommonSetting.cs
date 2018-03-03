@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using 饥荒开服工具ByTpxxn.Class;
 using 饥荒开服工具ByTpxxn.Class.DedicateServer;
 using 饥荒开服工具ByTpxxn.Class.Tools;
 
@@ -22,9 +23,12 @@ namespace 饥荒开服工具ByTpxxn.View
         /// <param name="onCommonSettingPanel">是否已经在通用设置面板</param>
         private void CheckCommonSetting(bool onCommonSettingPanel = false)
         {
-            // 读取通用设置
+            // [读取通用设置]
             SetPath();
-            // 判断通用设置是否设置完毕
+            // [开始文件监控]
+            //      服务器mod文件夹监控
+            ServerModsDirWatcherStart();
+            // [判断通用设置是否设置完毕]
             if (string.IsNullOrEmpty(CommonPath.ClientFilePath) || string.IsNullOrEmpty(CommonPath.ServerFilePath) || string.IsNullOrEmpty(CommonPath.ClusterToken))
             {
                 if (onCommonSettingPanel == false)

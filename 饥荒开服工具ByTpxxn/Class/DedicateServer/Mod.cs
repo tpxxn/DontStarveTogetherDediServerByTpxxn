@@ -98,7 +98,7 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
             var directoryInfo = new DirectoryInfo(Path.GetDirectoryName(modinfoLuaPath) ?? throw new InvalidOperationException());
             ModDirName = directoryInfo.Name;
             // 读取modinfo文件
-            var modInfoLuaTable = LuaConfig.ReadLua(modinfoLuaPath, Encoding.UTF8, false);
+            var modInfoLuaTable = LuaHelper.ReadLua(modinfoLuaPath, Encoding.UTF8, false);
             // 读取图片
             try
             {
@@ -149,101 +149,76 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
                 // lua下标从1开始
                 for (var i = 1; i <= configurationOptionsLuaTable.Length; i++)
                 {
-                    // 获取name的值，如果name值为空，干脆不储存，直接到下一个循环,mod中经常会有这种空的东西，不知道是作者故意的还是什么
+                    // 获取name的值[name设置的是唯一标志符]，如果name值为空，干脆不储存，直接到下一个循环
                     var nameLuaTable = ((LuaTable)configurationOptionsLuaTable[i])["name"];
-                    if (nameLuaTable == null || nameLuaTable.ToString().Trim() == "")
-                    {
+                    if (string.IsNullOrEmpty(nameLuaTable?.ToString().Trim()))
                         continue;
-                    }
-                    var modName = nameLuaTable.ToString();
+                    var modSettingName = nameLuaTable.ToString();
                     // Label的值
-                    string modLabel;
                     var label = ((LuaTable)configurationOptionsLuaTable[i])["label"];
-
-                    if (label == null || label.ToString().Trim() == "")
-                    {
-                        modLabel = "";
-                    }
-                    else
-                    {
-                        modLabel = label.ToString();
-                    }
+                    var modSettingLabel = string.IsNullOrEmpty(label?.ToString().Trim()) ? "" : label.ToString();
                     // Hover的值
-                    string modHover;
                     var hover = ((LuaTable)configurationOptionsLuaTable[i])["hover"];
-                    if (hover == null || hover.ToString().Trim() == "")
-                    {
-                        modHover = "";
-                    }
-                    else
-                    {
-                        modHover = hover.ToString();
-                    }
-                    // Default的值
-                    string modDefault;
-                    string modCurrent;
-                    var defaultValue = ((LuaTable)configurationOptionsLuaTable[i])["default"];
-                    if (defaultValue == null || defaultValue.ToString().Trim() == "")
-                    {
-                        modDefault = "";
-                        modCurrent = "";
-                    }
-                    else
-                    {
-                        modDefault = defaultValue.ToString();
-                        modCurrent = defaultValue.ToString();
-                    }
+                    var modSettingHover = string.IsNullOrEmpty(hover?.ToString().Trim()) ? "" : hover.ToString();
                     // Options,每个设置的选项
-                    var optionsList = new List<Option>();
+                    List<Option> modSettingOptionList = null;
                     var options = ((LuaTable)configurationOptionsLuaTable[i])["options"];
-                    if (options == null)
+                    if (options != null)
                     {
-                        optionsList = null;
-                    }
-                    else
-                    {
+                        modSettingOptionList = new List<Option>();
                         var optionsLuaTable = (LuaTable)options;
                         // lua从1开始
                         for (var j = 1; j <= optionsLuaTable.Length; j++)
                         {
+                            var optionsHover = ((LuaTable)optionsLuaTable[j])["hover"];
                             var option = new Option
                             {
-                                Description = ((LuaTable)optionsLuaTable[j])["description"].ToString(),
+                                Description= ((LuaTable)optionsLuaTable[j])["description"].ToString(),
                                 Data = ((LuaTable)optionsLuaTable[j])["data"].ToString()
                             };
-                            // 标记，这里没有判断description是否为空，绝大多数都不会出错的，除非作者瞎写。
+                            if (!string.IsNullOrEmpty(optionsHover?.ToString().Trim()))
+                                option.Hover = optionsHover.ToString();
                             // 其实这个data值是有数据类型的，bool,int，string.但是这里全部都是string了，在保存到文件的时候要判断类型保存
-                            optionsList.Add(option);
+                            modSettingOptionList.Add(option);
                         }
                     }
-                    // 判断default是否存在于data中，有的作者瞎写。。 只能判断下
-                    var isDefaultIndata = false;
-                    // ReSharper disable once PossibleNullReferenceException
-                    foreach (var option in optionsList)
+                    // Default的值
+                    var modSettingDefault = "";
+                    var modSettingCurrent = "";
+                    var defaultValue = ((LuaTable)configurationOptionsLuaTable[i])["default"];
+                    if (!string.IsNullOrEmpty(defaultValue?.ToString().Trim()))
                     {
-                        if (modDefault == option.Data)
+                        modSettingDefault = defaultValue.ToString();
+                        modSettingCurrent = defaultValue.ToString();
+                    }
+                    // 判断default是否存在于data中，有的作者瞎写。。 只能判断下
+                    var isDefaultInData = false;
+                    // ReSharper disable once PossibleNullReferenceException
+                    foreach (var option in modSettingOptionList)
+                    {
+                        if (modSettingDefault == option.Data)
                         {
-                            isDefaultIndata = true;
+                            isDefaultInData = true;
                         }
                     }
                     // 标记（listOptions[0]没有判断是否为空） 如果不存在，赋值第一个data的值
-                    if (!isDefaultIndata)
+                    if (!isDefaultInData)
                     {
-                        modDefault = optionsList[0].Data;
-                        modCurrent = optionsList[0].Data;
+                        modSettingDefault = modSettingOptionList[0].Data;
+                        modSettingCurrent = modSettingOptionList[0].Data;
                     }
                     // 赋值到mod设置中
                     var modSetting = new ModSetting
                     {
-                        Name = modName,
-                        Label = modLabel,
-                        Hover = modHover,
-                        Current = modCurrent,
-                        Default = modDefault,
-                        Options = optionsList
+                        Name = modSettingName,
+                        Label = modSettingLabel,
+                        Hover = modSettingHover,
+                        Options = modSettingOptionList,
+                        Default = modSettingDefault,
+                        Current = modSettingCurrent
                     };
-                    // 添加到总的configuration_options
-                    ConfigurationOptions[modName] = modSetting;
+                    // 添加到总的 configuration_options
+                    ConfigurationOptions[modSettingName] = modSetting;
                 }
             }
             #endregion
@@ -269,17 +244,17 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
             if (modConfigurationOptions == null) return;
             // 格式转换
             var iDictionary = ((LuaTable)modConfigurationOptions).Members;
-            foreach (var item in iDictionary)
+            foreach (var keyValuePair in iDictionary)
             {
                 //  如果不存在，下一循环
-                if (!ConfigurationOptions.ContainsKey(item.Key))
+                if (!ConfigurationOptions.ContainsKey(keyValuePair.Key))
                 {
                     continue;
                 }
                 // 赋值到当前值,［到这里，用当前值覆盖了default，如果没有被覆盖的就是默认值］
-                if (item.Value != null)
+                if (keyValuePair.Value != null)
                 {
-                    ConfigurationOptions[item.Key].Current = item.Value.ToString();
+                    ConfigurationOptions[keyValuePair.Key].Current = keyValuePair.Value.ToString();
                 }
             }
         }

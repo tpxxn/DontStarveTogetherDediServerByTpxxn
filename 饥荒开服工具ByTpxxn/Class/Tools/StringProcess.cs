@@ -4,30 +4,28 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using 饥荒开服工具ByTpxxn.Class;
 
-namespace 饥荒开服工具ByTpxxn.Class
+namespace 饥荒开服工具ByTpxxn.Class.Tools
 {
     internal static class StringProcess
     {
         /// <summary>
         /// 删除重复数据
         /// </summary>
-        /// <param name="str">字符串数组</param>
-        public static string[] StringDelRepeatData(string[] str)
+        /// <param name="stringArray">字符串数组</param>
+        public static string[] StringDelRepeatData(string[] stringArray)
         {
-            var b = str.GroupBy(p => p).Select(p => p.Key).ToArray();
-            if (b.Length != 1) return b;
-            var temp = new List<string>
+            var OrderlyStringArray = stringArray.GroupBy(p => p).Select(p => p.Key).ToArray();
+            if (OrderlyStringArray.Length != 1) return OrderlyStringArray;
+            var tempStringList = new List<string>
             {
-                b[0],
+                OrderlyStringArray[0],
                 ""
             };
-            b = temp.ToArray();
-            return b;
+            OrderlyStringArray = tempStringList.ToArray();
+            return OrderlyStringArray;
         }
         
         /// <summary>
@@ -51,44 +49,6 @@ namespace 饥荒开服工具ByTpxxn.Class
         {
             path = path.Substring(path.LastIndexOf('/') + 1, path.Length - path.LastIndexOf('/') - 5);
             return path;
-        }
-
-        /// <summary>
-        /// 获取游戏图片位置
-        /// </summary>
-        /// <param name="str">图片名称</param>
-        /// <returns>完整路径</returns>
-        public static string GetGameResourcePath(string str)
-        {
-            var strHead = str.Substring(0, 1);
-            switch (strHead)
-            {
-                case "A":
-                    str = $"/Resources/GameResources/Creatures/{str}.png";
-                    break;
-                case "C":
-                    str = $"/Resources/GameResources/Characters/{str}.png";
-                    break;
-                case "F":
-                    str = $"/Resources/GameResources/Foods/{str}.png";
-                    break;
-                case "G":
-                    str = $"/Resources/GameResources/Goods/{str}.png";
-                    break;
-                case "N":
-                    str = $"/Resources/GameResources/Natures/{str}.png";
-                    break;
-                case "S":
-                    str = $"/Resources/GameResources/Sciences/{str}.png";
-                    break;
-                case "T":
-                    str = $"/Resources/GameResources/Goods/{str}.png";
-                    break;
-                case "P":
-                    str = $"/Resources/GameResources/Skins/{str}.png";
-                    break;
-            }
-            return str;
         }
 
         /// <summary>

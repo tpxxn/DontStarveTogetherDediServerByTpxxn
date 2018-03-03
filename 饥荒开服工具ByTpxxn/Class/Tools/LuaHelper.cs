@@ -12,7 +12,7 @@ namespace 饥荒开服工具ByTpxxn.Class.Tools
     /// <summary>
     /// lua的设置文件
     /// </summary>
-    public static class LuaConfig
+    public static class LuaHelper
     {
         /// <summary>
         /// 读取lua,并返回luaTable

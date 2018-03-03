@@ -9,12 +9,7 @@ namespace 饥荒开服工具ByTpxxn.Class.Tools
     internal static class CommonPath
     {
         #region 字段、属性
-
-        /// <summary>
-        /// 我的文档路径
-        /// </summary>
-        public static string DocumentDirPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-
+        
         /// <summary>
         /// 存档根目录
         /// </summary>
@@ -34,10 +29,10 @@ namespace 饥荒开服工具ByTpxxn.Class.Tools
                 switch (value)
                 {
                     case "Steam":
-                        SaveRootDirPath = DocumentDirPath + @"\Klei\DoNotStarveTogether";
+                        SaveRootDirPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Klei\DoNotStarveTogether";
                         break;
                     case "WeGame":
-                        SaveRootDirPath = DocumentDirPath + @"\Klei\DoNotStarveTogetherRail";
+                        SaveRootDirPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Klei\DoNotStarveTogetherRail";
                         break;
                 }
                 _gamePlatform = value;
@@ -57,7 +52,6 @@ namespace 饥荒开服工具ByTpxxn.Class.Tools
                 if (string.IsNullOrEmpty(value))
                 {
                     _clientFilePath = null;
-                    //JsonHelper.WriteClientPath("", JsonHelper.ReadGamePlatform());
                     return;
                 }
                 _clientFilePath = value.Trim();
@@ -65,6 +59,11 @@ namespace 饥荒开服工具ByTpxxn.Class.Tools
                 ClientModsDirPath = _clientFilePath.Substring(0, _clientFilePath.Length - 25) + "\\mods";
             }
         }
+
+        /// <summary>
+        /// 客户端mods路径
+        /// </summary>
+        public static string ClientModsDirPath { get; set; }
 
         /// <summary>
         /// 服务端exe文件路径
@@ -79,7 +78,6 @@ namespace 饥荒开服工具ByTpxxn.Class.Tools
                 if (string.IsNullOrEmpty(value))
                 {
                     _serverFilePath = null;
-                    //JsonHelper.WriteServerPath("", JsonHelper.ReadGamePlatform());
                     return;
                 }
                 // 判断文件名对不对
@@ -91,11 +89,6 @@ namespace 饥荒开服工具ByTpxxn.Class.Tools
                 }
             }
         }
-
-        /// <summary>
-        /// 客户端mods路径
-        /// </summary>
-        public static string ClientModsDirPath { get; set; }
 
         /// <summary>
         /// 服务器mods路径
@@ -115,7 +108,6 @@ namespace 饥荒开服工具ByTpxxn.Class.Tools
                 if (string.IsNullOrEmpty(value))
                 {
                     _clusterToken = null;
-                    //JsonHelper.WriteClientPath("", JsonHelper.ReadGamePlatform());
                     return;
                 }
                 _clusterToken = value.Trim();
