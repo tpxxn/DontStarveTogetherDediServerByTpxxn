@@ -154,7 +154,7 @@
                     </Button>
                     <TextBlock x:Name="DidiIntentionTextBlock" Grid.ColumnSpan="4" FontSize="16" FontWeight="Bold" Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" TextAlignment="Center" Foreground="#FFF5F3DE"/>
                 </Grid>
-                <ScrollViewer x:Name="DediBaseSet" Template="{StaticResource DediRightPanelScrollViewerControlTemplate}" Margin="10,20" Focusable="False" >
+                <ScrollViewer x:Name="DediBaseSet" Template="{StaticResource DediRightPanelScrollViewerControlTemplate}" Margin="10,20" Focusable="False" d:IsHidden="True" >
                     <StackPanel>
                         <Grid x:Name="DediBaseSetIntention" Height="40">
                             <dedicatedServer:DediSetBackground/>
@@ -249,7 +249,7 @@
                         </Grid>
                     </StackPanel>
                 </ScrollViewer>
-                <Grid x:Name="DediWorldSet" Margin="10,20" d:IsHidden="True">
+                <Grid x:Name="DediWorldSet" Margin="10,20">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="10"/>
                         <ColumnDefinition Width="*"/>

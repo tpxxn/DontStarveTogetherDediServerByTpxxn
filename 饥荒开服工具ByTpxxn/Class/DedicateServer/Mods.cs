@@ -109,7 +109,6 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
                     foreach (var configurationOption in configurationOptionsDictionary)
                     {
                         configurationOptionsStringBuilder.AppendFormat(Indent(3) + "{0} = {1},\r\n", KeyType(configurationOption.Key), ValueType(configurationOption.Value.Current));
-
                     }
                     modSetting = Indent(2) + "configuration_options={{\r\n" + configurationOptionsStringBuilder + Indent(2) + "}},\r\n";
                 }

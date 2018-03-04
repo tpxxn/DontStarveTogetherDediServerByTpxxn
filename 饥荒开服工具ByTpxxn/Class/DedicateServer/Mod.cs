@@ -182,6 +182,8 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
                             modSettingOptionList.Add(option);
                         }
                     }
+                    else
+                        continue;
                     // Default的值
                     var modSettingDefault = "";
                     var modSettingCurrent = "";
@@ -193,7 +195,6 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
                     }
                     // 判断default是否存在于data中，有的作者瞎写。。 只能判断下
                     var isDefaultInData = false;
-                    // ReSharper disable once PossibleNullReferenceException
                     foreach (var option in modSettingOptionList)
                     {
                         if (modSettingDefault == option.Data)
