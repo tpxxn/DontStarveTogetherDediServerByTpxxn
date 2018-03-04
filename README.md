@@ -1,9 +1,6 @@
 # 饥荒开服工具 By Tpxxn
 饥荒开服工具(感谢铅笔的前期辛勤付出~)
 
-## 许可
-该应用使用 [__MIT License__](https://github.com/tpxxn/DontStarveTogetherDediServerByTpxxn/blob/master/LICENSE)
-
 ## 需求
 .NET Framework 4.5.2
 
@@ -20,3 +17,6 @@ win环境的饥荒独立服务器开服工具，支持简单模式(仅地面和�
 
 ## 更新日志
 https://github.com/tpxxn/DontStarveTogetherDediServerByTpxxn/releases/latest
+
+## 许可
+该应用使用 [__MIT License__](https://github.com/tpxxn/DontStarveTogetherDediServerByTpxxn/blob/master/LICENSE)
