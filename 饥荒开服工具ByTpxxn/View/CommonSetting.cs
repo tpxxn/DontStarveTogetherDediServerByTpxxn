@@ -24,7 +24,7 @@ namespace 饥荒开服工具ByTpxxn.View
         private void CheckCommonSetting(bool onCommonSettingPanel = false)
         {
             // [读取通用设置]
-            SetPath();
+            SetCommonPath();
             // [开始文件监控]
             //      服务器mod文件夹监控
             ServerModsDirWatcherStart();
@@ -51,7 +51,7 @@ namespace 饥荒开服工具ByTpxxn.View
         /// <summary>
         /// 设置"路径"
         /// </summary>
-        private void SetPath()
+        private void SetCommonPath()
         {
             // 读取游戏平台
             CommonPath.SetGamePlatform();

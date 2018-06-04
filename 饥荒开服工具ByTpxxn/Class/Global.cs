@@ -41,6 +41,7 @@ namespace 饥荒开服工具ByTpxxn.Class
         /// </summary>
         public static FileSystemWatcher ServerModsDirWatcher;
 
+        public static bool ServerModsDirWatcherIsEnable { get; set; }
         /// <summary>
         /// MainPage需要保存在Global里额几个控件对象
         /// </summary>
@@ -48,6 +49,7 @@ namespace 饥荒开服工具ByTpxxn.Class
         public static FontWeight FontWeight { get; set; }
         public static Frame DedicatedServerFrame { get; set; }
 
+        public static Grid DedicatedServerPageMainGrid { get; set; }
         #endregion
 
         #region 方法

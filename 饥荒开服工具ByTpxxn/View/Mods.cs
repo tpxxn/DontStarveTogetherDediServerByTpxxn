@@ -24,7 +24,6 @@ namespace 饥荒开服工具ByTpxxn.View
 {
     public partial class DedicatedServerPage : Page
     {
-        private static bool serverModsDirWatcherIsEnable = true;
         #region Mod配置
 
         /// <summary>
@@ -209,7 +208,7 @@ namespace 饥荒开服工具ByTpxxn.View
         {
             try
             {
-                serverModsDirWatcherIsEnable = false;
+                Global.ServerModsDirWatcherIsEnable = false;
                 var tempPath = Environment.CurrentDirectory + @"\Temp\";
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
@@ -267,7 +266,7 @@ namespace 饥荒开服工具ByTpxxn.View
                 MainGrid.IsEnabled = true;
                 dialogWindow.Close();
                 RefreshModButton_OnClick(null, null);
-                serverModsDirWatcherIsEnable = true;
+                Global.ServerModsDirWatcherIsEnable = true;
             }
             catch (Exception exception)
             {
@@ -282,7 +281,7 @@ namespace 饥荒开服工具ByTpxxn.View
         {
             try
             {
-                serverModsDirWatcherIsEnable = false;
+                Global.ServerModsDirWatcherIsEnable = false;
                 var tempPath = Environment.CurrentDirectory + @"\Temp\";
                 if (Directory.Exists(tempPath))
                     Directory.Delete(tempPath, true);
@@ -321,7 +320,7 @@ namespace 饥荒开服工具ByTpxxn.View
                     dialogWindow.Close();
                 }
                 RefreshModButton_OnClick(null, null);
-                serverModsDirWatcherIsEnable = true;
+                Global.ServerModsDirWatcherIsEnable = true;
             }
             catch (Exception exception)
             {
@@ -374,11 +373,11 @@ namespace 饥荒开服工具ByTpxxn.View
         /// </summary>
         private void OnServerModsDirChanged(object source, FileSystemEventArgs e)
         {
-            if (serverModsDirWatcherIsEnable)
+            if (Global.ServerModsDirWatcherIsEnable)
             {
                 Application.Current.Dispatcher.Invoke(() =>
                 {
-                    serverModsDirWatcherIsEnable = false;
+                    Global.ServerModsDirWatcherIsEnable = false;
                     var dialogWindowWithButton = new DialogWindowWithButton("服务器mod文件夹发生变化，是否重新加载mod列表", DialogWindowWithButton.DialogButtons.OKCancel, true);
                     dialogWindowWithButton.InitializeComponent();
                     dialogWindowWithButton.OKbuttonEvent += sender => sender.Result = true;
@@ -394,7 +393,7 @@ namespace 饥荒开服工具ByTpxxn.View
                     };
                     timer.Tick += (sender, eventArgs) =>
                     {
-                        serverModsDirWatcherIsEnable = true;
+                        Global.ServerModsDirWatcherIsEnable = true;
                         ((System.Windows.Forms.Timer)sender).Stop();
                     };
                     timer.Start();

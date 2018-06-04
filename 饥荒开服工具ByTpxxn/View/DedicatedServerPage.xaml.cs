@@ -52,6 +52,7 @@ namespace 饥荒开服工具ByTpxxn.View
         public DedicatedServerPage()
         {
             InitializeComponent();
+            Global.DedicatedServerPageMainGrid = MainGrid;
             Global.DedicatedServerFrame.NavigationService.LoadCompleted += LoadCompleted;
         }
 
@@ -179,7 +180,7 @@ namespace 饥荒开服工具ByTpxxn.View
             // 复制文件
             if (((RadioButton)SaveSlotStackPanel.Children[SaveSlot]).Content.ToString() == "新世界")
             {
-                // 复制一份过去                  
+                // 复制一份过去
                 FileHelper.CopyServerTemplateFile();
                 // 改名字
                 FileHelper.RenameServerTemplateFile(SaveSlot);
@@ -464,6 +465,8 @@ namespace 饥荒开服工具ByTpxxn.View
             var clusterIniPath = CommonPath.SaveRootDirPath + @"\DedicatedServer_" + saveSlot + @"\cluster.ini";
             if (!File.Exists(clusterIniPath))
             {
+                // 复制新文件
+                File.WriteAllText(clusterIniPath, FileHelper.ReadResources("ServerTemplate.cluster.ini"), Global.Utf8WithoutBom);
                 return "新世界";
             }
             var iniTool = new IniHelper(clusterIniPath, Global.Utf8WithoutBom);

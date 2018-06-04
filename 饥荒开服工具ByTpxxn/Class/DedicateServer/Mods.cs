@@ -59,21 +59,25 @@ namespace 饥荒开服工具ByTpxxn.Class.DedicateServer
             Debug.WriteLine("读取mod完成！");
         }
 
+        /// <summary>
+        /// 读取mod配置文件
+        /// </summary>
+        /// <param name="modoverridesFilePath">mod配置文件路径</param>
         public void ReadModsOverrides(string modoverridesFilePath)
         {
             ModoverrideFilePath = modoverridesFilePath;
             var serverluaTable = LuaHelper.ReadLua(modoverridesFilePath, Encoding.UTF8, true);
             // 遍历modsPath中每一个文件modinfo.lua文件
-            var directoryInfos = new DirectoryInfo(CommonPath.ServerModsDirPath).GetDirectories();
+            var modDirectoryInfos = new DirectoryInfo(CommonPath.ServerModsDirPath).GetDirectories();
             // TODO：这里要保证mods文件夹下全部都是mod的文件夹，不能有其他的文件夹，不然后面可能会出错
-            for (var i = 0; i < directoryInfos.Length; i++)
+            for (var i = 0; i < modDirectoryInfos.Length; i++)
             {
                 if (i >= ModList.Count)
                     break;
                 // 这个mod的配置luaTable，可以为空，后面有判断
-                var luaTable = serverluaTable[directoryInfos[i].Name] == null ? null : (LuaTable)serverluaTable[directoryInfos[i].Name];
+                var modSettingluaTable = serverluaTable[modDirectoryInfos[i].Name] == null ? null : (LuaTable)serverluaTable[modDirectoryInfos[i].Name];
                 // 读取modoverrides，赋值到current值中，用current覆盖default
-                ModList[i].ReadModoverrides(luaTable);
+                ModList[i].ReadModoverrides(modSettingluaTable);
             }
         }
 
